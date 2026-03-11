@@ -20,7 +20,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'Digital Agency - Bespoke Web Development & Templates',
+      title: 'Lise Web Equine - Bespoke Web Development & Templates',
       meta: [
         { name: 'description', content: 'Premium web agency offering bespoke development services and ready-to-use website templates' }
       ],

@@ -3,8 +3,8 @@
     <nav class="container mx-auto px-6 py-4">
       <div class="flex items-center justify-between">
         <NuxtLink to="/" class="text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity">
-          <span class="bg-black text-white px-3 py-1 rounded">Digital</span>
-          <span class="ml-1">Agency</span>
+          <span class="bg-black text-white px-3 py-1 rounded">Lise</span>
+          <span class="ml-1">Web Equine</span>
         </NuxtLink>
 
         <button
@@ -77,10 +77,8 @@ const cartStore = useCartStore()
 const isMenuOpen = ref(false)
 
 const navLinks = [
-  { name: 'Home', path: '/' },
-  { name: 'Services', path: '/services' },
-  { name: 'Templates', path: '/templates' },
-  { name: 'About', path: '/about' },
+  { name: 'Le Studio', path: '/services' },
+  { name: 'La Boutique', path: '/templates' },
   { name: 'Contact', path: '/contact' },
 ]
 

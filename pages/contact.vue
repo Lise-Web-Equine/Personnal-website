@@ -184,7 +184,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: 'Email',
-    value: 'hello@digitalagency.com'
+    value: 'hello@lisewebequine.com'
   },
   {
     icon: Phone,

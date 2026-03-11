@@ -6,7 +6,7 @@
           <div class="max-w-3xl" v-motion-slide-visible-once-bottom>
             <h1 class="text-5xl md:text-6xl font-bold mb-6">About Us</h1>
             <p class="text-xl text-gray-300 leading-relaxed">
-              We're a digital agency passionate about creating exceptional web experiences
+              We're Lise Web Equine, passionate about creating exceptional web experiences
             </p>
           </div>
         </div>
