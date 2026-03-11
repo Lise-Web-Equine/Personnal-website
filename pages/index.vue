@@ -1,36 +1,22 @@
 <template>
   <NuxtLayout>
     <div class="relative">
-      <section class="relative bg-gradient-to-br from-amber-50 via-white to-slate-50 py-20 md:py-32 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-r from-amber-100/20 via-transparent to-blue-100/20"></div>
-        
-        <!-- AI + Horse Visual Elements -->
-        <div class="absolute top-10 left-10 w-32 h-32 opacity-10">
-          <div class="text-8xl animate-pulse">🤖</div>
-        </div>
-        <div class="absolute top-20 right-20 w-40 h-40 opacity-10">
-          <div class="text-9xl animate-pulse animation-delay-1000">🐴</div>
-        </div>
-        
-        <!-- Floating Elements -->
-        <div class="absolute top-1/3 left-1/4 w-64 h-64 bg-gradient-to-br from-amber-200 to-orange-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-        <div class="absolute top-1/3 right-1/4 w-72 h-72 bg-gradient-to-br from-blue-200 to-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-        <div class="absolute bottom-1/4 left-1/3 w-56 h-56 bg-gradient-to-br from-purple-200 to-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+      <section class="relative py-20 md:py-32 overflow-hidden">
         
         <div class="relative container mx-auto px-6">
           <div class="max-w-5xl mx-auto text-center" v-motion-slide-visible-once-bottom>
             <div class="mb-6">
-              <span class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-amber-100 to-orange-100 border border-amber-200 rounded-full text-sm font-medium text-amber-800">
+              <span class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-100 to-primary-200 border border-primary-300 rounded-full text-sm font-medium text-primary-800">
                 <span class="mr-2">✨</span>
                 L'IA rencontre l'expertise équine
               </span>
             </div>
             
             <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8 leading-tight">
-              <span class="block bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 bg-clip-text text-transparent">
+              <span class="block" style="background-image: linear-gradient(140deg, #2e343d, #193d73); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
                 Création de site web
               </span>
-              <span class="block bg-gradient-to-r from-slate-700 via-slate-800 to-slate-900 bg-clip-text text-transparent">
+              <span class="block" style="background-image: linear-gradient(140deg, #2e343d, #193d73); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
                 pour le secteur équin
               </span>
             </h1>
@@ -40,7 +26,7 @@
             </p>
             
             <div class="flex flex-col sm:flex-row gap-6 justify-center">
-              <NuxtLink to="/templates" class="group relative px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-semibold rounded-xl hover:from-amber-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+              <NuxtLink to="/templates" class="group relative px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold rounded-xl hover:from-primary-600 hover:to-primary-700 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
                 <span class="flex items-center">
                   <ShoppingBag :size="20" class="mr-3" />
                   La boutique de modèles
@@ -61,7 +47,7 @@
       </section>
 
       <!-- L'Experte Section -->
-      <section class="py-24 bg-gradient-to-br from-white via-amber-50/30 to-white relative overflow-hidden">
+      <section class="py-24 relative overflow-hidden">
         <!-- Background decoration -->
         <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-amber-100/50 to-transparent rounded-full blur-3xl"></div>
         <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-blue-100/50 to-transparent rounded-full blur-3xl"></div>
@@ -157,7 +143,7 @@
       </section>
 
       <!-- Services Segmentés Section -->
-      <section class="py-24 bg-gradient-to-br from-slate-50 to-white">
+      <section class="py-24">
         <div class="container mx-auto px-6">
           <div class="text-center mb-20" v-motion-slide-visible-once-bottom>
             <h2 class="text-4xl md:text-5xl font-bold mb-6">
@@ -435,7 +421,7 @@
         </div>
       </section>
 
-      <section class="py-20 bg-gray-50">
+      <section class="py-20">
         <div class="container mx-auto px-6">
           <div class="flex justify-between items-end mb-12" v-motion-slide-visible-once-bottom>
             <div>
