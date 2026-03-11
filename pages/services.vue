@@ -31,7 +31,7 @@
                   <span class="text-gray-700">{{ feature }}</span>
                 </li>
               </ul>
-              <NuxtLink :to="service.link" class="btn-primary inline-flex items-center">
+              <NuxtLink :to="service.link" class="btn-primary">
                 {{ service.cta }}
                 <ArrowRight :size="20" class="ml-2" />
               </NuxtLink>
@@ -69,7 +69,7 @@
               Let's discuss your project and find the perfect solution for your needs
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <NuxtLink to="/contact" class="btn-primary bg-white text-black hover:bg-gray-100">
+              <NuxtLink to="/contact" class="btn-primary">
                 Get in Touch
               </NuxtLink>
               <NuxtLink to="/templates" class="btn-secondary text-white border-white hover:bg-white/10">

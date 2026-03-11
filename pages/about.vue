@@ -107,7 +107,7 @@
             <p class="text-xl text-gray-300 mb-10">
               Ready to take your digital presence to the next level?
             </p>
-            <NuxtLink to="/contact" class="btn-primary bg-white text-black hover:bg-gray-100 inline-flex items-center">
+            <NuxtLink to="/contact" class="btn-primary inline-flex items-center">
               Get in Touch
               <ArrowRight :size="20" class="ml-2" />
             </NuxtLink>

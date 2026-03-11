@@ -1,3 +1,5 @@
+import colors from 'tailwindcss/colors'
+
 export default {
   content: [
     "./components/**/*.{js,vue,ts}",
@@ -10,19 +12,19 @@ export default {
     extend: {
       colors: {
         primary: {
-          50: '#eceff3',
-          100: '#d8dfe8',
-          200: '#b8c4d6',
-          300: '#98a9c4',
-          400: '#788eb2',
-          500: '#745bd8',
-          600: '#5d49b0',
-          700: '#463788',
-          800: '#2f2560',
-          900: '#181338',
-          950: '#0c091c',
+          ...colors.violet,
+          DEFAULT: colors.violet[500],
         },
-
+        title: {
+          dark: colors.sky[950],
+          light: colors.sky[850],
+        },
+        button: {
+          primary: {
+            dark: colors.gray[800],
+            light: colors.violet[500],
+          },
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

@@ -12,13 +12,9 @@
               </span>
             </div>
             
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8 leading-tight">
-              <span class="block" style="background-image: linear-gradient(140deg, #2e343d, #193d73); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-                Création de site web
-              </span>
-              <span class="block" style="background-image: linear-gradient(140deg, #2e343d, #193d73); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-                pour le secteur équin
-              </span>
+            <h1 class="mb-8 leading-tight">
+              <span class="block">Création de site web</span>
+              <span class="block">pour le secteur équin</span>
             </h1>
             
             <p class="text-xl md:text-2xl lg:text-3xl text-gray-700 mb-12 leading-relaxed font-medium">
@@ -26,7 +22,7 @@
             </p>
             
             <div class="flex flex-col sm:flex-row gap-6 justify-center">
-              <NuxtLink to="/templates" class="group relative px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold rounded-xl hover:from-primary-600 hover:to-primary-700 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+              <NuxtLink to="/templates" class="btn-primary group relative">
                 <span class="flex items-center">
                   <ShoppingBag :size="20" class="mr-3" />
                   La boutique de modèles
@@ -64,13 +60,9 @@
                   </span>
                 </div>
                 
-                <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                  <span class="block bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent mb-2">
-                    Lise
-                  </span>
-                  <span class="block text-slate-800">
-                    Où la passion équine rencontre l'innovation digitale
-                  </span>
+                <h2 class="mb-6 leading-tight">
+                  <span class="block mb-2">Lise</span>
+                  <span class="block text-slate-800">Où la passion équine rencontre l'innovation digitale</span>
                 </h2>
                 
                 <div class="space-y-6 mb-8">
@@ -103,7 +95,7 @@
                 </div>
 
                 <div class="flex flex-col sm:flex-row gap-4">
-                  <NuxtLink to="/about" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-semibold rounded-lg hover:from-amber-600 hover:to-orange-700 transition-all duration-300">
+                  <NuxtLink to="/about" class="btn-primary inline-flex items-center">
                     <span>Mon histoire</span>
                     <ArrowRight :size="20" class="ml-2" />
                   </NuxtLink>
@@ -146,10 +138,8 @@
       <section class="py-24">
         <div class="container mx-auto px-6">
           <div class="text-center mb-20" v-motion-slide-visible-once-bottom>
-            <h2 class="text-4xl md:text-5xl font-bold mb-6">
-              <span class="block bg-gradient-to-r from-slate-700 to-slate-900 bg-clip-text text-transparent">
-                Choisissez votre chemin
-              </span>
+            <h2 class="mb-6">
+              <span class="block">Choisissez votre chemin</span>
             </h2>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
               Que vous soyez un établi ou un débutant, j'ai la solution parfaite pour propulser votre présence en ligne
@@ -221,7 +211,7 @@
                 </div>
                 
                 <!-- CTA -->
-                <NuxtLink to="/services" class="w-full inline-flex items-center justify-center px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-semibold rounded-xl hover:from-amber-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105">
+                <NuxtLink to="/services" class="btn-primary w-full inline-flex items-center justify-center">
                   <span>En savoir plus</span>
                   <ArrowRight :size="20" class="ml-2" />
                 </NuxtLink>
@@ -292,7 +282,7 @@
                 </div>
                 
                 <!-- CTA -->
-                <NuxtLink to="/templates" class="w-full inline-flex items-center justify-center px-6 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105">
+                <NuxtLink to="/templates" class="btn-primary w-full inline-flex items-center justify-center">
                   <span>Explorer les modèles</span>
                   <ArrowRight :size="20" class="ml-2" />
                 </NuxtLink>
@@ -353,13 +343,9 @@
                 </div>
                 
                 <!-- Title -->
-                <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                  <span class="block bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">
-                    Créé avec l'IA,
-                  </span>
-                  <span class="block text-white">
-                    raffiné par l'humain
-                  </span>
+                <h2 class="mb-6 leading-tight">
+                  <span class="block">Créé avec l'IA,</span>
+                  <span class="block text-white">raffiné par l'humain</span>
                 </h2>
                 
                 <!-- Description -->
@@ -410,7 +396,7 @@
                 
                 <!-- CTA -->
                 <div class="pt-6">
-                  <NuxtLink to="/services" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                  <NuxtLink to="/services" class="btn-primary inline-flex items-center">
                     <span>Découvrir notre technologie</span>
                     <ArrowRight :size="20" class="ml-3" />
                   </NuxtLink>
@@ -425,7 +411,7 @@
         <div class="container mx-auto px-6">
           <div class="flex justify-between items-end mb-12" v-motion-slide-visible-once-bottom>
             <div>
-              <h2 class="section-title mb-4">Featured Templates</h2>
+              <h2 class="mb-4">Featured Templates</h2>
               <p class="section-subtitle text-left max-w-none">
                 Ready-to-use, professionally designed templates
               </p>
@@ -461,14 +447,12 @@
         <div class="gradient-figure-start-with-us"></div>
         <div class="container mx-auto px-6 relative z-[1000]">
           <div class="max-w-4xl mx-auto text-center" v-motion-slide-visible-once-bottom>
-            <h2 class="text-4xl md:text-5xl font-bold mb-6">
-              Prêt à faire galoper votre projet ?
-            </h2>
+            <h2 class="mb-6">Prêt à faire galoper votre projet ?</h2>
             <p class="text-xl text-gray-300 mb-10">
               Whether you need a custom solution or a ready-made template, we're here to help.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <NuxtLink to="/contact" class="btn-primary bg-white text-black hover:bg-gray-100">
+              <NuxtLink to="/contact" class="btn-primary">
                 Get Started
               </NuxtLink>
               <NuxtLink to="/templates" class="btn-secondary text-white border-white hover:bg-white/10">
