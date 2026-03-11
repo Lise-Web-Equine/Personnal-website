@@ -1,7 +1,7 @@
 <template>
   <NuxtLayout>
     <div class="bg-gray-50 min-h-screen">
-      <section class="bg-black text-white py-20">
+      <section class="bg-primary-500 text-white py-20">
         <div class="container mx-auto px-6">
           <div class="max-w-3xl" v-motion-slide-visible-once-bottom>
             <h1 class="text-5xl md:text-6xl font-bold mb-6">Get in Touch</h1>
