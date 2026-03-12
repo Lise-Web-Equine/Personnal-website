@@ -6,8 +6,7 @@
         <div class="relative container mx-auto px-6">
           <div class="max-w-5xl mx-auto text-center" v-motion-slide-visible-once-bottom>
             <div class="mb-6">
-              <span class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-100 to-primary-200 border border-primary-300 rounded-full text-sm font-medium text-primary-800">
-                <span class="mr-2">✨</span>
+                <span class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-100 to-primary-200 border border-primary-300 rounded-full text-sm font-medium text-primary-800">
                 L'IA rencontre l'expertise équine
               </span>
             </div>
@@ -42,7 +41,7 @@
         </div>
       </section>
 
-      <!-- L'Experte Section -->
+      <!-- A propos Section -->
       <section class="py-24 relative overflow-hidden">
         <!-- Background decoration -->
         <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-amber-100/50 to-transparent rounded-full blur-3xl"></div>
@@ -54,52 +53,33 @@
               <!-- Text Content -->
               <div v-motion-slide-visible-once-left>
                 <div class="mb-6">
-                  <span class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-amber-100 to-orange-100 border border-amber-200 rounded-full text-sm font-medium text-amber-800">
-                    <span class="mr-2">👋</span>
-                    L'Experte derrière Lise Web Equine
-                  </span>
+
                 </div>
                 
                 <h2 class="mb-6 leading-tight">
-                  <span class="block mb-2">Lise</span>
                   <span class="block text-slate-800">Où la passion équine rencontre l'innovation digitale</span>
                 </h2>
                 
                 <div class="space-y-6 mb-8">
                   <p class="text-lg text-gray-700 leading-relaxed">
-                    Mon approche unique combine une <span class="font-semibold text-amber-600">double expertise</span> : une passion profonde pour le monde équin et une maîtrise pointue des technologies web modernes. Cette dualité me permet de créer des solutions digitales qui parlent véritablement votre langage.
+                    On se comprend mieux quand on partage la même passion. Cavalière dans l'âme, je sais que votre métier est une <span class="font-semibold">vocation de chaque instant</span>, souvent rythmée par les imprévus du vivant. C'est parce que je connais votre quotidien que j'ai choisi d'allier mon expertise web de 5 ans à des solutions d'intelligence artificielle.
                   </p>
                   
                   <p class="text-lg text-gray-700 leading-relaxed">
-                    Je ne crée pas seulement des sites web. Je conçois des <span class="font-semibold text-slate-800">expériences digitales</span> qui capturent l'essence de votre univers équestre, en intégrant intelligemment l'IA pour amplifier votre impact tout en préservant l'authenticité qui vous caractérise.
+                    Je crée pour vous des sites web qui vous ressemblent, pensés pour <span class="font-semibold text-slate-800">simplifier votre gestion et vous redonner de l'air</span>.
                   </p>
+ 
+                  <!-- Testimonial -->
+                  <div class="border-l-2 border-gray-300 pl-6">
+                    <p class="text-gray-700 leading-relaxed">
+                      "Mon approche est celle d'une alliée bienveillante : je m'occupe du digital pour que votre énergie reste entière pour vos chevaux et votre savoir-faire."
+                    </p>
+                  </div>
                 </div>
 
-                <!-- Values -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
-                  <div class="text-center">
-                    <div class="text-3xl mb-2">🐴</div>
-                    <h4 class="font-semibold text-slate-800 mb-1">Passion Équine</h4>
-                    <p class="text-sm text-gray-600">Une compréhension profonde de votre secteur</p>
-                  </div>
-                  <div class="text-center">
-                    <div class="text-3xl mb-2">🤖</div>
-                    <h4 class="font-semibold text-slate-800 mb-1">Innovation IA</h4>
-                    <p class="text-sm text-gray-600">Les technologies les plus avancées à votre service</p>
-                  </div>
-                  <div class="text-center">
-                    <div class="text-3xl mb-2">💫</div>
-                    <h4 class="font-semibold text-slate-800 mb-1">Excellence</h4>
-                    <p class="text-sm text-gray-600">Un engagement sans compromis sur la qualité</p>
-                  </div>
-                </div>
 
                 <div class="flex flex-col sm:flex-row gap-4">
-                  <NuxtLink to="/about" class="btn-primary inline-flex items-center">
-                    <span>Mon histoire</span>
-                    <ArrowRight :size="20" class="ml-2" />
-                  </NuxtLink>
-                  <NuxtLink to="/contact" class="inline-flex items-center px-6 py-3 text-slate-700 font-semibold rounded-lg border border-slate-300 hover:bg-slate-50 transition-all duration-300">
+                  <NuxtLink to="/contact" class="btn-primary inline-flex items-center">
                     <span>Discutons ensemble</span>
                     <MessageSquare :size="20" class="ml-2" />
                   </NuxtLink>
@@ -109,23 +89,21 @@
               <!-- Visual Content -->
               <div v-motion-slide-visible-once-right class="relative">
                 <div class="relative">
-                  <!-- Main image placeholder -->
-                  <div class="aspect-square bg-gradient-to-br from-amber-100 via-orange-50 to-amber-100 rounded-3xl overflow-hidden shadow-2xl">
-                    <div class="w-full h-full flex items-center justify-center">
-                      <div class="text-center">
-                        <div class="text-6xl mb-4">👩‍💻</div>
-                        <div class="text-2xl font-bold text-amber-700 mb-2">Lise</div>
-                        <div class="text-amber-600">Fondatrice & Développeuse</div>
+                  <div 
+                    class="aspect-square rounded-2xl p-12 flex flex-col items-center justify-end overflow-hidden relative group bg-gray-200"
+                    style="background-image: url('/images/lise-profile.jpg'); background-size: cover; background-position: center;"
+                  >
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+
+                    <div class="text-center relative z-10">
+                      <h3 class="text-2xl font-semibold text-white mb-1">Claire-Elise</h3>
+                      <p class="text-gray-200 mb-4 text-sm">Fondatrice & Développeuse</p>
+                      
+                      <div class="inline-flex items-center px-3 py-1 bg-white/20 backdrop-blur-md border border-white/30 rounded-full text-xs text-white">
+                        +5 ans d'expérience web
                       </div>
-                    </div>
-                  </div>
-                  
-                  <!-- Floating elements -->
-                  <div class="absolute -top-4 -right-4 w-20 h-20 bg-white rounded-full shadow-lg flex items-center justify-center animate-bounce">
-                    <span class="text-2xl">🏆</span>
-                  </div>
-                  <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center animate-pulse">
-                    <span class="text-xl">⭐</span>
+                   </div>
                   </div>
                 </div>
               </div>
@@ -156,7 +134,6 @@
                 <!-- Badge Premium -->
                 <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
                   <span class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-600 text-white text-sm font-semibold rounded-full shadow-lg">
-                    <span class="mr-2">⭐</span>
                     Service Premium
                   </span>
                 </div>
@@ -227,7 +204,6 @@
                 <!-- Badge Abordable -->
                 <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
                   <span class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-sm font-semibold rounded-full shadow-lg">
-                    <span class="mr-2">💰</span>
                     Solutions Abordables
                   </span>
                 </div>
@@ -313,7 +289,9 @@
                     <div class="w-full h-full flex items-center justify-center">
                       <!-- Placeholder for black and white horse image -->
                       <div class="text-center">
-                        <div class="text-8xl mb-4 opacity-80">🐴</div>
+                        <div class="w-16 h-16 bg-slate-700 rounded-full flex items-center justify-center mb-4">
+                          <span class="text-slate-300 font-bold text-xl">C</span>
+                        </div>
                         <div class="text-slate-400 text-sm">Image cheval noir & blanc</div>
                       </div>
                     </div>
@@ -321,10 +299,10 @@
                   
                   <!-- Floating Tech Elements -->
                   <div class="absolute -top-6 -right-6 w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg animate-bounce">
-                    <span class="text-2xl text-white">🤖</span>
+                    <span class="text-white font-bold text-xl">I</span>
                   </div>
                   <div class="absolute -bottom-6 -left-6 w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center shadow-lg animate-pulse">
-                    <span class="text-xl text-white">⚡</span>
+                    <span class="text-white font-bold">T</span>
                   </div>
                   
                   <!-- Code Pattern Overlay -->
@@ -337,7 +315,6 @@
                 <!-- Pre-title -->
                 <div class="mb-4">
                   <span class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 rounded-full text-sm font-medium text-blue-300">
-                    <span class="mr-2">🚀</span>
                     Le futur du web équin
                   </span>
                 </div>

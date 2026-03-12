@@ -16,8 +16,8 @@ export default {
           DEFAULT: colors.violet[500],
         },
         title: {
-          dark: colors.sky[950],
-          light: colors.sky[850],
+          dark: colors.slate[800],
+          light: colors.blue[900],
         },
         button: {
           primary: {
