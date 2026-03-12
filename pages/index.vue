@@ -1,41 +1,39 @@
 <template>
   <NuxtLayout>
     <div class="relative">
-      <section class="relative py-20 md:py-32 overflow-hidden">
+      <section class="relative py-12 sm:py-16 md:py-20 lg:py-32 overflow-hidden">
         
         <div class="relative container mx-auto px-6">
           <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
               <!-- Left: Text Content -->
               <div v-motion-slide-visible-once-left>
-                <div class="mb-6">
-                  <span class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-100 to-primary-200 border border-primary-300 rounded-full text-sm font-medium text-primary-800">
-                    L'IA rencontre l'expertise équine
+                <div class="mb-6 text-center sm:text-left">
+                  <span class="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-primary-100 to-primary-200 border border-primary-300 rounded-full text-xs sm:text-sm font-medium text-primary-800">
+                    Votre partenaire web pour passionnés équins
                   </span>
                 </div>
                 
-                <h1 class="mb-8 leading-tight">
+                <h1 class="mb-6 sm:mb-8 leading-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-center sm:text-left font-sans">
                   <span class="block">Création de site web pour le secteur équin</span>
                 </h1>
                 
-                <p class="text-lg text-gray-700 mb-12 leading-relaxed">
+                <p class="text-base sm:text-lg text-gray-700 mb-8 sm:mb-12 leading-relaxed text-center sm:text-left">
                   De l'architecture technique au design final, je crée le site web qui propulsera votre activité, que vous choisissiez un modèle clé en main ou une création sur-mesure.
                 </p>
                 
-                <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
-                  <NuxtLink to="/templates" class="btn-primary group relative">
-                    <span class="flex items-center">
+                <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start">
+                  <NuxtLink to="/templates" class="btn-primary group relative w-full sm:w-auto">
+                    <span class="flex items-center justify-center">
                       <ShoppingBag :size="20" class="mr-3" />
                       La boutique de modèles
-                      <ArrowRight :size="20" class="ml-3 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </NuxtLink>
                   
-                  <NuxtLink to="/services" class="group px-8 py-4 bg-white text-slate-800 font-semibold rounded-xl border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
-                    <span class="flex items-center">
+                  <NuxtLink to="/services" class="group px-6 py-3 sm:px-8 sm:py-4 bg-white text-slate-800 font-semibold rounded-xl border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg w-full sm:w-auto">
+                    <span class="flex items-center justify-center">
                       <Sparkles :size="20" class="mr-3" />
                       Découvrir le studio
-                      <ArrowRight :size="20" class="ml-3 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </NuxtLink>
                 </div>
@@ -43,7 +41,14 @@
               
               <!-- Right: Hero Animation -->
               <div v-motion-slide-visible-once-right class="relative">
-                <HeroAnimation />
+                <!-- Desktop Version -->
+                <div class="hidden lg:block">
+                  <HeroAnimation />
+                </div>
+                <!-- Mobile Version -->
+                <div class="lg:hidden">
+                  <HeroAnimationMobile />
+                </div>
               </div>
             </div>
           </div>
