@@ -8,20 +8,26 @@
   }
 
   h1 {
+     @apply gradient-text;
     @apply text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight;
   }
 
   h2 {
+     @apply gradient-text;
     @apply text-4xl md:text-5xl font-bold tracking-tight;
   }
 
-  /* Appliquer le dégradé aux titres par défaut */
-  h1,
-  h2,
-  h1 span,
-  h2 span {
+/* 2. SI le titre contient des spans, ils héritent du dégradé... */
+  h1 span, h2 span {
     @apply gradient-text;
-    font-weight: 600;
+  }
+
+  /* 3. ...SAUF si le span a une classe de couleur spécifique (ex: text-primary) */
+  h1 span[class*="text-"], 
+  h2 span[class*="text-"] {
+    background: none;
+    -webkit-text-fill-color: initial; /* Annule le remplissage du dégradé */
+    background-clip: border-box;     /* Réinitialise le clip */
   }
 
   /* Exception pour l'animation Hero */

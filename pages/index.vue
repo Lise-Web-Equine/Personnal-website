@@ -15,7 +15,7 @@
                 </div>
                 
                 <h1 class="mb-6 sm:mb-8 leading-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-center sm:text-left font-sans">
-                  <span class="block">Création de site web pour le secteur équin</span>
+                  <span class="block">Création de site web pour le </span><span class="text-primary">secteur équin</span>
                 </h1>
                 
                 <p class="text-base sm:text-lg text-gray-700 mb-8 sm:mb-12 leading-relaxed text-center sm:text-left">
@@ -71,7 +71,7 @@
                 </div>
                 
                 <h2 class="mb-6 leading-tight">
-                  <span class="block text-slate-800">Où la passion équine rencontre l'innovation digitale</span>
+                 Où la passion équine rencontre l'innovation digitale
                 </h2>
                 
                 <div class="space-y-6 mb-8">
@@ -126,158 +126,45 @@
         </div>
       </section>
 
-      <!-- Services Segmentés Section -->
-      <section class="py-24">
+      <!-- Services Section -->
+      <section class="py-20">
         <div class="container mx-auto px-6">
-          <div class="text-center mb-20" v-motion-slide-visible-once-bottom>
-            <h2 class="mb-6">
-              <span class="block">Choisissez votre chemin</span>
-            </h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-              Que vous soyez un établi ou un débutant, j'ai la solution parfaite pour propulser votre présence en ligne
+          <div class="text-center mb-16" v-motion-slide-visible-once-bottom>
+            <h2 class="mb-4">Mes Services</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              Des solutions adaptées à vos besoins pour développer votre présence en ligne
             </p>
           </div>
 
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <!-- Le Studio - Premium -->
-            <div 
-              class="relative group"
-              v-motion-slide-visible-once-left
-            >
-              <div class="relative p-10 bg-gradient-to-br from-amber-50 via-orange-50 to-amber-50 rounded-3xl border border-amber-200 hover:border-amber-300 transition-all duration-300 hover:shadow-2xl">
-                <!-- Badge Premium -->
-                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-600 text-white text-sm font-semibold rounded-full shadow-lg">
-                    Service Premium
-                  </span>
-                </div>
-                
-                <!-- Icon -->
-                <div class="flex justify-center mb-6 mt-4">
-                  <div class="w-20 h-20 bg-gradient-to-br from-amber-400 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg">
-                    <Palette :size="40" class="text-white" />
-                  </div>
-                </div>
-                
-                <!-- Content -->
-                <h3 class="text-3xl font-bold text-center mb-4 text-slate-800">
-                  Le Studio
-                </h3>
-                
-                <p class="text-lg text-gray-700 text-center mb-8 leading-relaxed">
-                  Service de création premium pour une présence digitale unique et sur mesure
-                </p>
-                
-                <!-- Features -->
-                <div class="space-y-4 mb-8">
-                  <div class="flex items-start space-x-3">
-                    <div class="w-6 h-6 bg-amber-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span class="text-white text-xs">✓</span>
-                    </div>
-                    <div>
-                      <h4 class="font-semibold text-slate-800 mb-1">Design Exclusif</h4>
-                      <p class="text-gray-600 text-sm">Une identité visuelle unique qui reflète votre prestige équestre</p>
-                    </div>
-                  </div>
-                  
-                  <div class="flex items-start space-x-3">
-                    <div class="w-6 h-6 bg-amber-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span class="text-white text-xs">✓</span>
-                    </div>
-                    <div>
-                      <h4 class="font-semibold text-slate-800 mb-1">Stratégie SEO Spécifique</h4>
-                      <p class="text-gray-600 text-sm">Positionnement avancé dans le secteur équin avec l'IA</p>
-                    </div>
-                  </div>
-                  
-                  <div class="flex items-start space-x-3">
-                    <div class="w-6 h-6 bg-amber-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span class="text-white text-xs">✓</span>
-                    </div>
-                    <div>
-                      <h4 class="font-semibold text-slate-800 mb-1">Accompagnement Personnalisé</h4>
-                      <p class="text-gray-600 text-sm">De la stratégie à la formation complète</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <!-- CTA -->
-                <NuxtLink to="/services" class="btn-primary w-full inline-flex items-center justify-center">
-                  <span>En savoir plus</span>
-                  <ArrowRight :size="20" class="ml-2" />
-                </NuxtLink>
-              </div>
-            </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- La Boutique -->
+            <ServiceCard
+              variant="primary"
+              title="La Boutique"
+              description="Des modèles de sites web abordables et optimisés pour ceux qui se lancent."
+              :icon="ShoppingBag"
+              badge-text="Clé en main"
+              badge-variant="primary"
+              :features="boutiqueFeatures"
+              cta-text="Explorer les modèles"
+              cta-link="/templates"
+              featured
+              motion-direction="left"
+            />
 
-            <!-- La Boutique - Abordable -->
-            <div 
-              class="relative group"
-              v-motion-slide-visible-once-right
-            >
-              <div class="relative p-10 bg-gradient-to-br from-blue-50 via-indigo-50 to-blue-50 rounded-3xl border border-blue-200 hover:border-blue-300 transition-all duration-300 hover:shadow-2xl">
-                <!-- Badge Abordable -->
-                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-sm font-semibold rounded-full shadow-lg">
-                    Solutions Abordables
-                  </span>
-                </div>
-                
-                <!-- Icon -->
-                <div class="flex justify-center mb-6 mt-4">
-                  <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
-                    <ShoppingBag :size="40" class="text-white" />
-                  </div>
-                </div>
-                
-                <!-- Content -->
-                <h3 class="text-3xl font-bold text-center mb-4 text-slate-800">
-                  La Boutique
-                </h3>
-                
-                <p class="text-lg text-gray-700 text-center mb-8 leading-relaxed">
-                  Des modèles de sites web <span class="font-bold text-blue-600">abordables</span> et optimisés pour ceux qui se lancent
-                </p>
-                
-                <!-- Features -->
-                <div class="space-y-4 mb-8">
-                  <div class="flex items-start space-x-3">
-                    <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span class="text-white text-xs">✓</span>
-                    </div>
-                    <div>
-                      <h4 class="font-semibold text-slate-800 mb-1">Prêt à l'emploi</h4>
-                      <p class="text-gray-600 text-sm">Installez, personnalisez et lancez votre activité en quelques heures</p>
-                    </div>
-                  </div>
-                  
-                  <div class="flex items-start space-x-3">
-                    <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span class="text-white text-xs">✓</span>
-                    </div>
-                    <div>
-                      <h4 class="font-semibold text-slate-800 mb-1">Guides de Personnalisation Inclus</h4>
-                      <p class="text-gray-600 text-sm">Tutoriels détaillés pour adapter le modèle à votre image</p>
-                    </div>
-                  </div>
-                  
-                  <div class="flex items-start space-x-3">
-                    <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span class="text-white text-xs">✓</span>
-                    </div>
-                    <div>
-                      <h4 class="font-semibold text-slate-800 mb-1">Optimisé SEO</h4>
-                      <p class="text-gray-600 text-sm">Base technique solide pour démarrer votre référencement</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <!-- CTA -->
-                <NuxtLink to="/templates" class="btn-primary w-full inline-flex items-center justify-center">
-                  <span>Explorer les modèles</span>
-                  <ArrowRight :size="20" class="ml-2" />
-                </NuxtLink>
-              </div>
-            </div>
+            <!-- Le Studio -->
+            <ServiceCard
+              variant="secondary"
+              title="Le Studio"
+              description="Service de création premium pour une présence digitale unique et sur mesure."
+              :icon="Palette"
+              badge-text="Sur mesure"
+              badge-variant="secondary"
+              :features="studioFeatures"
+              cta-text="En savoir plus"
+              cta-link="/services"
+              motion-direction="right"
+            />
           </div>
         </div>
       </section>
@@ -464,6 +351,36 @@ import type { Template } from '~/stores/cart'
 const supabase = useSupabase()
 const loading = ref(true)
 const featuredTemplates = ref<Template[]>([])
+
+const boutiqueFeatures = [
+  {
+    title: 'Prêt à l\'emploi',
+    description: 'Installez et lancez votre activité en quelques heures'
+  },
+  {
+    title: 'Guides de personnalisation inclus',
+    description: 'Tutoriels détaillés pour adapter le modèle'
+  },
+  {
+    title: 'Pensé pour convertir',
+    description: 'Optimisé pour transformer vos visiteurs en clients'
+  }
+]
+
+const studioFeatures = [
+  {
+    title: 'Design exclusif',
+    description: 'Une identité visuelle unique qui reflète votre prestige'
+  },
+  {
+    title: 'Stratégie SEO spécifique',
+    description: 'Positionnement avancé dans le secteur équin'
+  },
+  {
+    title: 'Accompagnement personnalisé',
+    description: 'De la stratégie à la formation complète'
+  }
+]
 
 const services = [
   {
