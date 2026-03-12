@@ -61,6 +61,13 @@
     background-clip: text;
   }
 
+  .gradient-text-light {
+    @apply bg-gradient-to-r from-primary-100 to-primary-400;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
   .section-subtitle {
     @apply text-lg md:text-xl text-gray-600 max-w-2xl mx-auto;
   }

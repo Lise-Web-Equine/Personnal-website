@@ -11,6 +11,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        dark: colors.slate[800],
         primary: {
           ...colors.violet,
           DEFAULT: colors.violet[500],
@@ -24,6 +25,7 @@ export default {
             dark: colors.gray[800],
             light: colors.violet[500],
           },
+          dark: colors.slate[800]
         },
       },
       fontFamily: {

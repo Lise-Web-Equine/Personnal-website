@@ -170,114 +170,80 @@
       </section>
 
       <!-- Expertise IA Section -->
-      <section class="py-24 bg-gradient-to-br from-slate-900 via-black to-slate-900 relative overflow-hidden">
-        <!-- Background Tech Elements -->
-        <div class="absolute inset-0">
-          <div class="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-5"></div>
-          <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
-        </div>
+      <section class="py-20 relative overflow-hidden bg-dark">
+        <!-- Background decoration -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-900/30 to-transparent rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
         
         <div class="relative container mx-auto px-6">
           <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              
-              <!-- Left: Photo -->
-              <div v-motion-slide-visible-once-left class="relative">
-                <div class="relative">
-                  <!-- Main Image -->
-                  <div class="aspect-[4/5] bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-slate-700">
-                    <div class="w-full h-full flex items-center justify-center">
-                      <!-- Placeholder for black and white horse image -->
-                      <div class="text-center">
-                        <div class="w-16 h-16 bg-slate-700 rounded-full flex items-center justify-center mb-4">
-                          <span class="text-slate-300 font-bold text-xl">C</span>
-                        </div>
-                        <div class="text-slate-400 text-sm">Image cheval noir & blanc</div>
-                      </div>
-                    </div>
+            <!-- Section Header -->
+            <div class="text-center mb-16" v-motion-slide-visible-once-bottom>
+              <h2 class="mb-6 gradient-text-light">Une expertise IA pensée pour vos projets web</h2>
+              <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                Je mets l'intelligence artificielle au service de votre passion pour créer des sites web performants et agréables à utiliser.
+              </p>
+            </div>
+
+            <!-- 2x2 Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 max-w-5xl mx-auto">
+            <div class="gradient-figure-start-with-us" data-v-02281a80=""></div>
+              <!-- Item 1 -->
+              <div class="bg-white/5 backdrop-blur-xs rounded-xl p-6 border border-white/5" v-motion-slide-visible-once-bottom>
+                <div class="flex items-start space-x-4">
+                  <div class="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-white/5">
+                    <Zap :size="24" class="text-primary-600" />
                   </div>
-                  
-                  <!-- Floating Tech Elements -->
-                  <div class="absolute -top-6 -right-6 w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg animate-bounce">
-                    <span class="text-white font-bold text-xl">I</span>
+                  <div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Vitesse & Coûts réduits</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                      J'utilise l'IA pour accélérer ma production technique. Résultat : des délais divisés par deux et des tarifs plus compétitifs qu'un projet traditionnel.</p>
                   </div>
-                  <div class="absolute -bottom-6 -left-6 w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center shadow-lg animate-pulse">
-                    <span class="text-white font-bold">T</span>
-                  </div>
-                  
-                  <!-- Code Pattern Overlay -->
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent rounded-3xl pointer-events-none"></div>
                 </div>
               </div>
 
-              <!-- Right: Content -->
-              <div v-motion-slide-visible-once-right class="space-y-8">
-                <!-- Pre-title -->
-                <div class="mb-4">
-                  <span class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 rounded-full text-sm font-medium text-blue-300">
-                    Le futur du web équin
-                  </span>
-                </div>
-                
-                <!-- Title -->
-                <h2 class="mb-6 leading-tight">
-                  <span class="block">Créé avec l'IA,</span>
-                  <span class="block text-white">raffiné par l'humain</span>
-                </h2>
-                
-                <!-- Description -->
-                <div class="space-y-6">
-                  <p class="text-lg text-gray-300 leading-relaxed">
-                    Chez Lise Web Equine, nous utilisons les technologies d'intelligence artificielle les plus avancées pour accélérer le développement, optimiser vos contenus textuels et générer des visuels équestres époustouflants.
-                  </p>
-                  
-                  <!-- Features -->
-                  <div class="space-y-6">
-                    <div class="flex items-start space-x-4">
-                      <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Zap :size="24" class="text-white" />
-                      </div>
-                      <div>
-                        <h4 class="text-xl font-semibold text-white mb-2">Rapidité d'exécution</h4>
-                        <p class="text-gray-400 leading-relaxed">
-                          Réduisez le temps de création de 50% sans compromis sur la qualité.
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <div class="flex items-start space-x-4">
-                      <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <PenTool :size="24" class="text-white" />
-                      </div>
-                      <div>
-                        <h4 class="text-xl font-semibold text-white mb-2">Copywriting Intelligent</h4>
-                        <p class="text-gray-400 leading-relaxed">
-                          Des textes optimisés pour convaincre vos futurs clients.
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <div class="flex items-start space-x-4">
-                      <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-orange-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Image :size="24" class="text-white" />
-                      </div>
-                      <div>
-                        <h4 class="text-xl font-semibold text-white mb-2">Visuels Uniques</h4>
-                        <p class="text-gray-400 leading-relaxed">
-                          Génération d'images équestres personnalisées et exclusives.
-                        </p>
-                      </div>
-                    </div>
+              <!-- Item 2 -->
+              <div class="bg-white/5 backdrop-blur-xs rounded-xl p-6 border border-white/5" v-motion-slide-visible-once-bottom style="animation-delay: 100ms">
+                <div class="flex items-start space-x-4">
+                  <div class="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-white/5">
+                    <Code :size="24" class="text-primary-500" />
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Zéro CMS, 100% Propriétaire</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                      Fini les lourdeurs de WordPress ou Wix. Je vous livre un code qui vous appartient totalement, sans abonnement caché ni dépendance technique.
+                    </p>
                   </div>
                 </div>
-                
-                <!-- CTA -->
-                <div class="pt-6">
-                  <NuxtLink to="/services" class="btn-primary inline-flex items-center">
-                    <span>Découvrir notre technologie</span>
-                    <ArrowRight :size="20" class="ml-3" />
-                  </NuxtLink>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="bg-white/5 backdrop-blur-xs rounded-xl p-6 border border-white/5" v-motion-slide-visible-once-bottom style="animation-delay: 200ms">
+                <div class="flex items-start space-x-4">
+                  <div class="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-white/5">
+                    <Search :size="24" class="text-primary-400" />
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-semibold text-white mb-2">SEO de Haute Précision</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                      Je m'appuie sur l'IA pour structurer vos données et optimiser la sémantique, garantissant une visibilité maximale sur Google.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 4 -->
+              <div class="bg-white/5 backdrop-blur-xs rounded-xl p-6 border border-white/5" v-motion-slide-visible-once-bottom style="animation-delay: 300ms">
+                <div class="flex items-start space-x-4">
+                  <div class="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-white/5">
+                    <Sparkles :size="24" class="text-primary-300" />
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Possibilités Infinies</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                      L'IA me permet d'intégrer des fonctionnalités complexes (chatbots, analyse, automatisation) sans aucune limite créative.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -345,7 +311,7 @@
 </template>
 
 <script setup lang="ts">
-import { Code, Palette, Zap, ShoppingBag, MessageSquare, ArrowRight, Sparkles, PenTool, Image } from 'lucide-vue-next'
+import { Code, Palette, Zap, ShoppingBag, MessageSquare, ArrowRight, Sparkles, PenTool, Image, Search } from 'lucide-vue-next'
 import type { Template } from '~/stores/cart'
 
 const supabase = useSupabase()
