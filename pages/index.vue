@@ -4,38 +4,47 @@
       <section class="relative py-20 md:py-32 overflow-hidden">
         
         <div class="relative container mx-auto px-6">
-          <div class="max-w-5xl mx-auto text-center" v-motion-slide-visible-once-bottom>
-            <div class="mb-6">
-                <span class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-100 to-primary-200 border border-primary-300 rounded-full text-sm font-medium text-primary-800">
-                L'IA rencontre l'expertise équine
-              </span>
-            </div>
-            
-            <h1 class="mb-8 leading-tight">
-              <span class="block">Création de site web</span>
-              <span class="block">pour le secteur équin</span>
-            </h1>
-            
-            <p class="text-xl md:text-2xl lg:text-3xl text-gray-700 mb-12 leading-relaxed font-medium">
-              Propulsez votre entreprise équestre dans une nouvelle dimension.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-6 justify-center">
-              <NuxtLink to="/templates" class="btn-primary group relative">
-                <span class="flex items-center">
-                  <ShoppingBag :size="20" class="mr-3" />
-                  La boutique de modèles
-                  <ArrowRight :size="20" class="ml-3 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </NuxtLink>
+          <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <!-- Left: Text Content -->
+              <div v-motion-slide-visible-once-left>
+                <div class="mb-6">
+                  <span class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-100 to-primary-200 border border-primary-300 rounded-full text-sm font-medium text-primary-800">
+                    L'IA rencontre l'expertise équine
+                  </span>
+                </div>
+                
+                <h1 class="mb-8 leading-tight">
+                  <span class="block">Création de site web pour le secteur équin</span>
+                </h1>
+                
+                <p class="text-lg text-gray-700 mb-12 leading-relaxed">
+                  De l'architecture technique au design final, je crée le site web qui propulsera votre activité, que vous choisissiez un modèle clé en main ou une création sur-mesure.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
+                  <NuxtLink to="/templates" class="btn-primary group relative">
+                    <span class="flex items-center">
+                      <ShoppingBag :size="20" class="mr-3" />
+                      La boutique de modèles
+                      <ArrowRight :size="20" class="ml-3 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </NuxtLink>
+                  
+                  <NuxtLink to="/services" class="group px-8 py-4 bg-white text-slate-800 font-semibold rounded-xl border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                    <span class="flex items-center">
+                      <Sparkles :size="20" class="mr-3" />
+                      Découvrir le studio
+                      <ArrowRight :size="20" class="ml-3 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </NuxtLink>
+                </div>
+              </div>
               
-              <NuxtLink to="/services" class="group px-8 py-4 bg-white text-slate-800 font-semibold rounded-xl border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
-                <span class="flex items-center">
-                  <Sparkles :size="20" class="mr-3" />
-                  Découvrir le studio
-                  <ArrowRight :size="20" class="ml-3 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </NuxtLink>
+              <!-- Right: Hero Animation -->
+              <div v-motion-slide-visible-once-right class="relative">
+                <HeroAnimation />
+              </div>
             </div>
           </div>
         </div>

@@ -23,6 +23,15 @@
     @apply gradient-text;
     font-weight: 600;
   }
+
+  /* Exception pour l'animation Hero */
+  .hero-animation-title,
+  .hero-animation-title span {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    background-clip: unset !important;
+  }
 }
 
 @layer components {

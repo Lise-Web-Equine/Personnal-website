@@ -4,13 +4,18 @@
       <!-- Hero Section -->
       <section class="py-24 md:py-32">
         <div class="container mx-auto px-6">
-          <div class="max-w-4xl mx-auto text-center" v-motion-slide-visible-once-bottom>
-            <h1 class="text-4xl md:text-6xl font-bold mb-6 text-slate-900">
-              À propos de Lise Web Equine
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
-              L'alliance parfaite entre la passion équine et l'excellence digitale
-            </p>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div v-motion-slide-visible-once-bottom>
+              <h1 class="text-4xl md:text-6xl font-bold mb-6 text-slate-900">
+                À propos de Lise Web Equine
+              </h1>
+              <p class="text-xl md:text-2xl text-gray-600 leading-relaxed">
+                L'alliance parfaite entre la passion équine et l'excellence digitale
+              </p>
+            </div>
+            <div class="hidden lg:block">
+              <!-- Colonne de droite réservée pour un contenu futur -->
+            </div>
           </div>
         </div>
       </section>
