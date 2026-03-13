@@ -77,7 +77,7 @@ const cartStore = useCartStore()
 const isMenuOpen = ref(false)
 
 const navLinks = [
-  { name: 'Le Studio', path: '/services' },
+  { name: 'Le Studio', path: '/studio' },
   { name: 'La Boutique', path: '/templates' },
   { name: 'Contact', path: '/contact' },
 ]

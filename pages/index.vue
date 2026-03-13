@@ -30,7 +30,7 @@
                     </span>
                   </NuxtLink>
                   
-                  <NuxtLink to="/services" class="group px-6 py-3 sm:px-8 sm:py-4 bg-white text-slate-800 font-semibold rounded-xl border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg w-full sm:w-auto">
+                  <NuxtLink to="/studio" class="group px-6 py-3 sm:px-8 sm:py-4 bg-white text-slate-800 font-semibold rounded-xl border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg w-full sm:w-auto">
                     <span class="flex items-center justify-center">
                       <Sparkles :size="20" class="mr-3" />
                       Découvrir le studio
@@ -162,7 +162,7 @@
               badge-variant="secondary"
               :features="studioFeatures"
               cta-text="En savoir plus"
-              cta-link="/services"
+              cta-link="/studio"
               motion-direction="right"
             />
           </div>
@@ -174,6 +174,7 @@
         <!-- Background decoration -->
         <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-900/30 to-transparent rounded-full blur-3xl"></div>
         <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
+        <GradientAnimation />
         
         <div class="relative container mx-auto px-6">
           <div class="max-w-7xl mx-auto">
@@ -187,7 +188,6 @@
 
             <!-- 2x2 Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 max-w-5xl mx-auto">
-            <div class="gradient-figure-start-with-us" data-v-02281a80=""></div>
               <!-- Item 1 -->
               <div class="bg-white/5 backdrop-blur-xs rounded-xl p-6 border border-white/5" v-motion-slide-visible-once-bottom>
                 <div class="flex items-start space-x-4">
@@ -288,7 +288,7 @@
       </section>
 
       <section class="py-20 bg-primary-500 text-white relative overflow-hidden">
-        <div class="gradient-figure-start-with-us"></div>
+        <GradientAnimation />
         <div class="container mx-auto px-6 relative z-[1000]">
           <div class="max-w-4xl mx-auto text-center" v-motion-slide-visible-once-bottom>
             <h2 class="mb-6">Prêt à faire galoper votre projet ?</h2>

@@ -125,8 +125,8 @@
                 <span>Me contacter</span>
                 <ArrowRight :size="20" class="ml-2" />
               </NuxtLink>
-              <NuxtLink to="/services" class="inline-flex items-center justify-center px-6 py-3 text-slate-700 font-semibold rounded-lg border border-slate-300 hover:bg-slate-50 transition-colors">
-                <span>Découvrir mes services</span>
+              <NuxtLink to="/studio" class="inline-flex items-center justify-center px-6 py-3 text-slate-700 font-semibold rounded-lg border border-slate-300 hover:bg-slate-50 transition-colors">
+                <span>Découvrir le studio</span>
               </NuxtLink>
             </div>
           </div>
