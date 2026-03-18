@@ -1,7 +1,7 @@
 <template>
   <NuxtLayout>
-    <div class="bg-gray-50">
-      <section class="py-20 relative overflow-hidden bg-dark text-white">
+    <div class="bg-secondary-50">
+      <section class="py-20 relative overflow-hidden bg-secondary text-white">
         <!-- Background decoration -->
         <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-900/30 to-transparent rounded-full blur-3xl"></div>
         <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
@@ -9,7 +9,7 @@
         <div class="relative container mx-auto px-6">
           <div class="max-w-3xl" v-motion-slide-visible-once-bottom>
             <h1 class="text-5xl md:text-6xl font-bold mb-6"><span class="text-white">Le Studio de création</span></h1>
-            <p class="text-xl text-gray-300 leading-relaxed">
+            <p class="text-xl text-secondary-300 leading-relaxed">
               Des sites web sur mesure qui racontent votre histoire.
             </p>
             <div class="mt-6">
@@ -26,7 +26,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <!-- Texte principal -->
               <div>
-                <p class="text-lg text-gray-600 leading-relaxed mb-8">
+                <p class="text-lg text-secondary-600 leading-relaxed mb-8">
                   Je conçois des sites vitrines élégants et performants pour les professionnels du monde équin. Un accompagnement de proximité pour transformer votre passion en une présence digitale remarquable.
                 </p>
                 <div class="space-y-4">
@@ -34,26 +34,26 @@
                     <div class="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                       <div class="w-2 h-2 bg-primary-600 rounded-full"></div>
                     </div>
-                    <p class="text-gray-700">Design unique qui reflète votre expertise équine</p>
+                    <p class="text-secondary-700">Design unique qui reflète votre expertise équine</p>
                   </div>
                   <div class="flex items-start space-x-3">
                     <div class="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                       <div class="w-2 h-2 bg-primary-600 rounded-full"></div>
                     </div>
-                    <p class="text-gray-700">Performance optimale pour tous les écrans</p>
+                    <p class="text-secondary-700">Performance optimale pour tous les écrans</p>
                   </div>
                   <div class="flex items-start space-x-3">
                     <div class="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                       <div class="w-2 h-2 bg-primary-600 rounded-full"></div>
                     </div>
-                    <p class="text-gray-700">Accompagnement jusqu'à votre autonomie complète</p>
+                    <p class="text-secondary-700">Accompagnement jusqu'à votre autonomie complète</p>
                   </div>
                 </div>
               </div>
               
               <!-- Citation mise en avant -->
               <div class="bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl p-8 border border-primary-200">
-                <blockquote class="text-lg text-gray-800 leading-relaxed italic">
+                <blockquote class="text-lg text-secondary-800 leading-relaxed italic">
                   "Plus qu'un simple site web, je crée une véritable vitrine digitale qui reflète votre expertise et votre passion. Chaque projet est une opportunité de mettre en valeur votre savoir-faire unique dans le monde équin."
                 </blockquote>
                 <div class="mt-6 flex items-center space-x-3">
@@ -61,8 +61,8 @@
                     <span class="text-primary-700 font-bold text-lg">CE</span>
                   </div>
                   <div>
-                    <p class="font-semibold text-gray-900">Claire-Elise</p>
-                    <p class="text-sm text-gray-600">Fondatrice du Studio</p>
+                    <p class="font-semibold text-secondary-900">Claire-Elise</p>
+                    <p class="text-sm text-secondary-600">Fondatrice du Studio</p>
                   </div>
                 </div>
               </div>
@@ -72,7 +72,7 @@
       </section>
 
       <!-- Expertise IA Section -->
-      <section class="py-20 relative overflow-hidden bg-dark">
+      <section class="py-20 relative overflow-hidden bg-secondary">
         <!-- Background decoration -->
         <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-900/30 to-transparent rounded-full blur-3xl"></div>
         <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
@@ -82,8 +82,8 @@
           <div class="max-w-7xl mx-auto">
             <!-- Section Header -->
             <div class="text-center mb-16" v-motion-slide-visible-once-bottom>
-              <h2 class="mb-6 gradient-text-light">L'IA pour un site qui vit et qui engage.</h2>
-              <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+              <h2 class="mb-6 text-4xl md:text-5xl font-bold text-white">L'IA pour un site qui vit et qui engage.</h2>
+              <p class="text-lg text-secondary-300 max-w-3xl mx-auto">
                 Pour que votre site ne soit pas juste une page statique, j'y intègre des fonctionnalités interactives intelligentes. Ces outils captent l'attention de vos visiteurs et leur offrent une expérience personnalisée, sans jamais perdre votre authenticité.
               </p>
             </div>
@@ -123,11 +123,11 @@
       </section>
 
       <!-- Étapes Section -->
-      <section class="py-20 bg-gray-50">
+      <section class="py-20 bg-secondary-50">
         <div class="container mx-auto px-6">
           <div class="text-center mb-16" v-motion-slide-visible-once-bottom>
             <h2 class="mb-6 text-4xl md:text-5xl font-bold">On avance main dans la main</h2>
-            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p class="text-lg text-secondary-600 max-w-3xl mx-auto">
               Pas de jargon compliqué, juste des étapes claires pour un projet zen.
             </p>
           </div>
@@ -141,7 +141,7 @@
                 </div>
                 <h3 class="text-xl font-bold">Analyse de votre projet</h3>
               </div>
-              <p class="text-gray-600 leading-relaxed">
+              <p class="text-secondary-600 leading-relaxed">
                 Une session en direct pour comprendre votre vision et valider la faisabilité technique.
               </p>
             </div>
@@ -154,7 +154,7 @@
                 </div>
                 <h3 class="text-xl font-bold">Offre & Devis</h3>
               </div>
-              <p class="text-gray-600 leading-relaxed">
+              <p class="text-secondary-600 leading-relaxed">
                 Je vous présente une proposition chiffrée transparente, adaptée à vos besoins réels.
               </p>
             </div>
@@ -167,7 +167,7 @@
                 </div>
                 <h3 class="text-xl font-bold">Cadrage de départ</h3>
               </div>
-              <p class="text-gray-600 leading-relaxed">
+              <p class="text-secondary-600 leading-relaxed">
                 Dès le devis signé, nous fixons les objectifs précis pour lancer le développement.
               </p>
             </div>
@@ -180,7 +180,7 @@
                 </div>
                 <h3 class="text-xl font-bold">Développement</h3>
               </div>
-              <p class="text-gray-600 leading-relaxed">
+              <p class="text-secondary-600 leading-relaxed">
                 Phase de création pure où votre site prend vie, sous mon oeil expert.
               </p>
             </div>
@@ -193,7 +193,7 @@
                 </div>
                 <h3 class="text-xl font-bold">Phase de test</h3>
               </div>
-              <p class="text-gray-600 leading-relaxed">
+              <p class="text-secondary-600 leading-relaxed">
               On vérifie ensemble que tout fonctionne parfaitement sur tous les écrans avant le grand saut.
               </p>
             </div>
@@ -206,7 +206,7 @@
                 </div>
                 <h3 class="text-xl font-bold">Mise en ligne</h3>
               </div>
-              <p class="text-gray-600 leading-relaxed">
+              <p class="text-secondary-600 leading-relaxed">
                Votre site est officiellement accessible ! Je reste à vos côtés pour le lancement.
               </p>
             </div>
@@ -220,12 +220,12 @@
           <div class="max-w-4xl mx-auto">
             <div class="text-center mb-16" v-motion-slide-visible-once-bottom>
               <h2 class="mb-6 text-4xl md:text-5xl font-bold">On en discute ?</h2>
-              <p class="text-lg text-gray-600 leading-relaxed">
+              <p class="text-lg text-secondary-600 leading-relaxed">
                 Chaque projet est unique. Envoyez-moi un message pour une première analyse gratuite de votre projet.
               </p>
             </div>
 
-            <div class="bg-white rounded-2xl p-8 lg:p-12 shadow-sm border border-gray-100" v-motion-slide-visible-once-bottom>
+            <div class="bg-white rounded-2xl p-8 lg:p-12 shadow-sm border border-secondary-100" v-motion-slide-visible-once-bottom>
               <form @submit.prevent="handleSubmit" class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -235,7 +235,7 @@
                       type="text"
                       id="name"
                       required
-                      class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+                      class="w-full px-4 py-3 border border-secondary-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
                       placeholder="Votre nom"
                     />
                   </div>
@@ -246,7 +246,7 @@
                       type="email"
                       id="email"
                       required
-                      class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+                      class="w-full px-4 py-3 border border-secondary-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
                       placeholder="votre@email.com"
                     />
                   </div>
@@ -257,7 +257,7 @@
                   <select
                     v-model="form.projectType"
                     id="project-type"
-                    class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none bg-white"
+                    class="w-full px-4 py-3 border border-secondary-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none bg-white"
                   >
                     <option value="studio">Création sur mesure (Studio)</option>
                     <option value="template">Modèle personnalisé</option>
@@ -272,7 +272,7 @@
                     id="message"
                     rows="6"
                     required
-                    class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none resize-none"
+                    class="w-full px-4 py-3 border border-secondary-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none resize-none"
                     placeholder="Décrivez-moi votre projet..."
                   ></textarea>
                 </div>

@@ -1,9 +1,9 @@
 <template>
   <div
-    class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-gray-100"
+    class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-secondary-100"
     v-motion-slide-visible-once-bottom
   >
-    <div class="relative overflow-hidden aspect-video bg-gray-100">
+    <div class="relative overflow-hidden aspect-video bg-secondary-100">
       <img
         :src="template.image_url"
         :alt="template.name"
@@ -22,25 +22,25 @@
     <div class="p-6">
       <div class="flex items-start justify-between mb-3">
         <div>
-          <span class="text-sm text-gray-500 uppercase tracking-wide font-medium">
+          <span class="text-sm text-secondary-500 uppercase tracking-wide font-medium">
             {{ template.category }}
           </span>
-          <h3 class="text-xl font-bold mt-1 group-hover:text-gray-600 transition-colors">
+          <h3 class="text-xl font-bold mt-1 group-hover:text-secondary-600 transition-colors">
             {{ template.name }}
           </h3>
         </div>
         <div class="flex items-center space-x-1 text-yellow-500">
           <Star :size="16" fill="currentColor" />
-          <span class="text-sm font-semibold text-gray-900">{{ template.rating }}</span>
+          <span class="text-sm font-semibold text-secondary-900">{{ template.rating }}</span>
         </div>
       </div>
 
-      <p class="text-gray-600 text-sm mb-4 line-clamp-2 leading-relaxed">
+      <p class="text-secondary-600 text-sm mb-4 line-clamp-2 leading-relaxed">
         {{ template.description }}
       </p>
 
       <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center text-sm text-gray-500 space-x-4">
+        <div class="flex items-center text-sm text-secondary-500 space-x-4">
           <span class="flex items-center">
             <Download :size="14" class="mr-1" />
             {{ template.downloads }}

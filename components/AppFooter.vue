@@ -5,7 +5,7 @@
         <div>
           <div class="text-2xl font-bold mb-4">
             <span class="bg-white text-black px-3 py-1 rounded">Lise</span>
-            <span class="ml-1 gradient-text">Web Equine</span>
+            <span class="ml-1 text-primary-600">Web Equine</span>
           </div>
           <p class="text-gray-400 text-sm leading-relaxed">
             Création de site web pour le secteur équin.

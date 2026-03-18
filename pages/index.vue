@@ -18,7 +18,7 @@
                   <span class="block">Création de site web pour le </span><span class="text-primary">secteur équin</span>
                 </h1>
                 
-                <p class="text-base sm:text-lg text-gray-700 mb-8 sm:mb-12 leading-relaxed text-center sm:text-left">
+                <p class="text-base sm:text-lg text-secondary-700 mb-8 sm:mb-12 leading-relaxed text-center sm:text-left">
                   De l'architecture technique au design final, je crée le site web qui propulsera votre activité, que vous choisissiez un modèle clé en main ou une création sur-mesure.
                 </p>
                 
@@ -30,7 +30,7 @@
                     </span>
                   </NuxtLink>
                   
-                  <NuxtLink to="/studio" class="group px-6 py-3 sm:px-8 sm:py-4 bg-white text-slate-800 font-semibold rounded-xl border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg w-full sm:w-auto">
+                  <NuxtLink to="/studio" class="group px-6 py-3 sm:px-8 sm:py-4 bg-white text-secondary-800 font-semibold rounded-xl border-2 border-secondary-200 hover:border-secondary-300 hover:bg-secondary-50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg w-full sm:w-auto">
                     <span class="flex items-center justify-center">
                       <Sparkles :size="20" class="mr-3" />
                       Découvrir le studio
@@ -75,17 +75,17 @@
                 </h2>
                 
                 <div class="space-y-6 mb-8">
-                  <p class="text-lg text-gray-700 leading-relaxed">
+                  <p class="text-lg text-secondary-700 leading-relaxed">
                     On se comprend mieux quand on partage la même passion. Cavalière dans l'âme, je sais que votre métier est une <span class="font-semibold">vocation de chaque instant</span>, souvent rythmée par les imprévus du vivant. C'est parce que je connais votre quotidien que j'ai choisi d'allier mon expertise web de 5 ans à des solutions d'intelligence artificielle.
                   </p>
                   
-                  <p class="text-lg text-gray-700 leading-relaxed">
-                    Je crée pour vous des sites web qui vous ressemblent, pensés pour <span class="font-semibold text-slate-800">simplifier votre gestion et vous redonner de l'air</span>.
+                  <p class="text-lg text-secondary-700 leading-relaxed">
+                    Je crée pour vous des sites web qui vous ressemblent, pensés pour <span class="font-semibold text-secondary-800">simplifier votre gestion et vous redonner de l'air</span>.
                   </p>
  
                   <!-- Testimonial -->
-                  <div class="border-l-2 border-gray-300 pl-6">
-                    <p class="text-gray-700 leading-relaxed">
+                  <div class="border-l-2 border-secondary-300 pl-6">
+                    <p class="text-secondary-700 leading-relaxed">
                       "Mon approche est celle d'une alliée bienveillante : je m'occupe du digital pour que votre énergie reste entière pour vos chevaux et votre savoir-faire."
                     </p>
                   </div>
@@ -104,7 +104,7 @@
               <div v-motion-slide-visible-once-right class="relative">
                 <div class="relative">
                   <div 
-                    class="aspect-square rounded-2xl p-12 flex flex-col items-center justify-end overflow-hidden relative group bg-gray-200"
+                    class="aspect-square rounded-2xl p-12 flex flex-col items-center justify-end overflow-hidden relative group bg-secondary-200"
                     style="background-image: url('/images/lise-profile.jpg'); background-size: cover; background-position: center;"
                   >
                     
@@ -112,7 +112,7 @@
 
                     <div class="text-center relative z-10">
                       <h3 class="text-2xl font-semibold text-white mb-1">Claire-Elise</h3>
-                      <p class="text-gray-200 mb-4 text-sm">Fondatrice & Développeuse</p>
+                      <p class="text-secondary-200 mb-4 text-sm">Fondatrice & Développeuse</p>
                       
                       <div class="inline-flex items-center px-3 py-1 bg-white/20 backdrop-blur-md border border-white/30 rounded-full text-xs text-white">
                         +5 ans d'expérience web
@@ -131,7 +131,7 @@
         <div class="container mx-auto px-6">
           <div class="text-center mb-16" v-motion-slide-visible-once-bottom>
             <h2 class="mb-4">Mes Services</h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p class="text-lg text-secondary-600 max-w-2xl mx-auto">
               Des solutions adaptées à vos besoins pour développer votre présence en ligne
             </p>
           </div>
@@ -170,7 +170,7 @@
       </section>
 
       <!-- Expertise IA Section -->
-      <section class="py-20 relative overflow-hidden bg-dark">
+      <section class="py-20 relative overflow-hidden bg-secondary">
         <!-- Background decoration -->
         <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-900/30 to-transparent rounded-full blur-3xl"></div>
         <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
@@ -180,8 +180,8 @@
           <div class="max-w-7xl mx-auto">
             <!-- Section Header -->
             <div class="text-center mb-16" v-motion-slide-visible-once-bottom>
-              <h2 class="mb-6 gradient-text-light">Une expertise IA pensée pour vos projets web</h2>
-              <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+              <h2 class="mb-6 text-4xl md:text-5xl font-bold text-white">Une expertise IA pensée pour vos projets web</h2>
+              <p class="text-lg text-secondary-300 max-w-3xl mx-auto">
                 Je mets l'intelligence artificielle au service de votre passion pour créer des sites web performants et agréables à utiliser.
               </p>
             </div>
@@ -196,7 +196,7 @@
                   </div>
                   <div>
                     <h3 class="text-xl font-semibold text-white mb-2">Vitesse & Coûts réduits</h3>
-                    <p class="text-gray-300 leading-relaxed">
+                    <p class="text-secondary-300 leading-relaxed">
                       J'utilise l'IA pour accélérer ma production technique. Résultat : des délais divisés par deux et des tarifs plus compétitifs qu'un projet traditionnel.</p>
                   </div>
                 </div>
@@ -210,7 +210,7 @@
                   </div>
                   <div>
                     <h3 class="text-xl font-semibold text-white mb-2">Zéro CMS, 100% Propriétaire</h3>
-                    <p class="text-gray-300 leading-relaxed">
+                    <p class="text-secondary-300 leading-relaxed">
                       Fini les lourdeurs de WordPress ou Wix. Je vous livre un code qui vous appartient totalement, sans abonnement caché ni dépendance technique.
                     </p>
                   </div>
@@ -225,7 +225,7 @@
                   </div>
                   <div>
                     <h3 class="text-xl font-semibold text-white mb-2">SEO de Haute Précision</h3>
-                    <p class="text-gray-300 leading-relaxed">
+                    <p class="text-secondary-300 leading-relaxed">
                       Je m'appuie sur l'IA pour structurer vos données et optimiser la sémantique, garantissant une visibilité maximale sur Google.
                     </p>
                   </div>
@@ -240,7 +240,7 @@
                   </div>
                   <div>
                     <h3 class="text-xl font-semibold text-white mb-2">Possibilités Infinies</h3>
-                    <p class="text-gray-300 leading-relaxed">
+                    <p class="text-secondary-300 leading-relaxed">
                       L'IA me permet d'intégrer des fonctionnalités complexes (chatbots, analyse, automatisation) sans aucune limite créative.
                     </p>
                   </div>
@@ -292,7 +292,7 @@
         <div class="container mx-auto px-6 relative z-[1000]">
           <div class="max-w-4xl mx-auto text-center" v-motion-slide-visible-once-bottom>
             <h2 class="mb-6">Prêt à faire galoper votre projet ?</h2>
-            <p class="text-xl text-gray-300 mb-10">
+            <p class="text-xl text-secondary-300 mb-10">
               Whether you need a custom solution or a ready-made template, we're here to help.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">

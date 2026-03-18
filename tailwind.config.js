@@ -11,7 +11,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        dark: colors.slate[800],
+        secondary: {
+          ...colors.slate,
+          DEFAULT: colors.slate[800],
+        },
         primary: {
           ...colors.violet,
           DEFAULT: colors.violet[500],

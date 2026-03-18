@@ -4,71 +4,34 @@
 
 @layer base {
   body {
-    @apply bg-white text-gray-900 antialiased;
+    @apply bg-white text-secondary antialiased;
   }
 
   h1 {
-     @apply gradient-text;
-    @apply text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight;
+    @apply text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-secondary-900;
   }
 
   h2 {
-     @apply gradient-text;
-    @apply text-4xl md:text-5xl font-bold tracking-tight;
+    @apply text-4xl md:text-5xl font-bold tracking-tight text-secondary-900;
   }
 
-/* 2. SI le titre contient des spans, ils héritent du dégradé... */
-  h1 span, h2 span {
-    @apply gradient-text;
-  }
-
-  /* 3. ...SAUF si le span a une classe de couleur spécifique (ex: text-primary) */
-  h1 span[class*="text-"], 
-  h2 span[class*="text-"] {
-    background: none;
-    -webkit-text-fill-color: initial; /* Annule le remplissage du dégradé */
-    background-clip: border-box;     /* Réinitialise le clip */
-  }
-
-  /* Exception pour l'animation Hero */
-  .hero-animation-title,
-  .hero-animation-title span {
-    background: none !important;
-    -webkit-background-clip: unset !important;
-    -webkit-text-fill-color: unset !important;
-    background-clip: unset !important;
-  }
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-button-primary-dark rounded-lg transition-all duration-200;
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-primary-500 rounded-lg transition-all duration-200;
   }
 
   .btn-primary:hover {
-    @apply bg-button-primary-light;
+    @apply bg-primary-600;
   }
 
   .btn-secondary {
     @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-primary-800 bg-white border-2 border-primary-300 rounded-lg hover:bg-primary-50 hover:border-primary-400 transition-all duration-200;
   }
 
-  /* Classe utilitaire pour le dégradé de texte */
-  .gradient-text {
-    @apply bg-gradient-to-r from-title-dark to-title-light;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .gradient-text-light {
-    @apply bg-gradient-to-r from-primary-100 to-primary-400;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
 
   .section-subtitle {
-    @apply text-lg md:text-xl text-gray-600 max-w-2xl mx-auto;
+    @apply text-lg md:text-xl text-secondary-600 max-w-2xl mx-auto;
   }
 }

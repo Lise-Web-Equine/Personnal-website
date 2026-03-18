@@ -16,22 +16,22 @@
     </div>
     
     <!-- Title -->
-    <h3 class="text-2xl font-semibold text-gray-900 mb-3">{{ title }}</h3>
+    <h3 class="text-2xl font-semibold text-secondary-900 mb-3">{{ title }}</h3>
     
     <!-- Description -->
-    <p class="text-gray-600 leading-relaxed mb-6">
+    <p class="text-secondary-600 leading-relaxed mb-6">
       {{ description }}
     </p>
     
     <!-- Features list -->
     <ul v-if="features && features.length > 0" class="space-y-2 mb-8">
-      <li v-for="feature in features" :key="feature.title" class="flex items-center text-gray-600">
+      <li v-for="feature in features" :key="feature.title" class="flex items-center text-secondary-600">
         <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
         </svg>
         <div>
           <span class="font-medium">{{ feature.title }}</span>
-          <p v-if="feature.description" class="text-sm text-gray-500 mt-0.5">{{ feature.description }}</p>
+          <p v-if="feature.description" class="text-sm text-secondary-500 mt-0.5">{{ feature.description }}</p>
         </div>
       </li>
     </ul>

@@ -1,0 +1,51 @@
+# Development Rules for Lise Web Equine
+
+## Framework
+- **Nuxt 3**: Use standard Nuxt 3 folder-based architecture
+- Follow structure: pages/, components/, layouts/, middleware/, plugins/, etc.
+
+## Styling
+- **Tailwind CSS only**: Use exclusively Tailwind utility classes.
+- **Semantic Colors**: NEVER use literal color classes (e.g., `text-violet-500` or `bg-slate-800`). 
+- **Theme First**: Always use the semantic theme colors defined in `tailwind.config.js` (e.g., `text-primary`, `bg-secondary`, `text-title-light`, `bg-button-primary-light`).
+- **Clean UI**: Avoid arbitrary CSS (e.g., `-[12px]`) when possible. Prefer standard Tailwind spacing/sizing.
+- For custom complex styles, use CSS files in `assets/` folder with `@apply`.
+- **Strict Semantic Palette**:
+  - `primary`: Brand identity (Violet). Use `primary-500` for main actions.
+  - `secondary`: Neutral scale for everything from text to dark backgrounds (Slate).
+
+## Components
+- **Script setup with TypeScript**: Always use `<script setup lang="ts">`
+- Prioritize functional and reusable components
+- Place all components in `components/` folder
+- Use composition API with ref, computed, etc.
+
+## Clean Code
+- **Comments**: Briefly comment complex functions and business logic
+- **Vue conventions**: Use **PascalCase** for component names
+- **TypeScript**: Always type props, emits and important variables
+- **Naming**: Use camelCase for variables and functions, kebab-case for file names
+
+## Project Structure
+```
+project/
+├── components/     # Reusable components
+├── pages/          # Site pages
+├── layouts/        # Layouts
+├── middleware/     # Navigation middleware
+├── plugins/        # Nuxt plugins
+├── assets/         # Static assets (CSS, images)
+├── public/         # Public files
+└── server/         # Server code (API routes)
+```
+
+## Best Practices
+- **Nuxt Features**: Use auto-imports, composables for shared logic, and `<NuxtLink>` for navigation.
+- **Images**: Optimize with `<NuxtImg>` component. Use descriptive `alt` tags in French.
+- **HTML**: Use semantic HTML5 tags (`<header>`, `<main>`, `<section>`, `<footer>`).
+
+## UI & Design System
+- **Consistency**: Always analyze `pages/index.vue` and `pages/services.vue` before creating new UI elements to match the existing aesthetic (spacing, colors, shadows).
+- **Language**: The website's user interface (UI) and content must be in **French**. Code, comments, and documentation must be in **English**.
+- **Responsive**: Use a **mobile-first** approach. Ensure all sections look great on small screens using Tailwind's `sm:`, `md:`, `lg:` prefixes.
+- **Abstraction**: When a UI pattern repeats (e.g., a service card, a button style), extract it into a reusable component.
