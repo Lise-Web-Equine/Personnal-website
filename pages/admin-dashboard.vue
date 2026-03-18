@@ -800,29 +800,29 @@ const addTemplates = async () => {
     const templatesToAdd: TemplateCreate[] = [
       {
         name: 'Horizon',
-        description: 'Style Épuré • Calme • Professionnel. Un univers visuel basé sur des tons bleus apaisants. Idéal pour instaurer un climat de confiance immédiat et mettre en avant votre rigueur technique.',
-        category: 'equine',
-        price: 40.00,
-        image_url: 'https://images.pexels.com/photos/1559387/pexels-photo-1559387.jpeg?auto=compress&cs=tinysrgb&w=800',
+        description: 'Un modèle élégant et professionnel avec des couleurs apaisantes et une navigation intuitive. Idéal pour les praticiens qui souhaitent mettre en valeur leur expertise.',
+        speciality: 'Équin',
+        price: 40,
+        image: 'https://images.unsplash.com/photo-1559826264-d554356bf5d6?w=800&h=600&fit=crop',
         demo_url: '#',
         features: ["Prestations phares & tarifs", "Expérience terrain", "Focus prestation technique", "Formulaire de contact", "Témoignages"],
         tags: ['equine', 'professionnel', 'bleu', 'confiance', 'technique'],
-        is_featured: true,
-        downloads: 0,
-        rating: 0.0
+        badge: 'best-seller',
+        promo: null,
+        rating: 4.8
       },
       {
         name: 'Ancrage',
-        description: 'Style Doux • Naturel • Holistique. Une esthétique épurée et apaisante qui laisse place à l\'image et au ressenti, parfaite pour les approches globales et naturelles.',
-        category: 'equine',
-        price: 40.00,
-        image_url: 'https://images.pexels.com/photos/1559387/pexels-photo-1559387.jpeg?auto=compress&cs=tinysrgb&w=800',
+        description: 'Un modèle doux et naturel avec des tons terreux et une ambiance holistique. Parfait pour les approches bienveillantes et connectées.',
+        speciality: 'Équin',
+        price: 40,
+        image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop',
         demo_url: '#',
         features: ["Prestations phares & tarifs", "Bénéfices du soin", "Déroulement d'une séance", "Formulaire de contact", "Témoignages immersifs"],
         tags: ['equine', 'naturel', 'holistique', 'doux', 'apaisant'],
-        is_featured: true,
-        downloads: 0,
-        rating: 0.0
+        badge: 'new',
+        promo: 20,
+        rating: 4.9
       }
     ]
 
