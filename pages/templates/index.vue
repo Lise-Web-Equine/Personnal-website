@@ -1,16 +1,11 @@
 <template>
   <NuxtLayout>
     <div class="bg-gray-50 min-h-screen">
-      <section class="bg-black text-white py-16">
-        <div class="container mx-auto px-6">
-          <div class="max-w-3xl" v-motion-slide-visible-once-bottom>
-            <h1 class="text-5xl font-bold mb-4">Template Store</h1>
-            <p class="text-xl text-gray-300">
-              Premium, ready-to-use website templates for every business need
-            </p>
-          </div>
-        </div>
-      </section>
+      <StudioHeader 
+        title="La boutique de modèles"
+        description="Des modèles de sites web premium et prêts à l'emploi pour chaque besoin professionnel"
+        badge="Nouveaux modèles disponibles"
+      />
 
       <section class="py-12">
         <div class="container mx-auto px-6">

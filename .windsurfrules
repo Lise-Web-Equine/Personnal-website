@@ -7,7 +7,6 @@
 ## Styling
 - **Tailwind CSS only**: Use exclusively Tailwind utility classes.
 - **Semantic Colors**: NEVER use literal color classes (e.g., `text-violet-500` or `bg-slate-800`). 
-- **Theme First**: Always use the semantic theme colors defined in `tailwind.config.js` (e.g., `text-primary`, `bg-secondary`, `text-title-light`, `bg-button-primary-light`).
 - **Clean UI**: Avoid arbitrary CSS (e.g., `-[12px]`) when possible. Prefer standard Tailwind spacing/sizing.
 - For custom complex styles, use CSS files in `assets/` folder with `@apply`.
 - **Strict Semantic Palette**:
@@ -49,3 +48,4 @@ project/
 - **Language**: The website's user interface (UI) and content must be in **French**. Code, comments, and documentation must be in **English**.
 - **Responsive**: Use a **mobile-first** approach. Ensure all sections look great on small screens using Tailwind's `sm:`, `md:`, `lg:` prefixes.
 - **Abstraction**: When a UI pattern repeats (e.g., a service card, a button style), extract it into a reusable component.
+- **Header Design**: Only use Studio-style dark header (`bg-secondary` with gradient decorations) for secondary pages (about, contact, templates, etc.). The home page (`index.vue`) should maintain its original lighter design to create visual hierarchy and differentiate the landing experience.
