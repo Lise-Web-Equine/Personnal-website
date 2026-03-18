@@ -1,79 +1,92 @@
 <template>
-  <div
+  <article
     class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-secondary-100"
     v-motion-slide-visible-once-bottom
   >
-    <div class="relative overflow-hidden aspect-video bg-secondary-100">
+    <!-- Badge Section -->
+    <div class="relative overflow-hidden aspect-[4/3] bg-secondary-100">
       <img
-        :src="template.image_url"
+        :src="template.image"
         :alt="template.name"
         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        loading="lazy"
       />
       <div class="absolute top-4 right-4 flex gap-2">
         <span
-          v-if="template.is_featured"
+          v-if="template.badge"
           class="bg-black text-white text-xs font-semibold px-3 py-1 rounded-full"
         >
-          Featured
+          {{ template.badge === 'best-seller' ? 'Best-seller' : 'Nouveau' }}
         </span>
       </div>
     </div>
 
+    <!-- Content Section -->
     <div class="p-6">
-      <div class="flex items-start justify-between mb-3">
+      <!-- Header -->
+      <header class="flex items-start justify-between mb-4">
         <div>
           <span class="text-sm text-secondary-500 uppercase tracking-wide font-medium">
-            {{ template.category }}
+            {{ template.speciality }}
           </span>
           <h3 class="text-xl font-bold mt-1 group-hover:text-secondary-600 transition-colors">
             {{ template.name }}
           </h3>
         </div>
-        <div class="flex items-center space-x-1 text-yellow-500">
+        <div v-if="template.rating" class="flex items-center space-x-1 text-yellow-500">
           <Star :size="16" fill="currentColor" />
           <span class="text-sm font-semibold text-secondary-900">{{ template.rating }}</span>
         </div>
-      </div>
+      </header>
 
+      <!-- Description -->
       <p class="text-secondary-600 text-sm mb-4 line-clamp-2 leading-relaxed">
         {{ template.description }}
       </p>
 
+      <!-- Pricing Section -->
       <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center text-sm text-secondary-500 space-x-4">
-          <span class="flex items-center">
-            <Download :size="14" class="mr-1" />
-            {{ template.downloads }}
+        <div class="flex items-center text-sm text-secondary-500">
+          <span v-if="template.promo" class="text-red-600 font-semibold">
+            -{{ template.promo }}%
           </span>
         </div>
-        <span class="text-2xl font-bold">${{ template.price }}</span>
+        <div class="text-right">
+          <span v-if="template.promo" class="text-sm text-gray-500 line-through">
+            {{ template.price }}€
+          </span>
+          <span class="text-2xl font-bold">
+            {{ template.promo ? (template.price * (1 - template.promo / 100)).toFixed(2) : template.price }}€
+          </span>
+        </div>
       </div>
 
+      <!-- Action Buttons -->
       <div class="flex gap-2">
         <NuxtLink
           :to="`/templates/${template.id}`"
-          class="flex-1 text-center px-4 py-2.5 bg-gray-100 text-black rounded-lg font-semibold hover:bg-gray-200 transition-colors"
+          class="flex-1 text-center px-4 py-2.5 bg-gray-100 text-black rounded-lg font-semibold hover:bg-gray-200 transition-colors focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
         >
-          View Details
+          Voir les détails
         </NuxtLink>
         <button
           @click="handleAddToCart"
           :disabled="isInCart"
-          class="flex-1 px-4 py-2.5 rounded-lg font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
-          :class="isInCart ? 'bg-green-100 text-green-700' : 'bg-black text-white hover:bg-gray-800'"
+          class="flex-1 px-4 py-2.5 rounded-lg font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+          :class="isInCart ? 'bg-green-100 text-green-700 hover:bg-green-200' : 'bg-black text-white hover:bg-gray-800'"
         >
           <ShoppingCart :size="16" class="mr-2" />
-          {{ isInCart ? 'In Cart' : 'Add to Cart' }}
+          {{ isInCart ? 'Déjà dans le panier' : 'Ajouter au panier' }}
         </button>
       </div>
     </div>
-  </div>
+  </article>
 </template>
 
 <script setup lang="ts">
-import { Star, Download, ShoppingCart } from 'lucide-vue-next'
+import { Star, ShoppingCart } from 'lucide-vue-next'
 import { useCartStore } from '~/stores/cart'
-import type { Template } from '~/stores/cart'
+import type { Template } from '~/models'
 
 const props = defineProps<{
   template: Template

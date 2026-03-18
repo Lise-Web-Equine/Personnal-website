@@ -2,9 +2,9 @@ export interface Template {
   id: string
   name: string
   description: string
-  specialty: string
+  speciality: string
   price: number
-  image_url: string
+  image: string
   demo_url: string | null
   features: string[]
   tags: string[]
@@ -18,9 +18,9 @@ export interface Template {
 export interface TemplateCreate {
   name: string
   description: string
-  specialty: string
+  speciality: string
   price: number
-  image_url: string
+  image: string
   demo_url: string | null
   features: string[]
   tags: string[]
@@ -32,9 +32,9 @@ export interface TemplateCreate {
 export interface TemplateUpdate {
   name?: string
   description?: string
-  specialty?: string
+  speciality?: string
   price?: number
-  image_url?: string
+  image?: string
   demo_url?: string | null
   features?: string[]
   tags?: string[]

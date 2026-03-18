@@ -21,39 +21,428 @@
 
           <!-- Add Templates Section -->
           <div class="bg-white rounded-2xl p-8 shadow-sm mb-8">
-            <h2 class="text-2xl font-bold mb-6">Ajouter des modèles</h2>
-            
-            <div class="mb-6">
-              <p class="text-gray-600 mb-4">
-                Ajouter les modèles Horizon et Ancrage à la boutique.
-              </p>
-              <div class="bg-gray-100 border border-gray-200 rounded-lg p-4">
-                <h3 class="font-semibold mb-2">Modèles à ajouter :</h3>
-                <ul class="space-y-2 text-sm">
-                  <li>• <strong>Horizon</strong> - Style Épuré • Calme • Professionnel (40€)</li>
-                  <li>• <strong>Ancrage</strong> - Style Doux • Naturel • Holistique (40€)</li>
-                </ul>
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="text-2xl font-bold">Ajouter un modèle</h2>
+              <button
+                @click="showForm = !showForm"
+                class="btn-primary"
+              >
+                {{ showForm ? 'Annuler' : 'Ajouter un modèle' }}
+              </button>
+            </div>
+
+            <!-- Form -->
+            <div v-if="showForm" class="space-y-6">
+              <!-- Basic Info -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Nom du modèle *
+                  </label>
+                  <input
+                    v-model="newTemplate.name"
+                    type="text"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="Ex: Horizon"
+                  />
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Spécialité *
+                  </label>
+                  <input
+                    v-model="newTemplate.speciality"
+                    type="text"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="Ex: Équin"
+                  />
+                </div>
+              </div>
+
+              <!-- Description -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                  Description *
+                </label>
+                <textarea
+                  v-model="newTemplate.description"
+                  rows="3"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  placeholder="Description détaillée du modèle..."
+                ></textarea>
+              </div>
+
+              <!-- Price and Demo URL -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Prix (€) *
+                  </label>
+                  <input
+                    v-model="newTemplate.price"
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="40.00"
+                  />
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    URL de démonstration
+                  </label>
+                  <input
+                    v-model="newTemplate.demo_url"
+                    type="url"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="https://exemple.com"
+                  />
+                </div>
+              </div>
+
+              <!-- Image Upload -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                  Image du modèle *
+                </label>
+                
+                <div class="space-y-4">
+                  <div class="flex items-center space-x-4">
+                    <label class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors cursor-pointer">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        @change="handleImageUpload"
+                        class="hidden"
+                      />
+                      Choisir une image
+                    </label>
+                    <span class="text-sm text-gray-500">
+                      {{ imageFile?.name || 'Aucun fichier sélectionné' }}
+                    </span>
+                  </div>
+                  
+                  <!-- Preview -->
+                  <div v-if="imagePreview" class="mt-4">
+                    <p class="text-sm font-medium text-gray-700 mb-2">Prévisualisation :</p>
+                    <img
+                      :src="imagePreview"
+                      alt="Prévisualisation"
+                      class="w-32 h-32 object-cover rounded-lg border border-gray-200"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Features -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                  Fonctionnalités (une par ligne)
+                </label>
+                <textarea
+                  v-model="featuresText"
+                  rows="4"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  placeholder="Prestation phare&#10;tarifs&#10;Expérience terrain&#10;..."
+                ></textarea>
+              </div>
+
+              <!-- Tags -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                  Tags (séparés par des virgules)
+                </label>
+                <input
+                  v-model="tagsText"
+                  type="text"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  placeholder="equine, professionnel, bleu, confiance"
+                />
+              </div>
+
+              <!-- Badge and Promo -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Badge
+                  </label>
+                  <select
+                    v-model="newTemplate.badge"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  >
+                    <option :value="null">Aucun</option>
+                    <option value="best-seller">Best-seller</option>
+                    <option value="new">Nouveau</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Promotion (%)
+                  </label>
+                  <input
+                    v-model="newTemplate.promo"
+                    type="number"
+                    min="0"
+                    max="100"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="20"
+                  />
+                </div>
+              </div>
+
+              <!-- Form Actions -->
+              <div class="flex justify-end space-x-4 pt-6 border-t border-gray-200">
+                <button
+                  @click="resetForm"
+                  class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  Annuler
+                </button>
+                <button
+                  @click="addNewTemplate"
+                  :disabled="loading"
+                  class="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <span v-if="loading">Ajout en cours...</span>
+                  <span v-else>Ajouter le modèle</span>
+                </button>
               </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Quick Add Buttons -->
+            <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <button
                 @click="addTemplates"
                 :disabled="loading"
                 class="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <span v-if="loading">Ajout en cours...</span>
-                <span v-else>Ajouter les modèles</span>
+                <span v-else>Ajouter modèles de test</span>
               </button>
-
               <button
                 @click="cleanTemplates"
                 :disabled="loading"
                 class="px-4 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <span v-if="loading && cleaning">Suppression en cours...</span>
-                <span v-else>Supprimer les autres modèles</span>
+                <span v-else>Nettoyer la base</span>
               </button>
+            </div>
+          </div>
+
+          <!-- Edit Template Section -->
+          <div v-if="showEditForm" class="bg-white rounded-2xl p-8 shadow-sm mb-8">
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="text-2xl font-bold">Modifier le modèle : {{ editingTemplate?.name }}</h2>
+              <button
+                @click="resetEditForm"
+                class="btn-primary"
+              >
+                Annuler
+              </button>
+            </div>
+
+            <!-- Edit Form -->
+            <div class="space-y-6">
+              <!-- Basic Info -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Nom du modèle *
+                  </label>
+                  <input
+                    v-model="editingTemplate.name"
+                    type="text"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="Ex: Horizon"
+                  />
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Spécialité *
+                  </label>
+                  <input
+                    v-model="editingTemplate.speciality"
+                    type="text"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="Ex: Équin"
+                  />
+                </div>
+              </div>
+
+              <!-- Description -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                  Description *
+                </label>
+                <textarea
+                  v-model="editingTemplate.description"
+                  rows="3"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  placeholder="Description détaillée du modèle..."
+                ></textarea>
+              </div>
+
+              <!-- Price and Demo URL -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Prix (€) *
+                  </label>
+                  <input
+                    v-model="editingTemplate.price"
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="40.00"
+                  />
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    URL de démonstration
+                  </label>
+                  <input
+                    v-model="editingTemplate.demo_url"
+                    type="url"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="https://exemple.com"
+                  />
+                </div>
+              </div>
+
+              <!-- Image Upload -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                  Image du modèle
+                </label>
+                
+                <div class="space-y-4">
+                  <!-- Current image preview -->
+                  <div class="flex items-center space-x-4">
+                    <img
+                      :src="imagePreview || editingTemplate.image"
+                      alt="Image actuelle"
+                      class="w-20 h-20 object-cover rounded-lg border border-gray-200"
+                    />
+                    <div>
+                      <p class="text-sm text-gray-600">Image actuelle</p>
+                      <button
+                        @click="imageFile = null; imagePreview = ''"
+                        class="text-sm text-primary-600 hover:text-primary-700"
+                      >
+                        Changer l'image
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <!-- File Upload -->
+                  <div class="flex items-center space-x-4">
+                    <label class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors cursor-pointer">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        @change="handleImageUpload"
+                        class="hidden"
+                      />
+                      Choisir une nouvelle image
+                    </label>
+                    <span class="text-sm text-gray-500">
+                      {{ imageFile?.name || 'Aucun fichier sélectionné' }}
+                    </span>
+                  </div>
+                  
+                  <!-- New preview -->
+                  <div v-if="imagePreview && imagePreview !== editingTemplate.image" class="mt-4">
+                    <p class="text-sm font-medium text-gray-700 mb-2">Nouvelle prévisualisation :</p>
+                    <img
+                      :src="imagePreview"
+                      alt="Nouvelle prévisualisation"
+                      class="w-32 h-32 object-cover rounded-lg border border-gray-200"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Features -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                  Fonctionnalités (une par ligne)
+                </label>
+                <textarea
+                  v-model="editFeaturesText"
+                  rows="4"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  placeholder="Prestation phare&#10;tarifs&#10;Expérience terrain&#10;..."
+                ></textarea>
+              </div>
+
+              <!-- Tags -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                  Tags (séparés par des virgules)
+                </label>
+                <input
+                  v-model="editTagsText"
+                  type="text"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  placeholder="equine, professionnel, bleu, confiance"
+                />
+              </div>
+
+              <!-- Badge and Promo -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Badge
+                  </label>
+                  <select
+                    v-model="editingTemplate.badge"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  >
+                    <option :value="null">Aucun</option>
+                    <option value="best-seller">Best-seller</option>
+                    <option value="new">Nouveau</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Promotion (%)
+                  </label>
+                  <input
+                    v-model="editingTemplate.promo"
+                    type="number"
+                    min="0"
+                    max="100"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="20"
+                  />
+                </div>
+              </div>
+
+              <!-- Form Actions -->
+              <div class="flex justify-end space-x-4 pt-6 border-t border-gray-200">
+                <button
+                  @click="resetEditForm"
+                  class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  Annuler
+                </button>
+                <button
+                  @click="updateTemplate"
+                  :disabled="loading"
+                  class="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <span v-if="loading">Modification en cours...</span>
+                  <span v-else>Mettre à jour</span>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -103,17 +492,27 @@
                 </div>
 
                 <div class="flex justify-between items-center text-sm text-gray-500">
-                  <span>{{ template.downloads }} téléchargements</span>
-                  <span>⭐ {{ template.rating }}</span>
+                  <span v-if="template.badge" class="text-xs font-semibold px-2 py-1 bg-primary-100 text-primary-700 rounded-full">
+                    {{ template.badge === 'best-seller' ? 'Best-seller' : 'Nouveau' }}
+                  </span>
+                  <span v-if="template.rating">⭐ {{ template.rating }}</span>
                 </div>
 
                 <div class="mt-3 pt-3 border-t border-gray-100">
-                  <button
-                    @click="deleteTemplate(template.id)"
-                    class="w-full px-3 py-1 bg-red-50 text-red-600 rounded hover:bg-red-100 transition-colors text-sm"
-                  >
-                    Supprimer
-                  </button>
+                  <div class="flex gap-2">
+                    <button
+                      @click="startEditTemplate(template)"
+                      class="flex-1 px-3 py-1 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 transition-colors text-sm"
+                    >
+                      Modifier
+                    </button>
+                    <button
+                      @click="deleteTemplate(template.id)"
+                      class="flex-1 px-3 py-1 bg-red-50 text-red-600 rounded hover:bg-red-100 transition-colors text-sm"
+                    >
+                      Supprimer
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -139,8 +538,10 @@ const router = useRouter()
 const user = useSupabaseUser()
 
 // Import database types
+import { Star, Download, ShoppingCart } from 'lucide-vue-next'
+import { useCartStore } from '~/stores/cart'
+import type { Template, TemplateUpdate, TemplateCreate } from '~/models'
 import type { Database } from '~/types/database.types'
-import type { Template, TemplateCreate } from '~/models'
 type TemplateInsert = Database['public']['Tables']['templates']['Insert']
 
 // Debug user role
@@ -152,6 +553,221 @@ const loading = ref(false)
 const cleaning = ref(false)
 const message = ref('')
 const success = ref(false)
+
+// Form variables
+const showForm = ref(false)
+const showEditForm = ref(false)
+const editingTemplate = ref<Template | null>(null)
+const imageFile = ref<File | null>(null)
+const imagePreview = ref<string>('')
+const newTemplate = ref<TemplateCreate>({
+  name: '',
+  description: '',
+  speciality: '',
+  price: 0,
+  image: '',
+  demo_url: null,
+  features: [],
+  tags: [],
+  badge: null,
+  promo: null,
+  rating: 0
+})
+
+// Computed properties for text areas
+const featuresText = computed({
+  get: () => newTemplate.value.features.join('\n'),
+  set: (value: string) => {
+    newTemplate.value.features = value.split('\n').filter(f => f.trim() !== '')
+  }
+})
+
+const tagsText = computed({
+  get: () => newTemplate.value.tags.join(', '),
+  set: (value: string) => {
+    newTemplate.value.tags = value.split(',').map(t => t.trim()).filter(t => t !== '')
+  }
+})
+
+const editFeaturesText = computed({
+  get: () => editingTemplate.value?.features?.join('\n') || '',
+  set: (value: string) => {
+    if (editingTemplate.value) {
+      editingTemplate.value.features = value.split('\n').filter(f => f.trim() !== '')
+    }
+  }
+})
+
+const editTagsText = computed({
+  get: () => editingTemplate.value?.tags?.join(', ') || '',
+  set: (value: string) => {
+    if (editingTemplate.value) {
+      editingTemplate.value.tags = value.split(',').map(t => t.trim()).filter(t => t !== '')
+    }
+  }
+})
+
+// Image handling functions
+const handleImageUpload = (event: Event) => {
+  const file = (event.target as HTMLInputElement).files?.[0]
+  if (file) {
+    imageFile.value = file
+    const reader = new FileReader()
+    reader.onload = (e) => {
+      imagePreview.value = e.target?.result as string
+    }
+    reader.readAsDataURL(file)
+  }
+}
+
+const uploadImage = async (): Promise<string> => {
+  if (!imageFile.value) {
+    return newTemplate.value.image
+  }
+  
+  // For now, we'll create a data URL from file
+  // In a real app, you would upload to Supabase Storage
+  const reader = new FileReader()
+  
+  return new Promise((resolve) => {
+    reader.onload = (e) => {
+      // Return data URL as image source
+      const dataUrl = e.target?.result as string
+      resolve(dataUrl)
+    }
+    reader.readAsDataURL(imageFile.value!)
+  })
+}
+
+// Form functions
+const resetForm = () => {
+  newTemplate.value = {
+    name: '',
+    description: '',
+    speciality: '',
+    price: 0,
+    image: '',
+    demo_url: null,
+    features: [],
+    tags: [],
+    badge: null,
+    promo: null,
+    rating: 0
+  }
+  imageFile.value = null
+  imagePreview.value = ''
+  showForm.value = false
+}
+
+const resetEditForm = () => {
+  editingTemplate.value = null
+  imageFile.value = null
+  imagePreview.value = ''
+  showEditForm.value = false
+}
+
+const startEditTemplate = (template: Template) => {
+  editingTemplate.value = { ...template }
+  imagePreview.value = template.image
+  showEditForm.value = true
+  showForm.value = false
+}
+
+const updateTemplate = async () => {
+  if (!editingTemplate.value) {
+    showMessage('Aucun modèle sélectionné pour la modification', false)
+    return
+  }
+
+  loading.value = true
+  message.value = ''
+  
+  try {
+    // Upload image if file is provided
+    const imageUrl = imageFile.value ? await uploadImage() : editingTemplate.value.image
+    
+    const templateToUpdate: TemplateUpdate = {
+      name: editingTemplate.value.name,
+      description: editingTemplate.value.description,
+      speciality: editingTemplate.value.speciality,
+      price: editingTemplate.value.price,
+      image: imageUrl,
+      demo_url: editingTemplate.value.demo_url,
+      features: editingTemplate.value.features,
+      tags: editingTemplate.value.tags,
+      badge: editingTemplate.value.badge,
+      promo: editingTemplate.value.promo,
+      rating: editingTemplate.value.rating,
+      updated_at: new Date().toISOString()
+    }
+    
+    const { error } = await supabase
+      .from('templates')
+      .update(templateToUpdate as any)
+      .eq('id', editingTemplate.value.id)
+    
+    if (error) throw error
+    
+    showMessage('Modèle mis à jour avec succès !', true)
+    resetEditForm()
+    await refreshTemplates()
+  } catch (error) {
+    console.error('Error updating template:', error)
+    showMessage('Erreur lors de la mise à jour du modèle', false)
+  } finally {
+    loading.value = false
+  }
+}
+
+const addNewTemplate = async () => {
+  if (!newTemplate.value.name || !newTemplate.value.description || !newTemplate.value.speciality) {
+    showMessage('Veuillez remplir les champs obligatoires', false)
+    return
+  }
+
+  // Check if image is provided
+  if (!imageFile.value && !newTemplate.value.image) {
+    showMessage('Veuillez fournir une image', false)
+    return
+  }
+
+  loading.value = true
+  message.value = ''
+  
+  try {
+    // Upload image if file is provided
+    const imageUrl = await uploadImage()
+    
+    const templateToInsert = {
+      name: newTemplate.value.name,
+      description: newTemplate.value.description,
+      speciality: newTemplate.value.speciality,
+      price: newTemplate.value.price,
+      image: imageUrl,
+      demo_url: newTemplate.value.demo_url,
+      features: newTemplate.value.features,
+      tags: newTemplate.value.tags,
+      badge: newTemplate.value.badge,
+      promo: newTemplate.value.promo,
+      rating: newTemplate.value.rating
+    }
+    
+    const { error } = await supabase
+      .from('templates')
+      .insert(templateToInsert as any)
+    
+    if (error) throw error
+    
+    showMessage('Modèle ajouté avec succès !', true)
+    resetForm()
+    await refreshTemplates()
+  } catch (error) {
+    console.error('Error adding template:', error)
+    showMessage('Erreur lors de l\'ajout du modèle', false)
+  } finally {
+    loading.value = false
+  }
+}
 
 // Load templates on mount
 onMounted(() => {
@@ -218,18 +834,18 @@ const addTemplates = async () => {
       console.log("Session user:", session.data.session?.user)
       
       // Create template without auto-generated fields
-      const templateToInsert: Partial<TemplateInsert> = {
+      const templateToInsert = {
         name: templateData.name,
         description: templateData.description,
-        category: templateData.category,
+        speciality: templateData.speciality,
         price: templateData.price,
-        image_url: templateData.image_url,
+        image: templateData.image,
         demo_url: templateData.demo_url,
         features: templateData.features,
         tags: templateData.tags,
-        is_featured: templateData.is_featured,
-        downloads: templateData.downloads || 0,
-        rating: templateData.rating || 0
+        badge: templateData.badge,
+        promo: templateData.promo,
+        rating: templateData.rating
       }
       
       const { error } = await supabase
