@@ -1,19 +1,5 @@
 import { defineStore } from 'pinia'
-
-export interface Template {
-  id: string
-  name: string
-  description: string
-  category: string
-  price: number
-  image_url: string
-  demo_url: string
-  features: string[]
-  tags: string[]
-  is_featured: boolean
-  downloads: number
-  rating: number
-}
+import type { Template } from '~/models'
 
 export interface CartItem {
   template: Template

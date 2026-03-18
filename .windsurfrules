@@ -49,3 +49,11 @@ project/
 - **Responsive**: Use a **mobile-first** approach. Ensure all sections look great on small screens using Tailwind's `sm:`, `md:`, `lg:` prefixes.
 - **Abstraction**: When a UI pattern repeats (e.g., a service card, a button style), extract it into a reusable component.
 - **Header Design**: Only use Studio-style dark header (`bg-secondary` with gradient decorations) for secondary pages (about, contact, templates, etc.). The home page (`index.vue`) should maintain its original lighter design to create visual hierarchy and differentiate the landing experience.
+
+## Admin & Security Policy (Supabase)
+- **Private Route**: All admin features (forms, add/delete buttons) must be strictly restricted to the `/admin-dashboard` path.
+- **Login**: The login page is located at `/login`.
+- **Auth Middleware**: Use `definePageMeta({ middleware: 'auth' })` ONLY on the dashboard page.
+- **Global Config**: Keep `supabase.redirect: false` in `nuxt.config.ts` to ensure the public site stays accessible.
+- **UI Visibility**: "Add", "Edit", or "Delete" buttons must NEVER appear on public pages (`/`, `/services`), even if the admin is logged in. They only exist on the dashboard.
+- **Database**: Ensure RLS is now ENABLED in the Supabase dashboard (Public: Read / Authenticated: All).

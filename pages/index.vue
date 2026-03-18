@@ -312,9 +312,10 @@
 
 <script setup lang="ts">
 import { Code, Palette, Zap, ShoppingBag, MessageSquare, ArrowRight, Sparkles, PenTool, Image, Search } from 'lucide-vue-next'
-import type { Template } from '~/stores/cart'
+import type { Template } from '~/models'
+import type { Database } from '~/types/database.types'
 
-const supabase = useSupabase()
+const supabase = useSupabaseClient<Database>()
 const loading = ref(true)
 const featuredTemplates = ref<Template[]>([])
 
