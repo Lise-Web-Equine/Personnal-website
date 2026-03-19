@@ -255,13 +255,13 @@
         <div class="container mx-auto px-6">
           <div class="flex justify-between items-end mb-12" v-motion-slide-visible-once-bottom>
             <div>
-              <h2 class="mb-4">Featured Templates</h2>
+              <h2 class="mb-4">Modèles en vedette</h2>
               <p class="section-subtitle text-left max-w-none">
-                Ready-to-use, professionally designed templates
+                Modèles prêts à l'emploi pour les professionnels équins.
               </p>
             </div>
             <NuxtLink to="/templates" class="hidden md:inline-flex items-center text-black font-semibold hover:gap-2 transition-all">
-              View All
+              Voir tous
               <ArrowRight :size="20" class="ml-1" />
             </NuxtLink>
           </div>
@@ -271,7 +271,7 @@
           </div>
 
           <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <TemplateCard
+            <TemplateCardMockup
               v-for="template in featuredTemplates"
               :key="template.id"
               :template="template"
@@ -280,7 +280,7 @@
 
           <div class="text-center mt-12 md:hidden">
             <NuxtLink to="/templates" class="btn-primary inline-flex items-center">
-              View All Templates
+              Voir tous les modèles
               <ArrowRight :size="20" class="ml-2" />
             </NuxtLink>
           </div>
@@ -372,7 +372,6 @@ onMounted(async () => {
     const { data, error } = await supabase
       .from('templates')
       .select('*')
-      .eq('is_featured', true)
       .order('rating', { ascending: false })
       .limit(3)
 
