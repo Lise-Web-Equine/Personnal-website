@@ -12,12 +12,12 @@
         loading="lazy"
       />
       <div class="absolute top-4 right-4 flex gap-2">
-        <span
+        <Badge
           v-if="template.badge"
-          class="bg-black text-white text-xs font-semibold px-3 py-1 rounded-full"
-        >
-          {{ template.badge === 'best-seller' ? 'Best-seller' : 'Nouveau' }}
-        </span>
+          :variant="template.badge === 'best-seller' ? 'success' : 'warning'"
+          :text="template.badge === 'best-seller' ? 'Best-seller' : 'Nouveau'"
+          class="shadow-lg transform hover:scale-105 transition-all duration-200"
+        />
       </div>
     </div>
 
@@ -26,8 +26,8 @@
       <!-- Header -->
       <header class="flex items-start justify-between mb-4">
         <div>
-          <span class="text-sm text-secondary-500 uppercase tracking-wide font-medium">
-            {{ template.speciality }}
+          <span class="text-xs text-primary-500 uppercase tracking-wide font-medium">
+            {{ template.name }}
           </span>
           <h3 class="text-xl font-bold mt-1 group-hover:text-secondary-600 transition-colors">
             {{ template.name }}
@@ -52,10 +52,10 @@
           </span>
         </div>
         <div class="text-right">
-          <span v-if="template.promo" class="text-sm text-gray-500 line-through">
+          <span v-if="template.promo" class="text-sm text-secondary-500 line-through">
             {{ template.price }}€
           </span>
-          <span class="text-2xl font-bold">
+          <span class="text-2xl font-bold text-secondary-900">
             {{ template.promo ? (template.price * (1 - template.promo / 100)).toFixed(2) : template.price }}€
           </span>
         </div>
@@ -65,7 +65,7 @@
       <div class="flex gap-2">
         <NuxtLink
           :to="`/templates/${template.id}`"
-          class="flex-1 text-center px-4 py-2.5 bg-gray-100 text-black rounded-lg font-semibold hover:bg-gray-200 transition-colors focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
+          class="flex-1 text-center px-4 py-2.5 bg-secondary-100 text-secondary-900 rounded-lg font-semibold hover:bg-secondary-200 transition-colors focus:ring-2 focus:ring-secondary-300 focus:ring-offset-2"
         >
           Voir les détails
         </NuxtLink>
@@ -73,7 +73,7 @@
           @click="handleAddToCart"
           :disabled="isInCart"
           class="flex-1 px-4 py-2.5 rounded-lg font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
-          :class="isInCart ? 'bg-green-100 text-green-700 hover:bg-green-200' : 'bg-black text-white hover:bg-gray-800'"
+          :class="isInCart ? 'bg-green-100 text-green-700 hover:bg-green-200' : 'bg-primary-500 text-white hover:bg-primary-600'"
         >
           <ShoppingCart :size="16" class="mr-2" />
           {{ isInCart ? 'Déjà dans le panier' : 'Ajouter au panier' }}

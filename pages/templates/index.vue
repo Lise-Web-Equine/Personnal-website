@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout>
-    <div class="bg-gray-50 min-h-screen">
+    <div class="min-h-screen">
       <StudioHeader 
         title="La boutique de modèles"
         description="Des modèles de sites web premium et prêts à l'emploi pour chaque besoin professionnel"
@@ -23,8 +23,8 @@
             <p class="text-gray-600">Revenez plus tard pour découvrir nos nouveaux modèles</p>
           </div>
 
-          <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <TemplateCard
+          <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <TemplateCardMockup
               v-for="template in templates"
               :key="template.id"
               :template="template"
