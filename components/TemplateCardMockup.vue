@@ -24,12 +24,12 @@
               loading="lazy"
             />
             <!-- Badge Section -->
-            <div class="absolute top-3 right-3 flex gap-2">
+            <div class="absolute top-3 left-3 flex gap-2">
               <Badge
                 v-if="template.badge"
-                variant="primary"
+                variant="minimal"
                 :text="template.badge === 'best-seller' ? 'Best-seller' : 'Nouveau'"
-                class="shadow-md transform hover:scale-105 transition-all duration-200 text-xs px-2 py-1"
+                class="shadow-md transform hover:scale-105 transition-all duration-200 text-[10px] px-1 py-0.5"
               />
             </div>
           </div>
@@ -46,15 +46,20 @@
           <h3 class="text-sm font-bold text-secondary-900 leading-tight">
             {{ template.name }}
           </h3>
-          <div class="flex items-center gap-2 text-xs text-secondary-500">
-            <div class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
-            <span>Disponible immédiatement</span>
+          <div class="flex flex-wrap gap-1">
+            <span 
+              v-for="tag in template.tags.slice(0, 3)" 
+              :key="tag"
+              class="text-xs text-secondary-600 bg-secondary-100 px-2 py-0.5 rounded"
+            >
+              {{ tag }}
+            </span>
           </div>
         </div>
         
         <!-- Price and Button Section -->
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 relative z-10">
-          <div class="sm:flex-none">
+        <div class="flex items-center justify-between gap-3 relative z-10">
+          <div>
             <div class="text-lg font-bold text-secondary-900">
               {{ template.price }}€
             </div>
@@ -63,15 +68,11 @@
             </div>
           </div>
           
-          <NuxtLink
+          <Button
             :to="`/templates/${template.id}`"
-            class="group px-4 py-2.5 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold rounded-lg border-2 border-primary-500 hover:from-primary-600 hover:to-primary-700 hover:border-primary-600 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] hover:-translate-y-0.5 sm:flex-none flex items-center justify-center text-sm"
-          >
-            <span class="flex items-center justify-center">
-              <ArrowRight :size="16" class="mr-2 transition-transform group-hover:translate-x-1" />
-              Voir les détails
-            </span>
-          </NuxtLink>
+            variant="primary"
+            text="Voir les détails"
+          />
         </div>
       </div>
     </div>
