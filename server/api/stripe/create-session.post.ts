@@ -48,10 +48,13 @@ export default defineEventHandler(async (event) => {
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
-      success_url: `${process.env.NUXT_PUBLIC_APP_URL}/success`,
+      success_url: `${process.env.NUXT_PUBLIC_APP_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.NUXT_PUBLIC_APP_URL}/cart`,
       customer_email: body.email,
-      locale: 'fr' // Interface en français
+      locale: 'fr', // Interface en français
+      metadata: {
+        cart_items: JSON.stringify(body.cartItems)
+      }
     })
 
     return {

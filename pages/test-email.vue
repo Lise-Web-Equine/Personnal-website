@@ -6,7 +6,7 @@
       <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
         <h2 class="text-xl font-semibold mb-4">Environment Variables</h2>
         <div class="space-y-2">
-          <p><strong>RESEND_API_KEY:</strong> {{ resendKey ? 'Present' : 'Not found' }}</p>
+          <p><strong>RESEND_API_KEY:</strong> {{ resendKey || 'Not found' }}</p>
           <p><strong>RESEND_FROM_EMAIL:</strong> {{ fromEmail || 'Not found' }}</p>
           <p><strong>RESEND_AUDIENCE_ID:</strong> {{ audienceId || 'Not found' }}</p>
           <p><strong>RESEND_CONFIRMATION_TEMPLATE_ID:</strong> {{ templateId || 'Not found' }}</p>
@@ -45,10 +45,31 @@ definePageMeta({
   middleware: 'auth'
 })
 
-const resendKey = process.env.RESEND_API_KEY
-const fromEmail = process.env.RESEND_FROM_EMAIL
-const audienceId = process.env.RESEND_AUDIENCE_ID
-const templateId = process.env.RESEND_CONFIRMATION_TEMPLATE_ID
+const config = ref<any>(null)
+const resendKey = ref('Loading...')
+const fromEmail = ref('Loading...')
+const audienceId = ref('Loading...')
+const templateId = ref('Loading...')
+
+// Charger la configuration Resend uniquement
+onMounted(async () => {
+  try {
+    const resendConfig = await $fetch('/api/resend/config') as any
+    
+    config.value = resendConfig
+    
+    resendKey.value = resendConfig.resendApiKey
+    fromEmail.value = resendConfig.resendFromEmail
+    audienceId.value = resendConfig.resendAudienceId
+    templateId.value = resendConfig.resendConfirmationTemplateId
+  } catch (error) {
+    console.error('Error loading Resend config:', error)
+    resendKey.value = 'Error loading config'
+    fromEmail.value = 'Error'
+    audienceId.value = 'Error'
+    templateId.value = 'Error'
+  }
+})
 
 const testEmail = ref('')
 const loading = ref(false)

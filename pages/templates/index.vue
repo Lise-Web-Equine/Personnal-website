@@ -651,17 +651,38 @@ import type { Template } from '~/models'
 
 
 
-const supabase = useSupabase()
-
-
-
 const loading = ref(true)
-
 const templates = ref<Template[]>([])
+const supabase = ref<any>(null)
 
+// Charger le client Supabase au montage du composant
+onMounted(async () => {
+  try {
+    supabase.value = await useSupabaseClientSecure()
+    await fetchTemplates()
+  } catch (error) {
+    console.error('Error initializing Supabase:', error)
+    loading.value = false
+  }
+})
 
+const fetchTemplates = async () => {
+  if (!supabase.value) return
+  
+  try {
+    const { data, error } = await supabase.value
+      .from('templates')
+      .select('*')
+      .order('created_at', { ascending: false })
 
-// FAQ Items
+    if (error) throw error
+    templates.value = data || []
+  } catch (error) {
+    console.error('Error fetching templates:', error)
+  } finally {
+    loading.value = false
+  }
+}
 
 const faqItems = [
 
@@ -717,35 +738,6 @@ const faqItems = [
 
 
 
-onMounted(async () => {
-
-  try {
-
-    const { data, error } = await supabase
-
-      .from('templates')
-
-      .select('*')
-
-      .order('created_at', { ascending: false })
-
-
-
-    if (error) throw error
-
-    templates.value = data || []
-
-  } catch (error) {
-
-    console.error('Error fetching templates:', error)
-
-  } finally {
-
-    loading.value = false
-
-  }
-
-})
 
 </script>
 

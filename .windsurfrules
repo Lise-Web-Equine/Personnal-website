@@ -23,6 +23,13 @@
 - **Comments**: Briefly comment complex functions and business logic
 - **Vue conventions**: Use **PascalCase** for component names
 - **TypeScript**: Always type props, emits and important variables
+
+## Environment Configuration
+- **.env file**: Contains all environment variables for the project
+- **Never commit .env**: The .env file should be in .gitignore and never committed
+- **Runtime Config**: Use useRuntimeConfig() in Nuxt 3 to access environment variables
+- **Security**: Keep ALL keys (Stripe, Resend, Supabase) in private runtimeConfig only
+- **NO public config**: NEVER use runtimeConfig.public - all environment variables must remain server-side only
 - **Naming**: Use camelCase for variables and functions, kebab-case for file names
 
 ## Project Structure

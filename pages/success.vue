@@ -117,12 +117,43 @@
 </template>
 
 <script setup lang="ts">
-// Pas de logique complexe nécessaire pour cette page
-// Le webhook Stripe gère l'envoi des emails automatiquement
+// Récupérer les paramètres de l'URL (session_id)
+const route = useRoute()
+const sessionId = route.query.session_id as string
 
-// Optionnel: tracker la conversion pour analytics si besoin
-onMounted(() => {
-  // Vous pouvez ajouter ici du tracking analytics si vous en utilisez
-  console.log('Page de succès atteinte')
+// Envoyer l'email de confirmation au chargement de la page
+onMounted(async () => {
+  if (sessionId) {
+    try {
+      // Vérifier la session Stripe avec sécurité
+      const verification = await $fetch('/api/stripe/verify-session', {
+        method: 'POST',
+        body: {
+          sessionId: sessionId
+        }
+      })
+      
+      if (verification.success && verification.session.customer_email) {
+        // Envoyer l'email de confirmation via l'API
+        await $fetch('/api/email/confirmation', {
+          method: 'POST',
+          body: {
+            email: verification.session.customer_email,
+            sessionId: sessionId
+          }
+        })
+        
+        console.log('Email de confirmation envoyé à:', verification.session.customer_email)
+      }
+    } catch (error: any) {
+      console.error('Erreur envoi email confirmation:', error)
+      // Rediriger vers une page d'erreur si session invalide/expirée
+      if (error.statusCode === 410) {
+        await navigateTo('/error?code=session_expired')
+      } else if (error.statusCode === 400) {
+        await navigateTo('/error?code=invalid_session')
+      }
+    }
+  }
 })
 </script>

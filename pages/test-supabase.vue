@@ -40,8 +40,22 @@ definePageMeta({
 
 const supabase = useSupabase()
 
-const supabaseUrl = useRuntimeConfig().public.supabaseUrl
-const supabaseKey = useRuntimeConfig().public.supabaseAnonKey
+const config = ref<any>(null)
+const supabaseUrl = ref('Loading...')
+const supabaseKey = ref('Loading...')
+
+// Charger la configuration depuis l'API
+onMounted(async () => {
+  try {
+    const response = await $fetch('/api/config') as any
+    config.value = response
+    supabaseUrl.value = response.supabaseUrl
+    supabaseKey.value = response.supabaseKey
+  } catch (error) {
+    console.error('Error loading config:', error)
+    supabaseUrl.value = 'Error loading config'
+  }
+})
 
 const connectionResult = ref<any>(null)
 const templatesResult = ref<any>(null)

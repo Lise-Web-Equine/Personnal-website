@@ -14,13 +14,6 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
-  runtimeConfig: {
-    public: {
-      supabaseUrl: process.env.SUPABASE_URL,
-      supabaseAnonKey: process.env.SUPABASE_KEY,
-    }
-  },
-
   app: {
     head: {
       title: 'Lise Web Equine - Bespoke Web Development & Templates',

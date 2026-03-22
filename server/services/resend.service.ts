@@ -1,6 +1,11 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY!)
+// Vérifier que la clé API existe
+if (!process.env.RESEND_API_KEY) {
+  throw new Error('RESEND_API_KEY is required in .env file')
+}
+
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 export class ResendService {
   
@@ -100,6 +105,15 @@ export class ResendService {
     } catch (error) {
       console.error('Erreur listage audiences:', error)
       throw error
+    }
+  }
+  
+  // Nouvelle méthode pour obtenir la configuration (côté client)
+  static async getConfig() {
+    return {
+      resendFromEmail: process.env.RESEND_FROM_EMAIL,
+      resendAudienceId: process.env.RESEND_AUDIENCE_ID,
+      resendConfirmationTemplateId: process.env.RESEND_CONFIRMATION_TEMPLATE_ID
     }
   }
 }
