@@ -2,8 +2,6 @@
 
   <NuxtLayout>
 
-    <div class="min-h-screen">
-
       <StudioHeader 
 
         title="La boutique de modèles"
@@ -17,7 +15,6 @@
 
 
       <section class="py-12">
-
         <div class="container mx-auto px-6">
 
           <div class="mb-6 text-gray-600">
@@ -639,8 +636,6 @@
         </div>
 
       </section>
-
-    </div>
 
   </NuxtLayout>
 

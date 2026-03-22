@@ -1,8 +1,6 @@
 <template>
   <NuxtLayout>
-    <div class="relative">
       <section class="relative py-12 sm:py-16 md:py-20 lg:py-32 overflow-hidden">
-        
         <div class="relative container mx-auto px-6">
           <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
@@ -56,12 +54,8 @@
       </section>
 
       <!-- A propos Section -->
-      <section class="py-24 relative overflow-hidden">
-        <!-- Background decoration -->
-        <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-amber-100/50 to-transparent rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-blue-100/50 to-transparent rounded-full blur-3xl"></div>
-        
-        <div class="relative container mx-auto px-6">
+      <section class="py-24">
+        <div class="container mx-auto px-6">
           <div class="max-w-6xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <!-- Text Content -->
@@ -306,7 +300,6 @@
           </div>
         </div>
       </section>
-    </div>
   </NuxtLayout>
 </template>
 

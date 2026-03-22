@@ -1,6 +1,5 @@
 <template>
   <NuxtLayout>
-    <div class="bg-gray-50 min-h-screen">
       <StudioHeader 
         title="Contactez-moi"
         description="Discutons de votre projet et donnons vie à votre vision digitale"
@@ -154,7 +153,6 @@
           </div>
         </div>
       </section>
-    </div>
   </NuxtLayout>
 </template>
 

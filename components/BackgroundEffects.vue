@@ -3,7 +3,7 @@
     <!-- Texture de grain -->
     <div class="bg-noise"></div>
     
-    <!-- Lueurs (Vagues violettes) -->
+    <!-- Lueurs principales -->
     <div 
       ref="glow1" 
       class="glow glow-1 animate-wave"
@@ -13,6 +13,11 @@
       class="glow glow-2 animate-wave" 
       style="animation-delay: -10s;"
     ></div>
+    
+    <!-- Halos supplémentaires dispersés -->
+    <div class="glow glow-3"></div>
+    <div class="glow glow-4"></div>
+    <div class="glow glow-5"></div>
   </div>
 </template>
 
@@ -54,7 +59,10 @@ onUnmounted(() => {
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
-  background-color: #ffffff;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(6, 182, 212, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(168, 85, 247, 0.02) 0%, transparent 50%),
+    linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
 }
 
 .bg-noise {
@@ -70,13 +78,13 @@ onUnmounted(() => {
   border-radius: 50%;
   filter: blur(140px);
   transition: transform 0.4s ease-out;
-  opacity: 0.9;
+  opacity: 0.7;
 }
 
 .glow-1 {
   width: 900px;
   height: 900px;
-  background: rgba(139, 92, 246, 0.15);
+  background: rgba(6, 182, 212, 0.12);
   top: -250px;
   right: -150px;
 }
@@ -84,9 +92,36 @@ onUnmounted(() => {
 .glow-2 {
   width: 800px;
   height: 800px;
-  background: rgba(192, 38, 211, 0.12);
+  background: rgba(168, 85, 247, 0.08);
   bottom: -200px;
   left: -150px;
+}
+
+.glow-3 {
+  width: 400px;
+  height: 400px;
+  background: rgba(6, 182, 212, 0.06);
+  top: 20%;
+  left: 10%;
+  animation: float 8s infinite ease-in-out;
+}
+
+.glow-4 {
+  width: 500px;
+  height: 500px;
+  background: rgba(168, 85, 247, 0.05);
+  top: 60%;
+  right: 15%;
+  animation: float 10s infinite ease-in-out reverse;
+}
+
+.glow-5 {
+  width: 350px;
+  height: 350px;
+  background: rgba(6, 182, 212, 0.04);
+  top: 40%;
+  left: 50%;
+  animation: float 12s infinite ease-in-out;
 }
 
 @keyframes wave {
@@ -94,6 +129,11 @@ onUnmounted(() => {
   33% { transform: translate(60px, -40px) scale(1.1); }
   66% { transform: translate(-30px, 20px) scale(0.95); }
   100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-20px) scale(1.05); }
 }
 
 .animate-wave {

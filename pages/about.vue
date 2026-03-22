@@ -1,6 +1,5 @@
 <template>
   <NuxtLayout>
-    <div class="min-h-screen bg-white">
       <!-- Hero Section -->
       <StudioHeader 
         title="À propos de Lise Web Equine"
@@ -119,7 +118,6 @@
           </div>
         </div>
       </section>
-    </div>
   </NuxtLayout>
 </template>
 

@@ -1,6 +1,5 @@
 <template>
   <NuxtLayout>
-    <div class="bg-secondary-50">
       <section class="py-20 relative overflow-hidden bg-secondary text-white">
         <!-- Background decoration -->
         <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-900/30 to-transparent rounded-full blur-3xl"></div>
@@ -56,13 +55,17 @@
                 <blockquote class="text-lg text-secondary-800 leading-relaxed italic">
                   "Plus qu'un simple site web, je crée une véritable vitrine digitale qui reflète votre expertise et votre passion. Chaque projet est une opportunité de mettre en valeur votre savoir-faire unique dans le monde équin."
                 </blockquote>
-                <div class="mt-6 flex items-center space-x-3">
+                <div class="mt-6 flex items-center space-x-3 relative">
                   <div class="w-12 h-12 bg-primary-200 rounded-full flex items-center justify-center">
                     <span class="text-primary-700 font-bold text-lg">CE</span>
                   </div>
                   <div>
                     <p class="font-semibold text-secondary-900">Claire-Elise</p>
                     <p class="text-sm text-secondary-600">Fondatrice du Studio</p>
+                  </div>
+                  <!-- Pricing Overlay -->
+                  <div class="absolute -top-8 -right-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg border border-primary-200">
+                    <p class="text-sm font-semibold text-primary-600">À partir de 1500€</p>
                   </div>
                 </div>
               </div>
@@ -294,7 +297,6 @@
           </div>
         </div>
       </section>
-    </div>
   </NuxtLayout>
 </template>
 
