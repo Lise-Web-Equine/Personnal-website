@@ -57,6 +57,26 @@ export class ResendService {
     }
   }
   
+  // Envoyer un email avec template Resend
+  static async sendTemplateEmail(to: string, templateId: string, variables: Record<string, any>) {
+    try {
+      const result = await resend.emails.send({
+        from: process.env.RESEND_FROM_EMAIL!,
+        to: [to],
+        template: {
+          id: templateId,
+          variables
+        }
+      })
+      
+      console.log(`Email template envoyé à ${to}`)
+      return result
+    } catch (error) {
+      console.error('Erreur email template:', error)
+      throw error
+    }
+  }
+  
   // Créer une audience
   static async createAudience(name: string) {
     try {
@@ -64,7 +84,7 @@ export class ResendService {
         name
       })
       
-      console.log(`Audience "${name}" créée avec l'ID: ${audience.id}`)
+      console.log(`Audience "${name}" créée`)
       return audience
     } catch (error) {
       console.error('Erreur création audience:', error)

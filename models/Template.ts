@@ -6,6 +6,7 @@ export interface Template {
   price: number
   image: string
   demo_url: string | null
+  download_url: string
   features: string[]
   tags: string[]
   badge: 'best-seller' | 'new' | null
@@ -22,6 +23,7 @@ export interface TemplateCreate {
   price: number
   image: string
   demo_url: string | null
+  download_url: string
   features: string[]
   tags: string[]
   badge: 'best-seller' | 'new' | null
@@ -36,6 +38,7 @@ export interface TemplateUpdate {
   price?: number
   image?: string
   demo_url?: string | null
+  download_url?: string
   features?: string[]
   tags?: string[]
   badge?: 'best-seller' | 'new' | null

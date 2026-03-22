@@ -73,8 +73,8 @@
                 ></textarea>
               </div>
 
-              <!-- Price and Demo URL -->
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Price, Demo URL and Download URL -->
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-2">
                     Prix (€) *
@@ -98,6 +98,18 @@
                     type="url"
                     class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                     placeholder="https://exemple.com"
+                  />
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    URL de téléchargement *
+                  </label>
+                  <input
+                    v-model="newTemplate.download_url"
+                    type="url"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="https://carrd.co/build?template=xxx"
                   />
                 </div>
               </div>
@@ -287,8 +299,8 @@
                 ></textarea>
               </div>
 
-              <!-- Price and Demo URL -->
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Price, Demo URL and Download URL -->
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-2">
                     Prix (€) *
@@ -312,6 +324,18 @@
                     type="url"
                     class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                     placeholder="https://exemple.com"
+                  />
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    URL de téléchargement *
+                  </label>
+                  <input
+                    v-model="editingTemplate.download_url"
+                    type="url"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="https://carrd.co/build?template=xxx"
                   />
                 </div>
               </div>
@@ -567,6 +591,7 @@ const newTemplate = ref<TemplateCreate>({
   price: 0,
   image: '',
   demo_url: null,
+  download_url: '',
   features: [],
   tags: [],
   badge: null,
@@ -648,6 +673,7 @@ const resetForm = () => {
     price: 0,
     image: '',
     demo_url: null,
+    download_url: '',
     features: [],
     tags: [],
     badge: null,
@@ -693,6 +719,7 @@ const updateTemplate = async () => {
       price: editingTemplate.value.price,
       image: imageUrl,
       demo_url: editingTemplate.value.demo_url,
+      download_url: editingTemplate.value.download_url,
       features: editingTemplate.value.features,
       tags: editingTemplate.value.tags,
       badge: editingTemplate.value.badge,
@@ -745,6 +772,7 @@ const addNewTemplate = async () => {
       price: newTemplate.value.price,
       image: imageUrl,
       demo_url: newTemplate.value.demo_url,
+      download_url: newTemplate.value.download_url,
       features: newTemplate.value.features,
       tags: newTemplate.value.tags,
       badge: newTemplate.value.badge,
@@ -805,6 +833,7 @@ const addTemplates = async () => {
         price: 40,
         image: 'https://images.unsplash.com/photo-1559826264-d554356bf5d6?w=800&h=600&fit=crop',
         demo_url: '#',
+        download_url: 'https://carrd.co/build?template=horizon',
         features: ["Prestations phares & tarifs", "Expérience terrain", "Focus prestation technique", "Formulaire de contact", "Témoignages"],
         tags: ['equine', 'professionnel', 'bleu', 'confiance', 'technique'],
         badge: 'best-seller',
@@ -818,6 +847,7 @@ const addTemplates = async () => {
         price: 40,
         image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop',
         demo_url: '#',
+        download_url: 'https://carrd.co/build?template=ancrage',
         features: ["Prestations phares & tarifs", "Bénéfices du soin", "Déroulement d'une séance", "Formulaire de contact", "Témoignages immersifs"],
         tags: ['equine', 'naturel', 'holistique', 'doux', 'apaisant'],
         badge: 'new',
