@@ -81,14 +81,17 @@ async function addContactToResend(email: string) {
 async function sendConfirmationEmail(email: string, session: Stripe.Checkout.Session) {
   try {
     const cartItems = JSON.parse(session.metadata?.cart_items || '[]')
+    const item = cartItems[0] || null // Prendre le premier (et seul) item
     
     await ResendService.sendTemplateEmail(
       email,
       process.env.RESEND_CONFIRMATION_TEMPLATE_ID!,
       {
-        customer_name: session.customer_details?.name || 'Client',
-        items: cartItems,
-        session_id: session.id
+        CUSTOMER_NAME: session.customer_details?.name || 'Client',
+        PRODUCT_NAME: item?.template?.name || 'Modèle',
+        PRODUCT_DESCRIPTION: item?.template?.description || 'Description',
+        DOWNLOAD_URL: item?.template?.download_url || '#',
+        SESSION_ID: session.id
       }
     )
     

@@ -53,7 +53,16 @@ export default defineEventHandler(async (event) => {
       customer_email: body.email,
       locale: 'fr', // Interface en français
       metadata: {
-        cart_items: JSON.stringify(body.cartItems)
+        cart_items: JSON.stringify(body.cartItems.map((item: any) => ({
+          template: {
+            id: item.template.id,
+            name: item.template.name,
+            price: item.template.price,
+            description: item.template.description,
+            download_url: item.template.download_url
+          },
+          quantity: item.quantity || 1
+        })))
       }
     })
 

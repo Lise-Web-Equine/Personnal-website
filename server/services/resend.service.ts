@@ -10,16 +10,14 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 export class ResendService {
   
   // Ajouter un contact à une audience
-  static async addContact(email: string, audienceId: string, firstName?: string) {
+  static async addContact(email: string, audienceId: string) {
     try {
-      const contact = await resend.contacts.create({
+      const result = await resend.contacts.create({
         email,
-        audienceId,
-        firstName
+        audienceId
       })
       
-      console.log(`Contact ${email} ajouté à l'audience ${audienceId}`)
-      return contact
+      return result
     } catch (error) {
       console.error('Erreur ajout contact:', error)
       throw error
@@ -30,13 +28,12 @@ export class ResendService {
   static async sendNewsletter(to: string[], subject: string, htmlContent: string) {
     try {
       const result = await resend.emails.send({
-        from: process.env.RESEND_FROM_EMAIL!,
+        from: `Lise Web Equine <${process.env.RESEND_FROM_EMAIL!}>`,
         to,
         subject,
         html: htmlContent
       })
       
-      console.log(`Newsletter envoyée à ${to.length} contacts`)
       return result
     } catch (error) {
       console.error('Erreur envoi newsletter:', error)
@@ -48,13 +45,12 @@ export class ResendService {
   static async sendTransactionalEmail(to: string, subject: string, htmlContent: string) {
     try {
       const result = await resend.emails.send({
-        from: process.env.RESEND_FROM_EMAIL!,
+        from: `Lise Web Equine <${process.env.RESEND_FROM_EMAIL!}>`,
         to: [to],
         subject,
         html: htmlContent
       })
       
-      console.log(`Email transactionnel envoyé à ${to}`)
       return result
     } catch (error) {
       console.error('Erreur email transactionnel:', error)
@@ -66,7 +62,7 @@ export class ResendService {
   static async sendTemplateEmail(to: string, templateId: string, variables: Record<string, any>) {
     try {
       const result = await resend.emails.send({
-        from: process.env.RESEND_FROM_EMAIL!,
+        from: `Lise Web Equine <${process.env.RESEND_FROM_EMAIL!}>`,
         to: [to],
         template: {
           id: templateId,
@@ -74,7 +70,6 @@ export class ResendService {
         }
       })
       
-      console.log(`Email template envoyé à ${to}`)
       return result
     } catch (error) {
       console.error('Erreur email template:', error)
@@ -89,7 +84,6 @@ export class ResendService {
         name
       })
       
-      console.log(`Audience "${name}" créée`)
       return audience
     } catch (error) {
       console.error('Erreur création audience:', error)

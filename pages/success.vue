@@ -125,34 +125,32 @@ const sessionId = route.query.session_id as string
 onMounted(async () => {
   if (sessionId) {
     try {
-      // Vérifier la session Stripe avec sécurité
-      const verification = await $fetch('/api/stripe/verify-session', {
+      console.log('🎯 Page success - Envoi email pour session:', sessionId)
+      
+      // Récupérer d'abord les détails de la session
+      const sessionData = await $fetch(`/api/stripe/session/${sessionId}`)
+      const customerEmail = sessionData.customer_details?.email
+      
+      if (!customerEmail) {
+        console.error('❌ Email client non trouvé dans la session')
+        return
+      }
+      
+      console.log('📧 Email client trouvé:', customerEmail)
+      
+      // Envoyer l'email de confirmation
+      await $fetch('/api/email/confirmation', {
         method: 'POST',
         body: {
+          email: customerEmail,
           sessionId: sessionId
         }
       })
       
-      if (verification.success && verification.session.customer_email) {
-        // Envoyer l'email de confirmation via l'API
-        await $fetch('/api/email/confirmation', {
-          method: 'POST',
-          body: {
-            email: verification.session.customer_email,
-            sessionId: sessionId
-          }
-        })
-        
-        console.log('Email de confirmation envoyé à:', verification.session.customer_email)
-      }
+      console.log('✅ Email de confirmation envoyé')
     } catch (error: any) {
-      console.error('Erreur envoi email confirmation:', error)
-      // Rediriger vers une page d'erreur si session invalide/expirée
-      if (error.statusCode === 410) {
-        await navigateTo('/error?code=session_expired')
-      } else if (error.statusCode === 400) {
-        await navigateTo('/error?code=invalid_session')
-      }
+      console.error('❌ Erreur envoi email confirmation:', error)
+      // Ne pas rediriger vers erreur pour ne pas bloquer l'utilisateur
     }
   }
 })
