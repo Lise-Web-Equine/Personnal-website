@@ -9,6 +9,19 @@
       <form @submit.prevent="handlePayment">
         <div class="mb-4">
           <label class="block text-sm font-medium text-gray-700 mb-2">
+            Prénom *
+          </label>
+          <input
+            v-model="firstName"
+            type="text"
+            required
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            placeholder="Votre prénom"
+          />
+        </div>
+        
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700 mb-2">
             Email *
           </label>
           <input
@@ -59,6 +72,7 @@
 import { CreditCard } from 'lucide-vue-next'
 
 const showEmailModal = ref(false)
+const firstName = ref('')
 const email = ref('')
 const acceptNewsletter = ref(true)
 const isLoading = ref(false)
@@ -70,7 +84,7 @@ const openPaymentModal = () => {
 }
 
 const handlePayment = async () => {
-  if (!email.value) return
+  if (!firstName.value || !email.value) return
   
   isLoading.value = true
   
@@ -78,6 +92,7 @@ const handlePayment = async () => {
     const response = await $fetch('/api/stripe/create-session', {
       method: 'POST',
       body: {
+        firstName: firstName.value,
         email: email.value,
         acceptNewsletter: acceptNewsletter.value,
         cartItems: cartStore.cartItems

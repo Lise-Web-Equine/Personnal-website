@@ -53,7 +53,7 @@ export default defineEventHandler(async (event) => {
         body.email,
         templateId,
         {
-          CUSTOMER_NAME: session.customer_details?.name || 'Client',
+          CUSTOMER_NAME: session.metadata?.first_name || session.customer_details?.name || 'Client',
           PRODUCT_NAME: item?.template?.name || 'Modèle',
           PRODUCT_DESCRIPTION: item?.template?.description || 'Description',
           DOWNLOAD_URL: item?.template?.download_url || '#',
