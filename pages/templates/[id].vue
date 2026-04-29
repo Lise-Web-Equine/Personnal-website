@@ -99,13 +99,9 @@
                           <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                         </svg>
                         <div>
-                          Guide bonus : Autonomie et Sérénité
+                          Inclus le guide : Autonomie et Sérénité
                           <div class="text-xs font-normal text-green-600 mt-1">30 pages pour un site web professionnel</div>
                         </div>
-                      </div>
-                      <div class="text-right">
-                        <div class="text-green-600 line-through text-sm">49€</div>
-                        <div class="text-green-700 font-bold">OFFERT</div>
                       </div>
                     </div>
                   </div>
@@ -124,7 +120,7 @@
                     v-if="template.demo_url"
                     :href="template.demo_url"
                     target="_blank"
-                    class="px-6 py-3 bg-white text-secondary-800 font-semibold rounded-xl border-2 border-secondary-200 hover:border-secondary-300 hover:bg-secondary-50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg inline-flex items-center"
+                    class="btn-secondary inline-flex items-center"
                   >
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -225,7 +221,7 @@
                   <div class="lg:col-span-1 p-6 md:p-8 lg:p-10 bg-secondary text-white flex flex-col justify-center">
                     <div class="mb-6 md:mb-8">
                       <div class="text-gray-400 text-xs md:text-sm font-medium mb-2">CLÉ EN MAIN</div>
-                      <div class="text-4xl md:text-5xl font-bold mb-2">169€</div>
+                      <div class="text-4xl md:text-5xl font-bold mb-2">290€</div>
                       <div class="text-amber-300 font-medium text-sm md:text-base">Investissement unique</div>
                     </div>
 

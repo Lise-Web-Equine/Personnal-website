@@ -32,7 +32,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
         </svg>
         <div>
-          <span class="font-medium">{{ feature.title }}</span>
+          <span class="font-bold">{{ feature.title }}</span>
           <p v-if="feature.description" class="text-sm text-secondary-500 mt-0.5">{{ feature.description }}</p>
         </div>
       </li>
@@ -44,7 +44,7 @@
       :to="ctaLink"
       :class="buttonClasses"
     >
-      <span>{{ ctaText }}</span>
+      <span class="font-bold">{{ ctaText }}</span>
       <ArrowRight :size="20" class="ml-2" />
     </NuxtLink>
   </div>

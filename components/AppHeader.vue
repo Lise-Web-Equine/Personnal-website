@@ -1,18 +1,18 @@
 <template>
   <header 
-    class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-    :class="{ 'bg-white/80 backdrop-blur-lg border-b border-gray-200': isScrolled }"
+    class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-lg"
+    :class="{ 'border-b border-gray-200': isScrolled || isMenuOpen }"
   >
     <nav class="container mx-auto px-6 py-4">
       <div class="flex items-center justify-between">
-        <NuxtLink to="/" class="text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity">
-          <span class="bg-black text-white px-3 py-1 rounded">Lise</span>
-          <span class="ml-1">Web Equine</span>
+        <NuxtLink to="/" class="text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity flex items-center">
+          <span class="gradient-primary bg-clip-text text-transparent">Lise</span>
+          <span class="ml-2">Web Equine</span>
         </NuxtLink>
 
         <button
           @click="toggleMenu"
-          class="md:hidden p-2"
+          class="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
           aria-label="Toggle menu"
         >
           <Menu v-if="!isMenuOpen" :size="24" />
@@ -45,29 +45,38 @@
         </div>
       </div>
 
-      <div
-        v-if="isMenuOpen"
-        class="md:hidden mt-4 pb-4 flex flex-col space-y-4"
+      <transition
+        enter-active-class="transition-all duration-300 ease-out"
+        enter-from-class="opacity-0 -translate-y-2"
+        enter-to-class="opacity-100 translate-y-0"
+        leave-active-class="transition-all duration-200 ease-in"
+        leave-from-class="opacity-100 translate-y-0"
+        leave-to-class="opacity-0 -translate-y-2"
       >
-        <NuxtLink
-          v-for="link in navLinks"
-          :key="link.path"
-          :to="link.path"
-          @click="toggleMenu"
-          class="text-gray-700 hover:text-black font-medium transition-colors"
-          active-class="text-black font-semibold"
+        <div
+          v-if="isMenuOpen"
+          class="md:hidden mt-4 pt-4 pb-4 border-t border-gray-200 flex flex-col space-y-4"
         >
-          {{ link.name }}
-        </NuxtLink>
-        <NuxtLink
-          to="/cart"
-          @click="toggleMenu"
-          class="flex items-center space-x-2 text-gray-700 hover:text-black font-medium transition-colors"
-        >
-          <ShoppingCart :size="20" />
-          <span>Cart ({{ cartStore.itemCount }})</span>
-        </NuxtLink>
-      </div>
+          <NuxtLink
+            v-for="link in navLinks"
+            :key="link.path"
+            :to="link.path"
+            @click="toggleMenu"
+            class="text-gray-700 hover:text-black font-medium transition-colors py-2 px-4 hover:bg-gray-50 rounded-lg"
+            active-class="text-black font-semibold bg-gray-100"
+          >
+            {{ link.name }}
+          </NuxtLink>
+          <NuxtLink
+            to="/cart"
+            @click="toggleMenu"
+            class="flex items-center space-x-2 text-gray-700 hover:text-black font-medium transition-colors py-2 px-4 hover:bg-gray-50 rounded-lg"
+          >
+            <ShoppingCart :size="20" />
+            <span>Panier ({{ cartStore.itemCount }})</span>
+          </NuxtLink>
+        </div>
+      </transition>
     </nav>
   </header>
 </template>

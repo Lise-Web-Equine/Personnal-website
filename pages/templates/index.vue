@@ -653,24 +653,11 @@ import type { Template } from '~/models'
 
 const loading = ref(true)
 const templates = ref<Template[]>([])
-const supabase = ref<any>(null)
-
-// Charger le client Supabase au montage du composant
-onMounted(async () => {
-  try {
-    supabase.value = await useSupabaseClientSecure()
-    await fetchTemplates()
-  } catch (error) {
-    console.error('Error initializing Supabase:', error)
-    loading.value = false
-  }
-})
+const supabase = useSupabaseClient()
 
 const fetchTemplates = async () => {
-  if (!supabase.value) return
-  
   try {
-    const { data, error } = await supabase.value
+    const { data, error } = await supabase
       .from('templates')
       .select('*')
       .order('created_at', { ascending: false })
@@ -683,6 +670,10 @@ const fetchTemplates = async () => {
     loading.value = false
   }
 }
+
+onMounted(() => {
+  fetchTemplates()
+})
 
 const faqItems = [
 

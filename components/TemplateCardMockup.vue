@@ -1,5 +1,14 @@
 <template>
-  <div>
+  <div class="relative">
+    <!-- Badge ancré sur la bordure -->
+    <div v-if="template.badge" class="absolute -top-3 right-6 z-10">
+      <Badge
+        variant="minimal"
+        :text="template.badge === 'best-seller' ? 'Best-seller' : 'Nouveau'"
+        class="shadow-md transform hover:scale-105 transition-all duration-200"
+      />
+    </div>
+
     <!-- Unified Card -->
     <NuxtLink :to="`/templates/${template.id}`" class="block">
       <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 hover:scale-[1.02] transform cursor-pointer" v-motion-slide-visible-once-bottom>
@@ -24,15 +33,6 @@
                 class="w-full h-full object-cover"
                 loading="lazy"
               />
-              <!-- Badge Section -->
-              <div class="absolute top-3 left-3 flex gap-2">
-                <Badge
-                  v-if="template.badge"
-                  variant="minimal"
-                  :text="template.badge === 'best-seller' ? 'Best-seller' : 'Nouveau'"
-                  class="shadow-md transform hover:scale-105 transition-all duration-200 text-[10px] px-1 py-0.5"
-                />
-              </div>
             </div>
           </div>
         </article>
@@ -51,7 +51,7 @@
               <span 
                 v-for="tag in template.tags.slice(0, 3)" 
                 :key="tag"
-                class="text-xs text-secondary-600 bg-secondary-100 px-2 py-0.5 rounded"
+                class="text-xs font-semibold text-secondary-600 bg-secondary-100 px-2 py-0.5 rounded"
               >
                 {{ tag }}
               </span>
@@ -71,7 +71,7 @@
             
             <NuxtLink
               :to="`/templates/${template.id}`"
-              class="btn-primary text-sm px-4 py-2.5"
+              class="btn-secondary text-sm px-4 py-2.5"
               @click.stop
             >
               Voir les détails

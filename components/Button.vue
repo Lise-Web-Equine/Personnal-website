@@ -5,7 +5,8 @@
     :type="to ? undefined : type"
     :disabled="disabled"
     :class="[
-      'group px-4 py-2.5 font-semibold rounded-lg border-2 transition-all duration-300 transform hover:scale-[1.02] hover:-translate-y-0.5 flex items-center justify-center text-sm',
+      'group px-4 py-2.5 font-semibold transition-all duration-300 flex items-center justify-center text-sm',
+      variant === 'primary' ? 'rounded-lg border-2 transform hover:scale-[1.02] hover:-translate-y-0.5' : 'relative',
       variantClasses,
       disabled && 'opacity-50 cursor-not-allowed hover:scale-100 hover:translate-y-0'
     ]"
@@ -39,7 +40,7 @@ const props = withDefaults(defineProps<Props>(), {
 const variantClasses = computed(() => {
   const variants = {
     primary: 'bg-gradient-to-r from-primary-500 to-primary-600 text-white border-primary-500 hover:from-primary-600 hover:to-primary-700 hover:border-primary-600 hover:shadow-xl',
-    secondary: 'bg-white text-secondary-700 border-secondary-300 hover:bg-secondary-50 hover:border-secondary-400 hover:shadow-lg'
+    secondary: 'secondary-link'
   }
   
   return variants[props.variant] || variants.primary

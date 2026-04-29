@@ -34,7 +34,7 @@ const variantClasses = computed(() => {
     warning: 'px-3 py-1.5 sm:px-4 sm:py-2 border rounded-full text-xs sm:text-sm bg-gradient-to-r from-amber-100 to-amber-200 border-amber-300 text-amber-800',
     danger: 'px-3 py-1.5 sm:px-4 sm:py-2 border rounded-full text-xs sm:text-sm bg-gradient-to-r from-red-100 to-red-200 border-red-300 text-red-800',
     gray: 'px-3 py-1.5 sm:px-4 sm:py-2 border rounded-full text-xs sm:text-sm bg-gradient-to-r from-gray-100 to-gray-200 border-gray-300 text-gray-700',
-    minimal: 'px-2 py-1 text-[10px] rounded-full bg-primary text-white shadow-sm uppercase',
+    minimal: 'px-2 py-1 text-[10px] rounded-full gradient-primary text-white shadow-sm uppercase',
     tag: 'text-xs text-gray-700 bg-white px-2 py-0.5 rounded'
   }
   
@@ -51,6 +51,7 @@ const iconClasses = computed(() => {
   position: relative;
   overflow: hidden;
 }
+
 
 .badge-shine::before {
   content: '';

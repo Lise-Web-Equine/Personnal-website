@@ -8,25 +8,25 @@
               <div v-motion-slide-visible-once-left>
 
                 
-                <h1 class="mb-6 sm:mb-8 leading-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-center sm:text-left font-sans">
+                <h1 class="mb-6 sm:mb-8 leading-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center sm:text-left font-sans">
                   <span class="block text-secondary-900 font-bold">Création de site web pour le secteur équin</span>
                 </h1>
                 
-                <p class="text-base sm:text-lg text-secondary-700 mb-8 sm:mb-12 leading-relaxed text-center sm:text-left">
+                <p class="text-sm sm:text-base md:text-lg text-secondary-700 mb-8 sm:mb-12 leading-relaxed text-center sm:text-left">
                   De l'architecture technique au design final, je crée le site web qui propulsera votre activité, que vous choisissiez un modèle clé en main ou une création sur-mesure.
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start">
                   <NuxtLink to="/studio" class="btn-primary group relative w-full sm:w-auto">
                     <span class="flex items-center justify-center">
-                      <Sparkles :size="20" class="mr-3" />
+                      <LayersIcon :size="20" color="white" class="mr-3" />
                       Découvrir le studio
                     </span>
                   </NuxtLink>
                   
                   <NuxtLink to="/templates" class="btn-secondary group relative w-full sm:w-auto">
                     <span class="flex items-center justify-center">
-                      <ShoppingBag :size="20" class="mr-3" />
+                      <ShopIcon :size="20" class="mr-3" />
                       La boutique de modèles
                     </span>
                   </NuxtLink>
@@ -50,7 +50,7 @@
       </section>
 
       <!-- A propos Section -->
-      <section class="py-24">
+      <section class="py-20">
         <div class="container mx-auto px-6">
           <div class="max-w-6xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -60,22 +60,22 @@
 
                 </div>
                 
-                <h2 class="mb-6 leading-tight">
+                <h2 class="mb-6 leading-tight text-2xl sm:text-3xl md:text-4xl">
                  Où la passion équine rencontre l'innovation digitale
                 </h2>
                 
                 <div class="space-y-6 mb-8">
-                  <p class="text-lg text-secondary-700 leading-relaxed">
+                  <p class="text-sm sm:text-base md:text-lg text-secondary-700 leading-relaxed">
                     On se comprend mieux quand on partage la même passion. Cavalière dans l'âme, je sais que votre métier est une <span class="font-semibold">vocation de chaque instant</span>, souvent rythmée par les imprévus du vivant. C'est parce que je connais votre quotidien que j'ai choisi d'allier mon expertise web de 5 ans à des solutions d'intelligence artificielle.
                   </p>
                   
-                  <p class="text-lg text-secondary-700 leading-relaxed">
+                  <p class="text-sm sm:text-base md:text-lg text-secondary-700 leading-relaxed">
                     Je crée pour vous des sites web qui vous ressemblent, pensés pour <span class="font-semibold text-secondary-800">simplifier votre gestion et vous redonner de l'air</span>.
                   </p>
  
                   <!-- Testimonial -->
                   <div class="border-l-2 border-secondary-300 pl-6">
-                    <p class="text-secondary-700 leading-relaxed">
+                    <p class="text-sm sm:text-base text-secondary-700 leading-relaxed">
                       "Mon approche est celle d'une alliée bienveillante : je m'occupe du digital pour que votre énergie reste entière pour vos chevaux et votre savoir-faire."
                     </p>
                   </div>
@@ -101,8 +101,8 @@
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
                     <div class="text-center relative z-10">
-                      <h3 class="text-2xl font-semibold text-white mb-1">Claire-Elise</h3>
-                      <p class="text-secondary-200 mb-4 text-sm">Fondatrice & Développeuse</p>
+                      <h3 class="text-xl sm:text-2xl font-semibold text-white mb-1">Claire-Elise</h3>
+                      <p class="text-secondary-200 mb-4 text-xs sm:text-sm">Fondatrice & Développeuse</p>
                       
                       <div class="inline-flex items-center px-3 py-1 bg-white/20 backdrop-blur-md border border-white/30 rounded-full text-xs text-white">
                         +5 ans d'expérience web
@@ -120,8 +120,8 @@
       <section class="py-20">
         <div class="container mx-auto px-6">
           <div class="text-center mb-16" v-motion-slide-visible-once-bottom>
-            <h2 class="mb-4">Mes Services</h2>
-            <p class="text-lg text-secondary-600 max-w-2xl mx-auto">
+            <h2 class="mb-4 text-2xl sm:text-3xl md:text-4xl">Mes Services</h2>
+            <p class="text-sm sm:text-base md:text-lg text-secondary-600 max-w-2xl mx-auto">
               Des solutions adaptées à vos besoins pour développer votre présence en ligne
             </p>
           </div>
@@ -170,8 +170,8 @@
           <div class="max-w-7xl mx-auto">
             <!-- Section Header -->
             <div class="text-center mb-16" v-motion-slide-visible-once-bottom>
-              <h2 class="mb-6 text-4xl md:text-5xl font-bold text-white">Une expertise IA pensée pour vos projets web</h2>
-              <p class="text-lg text-secondary-300 max-w-3xl mx-auto">
+              <h2 class="mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white">Une expertise IA pensée pour vos projets web</h2>
+              <p class="text-sm sm:text-base md:text-lg text-secondary-300 max-w-3xl mx-auto">
                 Je mets l'intelligence artificielle au service de votre passion pour créer des sites web performants et agréables à utiliser.
               </p>
             </div>
@@ -185,8 +185,8 @@
                     <Zap :size="24" class="text-primary-600" />
                   </div>
                   <div>
-                    <h3 class="text-xl font-semibold text-white mb-2">Vitesse & Coûts réduits</h3>
-                    <p class="text-secondary-300 leading-relaxed">
+                    <h3 class="text-base sm:text-lg md:text-xl font-semibold text-white mb-2">Vitesse & Coûts réduits</h3>
+                    <p class="text-sm sm:text-base text-secondary-300 leading-relaxed">
                       J'utilise l'IA pour accélérer ma production technique. Résultat : des délais divisés par deux et des tarifs plus compétitifs qu'un projet traditionnel.</p>
                   </div>
                 </div>
@@ -199,8 +199,8 @@
                     <Code :size="24" class="text-primary-500" />
                   </div>
                   <div>
-                    <h3 class="text-xl font-semibold text-white mb-2">Zéro CMS, 100% Propriétaire</h3>
-                    <p class="text-secondary-300 leading-relaxed">
+                    <h3 class="text-base sm:text-lg md:text-xl font-semibold text-white mb-2">Zéro CMS, 100% Propriétaire</h3>
+                    <p class="text-sm sm:text-base text-secondary-300 leading-relaxed">
                       Fini les lourdeurs de WordPress ou Wix. Je vous livre un code qui vous appartient totalement, sans abonnement caché ni dépendance technique.
                     </p>
                   </div>
@@ -214,8 +214,8 @@
                     <Search :size="24" class="text-primary-400" />
                   </div>
                   <div>
-                    <h3 class="text-xl font-semibold text-white mb-2">SEO de Haute Précision</h3>
-                    <p class="text-secondary-300 leading-relaxed">
+                    <h3 class="text-base sm:text-lg md:text-xl font-semibold text-white mb-2">SEO de Haute Précision</h3>
+                    <p class="text-sm sm:text-base text-secondary-300 leading-relaxed">
                       Je m'appuie sur l'IA pour structurer vos données et optimiser la sémantique, garantissant une visibilité maximale sur Google.
                     </p>
                   </div>
@@ -229,8 +229,8 @@
                     <Sparkles :size="24" class="text-primary-300" />
                   </div>
                   <div>
-                    <h3 class="text-xl font-semibold text-white mb-2">Possibilités Infinies</h3>
-                    <p class="text-secondary-300 leading-relaxed">
+                    <h3 class="text-base sm:text-lg md:text-xl font-semibold text-white mb-2">Possibilités Infinies</h3>
+                    <p class="text-sm sm:text-base text-secondary-300 leading-relaxed">
                       L'IA me permet d'intégrer des fonctionnalités complexes (chatbots, analyse, automatisation) sans aucune limite créative.
                     </p>
                   </div>
@@ -245,9 +245,9 @@
         <div class="container mx-auto px-6">
           <div class="flex justify-between items-end mb-12" v-motion-slide-visible-once-bottom>
             <div>
-              <h2 class="mb-4">Modèles en vedette</h2>
-              <p class="section-subtitle text-left max-w-none">
-                Modèles prêts à l'emploi pour les professionnels équins.
+              <h2 class="mb-4 text-2xl sm:text-3xl md:text-4xl">Modèles en vedette</h2>
+              <p class="section-subtitle text-left max-w-none text-sm sm:text-base md:text-lg">
+                Prêts à l'emploi pour les professionnels équins qui veulent créer eux-mêmes leur site web.
               </p>
             </div>
             <NuxtLink to="/templates" class="hidden md:inline-flex items-center text-black font-semibold hover:gap-2 transition-all">
@@ -277,21 +277,30 @@
         </div>
       </section>
 
-      <section class="py-20 bg-primary-500 text-white relative overflow-hidden">
+      <section class="py-20 bg-secondary text-white relative overflow-hidden">
+        <!-- Background decoration -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-primary-900/30 to-transparent rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-primary-900/30 to-transparent rounded-full blur-3xl"></div>
         <GradientAnimation />
-        <div class="container mx-auto px-6 relative z-[1000]">
-          <div class="max-w-4xl mx-auto text-center" v-motion-slide-visible-once-bottom>
-            <h2 class="mb-6">Prêt à faire galoper votre projet ?</h2>
-            <p class="text-xl text-secondary-300 mb-10">
-              Whether you need a custom solution or a ready-made template, we're here to help.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <NuxtLink to="/contact" class="btn-primary">
-                Get Started
-              </NuxtLink>
-              <NuxtLink to="/templates" class="btn-secondary text-white border-white hover:bg-white/10">
-                Explore Templates
-              </NuxtLink>
+        
+        <div class="relative container mx-auto px-6">
+          <div class="max-w-7xl mx-auto">
+            <div class="text-center" v-motion-slide-visible-once-bottom>
+              <h2 class="mb-6 text-white text-2xl sm:text-3xl md:text-4xl">Prêt à montrer votre professionnalisme ?</h2>
+              <p class="text-base sm:text-lg md:text-xl text-gray-300 mb-10">
+                Créons ensemble un site web unique qui reflète votre expertise.
+              </p>
+              <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <NuxtLink to="/studio" class="btn-primary group relative w-full sm:w-auto">
+                    <span class="flex items-center justify-center">
+                      <LayersIcon :size="20" color="white" class="mr-3" />
+                      Découvrir le studio
+                    </span>
+                  </NuxtLink>
+                <NuxtLink to="/contact" class="btn-secondary text-white">
+                  Me contacter
+                </NuxtLink>
+              </div>
             </div>
           </div>
         </div>
@@ -300,7 +309,7 @@
 </template>
 
 <script setup lang="ts">
-import { Code, Palette, Zap, ShoppingBag, MessageSquare, ArrowRight, Sparkles, PenTool, Image, Search } from 'lucide-vue-next'
+import { Code, Palette, Zap, MessageSquare, ArrowRight, PenTool, Image, Search } from 'lucide-vue-next'
 import LayersIcon from '~/components/icons/LayersIcon.vue'
 import ShopIcon from '~/components/icons/ShopIcon.vue'
 import type { Template } from '~/models'

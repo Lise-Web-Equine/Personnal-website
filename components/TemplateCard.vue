@@ -26,7 +26,7 @@
       <!-- Header -->
       <header class="flex items-start justify-between mb-4">
         <div>
-          <span class="text-xs text-primary-500 uppercase tracking-wide font-medium">
+          <span class="text-xs text-primary-500 uppercase tracking-wide font-bold">
             {{ template.name }}
           </span>
           <h3 class="text-xl font-bold mt-1 group-hover:text-secondary-600 transition-colors">
@@ -35,7 +35,7 @@
         </div>
         <div v-if="template.rating" class="flex items-center space-x-1 text-yellow-500">
           <Star :size="16" fill="currentColor" />
-          <span class="text-sm font-semibold text-secondary-900">{{ template.rating }}</span>
+          <span class="text-sm font-bold text-secondary-900">{{ template.rating }}</span>
         </div>
       </header>
 
@@ -47,15 +47,15 @@
       <!-- Pricing Section -->
       <div class="flex items-center justify-between mb-4">
         <div class="flex items-center text-sm text-secondary-500">
-          <span v-if="template.promo" class="text-red-600 font-semibold">
+          <span v-if="template.promo" class="text-red-600 font-bold">
             -{{ template.promo }}%
           </span>
         </div>
         <div class="text-right">
-          <span v-if="template.promo" class="text-sm text-secondary-500 line-through">
+          <span v-if="template.promo" class="text-sm font-semibold text-secondary-500 line-through">
             {{ template.price }}€
           </span>
-          <span class="text-2xl font-bold text-secondary-900">
+          <span class="text-2xl font-extrabold text-secondary-900">
             {{ template.promo ? (template.price * (1 - template.promo / 100)).toFixed(2) : template.price }}€
           </span>
         </div>
