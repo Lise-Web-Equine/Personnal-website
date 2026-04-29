@@ -3,20 +3,21 @@
       <section class="relative py-12 sm:py-16 md:py-20 lg:py-32 overflow-hidden">
         <div class="relative container mx-auto px-6">
           <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-              <!-- Left: Text Content -->
-              <div v-motion-slide-visible-once-left>
-
+            <div class="flex flex-col gap-12 lg:gap-16">
+              <!-- Text Content -->
+              <div v-motion-slide-visible-once-left class="text-center">
                 
-                <h1 class="mb-6 sm:mb-8 leading-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center sm:text-left font-sans">
-                  <span class="block text-secondary-900 font-bold">Création de site web pour le secteur équin</span>
+                <h1 class="mb-6 sm:mb-8 leading-none text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-sans">
+                  <span class="text-secondary-900 font-bold">
+                    <span class="block sm:inline">Abordable</span>
+                    <span class="block sm:inline"> ou <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent">unique</span></span>
+                  </span>
                 </h1>
                 
-                <p class="text-sm sm:text-base md:text-lg text-secondary-700 mb-8 sm:mb-12 leading-relaxed text-center sm:text-left">
-                  De l'architecture technique au design final, je crée le site web qui propulsera votre activité, que vous choisissiez un modèle clé en main ou une création sur-mesure.
-                </p>
+                <p class="text-sm sm:text-base md:text-lg text-secondary-700 mb-8 sm:mb-12 leading-relaxed max-w-3xl mx-auto">
+De la conception au design, une création de site web adaptée à votre histoire, que vous choisissiez la simplicité du clé en main ou l'audace du sur-mesure.                </p>
                 
-                <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start">
+                <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
                   <NuxtLink to="/studio" class="btn-primary group relative w-full sm:w-auto">
                     <span class="flex items-center justify-center">
                       <LayersIcon :size="20" color="white" class="mr-3" />
@@ -33,8 +34,8 @@
                 </div>
               </div>
               
-              <!-- Right: Hero Animation -->
-              <div v-motion-slide-visible-once-right class="relative">
+              <!-- Hero Animation -->
+              <div v-motion-slide-visible-once-bottom class="relative">
                 <!-- Desktop Version -->
                 <div class="hidden lg:block">
                   <HeroAnimation />

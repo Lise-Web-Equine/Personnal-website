@@ -1,39 +1,39 @@
 <template>
   <div 
     :class="[
-      'rounded-xl p-8 transition-all duration-300 relative',
+      'rounded-xl p-4 sm:p-6 md:p-8 transition-all duration-300 relative',
       variantClasses,
       featured ? featuredClasses : baseClasses
     ]"
     v-motion="motionProps"
   >
     <!-- Badge ancré sur la bordure -->
-    <div v-if="badgeText" class="absolute -top-3 right-6">
+    <div v-if="badgeText" class="absolute -top-3 right-4 sm:right-6">
       <Badge :variant="badgeVariant" :text="badgeText" />
     </div>
     
     <!-- Header with icon and title -->
-    <div class="flex items-center gap-4 mb-6">
+    <div class="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
       <div :class="iconClasses">
         <component :is="icon" :size="24" :class="iconColor" />
       </div>
-      <h3 class="text-2xl font-semibold text-secondary-900">{{ title }}</h3>
+      <h3 class="text-lg sm:text-xl md:text-2xl font-semibold text-secondary-900">{{ title }}</h3>
     </div>
     
     <!-- Description -->
-    <p class="text-secondary-600 leading-relaxed mb-6">
+    <p class="text-sm sm:text-base text-secondary-600 leading-relaxed mb-4 sm:mb-6">
       {{ description }}
     </p>
     
     <!-- Features list -->
-    <ul v-if="features && features.length > 0" class="space-y-2 mb-8">
-      <li v-for="feature in features" :key="feature.title" class="flex items-center text-secondary-600">
-        <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <ul v-if="features && features.length > 0" class="space-y-2 mb-6 sm:mb-8">
+      <li v-for="feature in features" :key="feature.title" class="flex items-start text-secondary-600">
+        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-green-600 mr-2 sm:mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
         </svg>
         <div>
-          <span class="font-bold">{{ feature.title }}</span>
-          <p v-if="feature.description" class="text-sm text-secondary-500 mt-0.5">{{ feature.description }}</p>
+          <span class="text-sm sm:text-base font-bold">{{ feature.title }}</span>
+          <p v-if="feature.description" class="text-xs sm:text-sm text-secondary-500 mt-0.5">{{ feature.description }}</p>
         </div>
       </li>
     </ul>
@@ -108,15 +108,15 @@ const iconColor = computed(() => {
 })
 
 const buttonClasses = computed(() => {
-  const base = 'w-full inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg transition-all duration-200'
+  const base = 'w-full inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200'
   
   if (props.variant === 'primary') {
     return `${base} btn-primary`
   } else if (props.variant === 'secondary') {
-    return `${base} bg-title-dark text-white hover:bg-slate-700`
+    return `${base} px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 text-sm sm:text-base bg-title-dark text-white hover:bg-slate-700`
   }
   
-  return `${base} bg-gray-900 text-white hover:bg-gray-800`
+  return `${base} px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 text-sm sm:text-base bg-gray-900 text-white hover:bg-gray-800`
 })
 
 const motionProps = computed(() => {
@@ -154,14 +154,22 @@ const motionProps = computed(() => {
 }
 
 .icon-container {
-  width: 56px;
-  height: 56px;
+  width: 44px;
+  height: 44px;
   background: #f8fafc;
-  border-radius: 18px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid #f1f5f9;
   box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+@media (min-width: 640px) {
+  .icon-container {
+    width: 56px;
+    height: 56px;
+    border-radius: 18px;
+  }
 }
 </style>

@@ -19,21 +19,21 @@
 
 @layer components {
   .gradient-primary {
-    background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 70%, #ec4899 100%);
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 40%, #5b21b6 70%, #4c1d95 100%);
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white rounded-lg transition-all duration-200 gradient-primary;
+    @apply inline-flex items-center justify-center px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 text-sm sm:text-base font-semibold text-white rounded-lg transition-all duration-200 gradient-primary;
   }
 
   .btn-primary:hover {
-    background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 70%, #db2777 100%);
+    background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 40%, #4c1d95 70%, #3b0764 100%);
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(124, 58, 237, 0.25);
+    box-shadow: 0 10px 30px rgba(109, 40, 217, 0.5);
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold relative;
+    @apply inline-flex items-center justify-center px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 text-sm sm:text-base font-semibold relative;
     color: #4b5563;
     transition: color 0.3s ease;
   }

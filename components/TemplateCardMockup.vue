@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
     <!-- Badge ancré sur la bordure -->
-    <div v-if="template.badge" class="absolute -top-3 right-6 z-10">
+    <div v-if="template.badge" class="absolute -top-3 right-4 sm:right-6 z-10">
       <Badge
         variant="minimal"
         :text="template.badge === 'best-seller' ? 'Best-seller' : 'Nouveau'"
@@ -11,17 +11,17 @@
 
     <!-- Unified Card -->
     <NuxtLink :to="`/templates/${template.id}`" class="block">
-      <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 hover:scale-[1.02] transform cursor-pointer" v-motion-slide-visible-once-bottom>
+      <div class="bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 hover:scale-[1.02] transform cursor-pointer" v-motion-slide-visible-once-bottom>
         <!-- Article Section -->
         <article class="border-b border-gray-100">
           <!-- Mockup Frame -->
           <div class="relative bg-gray-50 overflow-hidden">
             <!-- Browser Header -->
-            <div class="h-6 bg-white border-b border-gray-200 flex items-center justify-between px-3">
-              <div class="flex items-center space-x-1.5">
-                <div class="w-1.5 h-1.5 bg-primary-300 rounded-full"></div>
-                <div class="w-1.5 h-1.5 bg-primary-300 rounded-full"></div>
-                <div class="w-1.5 h-1.5 bg-primary-300 rounded-full"></div>
+            <div class="h-5 sm:h-6 bg-white border-b border-gray-200 flex items-center justify-between px-2 sm:px-3">
+              <div class="flex items-center space-x-1 sm:space-x-1.5">
+                <div class="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-primary-300 rounded-full"></div>
+                <div class="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-primary-300 rounded-full"></div>
+                <div class="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-primary-300 rounded-full"></div>
               </div>
             </div>
             
@@ -38,20 +38,20 @@
         </article>
         
         <!-- Card Footer -->
-        <div class="bg-gradient-to-br from-white to-secondary-50 p-4 relative overflow-hidden">
+        <div class="bg-gradient-to-br from-white to-secondary-50 p-3 sm:p-4 relative overflow-hidden">
           <!-- Subtle background decoration -->
           <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-100 to-transparent opacity-30 rounded-full -mr-16 -mt-16"></div>
           
           <!-- Title Section -->
-          <div class="flex flex-col gap-2 mb-3 relative z-10">
-            <h3 class="text-sm font-bold text-secondary-900 leading-tight">
+          <div class="flex flex-col gap-1.5 sm:gap-2 mb-2 sm:mb-3 relative z-10">
+            <h3 class="text-xs sm:text-sm font-bold text-secondary-900 leading-tight">
               {{ template.name }}
             </h3>
             <div class="flex flex-wrap gap-1">
               <span 
                 v-for="tag in template.tags.slice(0, 3)" 
                 :key="tag"
-                class="text-xs font-semibold text-secondary-600 bg-secondary-100 px-2 py-0.5 rounded"
+                class="text-[10px] sm:text-xs font-semibold text-secondary-600 bg-secondary-100 px-1.5 sm:px-2 py-0.5 rounded"
               >
                 {{ tag }}
               </span>
@@ -59,22 +59,23 @@
           </div>
           
           <!-- Price and Button Section -->
-          <div class="flex items-center justify-between gap-3 relative z-10">
+          <div class="flex items-center justify-between gap-2 sm:gap-3 relative z-10">
             <div>
-              <div class="text-2xl font-bold text-secondary-900">
+              <div class="text-lg sm:text-2xl font-bold text-secondary-900">
                 {{ template.price }}€
               </div>
-              <div v-if="template.promo" class="text-xs text-red-600 font-medium bg-red-50 px-1.5 py-0.5 rounded inline-block mt-1">
-                -{{ template.promo }}% de réduction
+              <div v-if="template.promo" class="text-[10px] sm:text-xs text-red-600 font-medium bg-red-50 px-1 sm:px-1.5 py-0.5 rounded inline-block mt-0.5 sm:mt-1">
+                -{{ template.promo }}%
               </div>
             </div>
             
             <NuxtLink
               :to="`/templates/${template.id}`"
-              class="btn-secondary text-sm px-4 py-2.5"
+              class="btn-secondary text-xs sm:text-sm px-3 py-2 sm:px-4 sm:py-2.5 whitespace-nowrap"
               @click.stop
             >
-              Voir les détails
+              <span class="hidden sm:inline">Voir les détails</span>
+              <span class="sm:hidden">Détails</span>
             </NuxtLink>
           </div>
         </div>
