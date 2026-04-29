@@ -1,5 +1,8 @@
 <template>
-  <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200">
+  <header 
+    class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+    :class="{ 'bg-white/80 backdrop-blur-lg border-b border-gray-200': isScrolled }"
+  >
     <nav class="container mx-auto px-6 py-4">
       <div class="flex items-center justify-between">
         <NuxtLink to="/" class="text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity">
@@ -75,6 +78,7 @@ import { useCartStore } from '~/stores/cart'
 
 const cartStore = useCartStore()
 const isMenuOpen = ref(false)
+const isScrolled = ref(false)
 
 const navLinks = [
   { name: 'Le Studio', path: '/studio' },
@@ -85,4 +89,16 @@ const navLinks = [
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
 }
+
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 20
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>

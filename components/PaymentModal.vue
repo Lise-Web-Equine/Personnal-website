@@ -86,25 +86,38 @@ const openPaymentModal = () => {
 const handlePayment = async () => {
   if (!firstName.value || !email.value) return
   
+  console.log('🚀 handlePayment appelé')
+  console.log('- firstName:', firstName.value)
+  console.log('- email:', email.value)
+  console.log('- acceptNewsletter:', acceptNewsletter.value)
+  console.log('- cartItems:', cartStore.cartItems)
+  
   isLoading.value = true
   
   try {
+    const body = {
+      firstName: firstName.value,
+      email: email.value,
+      acceptNewsletter: acceptNewsletter.value,
+      cartItems: cartStore.cartItems
+    }
+    
+    console.log('📦 Body envoyé à API:', JSON.stringify(body, null, 2))
+    
     const response = await $fetch('/api/stripe/create-session', {
       method: 'POST',
-      body: {
-        firstName: firstName.value,
-        email: email.value,
-        acceptNewsletter: acceptNewsletter.value,
-        cartItems: cartStore.cartItems
-      }
+      body: body
     })
+    
+    console.log('✅ Réponse API:', response)
     
     if (response.url) {
       // Rediriger vers Stripe Checkout
       window.location.href = response.url
     }
   } catch (error) {
-    console.error('Erreur paiement:', error)
+    console.error('❌ Erreur paiement:', error)
+    console.error('❌ Détails erreur:', JSON.stringify(error, null, 2))
     // Afficher un message d'erreur
     alert('Une erreur est survenue. Veuillez réessayer.')
   } finally {

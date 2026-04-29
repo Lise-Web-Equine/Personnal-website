@@ -24,6 +24,21 @@ export class ResendService {
     }
   }
   
+  // Ajouter un contact à un segment
+  static async addContactToSegment(email: string, segmentId: string) {
+    try {
+      const result = await resend.contacts.create({
+        email,
+        audienceId: segmentId
+      })
+      
+      return result
+    } catch (error) {
+      console.error('Erreur ajout contact segment:', error)
+      throw error
+    }
+  }
+  
   // Envoyer un email de newsletter
   static async sendNewsletter(to: string[], subject: string, htmlContent: string) {
     try {

@@ -1,7 +1,7 @@
 <template>
   <span 
     :class="[
-      'inline-flex items-center font-medium transition-colors duration-200',
+      'inline-flex items-center font-medium transition-colors duration-200 badge-shine',
       variantClasses
     ]"
   >
@@ -45,3 +45,30 @@ const iconClasses = computed(() => {
   return props.icon ? 'w-4 h-4 mr-2' : ''
 })
 </script>
+
+<style scoped>
+.badge-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shine 4s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+</style>

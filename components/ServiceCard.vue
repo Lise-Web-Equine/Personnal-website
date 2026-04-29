@@ -1,22 +1,24 @@
 <template>
   <div 
     :class="[
-      'rounded-xl p-8 transition-all duration-300',
+      'rounded-xl p-8 transition-all duration-300 relative',
       variantClasses,
       featured ? featuredClasses : baseClasses
     ]"
     v-motion="motionProps"
   >
-    <!-- Header with icon and badge -->
-    <div class="flex items-start justify-between mb-6">
+    <!-- Badge ancré sur la bordure -->
+    <div v-if="badgeText" class="absolute -top-3 right-6">
+      <Badge :variant="badgeVariant" :text="badgeText" />
+    </div>
+    
+    <!-- Header with icon and title -->
+    <div class="flex items-center gap-4 mb-6">
       <div :class="iconClasses">
         <component :is="icon" :size="24" :class="iconColor" />
       </div>
-      <Badge v-if="badgeText" :variant="badgeVariant" :text="badgeText" />
+      <h3 class="text-2xl font-semibold text-secondary-900">{{ title }}</h3>
     </div>
-    
-    <!-- Title -->
-    <h3 class="text-2xl font-semibold text-secondary-900 mb-3">{{ title }}</h3>
     
     <!-- Description -->
     <p class="text-secondary-600 leading-relaxed mb-6">
@@ -81,7 +83,7 @@ const props = withDefaults(defineProps<Props>(), {
 const variantClasses = computed(() => {
   const variants = {
     default: 'bg-white border border-gray-200 hover:shadow-lg',
-    primary: 'bg-gradient-to-br from-primary-50 to-white border-2 border-primary-300 hover:shadow-xl transform hover:scale-105',
+    primary: 'bg-white gradient-border hover:shadow-xl transform hover:scale-105',
     secondary: 'bg-white border border-gray-200 hover:shadow-lg'
   }
   
@@ -92,15 +94,7 @@ const baseClasses = 'hover:shadow-lg transition-shadow duration-300'
 const featuredClasses = 'hover:shadow-xl transition-all duration-300 transform hover:scale-105 relative'
 
 const iconClasses = computed(() => {
-  const base = 'w-12 h-12 rounded-lg flex items-center justify-center'
-  
-  if (props.variant === 'primary') {
-    return `${base} bg-gradient-to-r from-primary-100 to-primary-200 border border-primary-300`
-  } else if (props.variant === 'secondary') {
-    return `${base} bg-gradient-to-r from-gray-100 to-gray-200 border border-gray-300`
-  }
-  
-  return `${base} bg-gradient-to-r from-primary-100 to-primary-200 border border-primary-300`
+  return 'icon-container'
 })
 
 const iconColor = computed(() => {
@@ -114,10 +108,10 @@ const iconColor = computed(() => {
 })
 
 const buttonClasses = computed(() => {
-  const base = 'w-full inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg transition-colors duration-300'
+  const base = 'w-full inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg transition-all duration-200'
   
   if (props.variant === 'primary') {
-    return `${base} bg-primary-600 text-white hover:bg-primary-700`
+    return `${base} btn-primary`
   } else if (props.variant === 'secondary') {
     return `${base} bg-title-dark text-white hover:bg-slate-700`
   }
@@ -137,3 +131,37 @@ const motionProps = computed(() => {
   }
 })
 </script>
+
+<style scoped>
+.gradient-border {
+  position: relative;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  padding: 2px;
+  background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 70%, #ec4899 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.icon-container {
+  width: 56px;
+  height: 56px;
+  background: #f8fafc;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #f1f5f9;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+</style>

@@ -6,14 +6,10 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
               <!-- Left: Text Content -->
               <div v-motion-slide-visible-once-left>
-                <div class="mb-6 text-center sm:text-left">
-                  <span class="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-primary-100 to-primary-200 border border-primary-300 rounded-full text-xs sm:text-sm font-medium text-primary-800">
-                    Votre partenaire web pour passionnés équins
-                  </span>
-                </div>
+
                 
                 <h1 class="mb-6 sm:mb-8 leading-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-center sm:text-left font-sans">
-                  <span class="block">Création de site web pour le </span><span class="text-primary">secteur équin</span>
+                  <span class="block text-secondary-900 font-bold">Création de site web pour le secteur équin</span>
                 </h1>
                 
                 <p class="text-base sm:text-lg text-secondary-700 mb-8 sm:mb-12 leading-relaxed text-center sm:text-left">
@@ -21,17 +17,17 @@
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start">
-                  <NuxtLink to="/templates" class="btn-primary group relative w-full sm:w-auto">
-                    <span class="flex items-center justify-center">
-                      <ShoppingBag :size="20" class="mr-3" />
-                      La boutique de modèles
-                    </span>
-                  </NuxtLink>
-                  
-                  <NuxtLink to="/studio" class="group px-6 py-3 sm:px-8 sm:py-4 bg-white text-secondary-800 font-semibold rounded-xl border-2 border-secondary-200 hover:border-secondary-300 hover:bg-secondary-50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg w-full sm:w-auto">
+                  <NuxtLink to="/studio" class="btn-primary group relative w-full sm:w-auto">
                     <span class="flex items-center justify-center">
                       <Sparkles :size="20" class="mr-3" />
                       Découvrir le studio
+                    </span>
+                  </NuxtLink>
+                  
+                  <NuxtLink to="/templates" class="btn-secondary group relative w-full sm:w-auto">
+                    <span class="flex items-center justify-center">
+                      <ShoppingBag :size="20" class="mr-3" />
+                      La boutique de modèles
                     </span>
                   </NuxtLink>
                 </div>
@@ -131,32 +127,32 @@
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- La Boutique -->
+            <!-- Le Studio -->
             <ServiceCard
               variant="primary"
-              title="La Boutique"
-              description="Des modèles de sites web abordables et optimisés pour ceux qui se lancent."
-              :icon="ShoppingBag"
-              badge-text="Clé en main"
+              title="Le Studio"
+              description="Service de création premium pour une présence digitale unique et sur mesure."
+              :icon="LayersIcon"
+              badge-text="Sur mesure"
               badge-variant="primary"
-              :features="boutiqueFeatures"
-              cta-text="Explorer les modèles"
-              cta-link="/templates"
+              :features="studioFeatures"
+              cta-text="En savoir plus"
+              cta-link="/studio"
               featured
               motion-direction="left"
             />
 
-            <!-- Le Studio -->
+            <!-- La Boutique -->
             <ServiceCard
               variant="secondary"
-              title="Le Studio"
-              description="Service de création premium pour une présence digitale unique et sur mesure."
-              :icon="Palette"
-              badge-text="Sur mesure"
+              title="La Boutique"
+              description="Des modèles de sites web abordables et optimisés pour ceux qui se lancent."
+              :icon="ShopIcon"
+              badge-text="Clé en main"
               badge-variant="secondary"
-              :features="studioFeatures"
-              cta-text="En savoir plus"
-              cta-link="/studio"
+              :features="boutiqueFeatures"
+              cta-text="Explorer les modèles"
+              cta-link="/templates"
               motion-direction="right"
             />
           </div>
@@ -305,6 +301,8 @@
 
 <script setup lang="ts">
 import { Code, Palette, Zap, ShoppingBag, MessageSquare, ArrowRight, Sparkles, PenTool, Image, Search } from 'lucide-vue-next'
+import LayersIcon from '~/components/icons/LayersIcon.vue'
+import ShopIcon from '~/components/icons/ShopIcon.vue'
 import type { Template } from '~/models'
 import type { Database } from '~/types/database.types'
 
@@ -379,6 +377,15 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+.hero-gradient-text {
+  background: linear-gradient(135deg, #ff9a76 0%, #9089fc 50%, #ffb380 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  display: inline-block;
+}
+
 @keyframes blob {
   0%, 100% {
     transform: translate(0, 0) scale(1);
