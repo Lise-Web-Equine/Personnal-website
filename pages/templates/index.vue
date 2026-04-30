@@ -2,7 +2,7 @@
 
   <NuxtLayout>
 
-      <StudioHeader 
+      <PageHeader 
 
         title="La boutique de modèles"
 
@@ -14,10 +14,10 @@
 
 
 
-      <section class="py-12">
+      <section class="py-8 sm:py-12 md:py-16">
         <div class="container mx-auto px-6">
 
-          <div class="mb-6 text-gray-600">
+          <div class="mb-6 text-sm sm:text-base text-gray-600">
 
             Affichage de {{ templates.length }} modèles
 
@@ -422,150 +422,11 @@
 
 
       <!-- Section Bonus Guide -->
-
-      <section class="py-20 relative overflow-hidden bg-secondary">
-
-        <!-- Background decoration -->
-
-        <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-900/30 to-transparent rounded-full blur-3xl"></div>
-
-        <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
-
-        
-
-        <div class="relative container mx-auto px-6">
-
-          <div class="max-w-7xl mx-auto">
-
-            <!-- Section Header -->
-
-            <div class="text-center mb-16" v-motion-slide-visible-once-bottom>
-
-              <div class="mb-6">
-                <Badge 
-                  variant="primary" 
-                  text="Inclus avec chaque modèle" 
-                  :icon="'M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7'" 
-                  class="mb-4" 
-                />
-              </div>
-
-              <h2 class="mb-6 text-4xl md:text-5xl font-bold text-white">Votre guide stratégique de 30 pages offert</h2>
-
-              <p class="text-lg text-secondary-300 max-w-3xl mx-auto">
-
-                Ne soyez plus jamais seul devant votre écran. Nous vous remettons un guide complet pour transformer votre modèle en un véritable outil de travail.
-
-              </p>
-
-            </div>
-
-
-
-            <!-- Grid avec les 3 cards -->
-
-            <div class="max-w-4xl mx-auto">
-
-              <!-- Item 1 -->
-
-              <div class="bg-white/5 backdrop-blur-xs rounded-xl p-6 border border-white/5 mb-4" v-motion-slide-visible-once-bottom>
-
-                <div class="flex items-start space-x-4">
-
-                  <div class="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-white/5">
-
-                    <BookOpen :size="24" class="text-primary-600" />
-
-                  </div>
-
-                  <div>
-
-                    <h3 class="text-xl font-semibold text-white mb-2">Guide pas à pas</h3>
-
-                    <p class="text-secondary-300 leading-relaxed">
-
-                      Instructions détaillées pour personnaliser chaque élément de votre modèle et le lancer professionnellement.</p>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-              <!-- Item 2 -->
-
-              <div class="bg-white/5 backdrop-blur-xs rounded-xl p-6 border border-white/5 mb-4" v-motion-slide-visible-once-bottom style="animation-delay: 100ms">
-
-                <div class="flex items-start space-x-4">
-
-                  <div class="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-white/5">
-
-                    <Lightbulb :size="24" class="text-primary-500" />
-
-                  </div>
-
-                  <div>
-
-                    <h3 class="text-xl font-semibold text-white mb-2">Un site web clair</h3>
-
-                    <p class="text-secondary-300 leading-relaxed">
-
-                      Un tableau d'auto-évaluation pour te poser les bonnes questions.</p>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-              <!-- Item 3 -->
-
-              <div class="bg-white/5 backdrop-blur-xs rounded-xl p-6 border border-white/5 mb-4" v-motion-slide-visible-once-bottom style="animation-delay: 200ms">
-                <div class="flex items-start space-x-4">
-                  <div class="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-white/5">
-                    <Sparkles :size="24" class="text-primary-400" />
-                  </div>
-                  <div>
-                    <h3 class="text-xl font-semibold text-white mb-2">Prompt IA exclusif</h3>
-                    <p class="text-secondary-300 leading-relaxed">
-                      Générez une palette de couleur professionnelle grâce au prompt IA.</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Card OFFERT -->
-
-              <div class="bg-gradient-to-br from-primary-400 to-primary-600 rounded-xl p-6 text-white border border-primary-300" v-motion-slide-visible-once-bottom style="animation-delay: 300ms">
-
-                <div class="flex items-center justify-between">
-
-                  <div>
-
-                    <div class="text-3xl font-bold mb-2">OFFERT</div>
-
-                    <div class="text-sm opacity-90">Guide stratégique de 30 pages inclus avec chaque modèle</div>
-
-                  </div>
-
-                  <div class="text-right">
-
-                    <div class="text-2xl font-bold line-through opacity-75">49€</div>
-
-                    <div class="text-sm opacity-75">Valeur réelle</div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
+      <FeaturesSection
+        title="Votre guide stratégique de 30 pages offert"
+        subtitle="Ne soyez plus jamais seul devant votre écran. Nous vous remettons un guide complet pour transformer votre modèle en un véritable outil de travail."
+        :features="guideFeatures"
+      />
 
 
 
@@ -727,8 +588,26 @@ const faqItems = [
 
 ]
 
-
-
+const guideFeatures = [
+  {
+    icon: BookOpen,
+    iconColor: 'text-primary-600',
+    title: 'Guide pas à pas',
+    description: 'Instructions détaillées pour personnaliser chaque élément de votre modèle et le lancer professionnellement.'
+  },
+  {
+    icon: Lightbulb,
+    iconColor: 'text-primary-500',
+    title: 'Un site web clair',
+    description: 'Un tableau d\'auto-évaluation pour te poser les bonnes questions.'
+  },
+  {
+    icon: Sparkles,
+    iconColor: 'text-primary-400',
+    title: 'Prompt IA exclusif',
+    description: 'Générez une palette de couleur professionnelle grâce au prompt IA.'
+  }
+]
 
 </script>
 

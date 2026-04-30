@@ -160,87 +160,11 @@ De la conception au design, une création de site web adaptée à votre histoire
         </div>
       </section>
 
-      <!-- Expertise IA Section -->
-      <section class="py-20 relative overflow-hidden bg-secondary">
-        <!-- Background decoration -->
-        <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-900/30 to-transparent rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
-        <GradientAnimation />
-        
-        <div class="relative container mx-auto px-6">
-          <div class="max-w-7xl mx-auto">
-            <!-- Section Header -->
-            <div class="text-center mb-16" v-motion-slide-visible-once-bottom>
-              <h2 class="mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white">Une expertise IA pensée pour vos projets web</h2>
-              <p class="text-sm sm:text-base md:text-lg text-secondary-300 max-w-3xl mx-auto">
-                Je mets l'intelligence artificielle au service de votre passion pour créer des sites web performants et agréables à utiliser.
-              </p>
-            </div>
-
-            <!-- 2x2 Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 max-w-5xl mx-auto">
-              <!-- Item 1 -->
-              <div class="bg-white/5 backdrop-blur-xs rounded-xl p-6 border border-white/5" v-motion-slide-visible-once-bottom>
-                <div class="flex items-start space-x-4">
-                  <div class="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-white/5">
-                    <Zap :size="24" class="text-primary-600" />
-                  </div>
-                  <div>
-                    <h3 class="text-base sm:text-lg md:text-xl font-semibold text-white mb-2">Vitesse & Coûts réduits</h3>
-                    <p class="text-sm sm:text-base text-secondary-300 leading-relaxed">
-                      J'utilise l'IA pour accélérer ma production technique. Résultat : des délais divisés par deux et des tarifs plus compétitifs qu'un projet traditionnel.</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Item 2 -->
-              <div class="bg-white/5 backdrop-blur-xs rounded-xl p-6 border border-white/5" v-motion-slide-visible-once-bottom style="animation-delay: 100ms">
-                <div class="flex items-start space-x-4">
-                  <div class="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-white/5">
-                    <Code :size="24" class="text-primary-500" />
-                  </div>
-                  <div>
-                    <h3 class="text-base sm:text-lg md:text-xl font-semibold text-white mb-2">Zéro CMS, 100% Propriétaire</h3>
-                    <p class="text-sm sm:text-base text-secondary-300 leading-relaxed">
-                      Fini les lourdeurs de WordPress ou Wix. Je vous livre un code qui vous appartient totalement, sans abonnement caché ni dépendance technique.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Item 3 -->
-              <div class="bg-white/5 backdrop-blur-xs rounded-xl p-6 border border-white/5" v-motion-slide-visible-once-bottom style="animation-delay: 200ms">
-                <div class="flex items-start space-x-4">
-                  <div class="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-white/5">
-                    <Search :size="24" class="text-primary-400" />
-                  </div>
-                  <div>
-                    <h3 class="text-base sm:text-lg md:text-xl font-semibold text-white mb-2">SEO de Haute Précision</h3>
-                    <p class="text-sm sm:text-base text-secondary-300 leading-relaxed">
-                      Je m'appuie sur l'IA pour structurer vos données et optimiser la sémantique, garantissant une visibilité maximale sur Google.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Item 4 -->
-              <div class="bg-white/5 backdrop-blur-xs rounded-xl p-6 border border-white/5" v-motion-slide-visible-once-bottom style="animation-delay: 300ms">
-                <div class="flex items-start space-x-4">
-                  <div class="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-white/5">
-                    <Sparkles :size="24" class="text-primary-300" />
-                  </div>
-                  <div>
-                    <h3 class="text-base sm:text-lg md:text-xl font-semibold text-white mb-2">Possibilités Infinies</h3>
-                    <p class="text-sm sm:text-base text-secondary-300 leading-relaxed">
-                      L'IA me permet d'intégrer des fonctionnalités complexes (chatbots, analyse, automatisation) sans aucune limite créative.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <FeaturesSection
+        title="Une expertise IA pensée pour vos projets web"
+        subtitle="Je mets l'intelligence artificielle au service de votre passion pour créer des sites web performants et agréables à utiliser."
+        :features="aiFeatures"
+      />
 
       <section class="py-20">
         <div class="container mx-auto px-6">
@@ -278,7 +202,7 @@ De la conception au design, une création de site web adaptée à votre histoire
         </div>
       </section>
 
-      <section class="py-20 bg-secondary text-white relative overflow-hidden">
+      <section class="py-12 sm:py-16 md:py-20 lg:py-24 bg-secondary text-white relative overflow-hidden">
         <!-- Background decoration -->
         <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-primary-900/30 to-transparent rounded-full blur-3xl"></div>
         <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-primary-900/30 to-transparent rounded-full blur-3xl"></div>
@@ -287,8 +211,8 @@ De la conception au design, une création de site web adaptée à votre histoire
         <div class="relative container mx-auto px-6">
           <div class="max-w-7xl mx-auto">
             <div class="text-center" v-motion-slide-visible-once-bottom>
-              <h2 class="mb-6 text-white text-2xl sm:text-3xl md:text-4xl">Prêt à montrer votre professionnalisme ?</h2>
-              <p class="text-base sm:text-lg md:text-xl text-gray-300 mb-10">
+              <h2 class="mb-4 sm:mb-6 text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Prêt à montrer votre professionnalisme ?</h2>
+              <p class="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10">
                 Créons ensemble un site web unique qui reflète votre expertise.
               </p>
               <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -310,7 +234,7 @@ De la conception au design, une création de site web adaptée à votre histoire
 </template>
 
 <script setup lang="ts">
-import { Code, Palette, Zap, MessageSquare, ArrowRight, PenTool, Image, Search } from 'lucide-vue-next'
+import { Code, Palette, Zap, MessageSquare, ArrowRight, PenTool, Image, Search, Sparkles } from 'lucide-vue-next'
 import LayersIcon from '~/components/icons/LayersIcon.vue'
 import ShopIcon from '~/components/icons/ShopIcon.vue'
 import type { Template } from '~/models'
@@ -347,6 +271,33 @@ const studioFeatures = [
   {
     title: 'Accompagnement personnalisé',
     description: 'De la stratégie à la formation complète'
+  }
+]
+
+const aiFeatures = [
+  {
+    icon: Zap,
+    iconColor: 'text-primary-600',
+    title: 'Vitesse & Coûts réduits',
+    description: 'J\'utilise l\'IA pour accélérer ma production technique. Résultat : des délais divisés par deux et des tarifs plus compétitifs qu\'un projet traditionnel.'
+  },
+  {
+    icon: Code,
+    iconColor: 'text-primary-500',
+    title: 'Zéro CMS, 100% Propriétaire',
+    description: 'Fini les lourdeurs de WordPress ou Wix. Je vous livre un code qui vous appartient totalement, sans abonnement caché ni dépendance technique.'
+  },
+  {
+    icon: Search,
+    iconColor: 'text-primary-400',
+    title: 'SEO de Haute Précision',
+    description: 'Je m\'appuie sur l\'IA pour structurer vos données et optimiser la sémantique, garantissant une visibilité maximale sur Google.'
+  },
+  {
+    icon: Sparkles,
+    iconColor: 'text-primary-300',
+    title: 'Possibilités Infinies',
+    description: 'L\'IA me permet d\'intégrer des fonctionnalités complexes (chatbots, analyse, automatisation) sans aucune limite créative.'
   }
 ]
 

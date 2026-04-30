@@ -5,9 +5,9 @@
   >
     <nav class="container mx-auto px-6 py-4">
       <div class="flex items-center justify-between">
-        <NuxtLink to="/" class="text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity flex items-center">
+        <NuxtLink to="/" class="text-lg sm:text-xl md:text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity flex items-center">
           <span class="gradient-primary bg-clip-text text-transparent">Lise</span>
-          <span class="ml-2">Web Equine</span>
+          <span class="ml-1.5 sm:ml-2">Web Equine</span>
         </NuxtLink>
 
         <button

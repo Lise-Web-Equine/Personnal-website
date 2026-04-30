@@ -1,17 +1,17 @@
 <template>
   <NuxtLayout>
       <!-- Hero Section -->
-      <StudioHeader 
+      <PageHeader 
         title="À propos de Lise Web Equine"
         description="L'alliance parfaite entre la passion équine et l'excellence digitale"
       />
 
       <!-- Mission Section -->
-      <section class="py-20 bg-secondary-50">
+      <section class="py-12 sm:py-16 md:py-20 bg-secondary-50">
         <div class="container mx-auto px-6">
           <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-16" v-motion-slide-visible-once-bottom>
-              <h2 class="text-3xl md:text-4xl font-bold mb-6 text-secondary-900">Ma Mission</h2>
+            <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
+              <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-secondary-900">Ma Mission</h2>
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
