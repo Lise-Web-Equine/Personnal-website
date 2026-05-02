@@ -1,7 +1,7 @@
 <template>
-  <header 
-    class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-lg"
-    :class="{ 'border-b border-gray-200': isScrolled || isMenuOpen }"
+  <header
+    class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+    :class="{ 'bg-white/80 backdrop-blur-lg border-b border-gray-200 shadow-sm': isScrolled, 'border-b border-gray-200/50': isMenuOpen && !isScrolled }"
   >
     <nav class="container mx-auto px-6 py-4">
       <div class="flex items-center justify-between">
@@ -55,7 +55,7 @@
       >
         <div
           v-if="isMenuOpen"
-          class="md:hidden mt-4 pt-4 pb-4 border-t border-gray-200 flex flex-col space-y-4"
+          class="md:hidden mt-4 pt-4 pb-4 px-2 bg-white/95 backdrop-blur-lg rounded-xl shadow-lg border border-gray-100 flex flex-col space-y-2"
         >
           <NuxtLink
             v-for="link in navLinks"

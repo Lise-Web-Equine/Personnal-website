@@ -6,7 +6,15 @@
             <div class="flex flex-col gap-12 lg:gap-16">
               <!-- Text Content -->
               <div v-motion-slide-visible-once-left class="text-center">
-                
+                <div class="flex justify-center mb-6 sm:mb-8">
+                  <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-50 border border-primary-100 font-mono text-xs sm:text-sm">
+                    <span class="text-primary-400">&lt;</span>
+                    <span class="text-primary-600 font-semibold">votre</span>
+                    <span class="text-secondary-700">site web</span>
+                    <span class="text-primary-600 font-semibold">équestre</span>
+                    <span class="text-primary-400">/&gt;</span>
+                  </div>
+                </div>
                 <h1 class="mb-6 sm:mb-8 leading-none text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-sans">
                   <span class="text-secondary-900 font-bold">
                     <span class="block sm:inline">Abordable</span>
@@ -21,19 +29,24 @@ De la conception au design, une création de site web adaptée à votre histoire
                   <NuxtLink to="/studio" class="btn-primary group relative w-full sm:w-auto">
                     <span class="flex items-center justify-center">
                       <LayersIcon :size="20" color="white" class="mr-3" />
-                      Découvrir le studio
+                      Je veux un site sur-mesure
                     </span>
                   </NuxtLink>
                   
                   <NuxtLink to="/templates" class="btn-secondary group relative w-full sm:w-auto">
                     <span class="flex items-center justify-center">
                       <ShopIcon :size="20" class="mr-3" />
-                      La boutique de modèles
+                      Explorer les modèles
                     </span>
                   </NuxtLink>
                 </div>
               </div>
-              
+
+              <!-- Client Carousel - Full width band -->
+              <div class="relative -mx-6 sm:-mx-12 md:-mx-20 lg:-mx-32">
+                <ClientCarousel />
+              </div>
+
               <!-- Hero Animation -->
               <div v-motion-slide-visible-once-bottom class="relative">
                 <!-- Desktop Version -->
@@ -222,7 +235,7 @@ De la conception au design, une création de site web adaptée à votre histoire
                       Découvrir le studio
                     </span>
                   </NuxtLink>
-                <NuxtLink to="/contact" class="btn-secondary text-white">
+                <NuxtLink to="/contact" class="btn-secondary-dark">
                   Me contacter
                 </NuxtLink>
               </div>
