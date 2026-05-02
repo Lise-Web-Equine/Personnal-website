@@ -23,7 +23,7 @@
                 </h1>
                 
                 <p class="text-sm sm:text-base md:text-lg text-secondary-700 mb-8 sm:mb-12 leading-relaxed max-w-3xl mx-auto">
-De la conception au design, une création de site web adaptée à votre histoire, que vous choisissiez la simplicité du clé en main ou l'audace du sur-mesure.                </p>
+De la conception au design, une création de site web adaptée à votre histoire, que vous choisissiez la simplicité des modèles clés en main ou l'audace du sur-mesure.                </p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
                   <NuxtLink to="/studio" class="btn-primary group relative w-full sm:w-auto">
