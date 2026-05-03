@@ -19,7 +19,7 @@
 
         <div class="relative container mx-auto px-6">
           <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col gap-4 lg:gap-16">
+            <div class="flex flex-col gap-8 sm:gap-12 lg:gap-16">
               <!-- Text Content -->
               <div v-motion-slide-visible-once-left class="text-center">
 
@@ -40,7 +40,7 @@
                     </span>
                   </NuxtLink>
                   
-                  <NuxtLink to="/templates" class="btn-secondary group relative w-full sm:w-auto">
+                  <NuxtLink to="/boutique" class="btn-secondary group relative w-full sm:w-auto">
                     <span class="flex items-center justify-center">
                       <ShopIcon :size="20" class="mr-3" />
                       Explorer les modèles
@@ -174,7 +174,7 @@
               badge-variant="secondary"
               :features="boutiqueFeatures"
               cta-text="Explorer les modèles"
-              cta-link="/templates"
+              cta-link="/boutique"
               motion-direction="right"
             />
           </div>
@@ -196,7 +196,7 @@
                 Prêts à l'emploi pour les professionnels équins qui veulent créer eux-mêmes leur site web.
               </p>
             </div>
-            <NuxtLink to="/templates" class="hidden md:inline-flex items-center text-black font-semibold hover:gap-2 transition-all">
+            <NuxtLink to="/boutique" class="hidden md:inline-flex items-center text-black font-semibold hover:gap-2 transition-all">
               Voir tous
               <ArrowRight :size="20" class="ml-1" />
             </NuxtLink>
@@ -215,7 +215,7 @@
           </div>
 
           <div class="text-center mt-12 md:hidden">
-            <NuxtLink to="/templates" class="btn-primary inline-flex items-center">
+            <NuxtLink to="/boutique" class="btn-primary inline-flex items-center">
               Voir tous les modèles
               <ArrowRight :size="20" class="ml-2" />
             </NuxtLink>
@@ -319,24 +319,6 @@ const aiFeatures = [
   }
 ]
 
-const services = [
-  {
-    icon: Code,
-    title: 'Bespoke Development',
-    description: 'Custom web applications built from scratch to match your unique requirements and brand identity.'
-  },
-  {
-    icon: Palette,
-    title: 'UI/UX Design',
-    description: 'Beautiful, intuitive interfaces designed with your users in mind, ensuring optimal engagement.'
-  },
-  {
-    icon: Zap,
-    title: 'Performance Optimization',
-    description: 'Lightning-fast websites optimized for speed, SEO, and conversion rates.'
-  }
-]
-
 onMounted(async () => {
   try {
     const { data, error } = await supabase
@@ -352,6 +334,18 @@ onMounted(async () => {
   } finally {
     loading.value = false
   }
+})
+
+useHead({
+  title: 'Lise Web Equine - Sites web abordables ou uniques pour professionnels équins',
+  meta: [
+    { name: 'description', content: 'Sites web abordables et sur mesure pour les professionnels du monde équin : ostéopathes, maréchaux-ferrants, centres équestres. Montrez votre professionnalisme.' },
+    { property: 'og:title', content: 'Lise Web Equine - Sites web abordables ou uniques' },
+    { property: 'og:description', content: 'Sites web abordables et sur mesure pour les professionnels du monde équin.' },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:title', content: 'Lise Web Equine - Sites web abordables ou uniques' },
+    { name: 'twitter:description', content: 'Sites web abordables et sur mesure pour les professionnels du monde équin.' }
+  ]
 })
 </script>
 

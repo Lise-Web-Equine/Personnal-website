@@ -31,10 +31,10 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="flex items-center justify-center min-h-screen p-6 font-sans text-slate-900 -mt-8 overflow-x-hidden">
-    <div 
+  <div class="flex items-center justify-center min-h-screen p-4 sm:p-6 font-sans text-slate-900 -mt-8 overflow-x-hidden">
+    <div
       ref="container"
-      class="relative w-[320px] h-[640px] mx-auto transition-all duration-1000 ease-in-out"
+      class="relative w-[280px] h-[560px] sm:w-[320px] sm:h-[640px] mx-auto transition-all duration-1000 ease-in-out"
       :class="{ 'scale-[1.02]': isFinal }"
     >
       <div class="relative w-full h-full rounded-[48px] overflow-hidden bg-white border-[8px] border-slate-900">

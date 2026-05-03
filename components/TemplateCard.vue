@@ -64,7 +64,7 @@
       <!-- Action Buttons -->
       <div class="flex flex-col sm:flex-row gap-2">
         <NuxtLink
-          :to="`/templates/${template.id}`"
+          :to="`/boutique/${template.id}`"
           class="flex-1 text-center px-3 py-2 sm:px-4 sm:py-2.5 text-sm sm:text-base bg-secondary-100 text-secondary-900 rounded-lg font-semibold hover:bg-secondary-200 transition-colors focus:ring-2 focus:ring-secondary-300 focus:ring-offset-2"
         >
           Voir les détails

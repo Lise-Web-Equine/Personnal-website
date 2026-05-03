@@ -10,7 +10,7 @@
     </div>
 
     <!-- Unified Card -->
-    <NuxtLink :to="`/templates/${template.id}`" class="block">
+    <NuxtLink :to="`/boutique/${template.id}`" class="block">
       <div class="bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 hover:scale-[1.02] transform cursor-pointer" v-motion-slide-visible-once-bottom>
         <!-- Article Section -->
         <article class="border-b border-gray-100">
@@ -70,7 +70,7 @@
             </div>
             
             <NuxtLink
-              :to="`/templates/${template.id}`"
+              :to="`/boutique/${template.id}`"
               class="btn-secondary text-xs sm:text-sm px-3 py-2 sm:px-4 sm:py-2.5 whitespace-nowrap"
               @click.stop
             >

@@ -97,7 +97,7 @@
           <!-- Actions -->
           <div class="text-center space-y-4">
             <NuxtLink 
-              to="/templates" 
+              to="/boutique" 
               class="inline-flex items-center px-8 py-4 bg-primary-500 text-white font-semibold rounded-xl hover:bg-primary-600 transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
             >
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

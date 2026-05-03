@@ -502,9 +502,9 @@
                   <h3 class="font-semibold text-lg">{{ template.name }}</h3>
                   <span class="text-2xl font-bold text-primary-600">{{ template.price }}€</span>
                 </div>
-                
+
                 <p class="text-gray-600 text-sm mb-3 line-clamp-2">{{ template.description }}</p>
-                
+
                 <div class="flex flex-wrap gap-1 mb-3">
                   <span
                     v-for="tag in template.tags.slice(0, 3)"
@@ -542,6 +542,88 @@
             </div>
           </div>
 
+          <!-- Legal Texts Management -->
+          <div class="bg-white rounded-2xl p-8 shadow-sm mt-8">
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="text-2xl font-bold">Textes légaux</h2>
+            </div>
+
+            <div v-if="legalLoading" class="text-center py-8">
+              <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
+              <p class="mt-2 text-gray-600">Chargement...</p>
+            </div>
+
+            <div v-else-if="legalTexts.length === 0" class="text-center py-8 text-gray-500">
+              Aucun texte légal trouvé. Veuillez appliquer la migration Supabase.
+            </div>
+
+            <div v-else class="space-y-4">
+              <div
+                v-for="legalText in legalTexts"
+                :key="legalText.key"
+                class="border border-gray-200 rounded-lg p-4"
+              >
+                <div class="flex justify-between items-center mb-3">
+                  <h3 class="font-semibold text-lg">{{ legalText.title }}</h3>
+                  <button
+                    @click="startEditLegalText(legalText)"
+                    class="px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors text-sm"
+                  >
+                    Modifier
+                  </button>
+                </div>
+                <p class="text-sm text-gray-500">Dernière mise à jour : {{ new Date(legalText.updated_at).toLocaleDateString('fr-FR') }}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Edit Legal Text Section -->
+          <div v-if="showLegalEditForm" class="bg-white rounded-2xl p-8 shadow-sm mt-8">
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="text-2xl font-bold">Modifier : {{ editingLegalText?.title }}</h2>
+              <button
+                @click="resetLegalEditForm"
+                class="btn-primary"
+              >
+                Annuler
+              </button>
+            </div>
+
+            <div class="space-y-6">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                  Contenu HTML *
+                </label>
+                <textarea
+                  v-model="editingLegalContent"
+                  rows="20"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 font-mono text-sm"
+                  placeholder="<h2>Titre</h2><p>Contenu...</p>"
+                ></textarea>
+                <p class="mt-2 text-sm text-gray-500">
+                  Utilisez du HTML pour formater le contenu. Les liens doivent utiliser des chemins relatifs (ex: /politique-confidentialite).
+                </p>
+              </div>
+
+              <div class="flex justify-end space-x-4 pt-6 border-t border-gray-200">
+                <button
+                  @click="resetLegalEditForm"
+                  class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  Annuler
+                </button>
+                <button
+                  @click="saveLegalText"
+                  :disabled="legalSaving"
+                  class="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <span v-if="legalSaving">Sauvegarde en cours...</span>
+                  <span v-else>Sauvegarder</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
           <!-- Messages -->
           <div v-if="message" class="mt-6 p-4 rounded-lg" :class="success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'">
             {{ message }}
@@ -557,16 +639,24 @@ definePageMeta({
   middleware: 'auth'
 })
 
-const supabase = useSupabaseClient<Database>()
-const router = useRouter()
-const user = useSupabaseUser()
-
 // Import database types
 import { Star, Download, ShoppingCart } from 'lucide-vue-next'
 import { useCartStore } from '~/stores/cart'
 import type { Template, TemplateUpdate, TemplateCreate } from '~/models'
 import type { Database } from '~/types/database.types'
+
+const supabase = useSupabaseClient<Database>()
+const router = useRouter()
+const user = useSupabaseUser()
 type TemplateInsert = Database['public']['Tables']['templates']['Insert']
+
+// Legal texts state
+const legalTexts = ref<any[]>([])
+const legalLoading = ref(false)
+const showLegalEditForm = ref(false)
+const editingLegalText = ref<any>(null)
+const editingLegalContent = ref('')
+const legalSaving = ref(false)
 
 // Debug user role
 console.log("Mon rôle actuel est :", user.value?.role)
@@ -800,6 +890,7 @@ const addNewTemplate = async () => {
 // Load templates on mount
 onMounted(() => {
   refreshTemplates()
+  loadLegalTexts()
 })
 
 const refreshTemplates = async () => {
@@ -949,24 +1040,67 @@ const cleanTemplates = async () => {
   }
 }
 
-const deleteTemplate = async (templateId: string) => {
-  if (!confirm('Êtes-vous sûr de vouloir supprimer ce modèle ?')) {
+// Legal texts functions
+const loadLegalTexts = async () => {
+  legalLoading.value = true
+  try {
+    const { data, error } = await supabase
+      .from('legal_texts')
+      .select('*')
+      .order('key')
+
+    if (error) throw error
+    legalTexts.value = data || []
+  } catch (error) {
+    console.error('Error loading legal texts:', error)
+    showMessage('Erreur lors du chargement des textes légaux', false)
+  } finally {
+    legalLoading.value = false
+  }
+}
+
+const startEditLegalText = (legalText: any) => {
+  editingLegalText.value = legalText
+  editingLegalContent.value = legalText.content
+  showLegalEditForm.value = true
+  showForm.value = false
+  showEditForm.value = false
+}
+
+const resetLegalEditForm = () => {
+  editingLegalText.value = null
+  editingLegalContent.value = ''
+  showLegalEditForm.value = false
+}
+
+const saveLegalText = async () => {
+  if (!editingLegalText.value) {
+    showMessage('Aucun texte légal sélectionné', false)
     return
   }
 
+  legalSaving.value = true
+  message.value = ''
+
   try {
-    const { error } = await supabase
-      .from('templates')
-      .delete()
-      .eq('id', templateId)
-    
+    const { error } = await (supabase as any)
+      .from('legal_texts')
+      .update({
+        content: editingLegalContent.value,
+        updated_at: new Date().toISOString()
+      })
+      .eq('key', editingLegalText.value.key)
+
     if (error) throw error
-    
-    showMessage('Modèle supprimé avec succès', true)
-    await refreshTemplates()
+
+    showMessage('Texte légal mis à jour avec succès !', true)
+    resetLegalEditForm()
+    await loadLegalTexts()
   } catch (error) {
-    console.error('Error deleting template:', error)
-    showMessage('Erreur lors de la suppression du modèle', false)
+    console.error('Error saving legal text:', error)
+    showMessage('Erreur lors de la sauvegarde', false)
+  } finally {
+    legalSaving.value = false
   }
 }
 

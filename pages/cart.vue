@@ -11,7 +11,7 @@
           <ShoppingCart :size="64" class="mx-auto mb-4 text-gray-300" />
           <h2 class="text-2xl font-bold mb-2">Votre panier est vide</h2>
           <p class="text-gray-600 mb-6">Parcourez nos modèles et ajoutez-en à votre panier</p>
-          <NuxtLink to="/templates" class="btn-primary inline-flex items-center">
+          <NuxtLink to="/boutique" class="btn-primary inline-flex items-center">
             Parcourir les modèles
           </NuxtLink>
         </div>

@@ -1,5 +1,6 @@
 <template>
   <header
+    ref="headerRef"
     class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 overflow-x-hidden"
     :class="{ 'bg-white/80 backdrop-blur-lg border-b border-gray-200 shadow-sm': isScrolled, 'border-b border-gray-200/50': isMenuOpen && !isScrolled }"
   >
@@ -45,7 +46,9 @@
         </div>
       </div>
     </nav>
+  </header>
 
+  <teleport to="body">
     <transition
       enter-active-class="transition-all duration-300 ease-out"
       enter-from-class="opacity-0 -translate-y-2"
@@ -56,9 +59,10 @@
     >
       <div
         v-if="isMenuOpen"
-        class="md:hidden fixed top-16 left-0 right-0 bg-white/95 backdrop-blur-lg shadow-lg border-b border-gray-100 flex flex-col space-y-2 px-4 py-4 overflow-x-hidden"
+        class="md:hidden fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-lg shadow-xl flex flex-col space-y-2 px-4 py-4 overflow-x-hidden overflow-y-auto z-50"
+        :style="{ paddingTop: `${headerHeight + 16}px`, maxHeight: '100vh' }"
       >
-        <div class="w-full max-w-md mx-auto flex flex-col space-y-2">
+        <div class="w-full flex flex-col space-y-2">
           <NuxtLink
             v-for="link in navLinks"
             :key="link.path"
@@ -80,7 +84,7 @@
         </div>
       </div>
     </transition>
-  </header>
+  </teleport>
 </template>
 
 <script setup lang="ts">
@@ -90,15 +94,20 @@ import { useCartStore } from '~/stores/cart'
 const cartStore = useCartStore()
 const isMenuOpen = ref(false)
 const isScrolled = ref(false)
+const headerHeight = ref(64)
+const headerRef = ref<HTMLElement | null>(null)
 
 const navLinks = [
   { name: 'Le Studio', path: '/studio' },
-  { name: 'La Boutique', path: '/templates' },
+  { name: 'La Boutique', path: '/boutique' },
   { name: 'Contact', path: '/contact' },
 ]
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
+  if (isMenuOpen.value && headerRef.value) {
+    headerHeight.value = headerRef.value.offsetHeight
+  }
 }
 
 const handleScroll = () => {

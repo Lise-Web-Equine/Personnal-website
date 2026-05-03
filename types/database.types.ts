@@ -59,6 +59,29 @@ export interface Database {
           updated_at: string
         }
       }
+      legal_texts: {
+        Row: {
+          id: string
+          key: string
+          title: string
+          content: string
+          updated_at: string
+        }
+        Insert: {
+          id: string
+          key: string
+          title: string
+          content: string
+          updated_at: string
+        }
+        Update: {
+          id: string
+          key: string
+          title: string
+          content: string
+          updated_at: string
+        }
+      }
     }
     Views: {
       [_in: never]: never

@@ -89,7 +89,7 @@
 
               <NuxtLink 
 
-                to="/contact" 
+                to="/contact?service=template" 
 
                 class="group px-4 py-2.5 font-semibold rounded-lg border-2 transition-all duration-300 transform hover:scale-[1.02] hover:-translate-y-0.5 flex items-center justify-center text-sm bg-white text-secondary-700 border-secondary-300 hover:bg-secondary-50 hover:border-secondary-400 hover:shadow-lg"
 
@@ -443,23 +443,23 @@
 
       <!-- Section FAQ Accordion -->
 
-      <section class="py-16">
+      <section class="py-16 sm:py-20 md:py-24">
 
-        <div class="container mx-auto px-6">
+        <div class="container mx-auto px-4 sm:px-6">
 
-          <div class="max-w-4xl mx-auto">
+          <div class="max-w-3xl sm:max-w-4xl md:max-w-5xl lg:max-w-6xl mx-auto">
 
             <!-- Header -->
 
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 md:mb-16">
 
-              <h2 class="text-3xl md:text-4xl font-bold text-secondary-900 mb-4">
+              <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary-900 mb-4">
 
                 Questions fréquentes
 
               </h2>
 
-              <p class="text-lg text-secondary-600 max-w-2xl mx-auto">
+              <p class="text-base sm:text-lg md:text-xl text-secondary-600 max-w-2xl mx-auto">
 
                 Tout ce que vous devez savoir sur nos modèles et le guide bonus
 
@@ -501,7 +501,7 @@
 
             </p>
 
-            <Button to="#templates" variant="primary" text="Voir tous les modèles" class="inline-flex" />
+            <Button to="/boutique" variant="primary" text="Voir tous les modèles" class="inline-flex" />
 
           </div>
 
@@ -521,7 +521,17 @@ import { Package, BookOpen, Lightbulb, Sparkles, MessageSquare } from 'lucide-vu
 
 import type { Template } from '~/models'
 
-
+useHead({
+  title: 'La Boutique - Modèles de sites web pour professionnels équins',
+  meta: [
+    { name: 'description', content: 'Découvrez nos modèles de sites web prêts à l\'emploi pour ostéopathes, maréchaux-ferrants et autres professionnels équins. Abordables et optimisés.' },
+    { property: 'og:title', content: 'La Boutique - Modèles de sites web' },
+    { property: 'og:description', content: 'Modèles de sites web prêts à l\'emploi pour professionnels équins.' },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:title', content: 'La Boutique - Modèles de sites web' },
+    { name: 'twitter:description', content: 'Modèles de sites web prêts à l\'emploi pour professionnels équins.' }
+  ]
+})
 
 const loading = ref(true)
 const templates = ref<Template[]>([])
@@ -607,12 +617,6 @@ const guideFeatures = [
     description: 'Instructions détaillées pour personnaliser chaque élément de votre modèle et le lancer professionnellement.'
   },
   {
-    icon: Lightbulb,
-    iconColor: 'text-primary-500',
-    title: 'Un site web clair',
-    description: 'Un tableau d\'auto-évaluation pour te poser les bonnes questions.'
-  },
-  {
     icon: Sparkles,
     iconColor: 'text-primary-400',
     title: 'Prompt IA exclusif',
@@ -621,4 +625,3 @@ const guideFeatures = [
 ]
 
 </script>
-

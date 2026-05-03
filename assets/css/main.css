@@ -4,7 +4,11 @@
 
 @layer base {
   body {
-    @apply bg-white text-secondary antialiased;
+    @apply bg-white text-secondary antialiased overflow-x-hidden;
+  }
+
+  html {
+    @apply overflow-x-hidden;
   }
 
   h1 {
@@ -20,6 +24,10 @@
 @layer components {
   .gradient-primary {
     background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 40%, #5b21b6 70%, #4c1d95 100%);
+  }
+
+  .gradient-primary-light {
+    background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 40%, #7c3aed 70%, #6d28d9 100%);
   }
 
   .btn-primary {

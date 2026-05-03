@@ -1,9 +1,9 @@
 <template>
-  <div class="space-y-3 sm:space-y-4">
+  <div class="space-y-4">
     <div
       v-for="(item, index) in items"
       :key="index"
-      class="border border-secondary-200 rounded-lg overflow-hidden"
+      class="border border-secondary-200 rounded-lg overflow-hidden hover:border-secondary-300 transition-colors"
     >
       <button
         @click="toggleItem(index)"
@@ -12,7 +12,7 @@
         <span class="font-semibold text-sm sm:text-base text-secondary-900">{{ item.question }}</span>
         <ChevronDown
           :size="18"
-          class="sm:size-20 text-secondary-500 transition-transform duration-200"
+          class="text-secondary-500 transition-transform duration-200"
           :class="openItems[index] ? 'rotate-180' : ''"
         />
       </button>
