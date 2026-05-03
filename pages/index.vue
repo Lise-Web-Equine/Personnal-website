@@ -1,20 +1,28 @@
 <template>
   <NuxtLayout>
       <section class="relative py-12 sm:py-16 md:py-20 lg:py-32 overflow-hidden">
+        <!-- Halo backgrounds with fade mask -->
+        <div class="absolute inset-0 -z-10" style="mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);">
+          <div class="absolute inset-x-0 -top-20 sm:-top-40 transform-gpu overflow-hidden blur-2xl sm:blur-3xl" aria-hidden="true">
+            <div
+              class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff9a76] to-[#9089fc] opacity-50 sm:opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+              style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+            ></div>
+          </div>
+          <div class="absolute inset-x-0 top-[calc(50%-20rem)] transform-gpu overflow-hidden blur-2xl sm:blur-3xl sm:top-[calc(50%-30rem)]" aria-hidden="true">
+            <div
+              class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 bg-gradient-to-tr from-[#9089fc] to-[#ffb380] opacity-35 sm:opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+              style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+            ></div>
+          </div>
+        </div>
+
         <div class="relative container mx-auto px-6">
           <div class="max-w-7xl mx-auto">
             <div class="flex flex-col gap-12 lg:gap-16">
               <!-- Text Content -->
               <div v-motion-slide-visible-once-left class="text-center">
-                <div class="flex justify-center mb-6 sm:mb-8">
-                  <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-50 border border-primary-100 font-mono text-xs sm:text-sm">
-                    <span class="text-primary-400">&lt;</span>
-                    <span class="text-primary-600 font-semibold">votre</span>
-                    <span class="text-secondary-700">site web</span>
-                    <span class="text-primary-600 font-semibold">équestre</span>
-                    <span class="text-primary-400">/&gt;</span>
-                  </div>
-                </div>
+
                 <h1 class="mb-6 sm:mb-8 leading-none text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-sans">
                   <span class="text-secondary-900 font-bold">
                     <span class="block sm:inline">Abordable</span>
@@ -22,14 +30,13 @@
                   </span>
                 </h1>
                 
-                <p class="text-sm sm:text-base md:text-lg text-secondary-700 mb-8 sm:mb-12 leading-relaxed max-w-3xl mx-auto">
-De la conception au design, une création de site web adaptée à votre histoire, que vous choisissiez la simplicité des modèles clés en main ou l'audace du sur-mesure.                </p>
+                <p class="text-sm sm:text-base md:text-lg text-secondary-700 mb-8 sm:mb-12 leading-relaxed max-w-3xl mx-auto">Montre enfin ton professionnalisme avec un site web qui raconte <span class="border-b-2 border-transparent" style="border-image: linear-gradient(to right, #9333ea, #8b5cf6, #6366f1) 1;">ton histoire équestre</span>.</p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
                   <NuxtLink to="/studio" class="btn-primary group relative w-full sm:w-auto">
                     <span class="flex items-center justify-center">
                       <LayersIcon :size="20" color="white" class="mr-3" />
-                      Je veux un site sur-mesure
+                      Le studio sur-mesure
                     </span>
                   </NuxtLink>
                   
@@ -216,9 +223,6 @@ De la conception au design, une création de site web adaptée à votre histoire
       </section>
 
       <section class="py-12 sm:py-16 md:py-20 lg:py-24 bg-secondary text-white relative overflow-hidden">
-        <!-- Background decoration -->
-        <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-primary-900/30 to-transparent rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-primary-900/30 to-transparent rounded-full blur-3xl"></div>
         <GradientAnimation />
         
         <div class="relative container mx-auto px-6">
