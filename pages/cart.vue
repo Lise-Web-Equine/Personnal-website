@@ -1,44 +1,45 @@
 <template>
   <NuxtLayout>
-    <div class="bg-gray-50 min-h-screen py-20">
-      <div class="container mx-auto px-6">
-        <h1 class="text-4xl font-bold mb-4" v-motion-slide-visible-once-bottom>Panier</h1>
-        <p class="text-lg text-gray-600 mb-8" v-motion-slide-visible-once-bottom>
+    <div class="bg-gray-50 min-h-screen py-12 sm:py-20">
+      <div class="container mx-auto px-4 sm:px-6">
+        <h1 class="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4" v-motion-slide-visible-once-bottom>Panier</h1>
+        <p class="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8" v-motion-slide-visible-once-bottom>
           Sélectionnez vos modèles préférés et procédez au paiement pour un accès instantané
         </p>
 
-        <div v-if="cartStore.itemCount === 0" class="text-center py-20 bg-white rounded-2xl">
+        <div v-if="cartStore.itemCount === 0" class="text-center py-12 sm:py-20 bg-white rounded-2xl px-4">
           <ShoppingCart :size="64" class="mx-auto mb-4 text-gray-300" />
-          <h2 class="text-2xl font-bold mb-2">Votre panier est vide</h2>
+          <h2 class="text-xl sm:text-2xl font-bold mb-2">Votre panier est vide</h2>
           <p class="text-gray-600 mb-6">Parcourez nos modèles et ajoutez-en à votre panier</p>
           <NuxtLink to="/boutique" class="btn-primary inline-flex items-center">
             Parcourir les modèles
           </NuxtLink>
         </div>
 
-        <div v-else class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div v-else class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           <div class="lg:col-span-2 space-y-4">
             <div
               v-for="item in cartStore.cartItems"
               :key="item.template.id"
-              class="bg-white rounded-xl p-6 flex gap-6"
+              class="bg-white rounded-xl p-4 sm:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6"
               v-motion-slide-visible-once-left
             >
               <img
                 :src="item.template.image"
                 :alt="item.template.name"
-                class="w-32 h-32 object-cover rounded-lg flex-shrink-0"
+                class="w-full h-48 sm:w-32 sm:h-32 object-cover rounded-lg flex-shrink-0"
               />
 
-              <div class="flex-1">
-                <div class="flex justify-between items-start mb-2">
-                  <div>
-                    <h3 class="text-xl font-bold mb-1">{{ item.template.name }}</h3>
-                    <p class="text-sm text-gray-500 uppercase">{{ item.template.speciality }}</p>
+              <div class="flex-1 min-w-0">
+                <div class="flex justify-between items-start mb-2 gap-2">
+                  <div class="min-w-0">
+                    <h3 class="text-lg sm:text-xl font-bold mb-1 truncate">{{ item.template.name }}</h3>
+                    <p class="text-xs sm:text-sm text-gray-500 uppercase">{{ item.template.speciality }}</p>
                   </div>
                   <button
                     @click="cartStore.removeFromCart(item.template.id)"
-                    class="text-gray-400 hover:text-red-600 transition-colors"
+                    class="text-gray-400 hover:text-red-600 transition-colors flex-shrink-0"
+                    aria-label="Retirer du panier"
                   >
                     <Trash2 :size="20" />
                   </button>
@@ -46,21 +47,21 @@
 
                 <p class="text-gray-600 text-sm mb-2 line-clamp-2">{{ item.template.description }}</p>
                 <p class="text-green-600 text-sm font-medium mb-4 flex items-center">
-                  <Check :size="16" class="mr-1" />
+                  <Check :size="16" class="mr-1 flex-shrink-0" />
                   Guide inclus avec ce modèle
                 </p>
 
-                <div class="flex items-center justify-between">
+                <div class="flex items-center justify-between flex-wrap gap-2">
                   <span class="text-gray-600 text-sm">Quantité: {{ item.quantity }}</span>
-                  <span class="text-2xl font-bold">{{ (item.template.price * item.quantity).toFixed(2) }}€</span>
+                  <span class="text-xl sm:text-2xl font-bold">{{ (item.template.price * item.quantity).toFixed(2) }}€</span>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="lg:col-span-1">
-            <div class="bg-white rounded-xl p-6 sticky top-24" v-motion-slide-visible-once-right>
-              <h2 class="text-2xl font-bold mb-6">Récapitulatif de la commande</h2>
+            <div class="bg-white rounded-xl p-4 sm:p-6 lg:sticky lg:top-24" v-motion-slide-visible-once-right>
+              <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Récapitulatif de la commande</h2>
 
               <div class="space-y-4 mb-6">
                 <div class="flex justify-between">
@@ -73,8 +74,8 @@
                 </div>
                 <div class="border-t border-gray-200 pt-4">
                   <div class="flex justify-between items-center">
-                    <span class="text-xl font-bold">Total</span>
-                    <span class="text-3xl font-bold">{{ cartStore.totalPrice.toFixed(2) }}€</span>
+                    <span class="text-lg sm:text-xl font-bold">Total</span>
+                    <span class="text-2xl sm:text-3xl font-bold">{{ cartStore.totalPrice.toFixed(2) }}€</span>
                   </div>
                 </div>
               </div>

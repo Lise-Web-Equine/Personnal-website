@@ -108,25 +108,31 @@
 
                 <!-- Guide bonus section -->
                 <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 mb-6">
-                  <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                      <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
-                        <svg class="w-5 h-5 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
-                        </svg>
-                      </div>
-                      <div>
-                        <div class="font-semibold text-gray-900 text-sm">Guide stratégique offert</div>
-                        <div class="text-xs text-gray-600">30 pages pour personnaliser votre site</div>
-                      </div>
+                  <div class="flex items-center gap-3 mb-3 sm:mb-0">
+                    <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg class="w-5 h-5 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
+                      </svg>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                      <div class="font-semibold text-gray-900 text-sm">Guide stratégique offert</div>
+                      <div class="text-xs text-gray-600">30 pages pour personnaliser votre site</div>
                     </div>
                     <button
                       @click="showGuideModal = true"
-                      class="text-primary-600 hover:text-primary-700 text-sm font-medium transition-colors"
+                      class="hidden sm:inline-flex items-center gap-1 text-primary-600 hover:text-primary-700 text-sm font-medium transition-colors flex-shrink-0"
                     >
-                      Voir →
+                      En savoir plus
+                      <span aria-hidden="true">→</span>
                     </button>
                   </div>
+                  <button
+                    @click="showGuideModal = true"
+                    class="sm:hidden w-full flex items-center justify-center gap-1 bg-white border border-primary-200 text-primary-600 hover:bg-primary-50 text-sm font-medium py-2 px-4 rounded-lg transition-colors"
+                  >
+                    En savoir plus
+                    <span aria-hidden="true">→</span>
+                  </button>
                 </div>
 
                 <!-- Price and CTA section -->
@@ -155,6 +161,11 @@
                     <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
                     <span>Accès immédiat</span>
                   </div>
+                  <p class="mt-4 text-xs text-gray-500 leading-relaxed">
+                    *Ce modèle est conçu avec l'outil
+                    <a href="https://carrd.co" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700 underline">Carrd.co</a>.
+                    Pour utiliser toutes les fonctionnalités, l'abonnement Pro Standard sur la plateforme sera nécessaire (à partir d'environ 1,50€/mois).
+                  </p>
                 </div>
             </div>
           </div>
@@ -190,12 +201,10 @@
               </div>
 
 <!-- Carte principale -->
-              <div class="relative pt-4">
+              <div class="relative">
                 <!-- Badge on the border -->
-                <div class="absolute -top-3 left-4 sm:left-6 z-10">
-                  <div class="bg-primary-100 text-primary-700 px-3 py-1.5 md:px-4 py-2 rounded-full text-xs md:text-sm font-semibold border border-primary-200 shadow-sm">
-                    Le Pack Sérénité
-                  </div>
+                <div class="absolute -top-3 right-4 sm:right-6 z-10">
+                  <Badge variant="primary" text="Le Pack Sérénité" />
                 </div>
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
                   <div class="grid grid-cols-1 lg:grid-cols-3">
