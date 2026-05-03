@@ -7,35 +7,20 @@ interface ClientSite {
 
 const clients: ClientSite[] = [
   {
-    name: 'Écurie du Vallon',
-    url: 'ecurie-du-vallon.fr',
-    image: 'https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&q=80&w=600&h=400'
+    name: 'Anne PhytoÉquine',
+    url: 'https://anne-phytoequine.carrd.co/',
+    image: '/images/siteweb-annephytoequine.PNG'
   },
   {
-    name: 'Haras de la Loire',
-    url: 'haras-loire.com',
-    image: 'https://images.unsplash.com/photo-1534307671554-9a6d81f4d629?auto=format&fit=crop&q=80&w=600&h=400'
+    name: 'Modèle Ostéopathe Équin',
+    url: 'modele-ostheopathe-equin.fr',
+    image: '/images/siteweb-modele.png'
   },
   {
-    name: 'Centre Équestre Soleil',
-    url: 'ce-soleil.fr',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&q=80&w=600&h=400'
+    name: 'MB Prestations Équestres',
+    url: 'https://mb-prestationsequestres.carrd.co/',
+    image: '/images/siteweb-morganebrient.png'
   },
-  {
-    name: 'Poney Club des Bois',
-    url: 'poneyclub-desbois.fr',
-    image: 'https://images.unsplash.com/photo-1506220926022-cc5c12acdb35?auto=format&fit=crop&q=80&w=600&h=400'
-  },
-  {
-    name: 'Ostéo Équine Pro',
-    url: 'osteo-equine.com',
-    image: 'https://images.unsplash.com/photo-1551884831-bbf3cdc6469e?auto=format&fit=crop&q=80&w=600&h=400'
-  },
-  {
-    name: 'Sellerie Artisanale',
-    url: 'sellerie-artisanale.fr',
-    image: 'https://images.unsplash.com/photo-1509023464722-18d996393ca8?auto=format&fit=crop&q=80&w=600&h=400'
-  }
 ]
 
 // Duplicate the list for infinite scroll effect
@@ -50,7 +35,7 @@ const duplicatedClients = [...clients, ...clients]
         <div
           v-for="(client, index) in duplicatedClients"
           :key="`${client.name}-${index}`"
-          class="flex-shrink-0 w-52 sm:w-72 md:w-80"
+          class="flex-shrink-0 w-64 sm:w-80 md:w-96"
         >
           <!-- Browser mockup -->
           <div class="rounded-lg sm:rounded-xl overflow-hidden border border-secondary-200 shadow-md sm:shadow-lg bg-white transition-transform duration-300 hover:scale-[1.02]">
@@ -66,17 +51,15 @@ const duplicatedClients = [...clients, ...clients]
               </div>
             </div>
             <!-- Site preview -->
-            <div class="aspect-[3/2] overflow-hidden">
+            <div class="h-auto overflow-hidden bg-white">
               <img
                 :src="client.image"
                 :alt="`Site web de ${client.name}`"
-                class="w-full h-full object-cover"
+                class="w-full h-auto object-cover"
                 loading="lazy"
               />
             </div>
           </div>
-          <!-- Client name -->
-          <p class="mt-2 sm:mt-3 text-center text-xs sm:text-sm font-medium text-secondary-700">{{ client.name }}</p>
         </div>
       </div>
     </div>
@@ -89,13 +72,13 @@ const duplicatedClients = [...clients, ...clients]
 }
 
 .carousel-depth {
-  transform: rotateX(4deg) scale(0.95);
+  transform: rotateX(2deg) scale(0.98);
   transform-origin: center top;
 }
 
 .carousel-mask {
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
 }
 
 .carousel-track {

@@ -15,7 +15,7 @@
       </div>
 
       <div v-else>
-        <section class="py-8 md:py-12">
+        <section class="py-6 sm:py-8 md:py-12">
           <div class="container mx-auto px-4 sm:px-6">
             <div class="mb-6">
               <NuxtLink to="#modeles-similaires" class="inline-flex items-center text-gray-600 hover:text-black">
@@ -24,7 +24,7 @@
               </NuxtLink>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
               <div v-motion-slide-visible-once-left>
                 <div class="rounded-2xl overflow-hidden shadow-xl">
                   <a
@@ -49,7 +49,7 @@
               </div>
 
               <div v-motion-slide-visible-once-right>
-                <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary-900 mb-4">{{ template.name }}</h1>
+                <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-secondary-900 mb-4">{{ template.name }}</h1>
 
                 <div v-if="template.rating > 0" class="flex items-center space-x-6 mb-6">
                   <div class="flex items-center space-x-2">
@@ -69,7 +69,7 @@
                   />
                 </div>
 
-                <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
+                <p class="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed">
                   {{ template.description }}
                 </p>
 
@@ -87,8 +87,8 @@
                   </div>
                 </div>
 
-                <div class="bg-gray-50 rounded-xl p-6 mb-8">
-                  <div class="text-4xl font-bold text-secondary-900 mb-2">{{ template.price }}€</div>
+                <div class="bg-gray-50 rounded-xl p-4 sm:p-6 mb-6 sm:mb-8">
+                  <div class="text-3xl sm:text-4xl font-bold text-secondary-900 mb-2">{{ template.price }}€</div>
                   <p class="text-gray-600 text-sm mb-4">🔒 Paiement 100% sécurisé • Accès immédiat</p>
                   
                   <!-- Guide bonus mis en avant -->
@@ -136,7 +136,23 @@
         </section>
 
         <!-- Accompagnement Pack Sérénité -->
-        <section class="py-12 md:py-16">
+        <section class="py-10 sm:py-12 md:py-16 relative overflow-hidden">
+          <!-- Halo backgrounds with fade mask -->
+          <div class="absolute inset-0 -z-10" style="mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);">
+            <div class="absolute inset-x-0 -top-20 sm:-top-40 transform-gpu overflow-hidden blur-2xl sm:blur-3xl" aria-hidden="true">
+              <div
+                class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff9a76] to-[#9089fc] opacity-30 sm:opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+                style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+              ></div>
+            </div>
+            <div class="absolute inset-x-0 top-[calc(50%-20rem)] transform-gpu overflow-hidden blur-2xl sm:blur-3xl sm:top-[calc(50%-30rem)]" aria-hidden="true">
+              <div
+                class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 bg-gradient-to-tr from-[#9089fc] to-[#ffb380] opacity-25 sm:opacity-15 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+                style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+              ></div>
+            </div>
+          </div>
+
           <div class="container mx-auto px-4 sm:px-6">
             <div class="max-w-6xl mx-auto">
               <!-- En-tête de la section -->
@@ -148,18 +164,22 @@
               </div>
 
 <!-- Carte principale -->
-              <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-                <div class="grid grid-cols-1 lg:grid-cols-3">
-                  <!-- Partie gauche - Bénéfices en 2 colonnes -->
-                  <div class="lg:col-span-2 p-6 md:p-10 lg:p-16 bg-white">
-                    <div class="mb-8 md:mb-12">
-                      <div class="inline-block bg-primary-100 text-primary-700 px-3 py-1.5 md:px-4 py-2 rounded-full text-xs md:text-sm font-semibold mb-3">
-                        Le Pack Sérénité
+              <div class="relative pt-4">
+                <!-- Badge on the border -->
+                <div class="absolute -top-3 left-4 sm:left-6 z-10">
+                  <div class="bg-primary-100 text-primary-700 px-3 py-1.5 md:px-4 py-2 rounded-full text-xs md:text-sm font-semibold border border-primary-200 shadow-sm">
+                    Le Pack Sérénité
+                  </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                  <div class="grid grid-cols-1 lg:grid-cols-3">
+                    <!-- Partie gauche - Bénéfices en 2 colonnes -->
+                    <div class="lg:col-span-2 p-6 md:p-10 lg:p-16 bg-white">
+                      <div class="mb-8 md:mb-12">
+                        <h3 class="text-xl md:text-2xl font-bold text-secondary-900">
+                          L'expertise pro, la rapidité en plus.
+                        </h3>
                       </div>
-                      <h3 class="text-xl md:text-2xl font-bold text-secondary-900">
-                        L'expertise pro, la rapidité en plus.
-                      </h3>
-                    </div>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                       <!-- Gagnez du temps -->
@@ -255,17 +275,23 @@
                       </div>
                     </div>
 
-                    <button class="w-full bg-white text-secondary-900 font-bold py-3 md:py-4 px-4 md:px-6 rounded-xl hover:bg-gray-100 transition-colors shadow-lg text-sm md:text-base">
-                      Commander maintenant
+                    <button
+                      data-cal-link="lisewebequine/pack-serenite"
+                      data-cal-namespace="pack-serenite"
+                      data-cal-config='{"layout":"week_view","useSlotsViewOnSmallScreen":"true"}'
+                      class="w-full bg-white text-secondary-900 font-bold py-3 md:py-4 px-4 md:px-6 rounded-xl hover:bg-gray-100 transition-colors shadow-lg text-sm md:text-base"
+                    >
+                      Réserver un créneau
                     </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
         </section>
 
-        <section id="modeles-similaires" class="py-12 md:py-16">
+        <section id="modeles-similaires" class="py-10 sm:py-12 md:py-16">
           <div class="container mx-auto px-4 sm:px-6">
             <h2 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8">Modèles similaires</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
@@ -279,7 +305,8 @@
         </section>
       </div>
     </div>
-  </NuxtLayout>
+
+    </NuxtLayout>
 </template>
 
 <script setup lang="ts">
@@ -290,6 +317,17 @@ import type { Template } from '~/models'
 const route = useRoute()
 const supabase = useSupabase()
 const cartStore = useCartStore()
+
+// Load Calendly script
+useHead({
+  script: [
+    {
+      innerHTML: `(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.eu/embed/embed.js", "init"); Cal("init", "pack-serenite", {origin:"https://app.cal.eu"}); Cal.ns["pack-serenite"]("ui", {"hideEventTypeDetails":false,"layout":"week_view"});`,
+      type: 'text/javascript',
+      tagPosition: 'bodyClose'
+    }
+  ]
+})
 
 const loading = ref(true)
 const template = ref<Template | null>(null)

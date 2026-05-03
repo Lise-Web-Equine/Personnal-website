@@ -113,7 +113,22 @@
 
       <!-- Section Comment ça fonctionne -->
 
-      <section class="py-20">
+      <section class="py-20 relative overflow-hidden">
+        <!-- Halo backgrounds with fade mask -->
+        <div class="absolute inset-0 -z-10" style="mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);">
+          <div class="absolute inset-x-0 -top-20 sm:-top-40 transform-gpu overflow-hidden blur-2xl sm:blur-3xl" aria-hidden="true">
+            <div
+              class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff9a76] to-[#9089fc] opacity-30 sm:opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+              style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+            ></div>
+          </div>
+          <div class="absolute inset-x-0 top-[calc(50%-20rem)] transform-gpu overflow-hidden blur-2xl sm:blur-3xl sm:top-[calc(50%-30rem)]" aria-hidden="true">
+            <div
+              class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 bg-gradient-to-tr from-[#9089fc] to-[#ffb380] opacity-25 sm:opacity-15 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+              style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+            ></div>
+          </div>
+        </div>
 
         <div class="container mx-auto px-6">
 
@@ -123,9 +138,9 @@
 
             <div class="text-center mb-16">
 
-              <h2 class="text-4xl md:text-5xl font-bold text-secondary-900 mb-6">
+              <h2 class="">
 
-                Votre nouveau site web prêt en 3 étapes simples
+                Votre site web prêt en 3 étapes simples
 
               </h2>
 
@@ -149,23 +164,21 @@
 
                 <!-- Étape 1 -->
 
-                <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+                <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-shadow" v-motion-slide-visible-once-bottom>
 
-                  <div class="flex items-center mb-6">
+                  <div class="flex items-center mb-4 sm:mb-6">
 
-                    <div class="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
 
-                      1
+                      <span class="text-primary-600 font-bold text-base sm:text-lg">1</span>
 
                     </div>
 
-                    <div class="h-px bg-primary-200 flex-1 hidden md:block"></div>
-
                   </div>
 
-                  <h3 class="text-xl font-bold text-secondary-900 mb-4">Choix du modèle</h3>
+                  <h3 class="text-lg sm:text-xl font-bold">Choix du modèle</h3>
 
-                  <p class="text-secondary-600 mb-4">
+                  <p class="text-sm sm:text-base text-secondary-600 leading-relaxed">
 
                     Explorez notre collection de modèles et trouvez celui qui représente parfaitement votre activité.
 
@@ -177,23 +190,21 @@
 
                 <!-- Étape 2 -->
 
-                <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+                <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-shadow" v-motion-slide-visible-once-bottom :delay="100">
 
-                  <div class="flex items-center mb-6">
+                  <div class="flex items-center mb-4 sm:mb-6">
 
-                    <div class="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
 
-                      2
+                      <span class="text-primary-600 font-bold text-base sm:text-lg">2</span>
 
                     </div>
 
-                    <div class="h-px bg-primary-200 flex-1 hidden md:block"></div>
-
                   </div>
 
-                  <h3 class="text-xl font-bold text-secondary-900 mb-4">Personnalisation</h3>
+                  <h3 class="text-lg sm:text-xl font-bold">Personnalisation</h3>
 
-                  <p class="text-secondary-600 mb-4">
+                  <p class="text-sm sm:text-base text-secondary-600 leading-relaxed">
 
                     Modifiez chaque élément : textes, images, couleurs. Votre guide stratégique de 30 pages vous accompagne à chaque étape.
 
@@ -205,21 +216,21 @@
 
                 <!-- Étape 3 -->
 
-                <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+                <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-shadow" v-motion-slide-visible-once-bottom :delay="200">
 
-                  <div class="flex items-center mb-6">
+                  <div class="flex items-center mb-4 sm:mb-6">
 
-                    <div class="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
 
-                      3
+                      <span class="text-primary-600 font-bold text-base sm:text-lg">3</span>
 
                     </div>
 
                   </div>
 
-                  <h3 class="text-xl font-bold text-secondary-900 mb-4">Mise en ligne</h3>
+                  <h3 class="text-lg sm:text-xl font-bold">Mise en ligne</h3>
 
-                  <p class="text-secondary-600 mb-4">
+                  <p class="text-sm sm:text-base text-secondary-600 leading-relaxed">
 
                     Publiez en un clic grâce à l'hébergement inclus.   
 
@@ -235,13 +246,13 @@
 
             <!-- Badge de confiance -->
 
-            <div class="text-center mt-16">
+            <div class="text-center mt-8 sm:mt-12 md:mt-16">
 
-              <div class="inline-flex items-center bg-white rounded-full px-6 py-3 shadow-md">
+              <div class="inline-flex items-center bg-white rounded-full px-4 sm:px-6 py-2 sm:py-3 shadow-md">
 
-                <div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                <div class="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-green-500 rounded-full mr-2 sm:mr-3"></div>
 
-                <span class="text-secondary-700 font-medium">Aucune compétence technique requise</span>
+                <span class="text-xs sm:text-sm text-secondary-700 font-medium">Aucune compétence technique requise</span>
 
               </div>
 

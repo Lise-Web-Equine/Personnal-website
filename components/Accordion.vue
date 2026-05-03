@@ -1,5 +1,5 @@
 <template>
-  <div class="space-y-4">
+  <div class="space-y-3 sm:space-y-4">
     <div
       v-for="(item, index) in items"
       :key="index"
@@ -7,22 +7,20 @@
     >
       <button
         @click="toggleItem(index)"
-        class="w-full px-6 py-4 bg-white hover:bg-secondary-50 transition-colors duration-200 flex items-center justify-between text-left"
+        class="w-full px-4 sm:px-6 py-3 sm:py-4 bg-white hover:bg-secondary-50 transition-colors duration-200 flex items-center justify-between text-left"
       >
-        <span class="font-semibold text-secondary-900">{{ item.question }}</span>
+        <span class="font-semibold text-sm sm:text-base text-secondary-900">{{ item.question }}</span>
         <ChevronDown
-          :size="20"
-          :class="[
-            'text-secondary-500 transition-transform duration-200',
-            openItems[index] ? 'rotate-180' : ''
-          ]"
+          :size="18"
+          class="sm:size-20 text-secondary-500 transition-transform duration-200"
+          :class="openItems[index] ? 'rotate-180' : ''"
         />
       </button>
       <div
         v-show="openItems[index]"
-        class="px-6 py-4 bg-secondary-50 border-t border-secondary-200"
+        class="px-4 sm:px-6 py-3 sm:py-4 bg-secondary-50 border-t border-secondary-200"
       >
-        <div class="text-secondary-600 leading-relaxed" v-html="formatAnswer(item.answer)"></div>
+        <div class="text-sm sm:text-base text-secondary-600 leading-relaxed" v-html="formatAnswer(item.answer)"></div>
       </div>
     </div>
   </div>

@@ -77,7 +77,23 @@
       />
 
       <!-- Étapes Section -->
-      <section class="py-12 sm:py-16 md:py-20">
+      <section class="py-12 sm:py-16 md:py-20 relative overflow-hidden">
+        <!-- Halo backgrounds with fade mask -->
+        <div class="absolute inset-0 -z-10" style="mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);">
+          <div class="absolute inset-x-0 -top-20 sm:-top-40 transform-gpu overflow-hidden blur-2xl sm:blur-3xl" aria-hidden="true">
+            <div
+              class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff9a76] to-[#9089fc] opacity-30 sm:opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+              style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+            ></div>
+          </div>
+          <div class="absolute inset-x-0 top-[calc(50%-20rem)] transform-gpu overflow-hidden blur-2xl sm:blur-3xl sm:top-[calc(50%-30rem)]" aria-hidden="true">
+            <div
+              class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 bg-gradient-to-tr from-[#9089fc] to-[#ffb380] opacity-25 sm:opacity-15 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+              style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+            ></div>
+          </div>
+        </div>
+
         <div class="container mx-auto px-6">
           <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
             <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">On avance main dans la main</h2>
@@ -88,7 +104,7 @@
 
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
             <!-- Étape 1 -->
-            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition-shadow" v-motion-slide-visible-once-bottom>
+            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-shadow" v-motion-slide-visible-once-bottom>
               <div class="flex items-center mb-4 sm:mb-6">
                 <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
                   <span class="text-primary-600 font-bold text-base sm:text-lg">1</span>
@@ -101,7 +117,7 @@
             </div>
 
             <!-- Étape 2 -->
-            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition-shadow" v-motion-slide-visible-once-bottom :delay="100">
+            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-shadow" v-motion-slide-visible-once-bottom :delay="100">
               <div class="flex items-center mb-4 sm:mb-6">
                 <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
                   <span class="text-primary-600 font-bold text-base sm:text-lg">2</span>
@@ -114,7 +130,7 @@
             </div>
 
             <!-- Étape 3 -->
-            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition-shadow" v-motion-slide-visible-once-bottom :delay="200">
+            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-shadow" v-motion-slide-visible-once-bottom :delay="200">
               <div class="flex items-center mb-4 sm:mb-6">
                 <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
                   <span class="text-primary-600 font-bold text-base sm:text-lg">3</span>
@@ -127,7 +143,7 @@
             </div>
 
             <!-- Étape 4 -->
-            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition-shadow" v-motion-slide-visible-once-bottom :delay="300">
+            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-shadow" v-motion-slide-visible-once-bottom :delay="300">
               <div class="flex items-center mb-4 sm:mb-6">
                 <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
                   <span class="text-primary-600 font-bold text-base sm:text-lg">4</span>
@@ -140,7 +156,7 @@
             </div>
 
             <!-- Étape 5 -->
-            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition-shadow" v-motion-slide-visible-once-bottom :delay="400">
+            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-shadow" v-motion-slide-visible-once-bottom :delay="400">
               <div class="flex items-center mb-4 sm:mb-6">
                 <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
                   <span class="text-primary-600 font-bold text-base sm:text-lg">5</span>
@@ -153,7 +169,7 @@
             </div>
 
             <!-- Étape 6 -->
-            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition-shadow" v-motion-slide-visible-once-bottom :delay="500">
+            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-shadow" v-motion-slide-visible-once-bottom :delay="500">
               <div class="flex items-center mb-4 sm:mb-6">
                 <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
                   <span class="text-primary-600 font-bold text-base sm:text-lg">6</span>

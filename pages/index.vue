@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout>
-      <section class="relative py-12 sm:py-16 md:py-20 lg:py-32 overflow-hidden">
+      <section class="relative py-12 sm:py-16 md:py-20 lg:py-32 overflow-hidden overflow-x-hidden">
         <!-- Halo backgrounds with fade mask -->
         <div class="absolute inset-0 -z-10" style="mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);">
           <div class="absolute inset-x-0 -top-20 sm:-top-40 transform-gpu overflow-hidden blur-2xl sm:blur-3xl" aria-hidden="true">
@@ -19,18 +19,18 @@
 
         <div class="relative container mx-auto px-6">
           <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col gap-12 lg:gap-16">
+            <div class="flex flex-col gap-4 lg:gap-16">
               <!-- Text Content -->
               <div v-motion-slide-visible-once-left class="text-center">
 
-                <h1 class="mb-6 sm:mb-8 leading-none text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-sans">
+                <h1 class="mb-8 sm:mb-8 leading-none text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-sans">
                   <span class="text-secondary-900 font-bold">
                     <span class="block sm:inline">Abordable</span>
                     <span class="block sm:inline"> ou <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent">unique</span></span>
                   </span>
                 </h1>
                 
-                <p class="text-sm sm:text-base md:text-lg text-secondary-700 mb-8 sm:mb-12 leading-relaxed max-w-3xl mx-auto">Montre enfin ton professionnalisme avec un site web qui raconte <span class="border-b-2 border-transparent" style="border-image: linear-gradient(to right, #9333ea, #8b5cf6, #6366f1) 1;">ton histoire équestre</span>.</p>
+                <p class="text-sm sm:text-base md:text-lg text-secondary-700 mb-10 sm:mb-12 leading-relaxed max-w-3xl mx-auto">Montre enfin ton professionnalisme avec un site web qui raconte <span class="font-bold border-b-2 border-transparent" style="border-image: linear-gradient(to right, #9333ea, #8b5cf6, #6366f1) 1;">ton histoire équestre</span>.</p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
                   <NuxtLink to="/studio" class="btn-primary group relative w-full sm:w-auto">
@@ -47,12 +47,13 @@
                     </span>
                   </NuxtLink>
                 </div>
+                <p class="mt-1 text-xs sm:text-sm text-secondary-500 block sm:hidden">Gagnez du temps avec des sites déjà conçus et optimisés</p>
               </div>
 
-              <!-- Client Carousel - Full width band -->
+              <!-- Client Carousel - Full width band 
               <div class="relative -mx-6 sm:-mx-12 md:-mx-20 lg:-mx-32">
                 <ClientCarousel />
-              </div>
+              </div>-->
 
               <!-- Hero Animation -->
               <div v-motion-slide-visible-once-bottom class="relative">

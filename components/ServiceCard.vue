@@ -113,7 +113,7 @@ const buttonClasses = computed(() => {
   if (props.variant === 'primary') {
     return `${base} btn-primary`
   } else if (props.variant === 'secondary') {
-    return `${base} px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 text-sm sm:text-base bg-title-dark text-white hover:bg-slate-700`
+    return `${base} btn-secondary`
   }
   
   return `${base} px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 text-sm sm:text-base bg-gray-900 text-white hover:bg-gray-800`
