@@ -4,11 +4,11 @@
 
       <PageHeader 
 
-        title="La boutique de modèles"
+        title="La boutique de templates"
 
-        description="Des modèles de sites web premium et prêts à l'emploi pour chaque besoin professionnel"
+        description="Des templates de sites web premium et personnalisable pour chaque besoin professionnel"
 
-        badge="Nouveaux modèles disponibles"
+        badge="Nouveaux templates disponibles"
 
       />
 
@@ -19,7 +19,7 @@
 
           <div class="mb-6 text-sm sm:text-base text-gray-600">
 
-            Affichage de {{ templates.length }} modèles
+            Affichage de {{ templates.length }} templates
 
           </div>
 
@@ -37,9 +37,9 @@
 
             <Package :size="64" class="mx-auto mb-4 text-gray-300" />
 
-            <h3 class="text-2xl font-bold mb-2">Aucun modèle trouvé</h3>
+            <h3 class="text-2xl font-bold mb-2">Aucun template trouvé</h3>
 
-            <p class="text-gray-600">Revenez plus tard pour découvrir nos nouveaux modèles</p>
+            <p class="text-gray-600">Revenez plus tard pour découvrir nos nouveaux templates</p>
 
           </div>
 
@@ -77,13 +77,13 @@
 
               </div>
 
-              <h3 class="text-lg font-bold mb-3">Vous voulez proposer un nouveau modèle pour votre profession ?</h3>
+              <h3 class="text-lg font-bold mb-3">Vous voulez proposer un nouveau template pour votre profession ?</h3>
 
               <p class="text-white/90 mb-6 text-sm">
 
                 Ostéopathe, maréchal-ferrant, dentiste...<br>
 
-                Créons ensemble le modèle parfait pour votre métier équin.
+                Créons ensemble le template parfait pour votre métier équin.
 
               </p>
 
@@ -176,11 +176,11 @@
 
                   </div>
 
-                  <h3 class="text-lg sm:text-xl font-bold">Choix du modèle</h3>
+                  <h3 class="text-lg sm:text-xl font-bold">Choix du template</h3>
 
                   <p class="text-sm sm:text-base text-secondary-600 leading-relaxed">
 
-                    Explorez notre collection de modèles et trouvez celui qui représente parfaitement votre activité.
+                    Explorez notre collection de templates et trouvez celui qui représente parfaitement votre activité.
 
                   </p>
 
@@ -435,7 +435,7 @@
       <!-- Section Bonus Guide -->
       <FeaturesSection
         title="Votre guide stratégique de 30 pages offert"
-        subtitle="Ne soyez plus jamais seul devant votre écran. Nous vous remettons un guide complet pour transformer votre modèle en un véritable outil de travail."
+        subtitle="Ne soyez plus jamais seul devant votre écran. Nous vous remettons un guide complet pour transformer votre template en un véritable outil de travail."
         :features="guideFeatures"
       />
 
@@ -461,7 +461,7 @@
 
               <p class="text-base sm:text-lg md:text-xl text-secondary-600 max-w-2xl mx-auto">
 
-                Tout ce que vous devez savoir sur nos modèles et le guide bonus
+                Tout ce que vous devez savoir sur nos templates et le guide bonus
 
               </p>
 
@@ -497,11 +497,11 @@
 
             <p class="text-lg text-secondary-600 max-w-2xl mx-auto mb-8">
 
-              Choisissez parmi nos modèles et commencez dès aujourd'hui
+              Choisissez parmi nos templates et commencez dès aujourd'hui
 
             </p>
 
-            <Button to="/boutique" variant="primary" text="Voir tous les modèles" class="inline-flex" />
+            <Button to="/boutique" variant="primary" text="Voir tous les templates" class="inline-flex" />
 
           </div>
 
@@ -522,14 +522,14 @@ import { Package, BookOpen, Lightbulb, Sparkles, MessageSquare } from 'lucide-vu
 import type { Template } from '~/models'
 
 useHead({
-  title: 'La Boutique - Modèles de sites web pour professionnels équins',
+  title: 'La Boutique - Templates de sites web pour professionnels équins',
   meta: [
-    { name: 'description', content: 'Découvrez nos modèles de sites web prêts à l\'emploi pour ostéopathes, maréchaux-ferrants et autres professionnels équins. Abordables et optimisés.' },
-    { property: 'og:title', content: 'La Boutique - Modèles de sites web' },
-    { property: 'og:description', content: 'Modèles de sites web prêts à l\'emploi pour professionnels équins.' },
+    { name: 'description', content: 'Découvrez nos templates de sites web personnalisables pour ostéopathes, maréchaux-ferrants et autres professionnels équins. Abordables et optimisés.' },
+    { property: 'og:title', content: 'La Boutique - templates de sites web' },
+    { property: 'og:description', content: 'templates de sites web personnalisables pour professionnels équins.' },
     { property: 'og:type', content: 'website' },
-    { name: 'twitter:title', content: 'La Boutique - Modèles de sites web' },
-    { name: 'twitter:description', content: 'Modèles de sites web prêts à l\'emploi pour professionnels équins.' }
+    { name: 'twitter:title', content: 'La Boutique - templates de sites web' },
+    { name: 'twitter:description', content: 'templates de sites web personnalisables pour professionnels équins.' }
   ]
 })
 
@@ -561,9 +561,9 @@ const faqItems = [
 
   {
 
-    question: "Comment fonctionne l'achat d'un modèle ?",
+    question: "Comment fonctionne l'achat d'un template ?",
 
-    answer: "Une fois votre achat effectué, vous recevez **immédiatement par email** un lien pour télécharger :\n\n- Le modèle complet\n- Votre guide stratégique de 30 pages\n\n- L'accès à notre support si besoin\n\n**Processus simple et instantané** pour commencer tout de suite !"
+    answer: "Une fois votre achat effectué, vous recevez **immédiatement par email** un lien pour télécharger :\n\n- Le template complet\n- Votre guide stratégique de 30 pages\n\n- L'accès à notre support si besoin\n\n**Processus simple et instantané** pour commencer tout de suite !"
 
   },
 
@@ -571,7 +571,7 @@ const faqItems = [
 
     question: "Est-ce que je peux modifier les textes et photos ?",
 
-    answer: "**Absolument !** Tous nos modèles sont **100% personnalisables**.\n\nVous pouvez :\n- Modifier **tous les textes**\n- Remplacer les **images par les vôtres**\n- Changer les **couleurs et polices**\n- Adapter le **design à votre marque**\n\nNotre guide bonus vous explique **étape par étape** comment faire chaque modification."
+    answer: "**Absolument !** Tous nos templates sont **100% personnalisables**.\n\nVous pouvez :\n- Modifier **tous les textes**\n- Remplacer les **images par les vôtres**\n- Changer les **couleurs et polices**\n- Adapter le **design à votre marque**\n\nNotre guide bonus vous explique **étape par étape** comment faire chaque modification."
 
   },
 
@@ -579,7 +579,7 @@ const faqItems = [
 
     question: "Combien me coûte mon site web au total ?",
 
-    answer: "**C'est la solution la moins chère du marché** pour un résultat professionnel :\n\n- **Le modèle** : Paiement unique (selon le modèle choisi)\n- **L'abonnement technique** : Pour activer toutes les fonctionnalités premium (votre propre nom de domaine, formulaires, etc.), il faudra souscrire à l'offre Carrd Pro Standard\n- **Le coût total** : Environ **19$ par an** (soit moins de **2€/mois**)\n\n**C'est imbattable** comparé aux 150€ ou 200€ demandés par d'autres plateformes !"
+    answer: "**C'est la solution la moins chère du marché** pour un résultat professionnel :\n\n- **Le template** : Paiement unique (selon le template choisi)\n- **L'abonnement technique** : Pour activer toutes les fonctionnalités premium (votre propre nom de domaine, formulaires, etc.), il faudra souscrire à l'offre Carrd Pro Standard\n- **Le coût total** : Environ **19$ par an** (soit moins de **2€/mois**)\n\n**C'est imbattable** comparé aux 150€ ou 200€ demandés par d'autres plateformes !"
 
   },
 
@@ -595,7 +595,7 @@ const faqItems = [
 
     question: "Ai-je besoin de connaissances en informatique ?",
 
-    answer: "**Non !** J'ai simplifié le processus au maximum grâce au modèle.\n\n**Carrd.co est un système de drag and drop** :\n- **Zero code** requis\n- **Interface intuitive**\n- **Modification visuelle** simple\n\nVotre guide stratégique de **30 pages** est conçu spécifiquement pour les **débutants complets**."
+    answer: "**Non !** J'ai simplifié le processus au maximum grâce au template.\n\n**Carrd.co est un système de drag and drop** :\n- **Zero code** requis\n- **Interface intuitive**\n- **Modification visuelle** simple\n\nVotre guide stratégique de **30 pages** est conçu spécifiquement pour les **débutants complets**."
 
   },
 
@@ -603,7 +603,7 @@ const faqItems = [
 
     question: "L'hébergement est-il inclus ?",
 
-    answer: "**Oui, l'hébergement gratuit est inclus** via l'extension .carrd.co (ex: monactivite.carrd.co).\n\n**C'est la solution la plus simple** pour commencer :\n- **Hébergement gratuit** inclus\n- **Tout est expliqué** dans votre guide\n- **Mise en ligne instantanée**\n\n**Vous voulez un nom de domaine personnalisé** (ex: .fr ou .com) ? C'est tout à fait possible ! Il suffit de [me contacter](/contact) pour que nous mettions cela en place ensemble une fois votre modèle acquis."
+    answer: "**Oui, l'hébergement gratuit est inclus** via l'extension .carrd.co (ex: monactivite.carrd.co).\n\n**C'est la solution la plus simple** pour commencer :\n- **Hébergement gratuit** inclus\n- **Tout est expliqué** dans votre guide\n- **Mise en ligne instantanée**\n\n**Vous voulez un nom de domaine personnalisé** (ex: .fr ou .com) ? C'est tout à fait possible ! Il suffit de [me contacter](/contact) pour que nous mettions cela en place ensemble une fois votre template acquis."
 
   }
 
@@ -614,7 +614,7 @@ const guideFeatures = [
     icon: BookOpen,
     iconColor: 'text-primary-600',
     title: 'Guide pas à pas',
-    description: 'Instructions détaillées pour personnaliser chaque élément de votre modèle et le lancer professionnellement.'
+    description: 'Instructions détaillées pour personnaliser chaque élément de votre template et le lancer professionnellement.'
   },
   {
     icon: Sparkles,

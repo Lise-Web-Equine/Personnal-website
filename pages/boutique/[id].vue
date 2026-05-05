@@ -20,7 +20,7 @@
             <div class="mb-6">
               <NuxtLink to="/boutique" class="inline-flex items-center text-gray-600 hover:text-black">
                 <ArrowLeft :size="20" class="mr-2" />
-                Voir tous les modèles
+                Voir tous les templates
               </NuxtLink>
             </div>
 
@@ -162,7 +162,7 @@
                     <span>Accès immédiat</span>
                   </div>
                   <p class="mt-4 text-xs text-gray-500 leading-relaxed">
-                    *Ce modèle est conçu avec l'outil
+                    *Ce template est conçu avec l'outil
                     <a href="https://carrd.co" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700 underline">Carrd.co</a>.
                     Pour utiliser toutes les fonctionnalités, l'abonnement Pro Standard sur la plateforme sera nécessaire (à partir d'environ 1,50€/mois).
                   </p>
@@ -328,7 +328,7 @@
 
         <section id="modeles-similaires" class="py-10 sm:py-12 md:py-16">
           <div class="container mx-auto px-4 sm:px-6">
-            <h2 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8">Modèles similaires</h2>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8">Templates similaires</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               <TemplateCardMockup
                 v-for="relatedTemplate in relatedTemplates"
@@ -370,7 +370,7 @@
             </div>
             <div class="p-6">
               <p class="text-gray-600 mb-6">
-                Ne soyez plus jamais seul devant votre écran. Nous vous remettons un guide complet pour transformer votre modèle en un véritable outil de travail.
+                Ne soyez plus jamais seul devant votre écran. Nous vous remettons un guide complet pour transformer votre template en un véritable outil de travail.
               </p>
               <div class="space-y-4">
                 <div class="flex items-start">
@@ -381,7 +381,7 @@
                   </div>
                   <div>
                     <h4 class="font-bold text-gray-900 mb-1">Guide pas à pas</h4>
-                    <p class="text-gray-600 text-sm">Instructions détaillées pour personnaliser chaque élément de votre modèle et le lancer professionnellement.</p>
+                    <p class="text-gray-600 text-sm">Instructions détaillées pour personnaliser chaque élément de votre template et le lancer professionnellement.</p>
                   </div>
                 </div>
                 <div class="flex items-start">
@@ -465,7 +465,7 @@ onMounted(async () => {
     template.value = data
 
     if (data) {
-      // Essayer de récupérer des modèles de la même spécialité
+      // Essayer de récupérer des templates de la même spécialité
       const { data: related } = await supabase
         .from('templates')
         .select('*')
@@ -476,7 +476,7 @@ onMounted(async () => {
       if (related && related.length > 0) {
         relatedTemplates.value = related
       } else {
-        // Si pas de modèles de la même spécialité, récupérer les 3 premiers modèles (sauf celui actuel)
+        // Si pas de templates de la même spécialité, récupérer les 3 premiers templates (sauf celui actuel)
         const { data: fallback } = await supabase
           .from('templates')
           .select('*')

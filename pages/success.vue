@@ -18,7 +18,7 @@
             </h1>
             
             <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              Merci pour votre achat ! Un email de confirmation vient de vous être envoyé avec tous les détails pour accéder à vos modèles.
+              Merci pour votre achat ! Un email de confirmation vient de vous être envoyé avec tous les détails pour accéder à vos templates.
             </p>
           </div>
 
@@ -103,7 +103,7 @@
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
               </svg>
-              Retour aux modèles
+              Retour aux templates
             </NuxtLink>
             
             <div class="text-gray-500 text-sm">

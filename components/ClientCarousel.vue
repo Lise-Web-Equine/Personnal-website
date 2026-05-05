@@ -12,7 +12,7 @@ const clients: ClientSite[] = [
     image: '/images/siteweb-annephytoequine.PNG'
   },
   {
-    name: 'Modèle Ostéopathe Équin',
+    name: 'Template Ostéopathe Équin',
     url: 'modele-ostheopathe-equin.fr',
     image: '/images/siteweb-modele.png'
   },

@@ -43,7 +43,7 @@
                   <NuxtLink to="/boutique" class="btn-secondary group relative w-full sm:w-auto">
                     <span class="flex items-center justify-center">
                       <ShopIcon :size="20" class="mr-3" />
-                      Explorer les modèles
+                      Explorer les templatess
                     </span>
                   </NuxtLink>
                 </div>
@@ -168,12 +168,12 @@
             <ServiceCard
               variant="secondary"
               title="La Boutique"
-              description="Des modèles de sites web abordables et optimisés pour ceux qui se lancent."
+              description="Des templates de sites web abordables et optimisés pour ceux qui se lancent."
               :icon="ShopIcon"
               badge-text="Clé en main"
               badge-variant="secondary"
               :features="boutiqueFeatures"
-              cta-text="Explorer les modèles"
+              cta-text="Explorer les templates"
               cta-link="/boutique"
               motion-direction="right"
             />
@@ -191,7 +191,7 @@
         <div class="container mx-auto px-6">
           <div class="flex justify-between items-end mb-12" v-motion-slide-visible-once-bottom>
             <div>
-              <h2 class="mb-4 text-2xl sm:text-3xl md:text-4xl">Modèles en vedette</h2>
+              <h2 class="mb-4 text-2xl sm:text-3xl md:text-4xl">Templates en vedette</h2>
               <p class="section-subtitle text-left max-w-none text-sm sm:text-base md:text-lg">
                 Prêts à l'emploi pour les professionnels équins qui veulent créer eux-mêmes leur site web.
               </p>
@@ -216,7 +216,7 @@
 
           <div class="text-center mt-12 md:hidden">
             <NuxtLink to="/boutique" class="btn-primary inline-flex items-center">
-              Voir tous les modèles
+              Voir tous les templates
               <ArrowRight :size="20" class="ml-2" />
             </NuxtLink>
           </div>
@@ -269,7 +269,7 @@ const boutiqueFeatures = [
   },
   {
     title: 'Guides de personnalisation inclus',
-    description: 'Tutoriels détaillés pour adapter le modèle'
+    description: 'Tutoriels détaillés pour adapter le template'
   },
   {
     title: 'Pensé pour convertir',

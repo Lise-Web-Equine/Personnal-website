@@ -3,7 +3,7 @@
     <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4" v-motion-slide-visible-once-bottom>
       <h3 class="text-2xl font-bold mb-4">Finaliser votre commande</h3>
       <p class="text-gray-600 mb-6">
-        Entrez votre email pour recevoir vos modèles et les guides inclus
+        Entrez votre email pour recevoir vos templates et les guides inclus
       </p>
       
       <form @submit.prevent="handlePayment">

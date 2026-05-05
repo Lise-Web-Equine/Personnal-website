@@ -49,7 +49,7 @@
                     >
                       <option value="">Choisir un service</option>
                       <option value="studio">Le Studio (sur mesure)</option>
-                      <option value="template">La Boutique (modèles)</option>
+                      <option value="template">La Boutique (templates)</option>
                       <option value="pack">Pack Sérénité</option>
                       <option value="other">Autre demande</option>
                     </select>
@@ -134,7 +134,7 @@ const route = useRoute()
 useHead({
   title: 'Contact - Lise Web Equine',
   meta: [
-    { name: 'description', content: 'Contactez Lise Web Equine pour discuter de votre projet de site web. Studio sur mesure ou modèles prêts à l\'emploi pour les professionnels équins.' },
+    { name: 'description', content: 'Contactez Lise Web Equine pour discuter de votre projet de site web. Studio sur mesure ou templates personnalisables pour les professionnels équins.' },
     { property: 'og:title', content: 'Contact - Lise Web Equine' },
     { property: 'og:description', content: 'Contactez Lise Web Equine pour discuter de votre projet de site web.' },
     { property: 'og:type', content: 'website' }

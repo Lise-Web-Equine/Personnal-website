@@ -251,7 +251,7 @@
                     class="w-full px-4 py-3 border border-secondary-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none bg-white bg-secondary-100 cursor-not-allowed"
                   >
                     <option value="studio">Création sur mesure (Studio)</option>
-                    <option value="template">Modèle personnalisé</option>
+                    <option value="template">Template personnalisable</option>
                     <option value="consultation">Consultation</option>
                   </select>
                 </div>
