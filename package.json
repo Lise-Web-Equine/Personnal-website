@@ -19,9 +19,13 @@
     "nuxt": "^3.13.0",
     "pinia": "^3.0.4",
     "resend": "^6.9.4",
-    "stripe": "^20.4.1"
+    "stripe": "^20.4.1",
+    "@vercel/speed-insights": "latest"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.14.0"
+  },
+  "overrides": {
+    "vite": "$vite"
   }
 }
