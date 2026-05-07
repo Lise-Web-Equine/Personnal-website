@@ -170,7 +170,10 @@ const handleSubmit = async () => {
   submitMessage.value = ''
 
   try {
-    await new Promise(resolve => setTimeout(resolve, 1500))
+    await $fetch('/api/contact', {
+      method: 'POST',
+      body: form.value
+    })
 
     submitSuccess.value = true
     submitMessage.value = 'Merci pour votre message ! Je vous répondrai dans les plus brefs délais.'
