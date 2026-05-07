@@ -18,8 +18,9 @@ export default defineEventHandler(async (event) => {
     console.log('📤 Envoi email contact en cours...')
     
     // Envoyer l'email à l'administrateur
+    const toEmail = process.env.RESEND_TO_EMAIL || process.env.RESEND_FROM_EMAIL
     await ResendService.sendTransactionalEmail(
-      process.env.RESEND_FROM_EMAIL!,
+      toEmail!,
       `Nouveau message de ${body.name} - Lise Web Equine`,
       `
         <h1>Nouveau message depuis le formulaire de contact</h1>
@@ -36,7 +37,7 @@ export default defineEventHandler(async (event) => {
       `
     )
     
-    console.log('✅ Email contact envoyé à:', process.env.RESEND_FROM_EMAIL)
+    console.log('✅ Email contact envoyé à:', toEmail)
     
     return {
       success: true,
