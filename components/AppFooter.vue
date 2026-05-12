@@ -17,7 +17,7 @@
           <h3 class="font-semibold mb-4 text-lg text-white">Navigation</h3>
           <ul class="space-y-2 text-sm">
             <li><NuxtLink to="/studio" class="text-secondary-300 hover:text-white transition-colors">Le studio</NuxtLink></li>
-            <li><NuxtLink to="/boutique" class="text-secondary-300 hover:text-white transition-colors">La boutique</NuxtLink></li>
+            <li><NuxtLink to="/templates" class="text-secondary-300 hover:text-white transition-colors">Templates</NuxtLink></li>
             <li><NuxtLink to="/contact" class="text-secondary-300 hover:text-white transition-colors">Contact</NuxtLink></li>
           </ul>
         </div>

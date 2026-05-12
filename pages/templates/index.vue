@@ -6,7 +6,7 @@
 
         title="La boutique de templates"
 
-        description="Des templates de sites web premium et personnalisable pour chaque besoin professionnel"
+        description="Des templates de sites web premium et personnalisable pour chaque besoin professionnel équin."
 
         badge="Nouveaux templates disponibles"
 
@@ -501,7 +501,7 @@
 
             </p>
 
-            <Button to="/boutique" variant="primary" text="Voir tous les templates" class="inline-flex" />
+            <Button to="/templates" variant="primary" text="Voir tous les templates" class="inline-flex" />
 
           </div>
 
@@ -522,13 +522,13 @@ import { Package, BookOpen, Lightbulb, Sparkles, MessageSquare } from 'lucide-vu
 import type { Template } from '~/models'
 
 useHead({
-  title: 'La Boutique - Templates de sites web pour professionnels équins',
+  title: 'Templates - Sites web pour professionnels équins',
   meta: [
     { name: 'description', content: 'Découvrez nos templates de sites web personnalisables pour ostéopathes, maréchaux-ferrants et autres professionnels équins. Abordables et optimisés.' },
-    { property: 'og:title', content: 'La Boutique - templates de sites web' },
+    { property: 'og:title', content: 'Templates - sites web pour professionnels équins' },
     { property: 'og:description', content: 'templates de sites web personnalisables pour professionnels équins.' },
     { property: 'og:type', content: 'website' },
-    { name: 'twitter:title', content: 'La Boutique - templates de sites web' },
+    { name: 'twitter:title', content: 'Templates - sites web pour professionnels équins' },
     { name: 'twitter:description', content: 'templates de sites web personnalisables pour professionnels équins.' }
   ]
 })

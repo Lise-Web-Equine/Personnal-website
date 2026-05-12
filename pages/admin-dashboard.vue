@@ -49,6 +49,25 @@
 
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Slug (URL) *
+                  </label>
+                  <input
+                    v-model="newTemplate.slug"
+                    type="text"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="Ex: horizon"
+                    pattern="[a-z0-9-]+"
+                    title="Uniquement des lettres minuscules, chiffres et tirets"
+                  />
+                  <p class="text-xs text-gray-500 mt-1">
+                    Utilisé dans l'URL : /templates/{{ newTemplate.slug || 'votre-slug' }}
+                  </p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
                     Spécialité *
                   </label>
                   <input
@@ -266,7 +285,7 @@
                     Nom du modèle *
                   </label>
                   <input
-                    v-model="editingTemplate.name"
+                    v-model="editingTemplate!.name"
                     type="text"
                     class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                     placeholder="Ex: Horizon"
@@ -275,10 +294,29 @@
 
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Slug (URL) *
+                  </label>
+                  <input
+                    v-model="editingTemplate!.slug"
+                    type="text"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="Ex: horizon"
+                    pattern="[a-z0-9-]+"
+                    title="Uniquement des lettres minuscules, chiffres et tirets"
+                  />
+                  <p class="text-xs text-gray-500 mt-1">
+                    Utilisé dans l'URL : /templates/{{ editingTemplate?.slug || 'votre-slug' }}
+                  </p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
                     Spécialité *
                   </label>
                   <input
-                    v-model="editingTemplate.speciality"
+                    v-model="editingTemplate!.speciality"
                     type="text"
                     class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                     placeholder="Ex: Équin"
@@ -292,7 +330,7 @@
                   Description *
                 </label>
                 <textarea
-                  v-model="editingTemplate.description"
+                  v-model="editingTemplate!.description"
                   rows="3"
                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                   placeholder="Description détaillée du modèle..."
@@ -676,6 +714,7 @@ const imageFile = ref<File | null>(null)
 const imagePreview = ref<string>('')
 const newTemplate = ref<TemplateCreate>({
   name: '',
+  slug: '',
   description: '',
   speciality: '',
   price: 0,
@@ -687,6 +726,31 @@ const newTemplate = ref<TemplateCreate>({
   badge: null,
   promo: null,
   rating: 0
+})
+
+// Utility function to generate slug from name
+const generateSlug = (name: string): string => {
+  return name
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '') // Remove accents
+    .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+    .replace(/^-|-$/g, '') // Remove leading and trailing hyphens
+}
+
+// Auto-generate slug when name changes
+watch(() => newTemplate.value.name, (newName) => {
+  if (newName && !newTemplate.value.slug) {
+    newTemplate.value.slug = generateSlug(newName)
+  }
+})
+
+watch(() => editingTemplate.value?.name, (newName) => {
+  if (newName && editingTemplate.value && !editingTemplate.value.slug) {
+    editingTemplate.value.slug = generateSlug(newName)
+  }
 })
 
 // Computed properties for text areas
@@ -758,6 +822,7 @@ const uploadImage = async (): Promise<string> => {
 const resetForm = () => {
   newTemplate.value = {
     name: '',
+    slug: '',
     description: '',
     speciality: '',
     price: 0,
@@ -783,7 +848,10 @@ const resetEditForm = () => {
 }
 
 const startEditTemplate = (template: Template) => {
-  editingTemplate.value = { ...template }
+  editingTemplate.value = { 
+    ...template,
+    slug: template.slug || generateSlug(template.name)
+  }
   imagePreview.value = template.image
   showEditForm.value = true
   showForm.value = false
@@ -802,8 +870,19 @@ const updateTemplate = async () => {
     // Upload image if file is provided
     const imageUrl = imageFile.value ? await uploadImage() : editingTemplate.value.image
     
+    // Validate slug format if provided
+    if (editingTemplate.value.slug) {
+      const slugRegex = /^[a-z0-9-]+$/
+      if (!slugRegex.test(editingTemplate.value.slug)) {
+        showMessage('Le slug doit contenir uniquement des lettres minuscules, chiffres et tirets', false)
+        loading.value = false
+        return
+      }
+    }
+
     const templateToUpdate: TemplateUpdate = {
       name: editingTemplate.value.name,
+      slug: editingTemplate.value.slug,
       description: editingTemplate.value.description,
       speciality: editingTemplate.value.speciality,
       price: editingTemplate.value.price,
@@ -837,8 +916,15 @@ const updateTemplate = async () => {
 }
 
 const addNewTemplate = async () => {
-  if (!newTemplate.value.name || !newTemplate.value.description || !newTemplate.value.speciality) {
+  if (!newTemplate.value.name || !newTemplate.value.slug || !newTemplate.value.description || !newTemplate.value.speciality) {
     showMessage('Veuillez remplir les champs obligatoires', false)
+    return
+  }
+
+  // Validate slug format
+  const slugRegex = /^[a-z0-9-]+$/
+  if (!slugRegex.test(newTemplate.value.slug)) {
+    showMessage('Le slug doit contenir uniquement des lettres minuscules, chiffres et tirets', false)
     return
   }
 
@@ -857,6 +943,7 @@ const addNewTemplate = async () => {
     
     const templateToInsert = {
       name: newTemplate.value.name,
+      slug: newTemplate.value.slug,
       description: newTemplate.value.description,
       speciality: newTemplate.value.speciality,
       price: newTemplate.value.price,
@@ -919,6 +1006,7 @@ const addTemplates = async () => {
     const templatesToAdd: TemplateCreate[] = [
       {
         name: 'Horizon',
+        slug: 'horizon',
         description: 'Un modèle élégant et professionnel avec des couleurs apaisantes et une navigation intuitive. Idéal pour les praticiens qui souhaitent mettre en valeur leur expertise.',
         speciality: 'Équin',
         price: 40,
@@ -933,6 +1021,7 @@ const addTemplates = async () => {
       },
       {
         name: 'Ancrage',
+        slug: 'ancrage',
         description: 'Un modèle doux et naturel avec des tons terreux et une ambiance holistique. Parfait pour les approches bienveillantes et connectées.',
         speciality: 'Équin',
         price: 40,

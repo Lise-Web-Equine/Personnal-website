@@ -1,6 +1,7 @@
 export interface Template {
   id: string
   name: string
+  slug: string
   description: string
   speciality: string
   price: number
@@ -18,6 +19,7 @@ export interface Template {
 
 export interface TemplateCreate {
   name: string
+  slug: string
   description: string
   speciality: string
   price: number
@@ -33,6 +35,7 @@ export interface TemplateCreate {
 
 export interface TemplateUpdate {
   name?: string
+  slug?: string
   description?: string
   speciality?: string
   price?: number

@@ -49,7 +49,7 @@
                     >
                       <option value="">Choisir un service</option>
                       <option value="studio">Le Studio (sur mesure)</option>
-                      <option value="template">La Boutique (templates)</option>
+                      <option value="template">Templates</option>
                       <option value="pack">Pack Sérénité</option>
                       <option value="other">Autre demande</option>
                     </select>

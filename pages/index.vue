@@ -40,10 +40,10 @@
                     </span>
                   </NuxtLink>
                   
-                  <NuxtLink to="/boutique" class="btn-secondary group relative w-full sm:w-auto">
+                  <NuxtLink to="/templates" class="btn-secondary group relative w-full sm:w-auto">
                     <span class="flex items-center justify-center">
                       <ShopIcon :size="20" class="mr-3" />
-                      Explorer les templatess
+                      Explorer les templates
                     </span>
                   </NuxtLink>
                 </div>
@@ -164,17 +164,17 @@
               motion-direction="left"
             />
 
-            <!-- La Boutique -->
+            <!-- Templates -->
             <ServiceCard
               variant="secondary"
-              title="La Boutique"
+              title="Les templates"
               description="Des templates de sites web abordables et optimisés pour ceux qui se lancent."
               :icon="ShopIcon"
               badge-text="Clé en main"
               badge-variant="secondary"
-              :features="boutiqueFeatures"
+              :features="templatesFeatures"
               cta-text="Explorer les templates"
-              cta-link="/boutique"
+              cta-link="/templates"
               motion-direction="right"
             />
           </div>
@@ -196,7 +196,7 @@
                 Prêts à l'emploi pour les professionnels équins qui veulent créer eux-mêmes leur site web.
               </p>
             </div>
-            <NuxtLink to="/boutique" class="hidden md:inline-flex items-center text-black font-semibold hover:gap-2 transition-all">
+            <NuxtLink to="/templates" class="hidden md:inline-flex items-center text-black font-semibold hover:gap-2 transition-all">
               Voir tous
               <ArrowRight :size="20" class="ml-1" />
             </NuxtLink>
@@ -215,7 +215,7 @@
           </div>
 
           <div class="text-center mt-12 md:hidden">
-            <NuxtLink to="/boutique" class="btn-primary inline-flex items-center">
+            <NuxtLink to="/templates" class="btn-primary inline-flex items-center">
               Voir tous les templates
               <ArrowRight :size="20" class="ml-2" />
             </NuxtLink>
@@ -262,7 +262,7 @@ const supabase = useSupabaseClient<Database>()
 const loading = ref(true)
 const featuredTemplates = ref<Template[]>([])
 
-const boutiqueFeatures = [
+const templatesFeatures = [
   {
     title: 'Prêt à l\'emploi',
     description: 'Installez et lancez votre activité en quelques heures'
@@ -337,14 +337,14 @@ onMounted(async () => {
 })
 
 useHead({
-  title: 'Lise Web Equine - Sites web abordables ou uniques pour professionnels équins',
+  title: 'Création de sites internet pour professionnels équestres | Lise Web Equine',
   meta: [
-    { name: 'description', content: 'Sites web abordables et sur mesure pour les professionnels du monde équin : ostéopathes, maréchaux-ferrants, centres équestres. Montrez votre professionnalisme.' },
-    { property: 'og:title', content: 'Lise Web Equine - Sites web abordables ou uniques' },
-    { property: 'og:description', content: 'Sites web abordables et sur mesure pour les professionnels du monde équin.' },
+    { name: 'description', content: 'Agence web spécialisée pour le monde équin. Choisissez entre un template abordable pour démarrer rapidement ou un site sur mesure unique. Pour ostéopathes, écuries, coachs, etc.' },
+    { property: 'og:title', content: 'Création de sites internet pour professionnels équestres | Lise Web Equine' },
+    { property: 'og:description', content: 'Agence web spécialisée pour le monde équin. Choisissez entre un template abordable pour démarrer rapidement ou un site sur mesure unique. Pour ostéopathes, écuries, coachs, etc.' },
     { property: 'og:type', content: 'website' },
-    { name: 'twitter:title', content: 'Lise Web Equine - Sites web abordables ou uniques' },
-    { name: 'twitter:description', content: 'Sites web abordables et sur mesure pour les professionnels du monde équin.' }
+    { name: 'twitter:title', content: 'Création de sites internet pour professionnels équestres | Lise Web Equine' },
+    { name: 'twitter:description', content: 'Agence web spécialisée pour le monde équin. Choisissez entre un template abordable pour démarrer rapidement ou un site sur mesure unique. Pour ostéopathes, écuries, coachs, etc.' }
   ]
 })
 </script>

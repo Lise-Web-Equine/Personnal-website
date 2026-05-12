@@ -9,7 +9,7 @@
 
       <div v-else-if="!template" class="container mx-auto px-6 py-20 text-center">
         <h1 class="text-3xl font-bold mb-4">Template Not Found</h1>
-        <NuxtLink to="/boutique" class="btn-primary">
+        <NuxtLink to="/templates" class="btn-primary">
           Back to Templates
         </NuxtLink>
       </div>
@@ -18,7 +18,7 @@
         <section class="py-6 sm:py-8 md:py-12">
           <div class="container mx-auto px-4 sm:px-6">
             <div class="mb-6">
-              <NuxtLink to="/boutique" class="inline-flex items-center text-gray-600 hover:text-black">
+              <NuxtLink to="/templates" class="inline-flex items-center text-gray-600 hover:text-black">
                 <ArrowLeft :size="20" class="mr-2" />
                 Voir tous les templates
               </NuxtLink>
@@ -458,7 +458,7 @@ onMounted(async () => {
     const { data, error } = await supabase
       .from('templates')
       .select('*')
-      .eq('id', route.params.id)
+      .eq('slug', route.params.slug)
       .maybeSingle()
 
     if (error) throw error

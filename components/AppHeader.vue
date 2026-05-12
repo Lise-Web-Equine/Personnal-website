@@ -99,7 +99,7 @@ const headerRef = ref<HTMLElement | null>(null)
 
 const navLinks = [
   { name: 'Le Studio', path: '/studio' },
-  { name: 'La Boutique', path: '/boutique' },
+  { name: 'Les templates', path: '/templates' },
   { name: 'Contact', path: '/contact' },
 ]
 
