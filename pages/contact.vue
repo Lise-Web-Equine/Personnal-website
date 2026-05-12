@@ -156,7 +156,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: 'Email',
-    value: 'contact@lisewebequine.com'
+    value: 'contact@lisewebequine.fr'
   },
   {
     icon: MapPin,

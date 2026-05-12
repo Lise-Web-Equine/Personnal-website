@@ -27,7 +27,7 @@
           <ul class="space-y-3 text-sm">
             <li class="flex items-center justify-center sm:justify-start gap-2">
               <Mail :size="16" class="text-primary-400 flex-shrink-0" />
-              <a href="mailto:contact@lisewebequine.com" class="text-secondary-300 hover:text-white transition-colors">contact@lisewebequine.com</a>
+              <a href="mailto:contact@lisewebequine.fr" class="text-secondary-300 hover:text-white transition-colors">contact@lisewebequine.fr</a>
             </li>
             <li class="flex items-center justify-center sm:justify-start gap-2">
               <MapPin :size="16" class="text-primary-400 flex-shrink-0" />

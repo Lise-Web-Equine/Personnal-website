@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lisewebequine.com/sitemap.xml
+Sitemap: https://lisewebequine.fr/sitemap.xml
