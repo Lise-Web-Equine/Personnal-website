@@ -3,15 +3,9 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: false },
 
-  modules: [
-    '@nuxtjs/tailwindcss',
-    '@pinia/nuxt',
-    '@vueuse/motion/nuxt',
-    '@vercel/speed-insights/nuxt',
-    ['@nuxtjs/supabase', {
-      redirect: false
-    }]
-  ],
+  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@vueuse/motion/nuxt', '@vercel/speed-insights/nuxt','@vercel/analytics', ['@nuxtjs/supabase', {
+    redirect: false
+  }], '@nuxtjs/sitemap'],
 
   css: ['~/assets/css/main.css'],
 
@@ -56,5 +50,25 @@ export default defineNuxtConfig({
       '/images/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
       '/fonts/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } }
     }
+  },
+
+  site: {
+    url: 'https://lisewebequine.fr'
+  },
+
+  sitemap: {
+    urls: [
+      { loc: '/', changefreq: 'weekly', priority: 1.0 },
+      { loc: '/studio', changefreq: 'monthly', priority: 0.9 },
+      { loc: '/templates', changefreq: 'weekly', priority: 0.9 },
+      { loc: '/contact', changefreq: 'monthly', priority: 0.8 },
+      { loc: '/templates/osteopathe-equin', changefreq: 'monthly', priority: 0.8 },
+      { loc: '/templates/shiatsu-equin', changefreq: 'monthly', priority: 0.8 },
+      { loc: '/templates/cart', changefreq: 'never', priority: 0.3 },
+      { loc: '/mentions-legales', changefreq: 'yearly', priority: 0.3 },
+      { loc: '/cgu', changefreq: 'yearly', priority: 0.3 },
+      { loc: '/cgv', changefreq: 'yearly', priority: 0.3 },
+      { loc: '/politique-confidentialite', changefreq: 'yearly', priority: 0.3 }
+    ]
   }
 })
