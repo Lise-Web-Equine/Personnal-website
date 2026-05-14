@@ -5,7 +5,7 @@ export default defineNuxtConfig({
 
   modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@vueuse/motion/nuxt', '@vercel/speed-insights/nuxt','@vercel/analytics', ['@nuxtjs/supabase', {
     redirect: false
-  }], '@nuxtjs/sitemap'],
+  }]],
 
   css: ['~/assets/css/main.css'],
 
