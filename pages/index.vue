@@ -19,9 +19,9 @@
 
         <div class="relative container mx-auto px-6">
           <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col gap-8 sm:gap-12 lg:gap-16">
+            <div class="flex flex-col items-center justify-center gap-8 sm:gap-12 lg:gap-16 min-h-[60vh] sm:min-h-[70vh]">
               <!-- Text Content -->
-              <div class="text-center">
+              <div class="text-center w-full">
 
               <!--  <h3 class="mb-6 sm:mb-6 leading-tight text-lg sm:text-xl md:text-2xl lg:text-3xl font-sans text-secondary-500 font-light">
                   <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent"> Abordable ou unique</span>
@@ -32,12 +32,12 @@
                       Le Site Web Equestre
                     </span>
                     <span class="text-secondary-900 font-bold block text-base sm:text-3xl md:text-4xl lg:text-5xl">
-                      que vous serez enfin <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent px-2 text-lg sm:text-4xl md:text-5xl lg:text-6xl">fière</span> de montrer
+                      que vous serez enfin <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent px-2 text-lg sm:text-4xl md:text-5xl lg:text-6xl">{{ currentWord }}</span> de montrer
                     </span>
                 </h1>
                 <!--<span class="font-bold border-b-2 border-transparent" style="border-image: linear-gradient(to right, #9333ea, #8b5cf6, #6366f1) 1;">-->
                 
-                <p class="text-sm sm:text-base md:text-lg text-secondary-700 mb-10 sm:mb-12 leading-relaxed max-w-3xl mx-auto">
+                <p class="hidden sm:block text-sm sm:text-base md:text-lg text-secondary-700 mb-10 sm:mb-12 leading-relaxed max-w-3xl mx-auto">
                   <span>Valorisez votre <span class="font-bold">activité équestre</span> avec une image professionnelle et authentique.</span>
                 </p>
                 
@@ -68,8 +68,11 @@
         </div>
       </section>
 
+      <!-- Séparation -->
+      <div class="border-b border-secondary-200"></div>
+
       <!-- Services Section -->
-      <section class="py-20">
+      <section class="py-4 sm:py-20 bg-gray-50">
         <div class="container mx-auto px-6">
           <div class="text-center mb-16" v-motion-slide-visible-once-bottom>
             <h2 class="mb-4 text-2xl sm:text-3xl md:text-4xl">Mes Services</h2>
@@ -257,6 +260,27 @@ import type { Database } from '~/types/database.types'
 const supabase = useSupabaseClient<Database>()
 const loading = ref(true)
 const featuredTemplates = ref<Template[]>([])
+
+// Animation des mots
+const words = ['fière', 'heureuse', 'confiante']
+const currentWordIndex = ref(0)
+const currentWord = ref(words[0])
+
+// Animation de rotation des mots optimisée
+onMounted(() => {
+  // Pause l'animation quand la page n'est pas visible pour économiser les ressources
+  const interval = setInterval(() => {
+    if (!document.hidden) {
+      currentWordIndex.value = (currentWordIndex.value + 1) % words.length
+      currentWord.value = words[currentWordIndex.value]
+    }
+  }, 3000) // Change de mot toutes les 3 secondes (plus lent)
+
+  // Nettoyage lors du démontage du composant
+  onUnmounted(() => {
+    clearInterval(interval)
+  })
+})
 
 const templatesFeatures = [
   {
