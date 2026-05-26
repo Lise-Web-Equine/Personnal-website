@@ -4,9 +4,9 @@
 
       <PageHeader 
 
-        title="La boutique de templates"
+        title="Les templates"
 
-        description="Des templates de sites web premium et personnalisable pour chaque besoin professionnel équin."
+        description="Sites web personnalisables pour valoriser votre activité équestre."
 
         badge="Nouveaux templates disponibles"
 

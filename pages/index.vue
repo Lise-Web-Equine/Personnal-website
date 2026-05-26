@@ -21,16 +21,27 @@
           <div class="max-w-7xl mx-auto">
             <div class="flex flex-col gap-8 sm:gap-12 lg:gap-16">
               <!-- Text Content -->
-              <div v-motion-slide-visible-once-left class="text-center">
+              <div class="text-center">
 
-                <h1 class="mb-8 sm:mb-8 leading-none text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-sans">
-                  <span class="text-secondary-900 font-bold">
-                    <span class="block sm:inline">Abordable</span>
-                    <span class="block sm:inline"> ou <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent">unique</span></span>
-                  </span>
-                </h1>
+              <!--  <h3 class="mb-6 sm:mb-6 leading-tight text-lg sm:text-xl md:text-2xl lg:text-3xl font-sans text-secondary-500 font-light">
+                  <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent"> Abordable ou unique</span>
+                </h3>-->
                 
-                <p class="text-sm sm:text-base md:text-lg text-secondary-700 mb-10 sm:mb-12 leading-relaxed max-w-3xl mx-auto">Montre enfin ton professionnalisme avec un site web qui raconte <span class="font-bold border-b-2 border-transparent" style="border-image: linear-gradient(to right, #9333ea, #8b5cf6, #6366f1) 1;">ton histoire équestre</span>.</p>
+                <h1 class="mb-8 sm:mb-8 leading-tight text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-sans">
+                  <div class="inline-block text-center">
+                    <span class="text-secondary-900 font-bold block">
+                      Le site internet
+                    </span>
+                    <span class="text-secondary-900 font-bold block text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                      que vous serez enfin <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent px-2 text-2xl sm:text-2xl md:text-3xl lg:text-4xl">fière</span> de partager
+                    </span>
+                  </div>
+                </h1>
+                <!--<span class="font-bold border-b-2 border-transparent" style="border-image: linear-gradient(to right, #9333ea, #8b5cf6, #6366f1) 1;">-->
+                
+                <p class="text-sm sm:text-base md:text-lg text-secondary-700 mb-10 sm:mb-12 leading-relaxed max-w-3xl mx-auto">
+                  <span>Valorisez votre <span class="font-bold">activité équestre</span> avec une image pro, humaine et sincère.</span>
+                </p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
                   <NuxtLink to="/studio" class="btn-primary group relative w-full sm:w-auto">
@@ -54,85 +65,6 @@
               <div class="relative -mx-6 sm:-mx-12 md:-mx-20 lg:-mx-32">
                 <ClientCarousel />
               </div>-->
-
-              <!-- Hero Animation -->
-              <div v-motion-slide-visible-once-bottom class="relative">
-                <!-- Desktop Version -->
-                <div class="hidden lg:block">
-                  <HeroAnimation />
-                </div>
-                <!-- Mobile Version -->
-                <div class="lg:hidden">
-                  <HeroAnimationMobile />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- A propos Section -->
-      <section class="py-20">
-        <div class="container mx-auto px-6">
-          <div class="max-w-6xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <!-- Text Content -->
-              <div v-motion-slide-visible-once-left>
-                <div class="mb-6">
-
-                </div>
-                
-                <h2 class="mb-6 leading-tight text-2xl sm:text-3xl md:text-4xl">
-                 Où la passion équine rencontre l'innovation digitale
-                </h2>
-                
-                <div class="space-y-6 mb-8">
-                  <p class="text-sm sm:text-base md:text-lg text-secondary-700 leading-relaxed">
-                    On se comprend mieux quand on partage la même passion. Cavalière dans l'âme, je sais que votre métier est une <span class="font-semibold">vocation de chaque instant</span>, souvent rythmée par les imprévus du vivant. C'est parce que je connais votre quotidien que j'ai choisi d'allier mon expertise web de 5 ans à des solutions d'intelligence artificielle.
-                  </p>
-                  
-                  <p class="text-sm sm:text-base md:text-lg text-secondary-700 leading-relaxed">
-                    Je crée pour vous des sites web qui vous ressemblent, pensés pour <span class="font-semibold text-secondary-800">simplifier votre gestion et vous redonner de l'air</span>.
-                  </p>
- 
-                  <!-- Testimonial -->
-                  <div class="border-l-2 border-secondary-300 pl-6">
-                    <p class="text-sm sm:text-base text-secondary-700 leading-relaxed">
-                      "Mon approche est celle d'une alliée bienveillante : je m'occupe du digital pour que votre énergie reste entière pour vos chevaux et votre savoir-faire."
-                    </p>
-                  </div>
-                </div>
-
-
-                <div class="flex flex-col sm:flex-row gap-4">
-                  <NuxtLink to="/contact" class="btn-primary inline-flex items-center">
-                    <span>Discutons ensemble</span>
-                    <MessageSquare :size="20" class="ml-2" />
-                  </NuxtLink>
-                </div>
-              </div>
-
-              <!-- Visual Content -->
-              <div v-motion-slide-visible-once-right class="relative">
-                <div class="relative">
-                  <div 
-                    class="aspect-square rounded-2xl p-12 flex flex-col items-center justify-end overflow-hidden relative group bg-secondary-200"
-                    style="background-image: url('/images/lise-profile.jpg'); background-size: cover; background-position: center;"
-                  >
-                    
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-
-                    <div class="text-center relative z-10">
-                      <h3 class="text-xl sm:text-2xl font-semibold text-white mb-1">Claire-Elise</h3>
-                      <p class="text-secondary-200 mb-4 text-xs sm:text-sm">Fondatrice & Développeuse</p>
-                      
-                      <div class="inline-flex items-center px-3 py-1 bg-white/20 backdrop-blur-md border border-white/30 rounded-full text-xs text-white">
-                        +5 ans d'expérience web
-                      </div>
-                   </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -180,20 +112,14 @@
           </div>
         </div>
       </section>
-
-      <FeaturesSection
-        title="Une expertise IA pensée pour vos projets web"
-        subtitle="Je mets l'intelligence artificielle au service de votre passion pour créer des sites web performants et agréables à utiliser."
-        :features="aiFeatures"
-      />
-
+      
       <section class="py-20">
         <div class="container mx-auto px-6">
           <div class="flex justify-between items-end mb-12" v-motion-slide-visible-once-bottom>
             <div>
               <h2 class="mb-4 text-2xl sm:text-3xl md:text-4xl">Templates en vedette</h2>
               <p class="section-subtitle text-left max-w-none text-sm sm:text-base md:text-lg">
-                Prêts à l'emploi pour les professionnels équins qui veulent créer eux-mêmes leur site web.
+                Prêts à l'emploi pour les professionnels équestres qui veulent créer eux-mêmes leur site web.
               </p>
             </div>
             <NuxtLink to="/templates" class="hidden md:inline-flex items-center text-black font-semibold hover:gap-2 transition-all">
@@ -219,6 +145,78 @@
               Voir tous les templates
               <ArrowRight :size="20" class="ml-2" />
             </NuxtLink>
+          </div>
+        </div>
+      </section>
+
+      <FeaturesSection
+        title="Une expertise IA pensée pour vos projets web"
+        subtitle="Je mets l'intelligence artificielle au service de votre passion pour créer des sites web performants et agréables à utiliser."
+        :features="aiFeatures"
+      />
+
+      <!-- A propos Section -->
+      <section class="py-20">
+        <div class="container mx-auto px-6">
+          <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <!-- Text Content -->
+              <div v-motion-slide-visible-once-left>
+                <div class="mb-6">
+
+                </div>
+                
+                <h2 class="mb-6 leading-tight text-2xl sm:text-3xl md:text-4xl">
+                 Où la passion équestre rencontre l'innovation digitale
+                </h2>
+                
+                <div class="space-y-6 mb-8">
+                  <p class="text-sm sm:text-base md:text-lg text-secondary-700 leading-relaxed">
+                    On se comprend mieux quand on partage la même passion. Cavalière dans l'âme, je sais que votre métier est une <span class="font-semibold">vocation de chaque instant</span>, souvent rythmée par les imprévus du vivant. C'est parce que je connais votre quotidien que j'ai choisi d'allier mon expertise web de 5 ans à des solutions d'intelligence artificielle.
+                  </p>
+                  
+                  <p class="text-sm sm:text-base md:text-lg text-secondary-700 leading-relaxed">
+                    Je crée pour vous des sites web qui vous ressemblent, pensés pour <span class="font-semibold text-secondary-800">simplifier votre gestion et vous redonner de l'air</span>.
+                  </p>
+
+                  <!-- Testimonial -->
+                  <div class="border-l-2 border-secondary-300 pl-6">
+                    <p class="text-sm sm:text-base text-secondary-700 leading-relaxed">
+                      "Mon approche est celle d'une alliée bienveillante : je m'occupe du digital pour que votre énergie reste entière pour vos chevaux et votre savoir-faire."
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                  <NuxtLink to="/contact" class="btn-primary inline-flex items-center">
+                    <span>Discutons ensemble</span>
+                    <MessageSquare :size="20" class="ml-2" />
+                  </NuxtLink>
+                </div>
+              </div>
+
+              <!-- Visual Content -->
+              <div v-motion-slide-visible-once-right class="relative">
+                <div class="relative">
+                  <div 
+                    class="aspect-square rounded-2xl p-12 flex flex-col items-center justify-end overflow-hidden relative group bg-secondary-200"
+                    style="background-image: url('/images/lise-profile.jpg'); background-size: cover; background-position: center;"
+                  >
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+
+                    <div class="text-center relative z-10">
+                      <h3 class="text-xl sm:text-2xl font-semibold text-white mb-1">Claire-Elise</h3>
+                      <p class="text-secondary-200 mb-4 text-xs sm:text-sm">Fondatrice & Développeuse</p>
+                      
+                      <div class="inline-flex items-center px-3 py-1 bg-white/20 backdrop-blur-md border border-white/30 rounded-full text-xs text-white">
+                        +5 ans d'expérience web
+                      </div>
+                   </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -284,7 +282,7 @@ const studioFeatures = [
   },
   {
     title: 'Stratégie SEO spécifique',
-    description: 'Positionnement avancé dans le secteur équin'
+    description: 'Positionnement avancé dans le secteur équestre'
   },
   {
     title: 'Accompagnement personnalisé',
@@ -337,14 +335,14 @@ onMounted(async () => {
 })
 
 useHead({
-  title: 'Création de sites internet pour professionnels équestres | Lise Web Equine',
+  title: 'Sites web pour professionnels équestres | Lise Web Equine',
   meta: [
-    { name: 'description', content: 'Agence web spécialisée pour le monde équin. Choisissez entre un template abordable pour démarrer rapidement ou un site sur mesure unique. Pour ostéopathes, écuries, coachs, etc.' },
-    { property: 'og:title', content: 'Création de sites internet pour professionnels équestres | Lise Web Equine' },
-    { property: 'og:description', content: 'Agence web spécialisée pour le monde équin. Choisissez entre un template abordable pour démarrer rapidement ou un site sur mesure unique. Pour ostéopathes, écuries, coachs, etc.' },
+    { name: 'description', content: 'Notre agence web équestre vous accompagne pour créer votre site internet sur-mesure ou avec une template.' },
+    { property: 'og:title', content: 'Sites web pour professionnels équestres | Lise Web Equine' },
+    { property: 'og:description', content: 'Notre agence web équestre vous accompagne pour créer votre site internet sur-mesure ou avec une template.' },
     { property: 'og:type', content: 'website' },
-    { name: 'twitter:title', content: 'Création de sites internet pour professionnels équestres | Lise Web Equine' },
-    { name: 'twitter:description', content: 'Agence web spécialisée pour le monde équin. Choisissez entre un template abordable pour démarrer rapidement ou un site sur mesure unique. Pour ostéopathes, écuries, coachs, etc.' }
+    { name: 'twitter:title', content: 'Sites web pour professionnels équestres | Lise Web Equine' },
+    { name: 'twitter:description', content: 'Notre agence web équestre vous accompagne pour créer votre site internet sur-mesure ou avec une template.' }
   ]
 })
 </script>

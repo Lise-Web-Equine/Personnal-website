@@ -2,7 +2,7 @@
   <NuxtLayout>
       <PageHeader 
         title="Contactez-moi"
-        description="Discutons ensemble de votre projet et créons un site web qui vous ressemble"
+        description="Discutons ensemble de votre projet équestre"
       />
 
       <section class="py-12 sm:py-16 md:py-20">

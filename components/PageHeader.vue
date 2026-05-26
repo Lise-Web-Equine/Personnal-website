@@ -6,12 +6,10 @@
     
     <div class="relative container mx-auto px-6">
       <div class="max-w-3xl" v-motion-slide-visible-once-bottom>
-        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
-          <span class="text-white">{{ title }}</span>
+        <h1 class="mb-4 sm:mb-6">
+          <p class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">{{ title }}</p>
+          <p class="text-base sm:text-lg md:text-xl text-secondary-300 leading-relaxed tracking-wide">{{ description }}</p>
         </h1>
-        <p class="text-base sm:text-lg md:text-xl text-secondary-300 leading-relaxed mb-6">
-          {{ description }}
-        </p>
         <div v-if="badge" class="mt-6">
           <Badge variant="primary" :text="badge" />
         </div>
