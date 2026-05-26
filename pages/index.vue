@@ -27,18 +27,18 @@
                   <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent"> Abordable ou unique</span>
                 </h3>-->
                 
-                <h1 class="mb-8 sm:mb-8 leading-tight text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-sans">
+                <h1 class="mb-8 sm:mb-8 leading-tight text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-sans">
                     <span class="text-secondary-900 font-bold block">
-                      Le site internet
+                      Le Site Web Equestre
                     </span>
-                    <span class="text-secondary-900 font-bold block text-lg sm:text-xl md:text-2xl lg:text-4xl">
-                      que vous serez enfin <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent px-2 text-2xl sm:text-2xl md:text-3xl lg:text-5xl">fière</span> de partager
+                    <span class="text-secondary-900 font-bold block text-xl sm:text-3xl md:text-4xl lg:text-5xl">
+                      que vous serez enfin <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent px-2 text-2xl sm:text-4xl md:text-5xl lg:text-6xl">fière</span> de montrer
                     </span>
                 </h1>
                 <!--<span class="font-bold border-b-2 border-transparent" style="border-image: linear-gradient(to right, #9333ea, #8b5cf6, #6366f1) 1;">-->
                 
                 <p class="text-sm sm:text-base md:text-lg text-secondary-700 mb-10 sm:mb-12 leading-relaxed max-w-3xl mx-auto">
-                  <span>Valorisez votre <span class="font-bold">activité équestre</span> avec une image pro, humaine et sincère.</span>
+                  <span>Valorisez votre <span class="font-bold">activité équestre</span> avec une image professionnelle et authentique.</span>
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
