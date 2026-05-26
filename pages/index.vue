@@ -28,14 +28,12 @@
                 </h3>-->
                 
                 <h1 class="mb-8 sm:mb-8 leading-tight text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-sans">
-                  <div class="inline-block text-center">
                     <span class="text-secondary-900 font-bold block">
                       Le site internet
                     </span>
-                    <span class="text-secondary-900 font-bold block text-lg sm:text-xl md:text-2xl lg:text-3xl">
-                      que vous serez enfin <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent px-2 text-2xl sm:text-2xl md:text-3xl lg:text-4xl">fière</span> de partager
+                    <span class="text-secondary-900 font-bold block text-lg sm:text-xl md:text-2xl lg:text-4xl">
+                      que vous serez enfin <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent px-2 text-2xl sm:text-2xl md:text-3xl lg:text-5xl">fière</span> de partager
                     </span>
-                  </div>
                 </h1>
                 <!--<span class="font-bold border-b-2 border-transparent" style="border-image: linear-gradient(to right, #9333ea, #8b5cf6, #6366f1) 1;">-->
                 
