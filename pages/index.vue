@@ -27,12 +27,12 @@
                   <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent"> Abordable ou unique</span>
                 </h3>-->
                 
-                <h1 class="mb-8 sm:mb-8 leading-tight text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-sans">
+                <h1 class="mb-8 sm:mb-8 leading-tight text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-sans">
                     <span class="text-secondary-900 font-bold block">
                       Le Site Web Equestre
                     </span>
-                    <span class="text-secondary-900 font-bold block text-xl sm:text-3xl md:text-4xl lg:text-5xl">
-                      que vous serez enfin <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent px-2 text-2xl sm:text-4xl md:text-5xl lg:text-6xl">fière</span> de montrer
+                    <span class="text-secondary-900 font-bold block text-lg sm:text-3xl md:text-4xl lg:text-5xl">
+                      que vous serez enfin <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent px-2 text-xl sm:text-4xl md:text-5xl lg:text-6xl">fière</span> de montrer
                     </span>
                 </h1>
                 <!--<span class="font-bold border-b-2 border-transparent" style="border-image: linear-gradient(to right, #9333ea, #8b5cf6, #6366f1) 1;">-->
