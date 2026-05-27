@@ -21,39 +21,36 @@
           <div class="max-w-7xl mx-auto">
             <div class="flex flex-col items-center justify-center gap-8 sm:gap-12 lg:gap-16 min-h-[60vh] sm:min-h-[70vh]">
               <!-- Text Content -->
-              <div class="text-center w-full">
+              <div class="text-left sm:text-center w-full">
 
               <!--  <h3 class="mb-6 sm:mb-6 leading-tight text-lg sm:text-xl md:text-2xl lg:text-3xl font-sans text-secondary-500 font-light">
                   <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent"> Abordable ou unique</span>
                 </h3>-->
                 
-                <h1 class="mb-8 sm:mb-8 font-sans">
-                    <span class="text-secondary-900 font-bold block text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight">AGENCE WEB ÉQUESTRE</span>
-                    <span class="text-secondary-500 font-medium block text-lg sm:text-xl md:text-2xl lg:text-3xl mt-2 sm:mt-3">votre site internet sur-mesure ou template</span>
+                <h1 class="mb-8 sm:mb-8 font-sans text-left sm:text-center">
+                    <span class="text-secondary-900 font-bold block text-5xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight">AGENCE WEB ÉQUESTRE</span>
+                    <span class="text-secondary-800 font-semibold block text-lg sm:text-xl md:text-2xl lg:text-3xl mt-2 sm:mt-3">Votre site internet sur-mesure ou template</span>
                 </h1>
                 <!-- <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent px-2 text-lg sm:text-4xl md:text-5xl lg:text-6xl">{{ currentWord }}</span> de montrer
                <span class="font-bold border-b-2 border-transparent" style="border-image: linear-gradient(to right, #9333ea, #8b5cf6, #6366f1) 1;">-->
                 
-                <p class="hidden sm:block text-sm sm:text-base md:text-lg text-secondary-700 mb-10 sm:mb-12 leading-relaxed max-w-3xl mx-auto">
-                  <span>Valorisez votre <span class="font-bold">activité équestre</span> avec une image professionnelle et authentique.</span>
+                <p class="text-sm sm:text-base md:text-lg text-secondary-700 mb-6 sm:mb-8 leading-relaxed max-w-2xl sm:mx-auto">
+                  <span>Nous concevons des sites internet qui s'adaptent à vos besoins et à votre budget pour faire grandir votre activité, que vous soyez une structure mature ou en plein lancement.</span>
                 </p>
                 
-                <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
-                  <NuxtLink to="/studio" class="btn-primary group relative w-full sm:w-auto">
-                    <span class="flex items-center justify-center">
+                <div class="flex flex-col items-start sm:items-center gap-3 sm:gap-4">
+                  <NuxtLink to="/studio" class="btn-primary group relative w-auto">
+                    <span class="flex items-center justify-start sm:justify-center">
                       <LayersIcon :size="20" color="white" class="mr-3" />
                       Le studio sur-mesure
                     </span>
                   </NuxtLink>
                   
-                  <NuxtLink to="/templates" class="btn-secondary group relative w-full sm:w-auto">
-                    <span class="flex items-center justify-center">
-                      <ShopIcon :size="20" class="mr-3" />
-                      Explorer les templates
-                    </span>
+                  <NuxtLink to="/templates" class="text-sm sm:text-base text-secondary-500 hover:text-primary-600 font-medium transition-colors duration-200 inline-flex items-center group">
+                    <span>Ou découvrez nos templates équestres</span>
+                    <ArrowRight :size="16" class="ml-2 group-hover:translate-x-1 transition-transform" />
                   </NuxtLink>
                 </div>
-                <p class="mt-1 text-xs sm:text-sm text-secondary-500 block sm:hidden">Gagnez du temps avec des sites déjà conçus et optimisés</p>
               </div>
 
               <!-- Client Carousel - Full width band 
@@ -224,20 +221,20 @@
         
         <div class="relative container mx-auto px-6">
           <div class="max-w-7xl mx-auto">
-            <div class="text-center" v-motion-slide-visible-once-bottom>
+            <div class="text-left sm:text-center" v-motion-slide-visible-once-bottom>
               <h2 class="mb-4 sm:mb-6 text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Prêt à montrer votre professionnalisme ?</h2>
               <p class="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10">
                 Créons ensemble un site web unique qui reflète votre expertise.
               </p>
-              <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <NuxtLink to="/studio" class="btn-primary group relative w-full sm:w-auto">
-                    <span class="flex items-center justify-center">
+              <div class="flex flex-col sm:flex-row gap-4 justify-start sm:justify-center">
+                <NuxtLink to="/studio" class="btn-primary group relative w-auto">
+                    <span class="flex items-center justify-start sm:justify-center">
                       <LayersIcon :size="20" color="white" class="mr-3" />
                       Découvrir le studio
                     </span>
                   </NuxtLink>
-                <NuxtLink to="/contact" class="btn-secondary-dark">
-                  Me contacter
+                <NuxtLink to="/contact" class="btn-secondary-dark inline-flex items-center justify-start sm:justify-center">
+                  <span>Me contacter</span>
                 </NuxtLink>
               </div>
             </div>
