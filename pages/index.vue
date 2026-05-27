@@ -27,15 +27,12 @@
                   <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent"> Abordable ou unique</span>
                 </h3>-->
                 
-                <h1 class="mb-8 sm:mb-8 leading-tight text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-sans">
-                    <span class="text-secondary-900 font-bold block">
-                      Le Site Web Equestre
-                    </span>
-                    <span class="text-secondary-900 font-bold block text-base sm:text-3xl md:text-4xl lg:text-5xl">
-                      que vous serez enfin <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent px-2 text-lg sm:text-4xl md:text-5xl lg:text-6xl">{{ currentWord }}</span> de montrer
-                    </span>
+                <h1 class="mb-8 sm:mb-8 font-sans">
+                    <span class="text-secondary-900 font-bold block text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight">AGENCE WEB ÉQUESTRE</span>
+                    <span class="text-secondary-500 font-medium block text-lg sm:text-xl md:text-2xl lg:text-3xl mt-2 sm:mt-3">votre site internet sur-mesure ou template</span>
                 </h1>
-                <!--<span class="font-bold border-b-2 border-transparent" style="border-image: linear-gradient(to right, #9333ea, #8b5cf6, #6366f1) 1;">-->
+                <!-- <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent px-2 text-lg sm:text-4xl md:text-5xl lg:text-6xl">{{ currentWord }}</span> de montrer
+               <span class="font-bold border-b-2 border-transparent" style="border-image: linear-gradient(to right, #9333ea, #8b5cf6, #6366f1) 1;">-->
                 
                 <p class="hidden sm:block text-sm sm:text-base md:text-lg text-secondary-700 mb-10 sm:mb-12 leading-relaxed max-w-3xl mx-auto">
                   <span>Valorisez votre <span class="font-bold">activité équestre</span> avec une image professionnelle et authentique.</span>

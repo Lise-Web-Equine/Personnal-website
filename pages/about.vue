@@ -123,4 +123,16 @@
 
 <script setup lang="ts">
 import { ArrowRight } from 'lucide-vue-next'
+
+useHead({
+  title: 'À propos - Agence web équestre | Lise Web Equine',
+  meta: [
+    { name: 'description', content: 'Découvrez Lise Web Equine, agence web spécialisée dans la création de sites internet pour les professionnels du monde équin. Passion et expertise digitale.' },
+    { property: 'og:title', content: 'À propos - Agence web équestre | Lise Web Equine' },
+    { property: 'og:description', content: 'Découvrez Lise Web Equine, agence web spécialisée dans la création de sites internet pour les professionnels du monde équin.' },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:title', content: 'À propos - Agence web équestre | Lise Web Equine' },
+    { name: 'twitter:description', content: 'Découvrez Lise Web Equine, agence web spécialisée dans la création de sites internet pour les professionnels du monde équin.' }
+  ]
+})
 </script>

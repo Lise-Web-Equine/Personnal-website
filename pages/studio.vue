@@ -1,22 +1,10 @@
 <template>
   <NuxtLayout>
-      <section class="py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden bg-secondary text-white">
-        <!-- Background decoration -->
-        <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-900/30 to-transparent rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
-        
-        <div class="relative container mx-auto px-6">
-          <div class="max-w-3xl" v-motion-slide-visible-once-bottom>
-            <h1 class="mb-4 sm:mb-6">
-              <p class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">Le Studio de création</p>
-              <p class="text-base sm:text-lg md:text-xl text-secondary-300 leading-relaxed tracking-wide">Des sites web sur mesure qui valorisent votre entreprise équestre.</p>
-            </h1>
-            <div class="mt-6">
-              <Badge variant="primary" text="Une place disponible pour Juillet" />
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        title="Le Studio de création web équestre"
+        description="Des sites internet sur-mesure qui valorisent votre entreprise."
+        badge="Une place disponible pour Juillet"
+      />
 
       <!-- Description Section -->
       <section class="py-12 sm:py-16 md:py-20">
@@ -347,4 +335,16 @@ const handleSubmit = async () => {
     submitting.value = false
   }
 }
+
+useHead({
+  title: 'Studio sur-mesure - Sites web pour professionnels équestres | Lise Web Equine',
+  meta: [
+    { name: 'description', content: 'Création de sites internet sur-mesure pour ostéopathes, éleveurs, centres équestres et professionnels du cheval. Accompagnement personnalisé.' },
+    { property: 'og:title', content: 'Studio sur-mesure - Sites web pour professionnels équestres' },
+    { property: 'og:description', content: 'Création de sites internet sur-mesure pour ostéopathes, éleveurs, centres équestres et professionnels du cheval.' },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:title', content: 'Studio sur-mesure - Sites web pour professionnels équestres' },
+    { name: 'twitter:description', content: 'Création de sites internet sur-mesure pour ostéopathes, éleveurs, centres équestres et professionnels du cheval.' }
+  ]
+})
 </script>

@@ -5,10 +5,10 @@
     <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
     
     <div class="relative container mx-auto px-6">
-      <div class="max-w-3xl" v-motion-slide-visible-once-bottom>
-        <h1 class="flex flex-col gap-2 mb-4 sm:mb-6">
-          <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">{{ title }}</span>
-          <span class="text-base sm:text-lg md:text-xl text-secondary-300 leading-relaxed tracking-wide">{{ description }}</span>
+      <div class="max-w-5xl" v-motion-slide-visible-once-bottom>
+        <h1 class="mb-4 sm:mb-6">
+          <span class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight block">{{ title }}</span>
+          <span class="text-secondary-300 font-medium block text-sm sm:text-base md:text-lg lg:text-xl mt-2 sm:mt-3 tracking-wide">{{ description }}</span>
         </h1>
         <div v-if="badge" class="mt-6">
           <Badge variant="primary" :text="badge" />

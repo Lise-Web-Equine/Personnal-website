@@ -4,9 +4,9 @@
 
       <PageHeader 
 
-        title="Les templates"
+        title="Nos templates de sites web équestres"
 
-        description="Sites web personnalisables pour valoriser votre activité équestre."
+        description="Personnalisez votre site en une soirée et lancez votre activité sereinement."
 
         badge="Nouveaux templates disponibles"
 
