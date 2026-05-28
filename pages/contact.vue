@@ -48,10 +48,7 @@
                       class="w-full px-4 py-3 border border-secondary-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none bg-white"
                     >
                       <option value="">Choisir un service</option>
-                      <option value="studio">Le Studio (sur mesure)</option>
-                      <option value="template">Templates</option>
-                      <option value="pack">Pack Sérénité</option>
-                      <option value="other">Autre demande</option>
+                      <option v-for="(label, value) in contactServices" :key="value" :value="value">{{ label }}</option>
                     </select>
                   </div>
 
@@ -188,9 +185,9 @@ const handleSubmit = async () => {
     setTimeout(() => {
       submitMessage.value = ''
     }, 5000)
-  } catch (error) {
+  } catch (error: any) {
     submitSuccess.value = false
-    submitMessage.value = 'Une erreur est survenue. Veuillez réessayer.'
+    submitMessage.value = error.statusMessage || 'Une erreur est survenue. Veuillez réessayer.'
   } finally {
     submitting.value = false
   }

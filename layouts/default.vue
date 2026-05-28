@@ -5,7 +5,6 @@
       <slot />
     </main>
     <AppFooter />
-    <SpeedInsights />
   </div>
 </template>
 

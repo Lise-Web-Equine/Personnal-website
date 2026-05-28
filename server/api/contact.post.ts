@@ -1,53 +1,72 @@
-import { ResendService } from '~/server/services/resend.service'
+import nodemailer from 'nodemailer'
+
+const contactServices: Record<string, string> = {
+  studio: 'Le Studio (sur mesure)',
+  template: 'Templates',
+  pack: 'Pack Sérénité',
+  other: 'Autre demande'
+}
 
 export default defineEventHandler(async (event) => {
-  console.log('📧 API Contact appelée')
-  
   try {
     const body = await readBody(event)
-    console.log('📧 Body reçu:', body)
-    
-    if (!body.email || !body.name || !body.message) {
-      console.log('❌ Champs manquants')
+
+    if (!body.email || !body.name || !body.message || !body.service) {
       throw createError({
         statusCode: 400,
         statusMessage: 'Missing required fields'
       })
     }
 
-    console.log('📤 Envoi email contact en cours...')
-    
-    // Envoyer l'email à l'administrateur
-    const toEmail = process.env.RESEND_TO_EMAIL || process.env.RESEND_FROM_EMAIL
-    await ResendService.sendTransactionalEmail(
-      toEmail!,
-      `Nouveau message de ${body.name} - Lise Web Equine`,
-      `
+    const host = process.env.SMTP_HOST
+    const port = Number(process.env.SMTP_PORT)
+    const user = process.env.SMTP_USER
+    const pass = process.env.SMTP_PASS
+    const toEmail = process.env.SMTP_TO || user
+
+    if (!host || !port || !user || !pass) {
+      throw createError({
+        statusCode: 500,
+        statusMessage: 'Server configuration error'
+      })
+    }
+
+    const transporter = nodemailer.createTransport({
+      host,
+      port,
+      secure: port === 465,
+      auth: { user, pass },
+      tls: port === 587 ? { rejectUnauthorized: false } : undefined
+    })
+
+    const serviceLabel = contactServices[body.service] || body.service
+
+    const info = await transporter.sendMail({
+      from: `"Formulaire de contact — Lise Web Equine" <${user}>`,
+      to: toEmail,
+      replyTo: `"${body.name}" <${body.email}>`,
+      subject: `${body.name} — ${serviceLabel}`,
+      text: `Nouveau message depuis le formulaire de contact\n\nNom : ${body.name}\nEmail : ${body.email}\nService souhaité : ${serviceLabel}\n\nMessage :\n${body.message}\n\nEnvoyé le ${new Date().toLocaleString('fr-FR')}`,
+      html: `
         <h1>Nouveau message depuis le formulaire de contact</h1>
-        
-        <p><strong>Nom:</strong> ${body.name}</p>
-        <p><strong>Email:</strong> ${body.email}</p>
-        <p><strong>Service souhaité:</strong> ${body.service || 'Non spécifié'}</p>
-        
-        <h2>Message:</h2>
-        <p>${body.message}</p>
-        
+        <p><strong>Nom :</strong> ${body.name}</p>
+        <p><strong>Email :</strong> ${body.email}</p>
+        <p><strong>Service souhaité :</strong> ${serviceLabel}</p>
+        <h2>Message :</h2>
+        <p>${body.message.replace(/\n/g, '<br>')}</p>
         <hr>
         <p><em>Envoyé le ${new Date().toLocaleString('fr-FR')}</em></p>
       `
-    )
-    
-    console.log('✅ Email contact envoyé à:', toEmail)
-    
+    })
+
     return {
       success: true,
       message: 'Contact email sent successfully'
     }
-  } catch (error) {
-    console.error('❌ Erreur envoi email contact:', error)
+  } catch (error: any) {
     throw createError({
       statusCode: 500,
-      statusMessage: 'Error sending contact email'
+      statusMessage: error.message || 'Error sending contact email'
     })
   }
 })
