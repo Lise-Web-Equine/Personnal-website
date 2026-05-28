@@ -1,12 +1,13 @@
 export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig()
   return {
-    resendApiKey: process.env.RESEND_API_KEY ? 'Present' : 'Not found',
-    resendApiKeyLength: process.env.RESEND_API_KEY?.length || 0,
-    resendApiKeyStart: process.env.RESEND_API_KEY?.substring(0, 10) || 'N/A',
-    resendAudienceId: process.env.RESEND_AUDIENCE_ID ? 'Present' : 'Not found',
-    resendAudienceIdValue: process.env.RESEND_AUDIENCE_ID || 'N/A',
-    resendBuyersSegmentId: process.env.RESEND_BUYERS_SEGMENT_ID ? 'Present' : 'Not found',
-    resendBuyersSegmentIdValue: process.env.RESEND_BUYERS_SEGMENT_ID || 'N/A',
+    resendApiKey: config.resendApiKey ? 'Present' : 'Not found',
+    resendApiKeyLength: config.resendApiKey?.length || 0,
+    resendApiKeyStart: config.resendApiKey?.substring(0, 10) || 'N/A',
+    resendAudienceId: config.resendAudienceId ? 'Present' : 'Not found',
+    resendAudienceIdValue: config.resendAudienceId || 'N/A',
+    resendBuyersSegmentId: config.resendBuyersSegmentId ? 'Present' : 'Not found',
+    resendBuyersSegmentIdValue: config.resendBuyersSegmentId || 'N/A',
     allEnvKeys: Object.keys(process.env).filter(key => key.includes('RESEND'))
   }
 })

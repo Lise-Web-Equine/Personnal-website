@@ -1,10 +1,11 @@
 export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig()
   return {
-    stripeWebhookSecret: process.env.STRIPE_WEBHOOK_SECRET ? 'Present' : 'Not found',
-    stripeWebhookSecretLength: process.env.STRIPE_WEBHOOK_SECRET?.length || 0,
-    resendConfirmationTemplateId: process.env.RESEND_CONFIRMATION_TEMPLATE_ID ? 'Present' : 'Not found',
-    resendConfirmationTemplateIdLength: process.env.RESEND_CONFIRMATION_TEMPLATE_ID?.length || 0,
-    resendAudienceId: process.env.RESEND_AUDIENCE_ID ? 'Present' : 'Not found',
+    stripeWebhookSecret: config.stripeWebhookSecret ? 'Present' : 'Not found',
+    stripeWebhookSecretLength: config.stripeWebhookSecret?.length || 0,
+    resendConfirmationTemplateId: config.resendConfirmationTemplateId ? 'Present' : 'Not found',
+    resendConfirmationTemplateIdLength: config.resendConfirmationTemplateId?.length || 0,
+    resendAudienceId: config.resendAudienceId ? 'Present' : 'Not found',
     allEnvKeys: Object.keys(process.env).filter(key => key.includes('WEBHOOK') || key.includes('TEMPLATE'))
   }
 })

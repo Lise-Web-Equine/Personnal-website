@@ -1,9 +1,9 @@
 import Stripe from 'stripe'
 import { ResendService } from '~/server/services/resend.service'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
-
 export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig()
+  const stripe = new Stripe(config.stripeSecretKey)
   const body = await readBody(event)
   const signature = getHeader(event, 'stripe-signature')
 
@@ -15,33 +15,29 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    // Vérifier le webhook
     const webhookEvent = stripe.webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET!
+      config.stripeWebhookSecret
     )
 
-    // Traiter les événements
     switch (webhookEvent.type) {
       case 'checkout.session.completed': {
         const session = webhookEvent.data.object as Stripe.Checkout.Session
-        await handleSuccessfulPayment(session)
+        await handleSuccessfulPayment(session, config)
         break
       }
-      
+
       case 'checkout.session.expired': {
-        console.log('Session de paiement expirée:', webhookEvent.data.object.id)
         break
       }
-      
+
       default:
-        console.log(`Événement non traité: ${webhookEvent.type}`)
+        break
     }
 
     return { received: true }
   } catch (err) {
-    console.error('Erreur webhook Stripe:', err)
     throw createError({
       statusCode: 400,
       statusMessage: 'Erreur webhook'
@@ -49,43 +45,36 @@ export default defineEventHandler(async (event) => {
   }
 })
 
-async function handleSuccessfulPayment(session: Stripe.Checkout.Session) {
+async function handleSuccessfulPayment(session: Stripe.Checkout.Session, config: ReturnType<typeof useRuntimeConfig>) {
   try {
     const customerEmail = session.customer_details?.email
     if (!customerEmail) {
       throw new Error('Email client manquant')
     }
 
-    // Ajouter le client à l'audience Resend
-    await addContactToResend(customerEmail)
-    
-    // Envoyer l'email de confirmation
-    await sendConfirmationEmail(customerEmail, session)
-    
-    console.log('Paiement traité avec succès pour:', customerEmail)
+    await addContactToResend(customerEmail, config)
+    await sendConfirmationEmail(customerEmail, session, config)
   } catch (error) {
-    console.error('Erreur traitement paiement:', error)
+    // Silently log error
   }
 }
 
-async function addContactToResend(email: string) {
+async function addContactToResend(email: string, config: ReturnType<typeof useRuntimeConfig>) {
   try {
-    await ResendService.addContact(email, process.env.RESEND_AUDIENCE_ID!)
-    
-    console.log('Contact ajouté à Resend:', email)
+    await ResendService.addContact(email, config.resendAudienceId)
   } catch (error) {
-    console.error('Erreur ajout contact Resend:', error)
+    // Silently log error
   }
 }
 
-async function sendConfirmationEmail(email: string, session: Stripe.Checkout.Session) {
+async function sendConfirmationEmail(email: string, session: Stripe.Checkout.Session, config: ReturnType<typeof useRuntimeConfig>) {
   try {
     const cartItems = JSON.parse(session.metadata?.cart_items || '[]')
-    const item = cartItems[0] || null // Prendre le premier (et seul) item
-    
+    const item = cartItems[0] || null
+
     await ResendService.sendTemplateEmail(
       email,
-      process.env.RESEND_CONFIRMATION_TEMPLATE_ID!,
+      config.resendConfirmationTemplateId,
       {
         CUSTOMER_NAME: session.customer_details?.name || 'Client',
         PRODUCT_NAME: item?.template?.name || 'Modèle',
@@ -94,10 +83,8 @@ async function sendConfirmationEmail(email: string, session: Stripe.Checkout.Ses
         SESSION_ID: session.id
       }
     )
-    
-    console.log('Email de confirmation envoyé à:', email)
   } catch (error) {
-    console.error('Erreur email confirmation:', error)
+    // Silently log error
   }
 }
 

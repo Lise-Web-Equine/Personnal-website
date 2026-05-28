@@ -55,6 +55,26 @@ export default defineNuxtConfig({
     }
   },
 
+  runtimeConfig: {
+    smtpHost: '',
+    smtpPort: '',
+    smtpUser: '',
+    smtpPass: '',
+    smtpTo: '',
+    stripeSecretKey: '',
+    stripeWebhookSecret: '',
+    stripePublishableKey: '',
+    resendApiKey: '',
+    resendFromEmail: '',
+    resendToEmail: '',
+    resendAudienceId: '',
+    resendConfirmationTemplateId: '',
+    resendBuyersSegmentId: '',
+    supabaseUrl: '',
+    supabaseKey: '',
+    appUrl: ''
+  },
+
   site: {
     url: 'https://lisewebequine.fr'
   },

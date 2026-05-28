@@ -1,11 +1,12 @@
 import Stripe from 'stripe'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
-
 export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig()
+  const stripe = new Stripe(config.stripeSecretKey)
+
   try {
     const body = await readBody(event)
-    
+
     if (!body.sessionId) {
       throw createError({
         statusCode: 400,
@@ -13,29 +14,26 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    // Récupérer la session
     const session = await stripe.checkout.sessions.retrieve(body.sessionId)
-    
-    // Vérifications de sécurité
+
     if (!session.payment_status) {
       throw createError({
         statusCode: 400,
         statusMessage: 'Session not paid'
       })
     }
-    
-    // Vérifier si la session est récente (moins de 24h)
+
     const sessionTime = new Date(session.created * 1000)
     const now = new Date()
     const hoursDiff = (now.getTime() - sessionTime.getTime()) / (1000 * 60 * 60)
-    
+
     if (hoursDiff > 24) {
       throw createError({
         statusCode: 410,
         statusMessage: 'Session expired (24h limit)'
       })
     }
-    
+
     return {
       success: true,
       session: {
@@ -48,7 +46,6 @@ export default defineEventHandler(async (event) => {
       }
     }
   } catch (error) {
-    console.error('Error verifying session:', error)
     throw createError({
       statusCode: 500,
       statusMessage: 'Error verifying session'

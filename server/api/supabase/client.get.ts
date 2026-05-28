@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
-  // Utiliser process.env directement côté serveur
+  const config = useRuntimeConfig()
   return {
-    supabaseUrl: process.env.SUPABASE_URL || 'Not found',
-    supabaseKey: process.env.SUPABASE_KEY || 'Not found'
+    supabaseUrl: config.supabaseUrl || 'Not found',
+    supabaseKey: config.supabaseKey || 'Not found'
   }
 })

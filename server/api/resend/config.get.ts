@@ -1,11 +1,11 @@
 export default defineEventHandler(async (event) => {
-  // Utiliser process.env directement côté serveur
+  const config = useRuntimeConfig()
   return {
-    resendApiKey: process.env.RESEND_API_KEY ? 'Present' : 'Not found',
-    resendApiKeyLength: process.env.RESEND_API_KEY?.length || 0,
-    resendFromEmail: process.env.RESEND_FROM_EMAIL || 'Not found',
-    resendToEmail: process.env.RESEND_TO_EMAIL || 'Not found',
-    resendAudienceId: process.env.RESEND_AUDIENCE_ID || 'Not found',
-    resendConfirmationTemplateId: process.env.RESEND_CONFIRMATION_TEMPLATE_ID || 'Not found'
+    resendApiKey: config.resendApiKey ? 'Present' : 'Not found',
+    resendApiKeyLength: config.resendApiKey?.length || 0,
+    resendFromEmail: config.resendFromEmail || 'Not found',
+    resendToEmail: config.resendToEmail || 'Not found',
+    resendAudienceId: config.resendAudienceId || 'Not found',
+    resendConfirmationTemplateId: config.resendConfirmationTemplateId || 'Not found'
   }
 })

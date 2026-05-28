@@ -18,11 +18,12 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    const host = process.env.SMTP_HOST
-    const port = Number(process.env.SMTP_PORT)
-    const user = process.env.SMTP_USER
-    const pass = process.env.SMTP_PASS
-    const toEmail = process.env.SMTP_TO || user
+    const config = useRuntimeConfig()
+    const host = config.smtpHost
+    const port = Number(config.smtpPort)
+    const user = config.smtpUser
+    const pass = config.smtpPass
+    const toEmail = config.smtpTo || user
 
     if (!host || !port || !user || !pass) {
       throw createError({

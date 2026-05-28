@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event) => {
-  // Utiliser process.env directement côté serveur
+  const config = useRuntimeConfig()
   return {
-    stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY || 'Not found'
+    stripePublishableKey: config.stripePublishableKey || 'Not found'
   }
 })
