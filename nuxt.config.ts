@@ -72,7 +72,11 @@ export default defineNuxtConfig({
     resendBuyersSegmentId: process.env.RESEND_BUYERS_SEGMENT_ID,
     supabaseUrl: process.env.SUPABASE_URL,
     supabaseKey: process.env.SUPABASE_KEY,
-    appUrl: process.env.APP_URL
+    appUrl: process.env.APP_URL,
+    public: {
+      // On la met dans "public" pour que le middleware du navigateur puisse la lire
+      maintenanceMode: process.env.MAINTENANCE_MODE === 'true'
+    }
   },
 
   site: {
