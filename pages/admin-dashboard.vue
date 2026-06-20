@@ -193,6 +193,19 @@
                 />
               </div>
 
+              <!-- Specialties -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                  Spécialités (une par ligne)
+                </label>
+                <textarea
+                  v-model="specialtiesText"
+                  rows="3"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  placeholder="Ostéopathe équin&#10;Maréchal-ferrant&#10;Éleveur..."
+                ></textarea>
+              </div>
+
               <!-- Badge and Promo -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -455,6 +468,19 @@
                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                   placeholder="equine, professionnel, bleu, confiance"
                 />
+              </div>
+
+              <!-- Specialties -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                  Spécialités (une par ligne)
+                </label>
+                <textarea
+                  v-model="editSpecialtiesText"
+                  rows="3"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  placeholder="Ostéopathe équin&#10;Maréchal-ferrant&#10;Éleveur..."
+                ></textarea>
               </div>
 
               <!-- Badge and Promo -->
@@ -723,6 +749,7 @@ const newTemplate = ref<TemplateCreate>({
   download_url: '',
   features: [],
   tags: [],
+  specialties: [],
   badge: null,
   promo: null,
   rating: 0
@@ -786,6 +813,22 @@ const editTagsText = computed({
   }
 })
 
+const specialtiesText = computed({
+  get: () => newTemplate.value.specialties.join('\n'),
+  set: (value: string) => {
+    newTemplate.value.specialties = value.split('\n').filter(f => f.trim() !== '')
+  }
+})
+
+const editSpecialtiesText = computed({
+  get: () => editingTemplate.value?.specialties?.join('\n') || '',
+  set: (value: string) => {
+    if (editingTemplate.value) {
+      editingTemplate.value.specialties = value.split('\n').filter(f => f.trim() !== '')
+    }
+  }
+})
+
 // Image handling functions
 const handleImageUpload = (event: Event) => {
   const file = (event.target as HTMLInputElement).files?.[0]
@@ -831,6 +874,7 @@ const resetForm = () => {
     download_url: '',
     features: [],
     tags: [],
+    specialties: [],
     badge: null,
     promo: null,
     rating: 0
@@ -850,7 +894,8 @@ const resetEditForm = () => {
 const startEditTemplate = (template: Template) => {
   editingTemplate.value = { 
     ...template,
-    slug: template.slug || generateSlug(template.name)
+    slug: template.slug || generateSlug(template.name),
+    specialties: template.specialties || []
   }
   imagePreview.value = template.image
   showEditForm.value = true
@@ -891,6 +936,7 @@ const updateTemplate = async () => {
       download_url: editingTemplate.value.download_url,
       features: editingTemplate.value.features,
       tags: editingTemplate.value.tags,
+      specialties: editingTemplate.value.specialties,
       badge: editingTemplate.value.badge,
       promo: editingTemplate.value.promo,
       rating: editingTemplate.value.rating,
@@ -952,6 +998,7 @@ const addNewTemplate = async () => {
       download_url: newTemplate.value.download_url,
       features: newTemplate.value.features,
       tags: newTemplate.value.tags,
+      specialties: newTemplate.value.specialties,
       badge: newTemplate.value.badge,
       promo: newTemplate.value.promo,
       rating: newTemplate.value.rating

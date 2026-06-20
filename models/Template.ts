@@ -10,6 +10,7 @@ export interface Template {
   download_url: string
   features: string[]
   tags: string[]
+  specialties: string[]
   badge: 'best-seller' | 'new' | null
   promo: number | null
   rating: number
@@ -28,6 +29,7 @@ export interface TemplateCreate {
   download_url: string
   features: string[]
   tags: string[]
+  specialties: string[]
   badge: 'best-seller' | 'new' | null
   promo: number | null
   rating: number
@@ -44,6 +46,7 @@ export interface TemplateUpdate {
   download_url?: string
   features?: string[]
   tags?: string[]
+  specialties?: string[]
   badge?: 'best-seller' | 'new' | null
   promo?: number | null
   rating?: number

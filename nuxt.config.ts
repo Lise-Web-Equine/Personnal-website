@@ -50,6 +50,7 @@ export default defineNuxtConfig({
 
   nitro: {
     routeRules: {
+      '/studio': { redirect: '/creation-site-internet-equestre', statusCode: 301 },
       '/images/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
       '/fonts/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } }
     }
@@ -86,7 +87,7 @@ export default defineNuxtConfig({
   sitemap: {
     urls: [
       { loc: '/', changefreq: 'weekly', priority: 1.0 },
-      { loc: '/studio', changefreq: 'monthly', priority: 0.9 },
+      { loc: '/creation-site-internet-equestre', changefreq: 'monthly', priority: 0.9 },
       { loc: '/templates', changefreq: 'weekly', priority: 0.9 },
       { loc: '/contact', changefreq: 'monthly', priority: 0.8 },
       { loc: '/templates/osteopathe-equin', changefreq: 'monthly', priority: 0.8 },

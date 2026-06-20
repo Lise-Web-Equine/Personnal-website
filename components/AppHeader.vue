@@ -98,7 +98,7 @@ const headerHeight = ref(64)
 const headerRef = ref<HTMLElement | null>(null)
 
 const navLinks = [
-  { name: 'Le Studio', path: '/studio' },
+  { name: 'Création de site internet', path: '/creation-site-internet-equestre' },
   { name: 'Les templates', path: '/templates' },
   { name: 'Contact', path: '/contact' },
 ]

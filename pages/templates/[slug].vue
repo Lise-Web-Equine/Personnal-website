@@ -92,6 +92,22 @@
                   {{ template.description }}
                 </p>
 
+                <!-- Specialties -->
+                <div v-if="template.specialties && template.specialties.length > 0" class="mb-6">
+                  <h2 class="text-base text-gray-700 mb-3 leading-relaxed">
+                    Pour les professionnels équestres du soin qui démarrent leur activité tels que
+                  </h2>
+                  <div class="flex flex-wrap gap-2">
+                    <h3
+                      v-for="specialty in template.specialties"
+                      :key="specialty"
+                      class="text-base font-semibold text-primary-700 bg-primary-50 border border-primary-200 rounded-lg px-3 py-1.5"
+                    >
+                      {{ specialty }}
+                    </h3>
+                  </div>
+                </div>
+
                 <!-- Sections du site -->
                 <div class="mb-6">
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">

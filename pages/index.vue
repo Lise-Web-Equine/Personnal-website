@@ -39,10 +39,10 @@
                 </p>
                 
                 <div class="flex flex-col items-start sm:items-center gap-3 sm:gap-4">
-                  <NuxtLink to="/studio" class="btn-primary group relative w-auto">
+                  <NuxtLink to="/creation-site-internet-equestre" class="btn-primary group relative w-auto">
                     <span class="flex items-center justify-start sm:justify-center">
                       <LayersIcon :size="20" color="white" class="mr-3" />
-                      Le studio sur-mesure
+                      Création de site internet
                     </span>
                   </NuxtLink>
                   
@@ -71,38 +71,23 @@
           <div class="text-center mb-16" v-motion-slide-visible-once-bottom>
             <h2 class="mb-4 text-2xl sm:text-3xl md:text-4xl">Mes Services</h2>
             <p class="text-sm sm:text-base md:text-lg text-secondary-600 max-w-2xl mx-auto">
-              Des solutions adaptées à vos besoins pour développer votre présence en ligne
+              Découvrez nos solutions web pour les professionnels du secteur équestre.
             </p>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
             <!-- Le Studio -->
             <ServiceCard
               variant="primary"
-              title="Le Studio"
-              description="Service de création premium pour une présence digitale unique et sur mesure."
+              title="Création et refonte de site internet équestre"
+              description="Pour les structures équestres établies qui veulent un site internet évolutif, performant et administrable en toute simplicité."
               :icon="LayersIcon"
               badge-text="Sur mesure"
               badge-variant="primary"
-              :features="studioFeatures"
+              price="À partir de 1500€"
               cta-text="En savoir plus"
-              cta-link="/studio"
+              cta-link="/creation-site-internet-equestre"
               featured
-              motion-direction="left"
-            />
-
-            <!-- Templates -->
-            <ServiceCard
-              variant="secondary"
-              title="Les templates"
-              description="Des templates de sites web abordables et optimisés pour ceux qui se lancent."
-              :icon="ShopIcon"
-              badge-text="Clé en main"
-              badge-variant="secondary"
-              :features="templatesFeatures"
-              cta-text="Explorer les templates"
-              cta-link="/templates"
-              motion-direction="right"
             />
           </div>
         </div>
@@ -112,9 +97,9 @@
         <div class="container mx-auto px-6">
           <div class="flex justify-between items-end mb-12" v-motion-slide-visible-once-bottom>
             <div>
-              <h2 class="mb-4 text-2xl sm:text-3xl md:text-4xl">Templates en vedette</h2>
+              <h2 class="mb-4 text-2xl sm:text-3xl md:text-4xl">La boutique de template équestre</h2>
               <p class="section-subtitle text-left max-w-none text-sm sm:text-base md:text-lg">
-                Prêts à l'emploi pour les professionnels équestres qui veulent créer eux-mêmes leur site web.
+                Envie de créer votre site internet vous même ? Découvrez nos tempaltes personnalisables pour prestataires de services équestres.
               </p>
             </div>
             <NuxtLink to="/templates" class="hidden md:inline-flex items-center text-black font-semibold hover:gap-2 transition-all">
@@ -224,10 +209,10 @@
             <div class="text-left sm:text-center" v-motion-slide-visible-once-bottom>
               <h2 class="mb-4 sm:mb-6 text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Prêt à montrer votre professionnalisme ?</h2>
               <p class="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10">
-                Créons ensemble un site web unique qui reflète votre expertise.
+                Créons ensemble le site web pour votre structure équestre qui reflète votre expertise.
               </p>
               <div class="flex flex-col sm:flex-row gap-4 justify-start sm:justify-center">
-                <NuxtLink to="/studio" class="btn-primary group relative w-auto">
+                <NuxtLink to="/creation-site-internet-equestre" class="btn-primary group relative w-auto">
                     <span class="flex items-center justify-start sm:justify-center">
                       <LayersIcon :size="20" color="white" class="mr-3" />
                       Découvrir le studio
@@ -247,7 +232,6 @@
 <script setup lang="ts">
 import { Code, Palette, Zap, MessageSquare, ArrowRight, PenTool, Image, Search, Sparkles } from 'lucide-vue-next'
 import LayersIcon from '~/components/icons/LayersIcon.vue'
-import ShopIcon from '~/components/icons/ShopIcon.vue'
 import type { Template } from '~/models'
 import type { Database } from '~/types/database.types'
 
@@ -275,36 +259,6 @@ onMounted(() => {
     clearInterval(interval)
   })
 })
-
-const templatesFeatures = [
-  {
-    title: 'Prêt à l\'emploi',
-    description: 'Installez et lancez votre activité en quelques heures'
-  },
-  {
-    title: 'Guides de personnalisation inclus',
-    description: 'Tutoriels détaillés pour adapter le template'
-  },
-  {
-    title: 'Pensé pour convertir',
-    description: 'Optimisé pour transformer vos visiteurs en clients'
-  }
-]
-
-const studioFeatures = [
-  {
-    title: 'Design exclusif',
-    description: 'Une identité visuelle unique qui reflète votre prestige'
-  },
-  {
-    title: 'Stratégie SEO spécifique',
-    description: 'Positionnement avancé dans le secteur équestre'
-  },
-  {
-    title: 'Accompagnement personnalisé',
-    description: 'De la stratégie à la formation complète'
-  }
-]
 
 const aiFeatures = [
   {

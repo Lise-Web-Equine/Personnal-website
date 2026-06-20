@@ -25,6 +25,11 @@
       {{ description }}
     </p>
     
+    <!-- Price -->
+    <p v-if="price" class="text-base sm:text-lg font-bold text-primary-700 mb-4 sm:mb-6">
+      {{ price }}
+    </p>
+
     <!-- Features list -->
     <ul v-if="features && features.length > 0" class="space-y-2 mb-6 sm:mb-8">
       <li v-for="feature in features" :key="feature.title" class="flex items-start text-secondary-600">
@@ -68,6 +73,7 @@ interface Props {
   badgeVariant?: 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger' | 'gray'
   ctaText?: string
   ctaLink?: string
+  price?: string
   featured?: boolean
   motionDirection?: 'left' | 'right' | 'bottom'
 }

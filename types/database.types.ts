@@ -20,6 +20,7 @@ export interface Database {
           demo_url: string | null
           features: string[]
           tags: string[]
+          specialties: string[]
           is_featured: boolean
           downloads: number
           rating: number
@@ -36,6 +37,7 @@ export interface Database {
           demo_url: string | null
           features: string[]
           tags: string[]
+          specialties: string[]
           is_featured: boolean
           downloads: number
           rating: number
@@ -52,6 +54,7 @@ export interface Database {
           demo_url: string | null
           features: string[]
           tags: string[]
+          specialties: string[]
           is_featured: boolean
           downloads: number
           rating: number
