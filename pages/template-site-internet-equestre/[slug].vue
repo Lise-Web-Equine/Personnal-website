@@ -33,10 +33,12 @@
                     target="_blank"
                     class="block"
                   >
-                    <img
+                    <NuxtImg
                       :src="template.image"
                       :alt="`${template.name} site internet`"
                       class="w-full h-auto transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      loading="lazy"
                     />
                     <!-- Overlay with CTA - always visible -->
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent transition-opacity duration-300 flex items-end justify-center pb-6 sm:pb-8">
@@ -57,11 +59,13 @@
                       />
                     </div>
                   </a>
-                  <img
+                  <NuxtImg
                     v-else
                     :src="template.image"
                     :alt="`${template.name} site internet`"
                     class="w-full h-auto"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    loading="lazy"
                   />
                 </div>
               </div>

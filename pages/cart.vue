@@ -24,10 +24,12 @@
               class="bg-white rounded-xl p-4 sm:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6"
               v-motion-slide-visible-once-left
             >
-              <img
+              <NuxtImg
                 :src="item.template.image"
                 :alt="`${item.template.name} site internet`"
                 class="w-full h-48 sm:w-32 sm:h-32 object-cover rounded-lg flex-shrink-0"
+                sizes="(max-width: 640px) 100vw, 128px"
+                loading="lazy"
               />
 
               <div class="flex-1 min-w-0">

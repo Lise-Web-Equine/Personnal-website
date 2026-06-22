@@ -3,11 +3,26 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: false },
 
-  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@vueuse/motion/nuxt', '@vercel/speed-insights/nuxt','@vercel/analytics', ['@nuxtjs/supabase', {
+  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@vueuse/motion/nuxt', '@vercel/speed-insights/nuxt','@vercel/analytics', '@nuxt/image', ['@nuxtjs/supabase', {
     redirect: false
   }]],
 
   css: ['~/assets/css/main.css'],
+
+  image: {
+    // Génère des variantes optimisées (WebP/AVIF, redimensionnement) via Vercel en production
+    provider: 'vercel',
+    quality: 70,
+    format: ['avif', 'webp'],
+    domains: ['images.unsplash.com'],
+    screens: {
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      xxl: 1536
+    }
+  },
 
   app: {
     head: {

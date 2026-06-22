@@ -52,10 +52,11 @@ const duplicatedClients = [...clients, ...clients]
             </div>
             <!-- Site preview -->
             <div class="h-auto overflow-hidden bg-white">
-              <img
+              <NuxtImg
                 :src="client.image"
                 :alt="`Site internet équestre réalisé pour ${client.name}`"
                 class="w-full h-auto object-cover"
+                sizes="400px"
                 loading="lazy"
               />
             </div>

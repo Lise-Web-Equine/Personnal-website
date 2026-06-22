@@ -1,23 +1,21 @@
 <template>
   <NuxtLayout>
       <section class="relative py-12 sm:py-16 md:py-20 lg:py-32 overflow-hidden overflow-x-hidden">
-        <!-- Halo backgrounds with fade mask -->
-        <div class="absolute inset-0 -z-10" style="mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);">
-          <div class="absolute inset-x-0 -top-20 sm:-top-40 transform-gpu overflow-hidden blur-2xl sm:blur-3xl" aria-hidden="true">
-            <div
-              class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff9a76] to-[#9089fc] opacity-50 sm:opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-              style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
-            ></div>
-          </div>
-          <div class="absolute inset-x-0 top-[calc(50%-20rem)] transform-gpu overflow-hidden blur-2xl sm:blur-3xl sm:top-[calc(50%-30rem)]" aria-hidden="true">
-            <div
-              class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 bg-gradient-to-tr from-[#9089fc] to-[#ffb380] opacity-35 sm:opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-              style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
-            ></div>
-          </div>
+        <!-- Image de fond + overlay sombre (s'étend derrière le header) -->
+        <div class="absolute -top-20 left-0 right-0 bottom-0 z-0">
+          <NuxtImg
+            src="/images/Hestabien-27.jpg"
+            alt="Agence web équestre"
+            class="w-full h-full object-cover"
+            sizes="100vw"
+            preload
+            loading="eager"
+            fetchpriority="high"
+          />
+          <div class="absolute inset-0 bg-gradient-to-b from-secondary-900/90 via-secondary-900/80 to-secondary-900/90"></div>
         </div>
 
-        <div class="relative container mx-auto px-6">
+        <div class="relative z-10 container mx-auto px-6">
           <div class="max-w-7xl mx-auto">
             <div class="flex flex-col items-center justify-center gap-8 sm:gap-12 lg:gap-16 min-h-[60vh] sm:min-h-[70vh]">
               <!-- Text Content -->
@@ -28,28 +26,30 @@
                 </h3>-->
                 
                 <h1 class="mb-8 sm:mb-8 font-sans text-left sm:text-center">
-                    <span class="text-secondary-900 font-bold block text-5xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight">AGENCE WEB ÉQUESTRE</span>
-                    <span class="text-secondary-800 font-semibold block text-lg sm:text-xl md:text-2xl lg:text-3xl mt-2 sm:mt-3">Votre site internet sur-mesure ou template</span>
+                    <span class="text-white font-bold block text-5xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight">AGENCE WEB ÉQUESTRE</span>
+                    <span class="text-gray-200 font-semibold block text-lg sm:text-xl md:text-2xl lg:text-3xl mt-2 sm:mt-3">Votre site internet sur-mesure ou template</span>
                 </h1>
                 <!-- <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent px-2 text-lg sm:text-4xl md:text-5xl lg:text-6xl">{{ currentWord }}</span> de montrer
                <span class="font-bold border-b-2 border-transparent" style="border-image: linear-gradient(to right, #9333ea, #8b5cf6, #6366f1) 1;">-->
                 
-                <p class="text-sm sm:text-base md:text-lg text-secondary-700 mb-6 sm:mb-8 leading-relaxed max-w-2xl sm:mx-auto">
-                  <span>Nous concevons des sites internet qui s'adaptent à vos besoins et à votre budget pour faire grandir votre activité, que vous soyez une structure mature ou en plein lancement.</span>
+                <p class="text-sm sm:text-base md:text-lg text-gray-300 mb-6 sm:mb-8 leading-relaxed max-w-2xl sm:mx-auto">
+                  <span>Un accompagnement sur-mesure, pensé par et pour les passionnés du monde équestre.</span>
                 </p>
                 
-                <div class="flex flex-col items-start sm:items-center gap-3 sm:gap-4">
-                  <NuxtLink to="/creation-site-internet-equestre" class="btn-primary group relative w-auto">
-                    <span class="flex items-center justify-start sm:justify-center">
-                      <LayersIcon :size="20" color="white" class="mr-3" />
-                      Création de site internet
-                    </span>
-                  </NuxtLink>
-                  
-                  <NuxtLink to="/template-site-internet-equestre" class="text-sm sm:text-base text-secondary-500 hover:text-primary-600 font-medium transition-colors duration-200 inline-flex items-center group">
-                    <span>Ou découvrez nos templates équestres</span>
-                    <ArrowRight :size="16" class="ml-2 group-hover:translate-x-1 transition-transform" />
-                  </NuxtLink>
+                <div class="flex flex-col items-start sm:items-center">
+                  <div class="inline-flex flex-col items-stretch gap-3 sm:gap-4">
+                    <NuxtLink to="/creation-site-internet-equestre" class="btn-primary group relative">
+                      <span class="flex items-center justify-center">
+                        <LayersIcon :size="20" color="white" class="mr-3" />
+                        Création de site internet
+                      </span>
+                    </NuxtLink>
+
+                    <NuxtLink to="/template-site-internet-equestre" class="text-sm sm:text-base text-gray-300 hover:text-primary-400 font-medium transition-colors duration-200 inline-flex items-center justify-center group">
+                      <span>Ou découvrez nos templates équestres</span>
+                      <ArrowRight :size="16" class="ml-2 group-hover:translate-x-1 transition-transform" />
+                    </NuxtLink>
+                  </div>
                 </div>
               </div>
 
@@ -180,9 +180,14 @@
                 <div class="relative">
                   <div 
                     class="aspect-square rounded-2xl p-12 flex flex-col items-center justify-end overflow-hidden relative group bg-secondary-200"
-                    style="background-image: url('/images/lise-profile.jpg'); background-size: cover; background-position: center;"
                   >
-                    
+                    <NuxtImg
+                      src="/images/lise-profile.jpg"
+                      alt="Claire-Elise, fondatrice de Lise Web Equine"
+                      class="absolute inset-0 w-full h-full object-cover"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      loading="lazy"
+                    />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
                     <div class="text-center relative z-10">
@@ -204,10 +209,11 @@
       <section class="py-12 sm:py-16 md:py-20 lg:py-24 text-white relative overflow-hidden">
         <!-- Image de fond + overlay sombre -->
         <div class="absolute inset-0 -z-10">
-          <img
+          <NuxtImg
             src="/images/Hestabien.jpg"
             alt="Création de site internet pour les prestataires équestres"
             class="w-full h-full object-cover"
+            sizes="100vw"
             loading="lazy"
           />
           <div class="absolute inset-0 bg-gradient-to-b from-secondary-900/90 via-secondary-900/80 to-secondary-900/90"></div>

@@ -263,10 +263,11 @@
       <section id="contact" class="relative py-12 sm:py-16 md:py-20 overflow-hidden">
         <!-- Image de fond + overlay sombre -->
         <div class="absolute inset-0 -z-10">
-          <img
+          <NuxtImg
             src="/images/Hestabien.jpg"
             alt="Création de site internet pour les prestataires équestres"
             class="w-full h-full object-cover"
+            sizes="100vw"
             loading="lazy"
           />
           <div class="absolute inset-0 bg-gradient-to-b from-secondary-900/90 via-secondary-900/80 to-secondary-900/90"></div>

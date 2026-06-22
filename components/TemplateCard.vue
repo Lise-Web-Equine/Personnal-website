@@ -5,10 +5,11 @@
   >
     <!-- Badge Section -->
     <div class="relative overflow-hidden aspect-[4/3] bg-secondary-100">
-      <img
+      <NuxtImg
         :src="template.image"
         :alt="`${template.name} site internet`"
         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         loading="lazy"
       />
       <div class="absolute top-2 right-2 sm:top-4 sm:right-4 flex gap-2">

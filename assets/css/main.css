@@ -41,14 +41,14 @@
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 sm:px-6 sm:py-3 md:px-7 md:py-3.5 text-base sm:text-base font-semibold text-secondary-700 bg-white rounded-lg border border-secondary-200 transition-all duration-200;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    @apply inline-flex items-center justify-center px-6 py-3 sm:px-6 sm:py-3 md:px-7 md:py-3.5 text-base sm:text-base font-semibold text-secondary-900 bg-white rounded-lg border border-primary-300 transition-all duration-200;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.12);
   }
 
   .btn-secondary:hover {
-    @apply text-secondary-900 border-primary-300;
+    @apply border-primary-400;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.12);
+    box-shadow: 0 6px 16px rgba(139, 92, 246, 0.18);
   }
 
   .btn-secondary-dark {

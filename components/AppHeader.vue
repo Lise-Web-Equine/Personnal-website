@@ -32,16 +32,20 @@
           </NuxtLink>
 
           <NuxtLink
+            v-if="cartStore.itemCount > 0"
             to="/cart"
             class="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
           >
             <ShoppingCart :size="20" />
             <span
-              v-if="cartStore.itemCount > 0"
               class="absolute -top-1 -right-1 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-semibold"
             >
               {{ cartStore.itemCount }}
             </span>
+          </NuxtLink>
+
+          <NuxtLink to="/contact" class="btn-secondary">
+            Demander un devis
           </NuxtLink>
         </div>
       </div>
@@ -74,12 +78,21 @@
             {{ link.name }}
           </NuxtLink>
           <NuxtLink
+            v-if="cartStore.itemCount > 0"
             to="/cart"
             @click="toggleMenu"
             class="flex items-center space-x-2 text-gray-700 hover:text-black font-medium transition-colors py-2 px-4 hover:bg-gray-50 rounded-lg"
           >
             <ShoppingCart :size="20" />
             <span>Panier ({{ cartStore.itemCount }})</span>
+          </NuxtLink>
+
+          <NuxtLink
+            to="/contact"
+            @click="toggleMenu"
+            class="btn-secondary mt-2 justify-center"
+          >
+            Demander un devis
           </NuxtLink>
         </div>
       </div>

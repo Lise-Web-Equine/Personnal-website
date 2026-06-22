@@ -49,10 +49,12 @@ onUnmounted(() => {
             class="absolute inset-0 z-[2] transition-all duration-[1200ms] ease-in-out"
             :class="isFinal ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-110 blur-xl pointer-events-none'"
           >
-            <img 
+            <NuxtImg 
               src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&q=80&w=800" 
               class="absolute inset-0 w-full h-full object-cover filter saturate-[0.9] brightness-[0.7]"
-              alt="Cheval au calme, univers équestre de Lise Web Equine"
+              alt="Agence web équestre"
+              sizes="400px"
+              loading="lazy"
             />
             <div class="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-transparent to-slate-900/90"></div>
             
