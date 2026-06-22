@@ -2,8 +2,6 @@
   <NuxtLayout>
       <PageHeader
         title="Création et refonte de site internet sur-mesure pour les prestataires équestres"
-        description="Des sites internet sur-mesure qui valorisent votre entreprise."
-        badge="Une place disponible pour Juillet"
       />
 
       <!-- Description Section -->

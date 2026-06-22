@@ -60,7 +60,7 @@
                     title="Uniquement des lettres minuscules, chiffres et tirets"
                   />
                   <p class="text-xs text-gray-500 mt-1">
-                    Utilisé dans l'URL : /templates/{{ newTemplate.slug || 'votre-slug' }}
+                    Utilisé dans l'URL : /template-site-internet-equestre/{{ newTemplate.slug || 'votre-slug' }}
                   </p>
                 </div>
               </div>
@@ -318,7 +318,7 @@
                     title="Uniquement des lettres minuscules, chiffres et tirets"
                   />
                   <p class="text-xs text-gray-500 mt-1">
-                    Utilisé dans l'URL : /templates/{{ editingTemplate?.slug || 'votre-slug' }}
+                    Utilisé dans l'URL : /template-site-internet-equestre/{{ editingTemplate?.slug || 'votre-slug' }}
                   </p>
                 </div>
               </div>

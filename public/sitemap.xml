@@ -15,7 +15,7 @@
   </url>
   
   <url>
-    <loc>https://lisewebequine.fr/templates</loc>
+    <loc>https://lisewebequine.fr/template-site-internet-equestre</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -36,21 +36,21 @@
   </url>
   
   <url>
-    <loc>https://lisewebequine.fr/templates/osteopathe-equin</loc>
+    <loc>https://lisewebequine.fr/template-site-internet-equestre/osteopathe-equin</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://lisewebequine.fr/templates/shiatsu-equin</loc>
+    <loc>https://lisewebequine.fr/template-site-internet-equestre/shiatsu-equin</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://lisewebequine.fr/templates/cart</loc>
+    <loc>https://lisewebequine.fr/template-site-internet-equestre/cart</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>never</changefreq>
     <priority>0.3</priority>

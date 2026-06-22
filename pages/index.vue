@@ -46,7 +46,7 @@
                     </span>
                   </NuxtLink>
                   
-                  <NuxtLink to="/templates" class="text-sm sm:text-base text-secondary-500 hover:text-primary-600 font-medium transition-colors duration-200 inline-flex items-center group">
+                  <NuxtLink to="/template-site-internet-equestre" class="text-sm sm:text-base text-secondary-500 hover:text-primary-600 font-medium transition-colors duration-200 inline-flex items-center group">
                     <span>Ou découvrez nos templates équestres</span>
                     <ArrowRight :size="16" class="ml-2 group-hover:translate-x-1 transition-transform" />
                   </NuxtLink>
@@ -99,10 +99,10 @@
             <div>
               <h2 class="mb-4 text-2xl sm:text-3xl md:text-4xl">La boutique de template équestre</h2>
               <p class="section-subtitle text-left max-w-none text-sm sm:text-base md:text-lg">
-                Envie de créer votre site internet vous même ? Découvrez nos tempaltes personnalisables pour prestataires de services équestres.
+                Envie de créer votre site internet vous même ? Découvrez nos templates personnalisables pour prestataires de services équestres.
               </p>
             </div>
-            <NuxtLink to="/templates" class="hidden md:inline-flex items-center text-black font-semibold hover:gap-2 transition-all">
+            <NuxtLink to="/template-site-internet-equestre" class="hidden md:inline-flex items-center text-black font-semibold hover:gap-2 transition-all">
               Voir tous
               <ArrowRight :size="20" class="ml-1" />
             </NuxtLink>
@@ -121,7 +121,7 @@
           </div>
 
           <div class="text-center mt-12 md:hidden">
-            <NuxtLink to="/templates" class="btn-primary inline-flex items-center">
+            <NuxtLink to="/template-site-internet-equestre" class="btn-primary inline-flex items-center">
               Voir tous les templates
               <ArrowRight :size="20" class="ml-2" />
             </NuxtLink>
@@ -239,7 +239,6 @@ const supabase = useSupabaseClient<Database>()
 const loading = ref(true)
 const featuredTemplates = ref<Template[]>([])
 
-// Animation des mots
 const words = ['fière', 'heureuse', 'confiante']
 const currentWordIndex = ref(0)
 const currentWord = ref(words[0])

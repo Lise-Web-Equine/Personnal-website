@@ -51,6 +51,8 @@ export default defineNuxtConfig({
   nitro: {
     routeRules: {
       '/studio': { redirect: '/creation-site-internet-equestre', statusCode: 301 },
+      '/templates': { redirect: '/template-site-internet-equestre', statusCode: 301 },
+      '/templates/:slug': { redirect: '/template-site-internet-equestre/:slug', statusCode: 301 },
       '/images/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
       '/fonts/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } }
     }
@@ -88,11 +90,11 @@ export default defineNuxtConfig({
     urls: [
       { loc: '/', changefreq: 'weekly', priority: 1.0 },
       { loc: '/creation-site-internet-equestre', changefreq: 'monthly', priority: 0.9 },
-      { loc: '/templates', changefreq: 'weekly', priority: 0.9 },
+      { loc: '/template-site-internet-equestre', changefreq: 'weekly', priority: 0.9 },
       { loc: '/contact', changefreq: 'monthly', priority: 0.8 },
-      { loc: '/templates/osteopathe-equin', changefreq: 'monthly', priority: 0.8 },
-      { loc: '/templates/shiatsu-equin', changefreq: 'monthly', priority: 0.8 },
-      { loc: '/templates/cart', changefreq: 'never', priority: 0.3 },
+      { loc: '/template-site-internet-equestre/osteopathe-equin', changefreq: 'monthly', priority: 0.8 },
+      { loc: '/template-site-internet-equestre/shiatsu-equin', changefreq: 'monthly', priority: 0.8 },
+      { loc: '/template-site-internet-equestre/cart', changefreq: 'never', priority: 0.3 },
       { loc: '/mentions-legales', changefreq: 'yearly', priority: 0.3 },
       { loc: '/cgu', changefreq: 'yearly', priority: 0.3 },
       { loc: '/cgv', changefreq: 'yearly', priority: 0.3 },

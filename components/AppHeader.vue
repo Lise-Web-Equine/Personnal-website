@@ -99,7 +99,7 @@ const headerRef = ref<HTMLElement | null>(null)
 
 const navLinks = [
   { name: 'Création de site internet', path: '/creation-site-internet-equestre' },
-  { name: 'Les templates', path: '/templates' },
+  { name: 'Les templates', path: '/template-site-internet-equestre' },
   { name: 'Contact', path: '/contact' },
 ]
 
