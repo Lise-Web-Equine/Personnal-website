@@ -521,4 +521,17 @@ useHead({
     { name: 'twitter:description', content: 'Création de sites internet sur-mesure pour ostéopathes, éleveurs, centres équestres et professionnels du cheval.' }
   ]
 })
+
+// Données structurées Schema.org : service de création de sites web équestres.
+useStructuredData({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Création et refonte de site internet sur-mesure',
+  name: 'Création de site internet pour professionnels équestres',
+  description:
+    'Création de sites internet sur-mesure pour ostéopathes, éleveurs, centres équestres et professionnels du cheval, avec un accompagnement personnalisé.',
+  url: 'https://lisewebequine.fr/creation-site-internet-equestre',
+  areaServed: 'FR',
+  provider: { '@id': 'https://lisewebequine.fr/#organization' }
+})
 </script>

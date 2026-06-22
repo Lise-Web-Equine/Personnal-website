@@ -458,6 +458,48 @@ const template = ref<Template | null>(null)
 const relatedTemplates = ref<Template[]>([])
 const showGuideModal = ref(false)
 
+const siteUrl = 'https://lisewebequine.fr'
+
+// Données structurées Schema.org "Product" pour la page de détail du template.
+// Permet l'éligibilité aux résultats enrichis (prix, avis) dans les moteurs de recherche.
+useStructuredData(() => {
+  const t = template.value
+  if (!t) return []
+
+  const productUrl = `${siteUrl}/template-site-internet-equestre/${t.slug}`
+
+  const schema: Record<string, any> = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: t.name,
+    description: t.description,
+    image: t.image,
+    url: productUrl,
+    category: 'Template de site internet équestre',
+    brand: { '@type': 'Brand', name: 'Lise Web Equine' },
+    offers: {
+      '@type': 'Offer',
+      price: t.price,
+      priceCurrency: 'EUR',
+      availability: 'https://schema.org/InStock',
+      url: productUrl,
+      seller: { '@id': `${siteUrl}/#organization` }
+    }
+  }
+
+  // N'ajoute l'évaluation que si une note réelle est disponible.
+  if (t.rating && t.rating > 0) {
+    schema.aggregateRating = {
+      '@type': 'AggregateRating',
+      ratingValue: t.rating,
+      bestRating: 5,
+      ratingCount: 1
+    }
+  }
+
+  return schema
+})
+
 const isInCart = computed(() => {
   if (!template.value) return false
   return cartStore.cartItems.some(item => item.template.id === template.value!.id)

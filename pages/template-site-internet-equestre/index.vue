@@ -635,4 +635,37 @@ const guideFeatures = [
   }
 ]
 
+const siteUrl = 'https://lisewebequine.fr'
+
+// Supprime les marqueurs Markdown des réponses pour un texte propre dans le JSON-LD.
+const stripMarkdown = (text: string) =>
+  text.replace(/\*\*/g, '').replace(/^\s*-\s*/gm, '').replace(/\n+/g, ' ').trim()
+
+// Données structurées Schema.org : liste des templates (ItemList) + FAQ (FAQPage).
+useStructuredData(() => [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Templates de sites internet pour professionnels équestres',
+    itemListElement: templates.value.map((t, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      url: `${siteUrl}/template-site-internet-equestre/${t.slug}`,
+      name: t.name
+    }))
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: stripMarkdown(item.answer)
+      }
+    }))
+  }
+])
+
 </script>
