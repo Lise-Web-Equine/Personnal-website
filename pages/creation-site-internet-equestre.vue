@@ -4,51 +4,48 @@
         title="Création et refonte de site internet sur-mesure pour les prestataires équestres"
       />
 
-      <!-- Description Section -->
+      <!-- Section : Pour qui ? -->
       <section class="py-12 sm:py-16 md:py-20">
         <div class="container mx-auto px-6">
-          <div class="max-w-5xl mx-auto" v-motion-slide-visible-once-bottom>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-              <!-- Texte principal -->
-              <div>
-                <p class="text-base sm:text-lg text-secondary-600 leading-relaxed mb-6 sm:mb-8">
-                  Je conçois des sites vitrines élégants et performants pour les professionnels du monde équin. Un accompagnement de proximité pour transformer votre passion en une présence digitale remarquable.
-                </p>
-                <div class="space-y-4">
-                  <div class="flex items-start space-x-3">
-                    <div class="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <div class="w-2 h-2 bg-primary-600 rounded-full"></div>
-                    </div>
-                    <p class="text-sm sm:text-base text-secondary-700">Design unique qui reflète votre expertise équine</p>
+          <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
+            <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Un site adapté à votre métier équestre</h2>
+            <p class="text-base sm:text-lg text-secondary-600 max-w-3xl mx-auto">
+              Quelle que soit votre activité dans le monde du cheval, votre site est pensé pour vous rendre visible, crédible et autonome. Trouvez votre profil ci-dessous.
+            </p>
+          </div>
+
+          <div class="max-w-4xl mx-auto space-y-4">
+            <div
+              v-for="(profile, index) in profiles"
+              :key="index"
+              class="border border-secondary-200 rounded-2xl overflow-hidden bg-white transition-colors"
+              :class="openProfile === index ? 'border-primary-300 shadow-md' : 'hover:border-secondary-300'"
+              v-motion-slide-visible-once-bottom
+            >
+              <button
+                @click="toggleProfile(index)"
+                class="w-full px-5 sm:px-6 py-4 sm:py-5 flex items-center justify-between text-left gap-4"
+              >
+                <div class="flex items-center gap-3 sm:gap-4">
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary-100 flex items-center justify-center flex-shrink-0">
+                    <component :is="profile.icon" :size="22" class="text-primary-600" />
                   </div>
-                  <div class="flex items-start space-x-3">
-                    <div class="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <div class="w-2 h-2 bg-primary-600 rounded-full"></div>
-                    </div>
-                    <p class="text-sm sm:text-base text-secondary-700">Performance optimale pour tous les écrans</p>
-                  </div>
-                  <div class="flex items-start space-x-3">
-                    <div class="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <div class="w-2 h-2 bg-primary-600 rounded-full"></div>
-                    </div>
-                    <p class="text-sm sm:text-base text-secondary-700">Accompagnement jusqu'à votre autonomie complète</p>
-                  </div>
+                  <h3 class="text-base sm:text-lg font-bold text-secondary-900">{{ profile.title }}</h3>
                 </div>
-              </div>
-              
-              <!-- Citation mise en avant -->
-              <div class="bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl p-6 sm:p-8 border border-primary-200">
-                <blockquote class="text-sm sm:text-base text-secondary-800 leading-relaxed italic">
-                  "Plus qu'un simple site web, je crée une véritable vitrine digitale qui reflète votre expertise et votre passion. Chaque projet est une opportunité de mettre en valeur votre savoir-faire unique dans le monde équin."
-                </blockquote>
-                <div class="mt-6 flex items-center space-x-3">
-                  <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-200 rounded-full flex items-center justify-center">
-                    <span class="text-primary-700 font-bold text-base sm:text-lg">CE</span>
-                  </div>
-                  <div>
-                    <p class="text-sm sm:text-base font-semibold text-secondary-900">Claire-Elise</p>
-                    <p class="text-xs sm:text-sm text-secondary-600">Fondatrice du Studio</p>
-                  </div>
+                <ChevronDown
+                  :size="20"
+                  class="text-secondary-500 transition-transform duration-200 flex-shrink-0"
+                  :class="openProfile === index ? 'rotate-180' : ''"
+                />
+              </button>
+              <div v-show="openProfile === index" class="px-5 sm:px-6 pb-5 sm:pb-6">
+                <p class="text-sm sm:text-base text-secondary-500 mb-3">
+                  <span class="font-semibold text-secondary-700">Exemples :</span> {{ profile.examples }}
+                </p>
+                <div class="flex items-start gap-2">
+                  <p class="text-sm sm:text-base text-secondary-700 leading-relaxed">
+                    {{ profile.objective }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -56,11 +53,136 @@
         </div>
       </section>
 
-      <FeaturesSection
+      <!-- Section : Pourquoi nous choisir ? -->
+      <section class="py-12 sm:py-16 md:py-20 relative overflow-hidden bg-secondary">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-900/30 to-transparent rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
+        <GradientAnimation />
+
+        <div class="relative container mx-auto px-6">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
+              <span class="inline-block text-primary-400 font-semibold text-sm sm:text-base mb-3">Pourquoi nous choisir ?</span>
+              <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white">Restez autonome sur votre site internet</h2>
+              <p class="text-base sm:text-lg text-secondary-300 max-w-3xl mx-auto">
+                L'interface administrable : la solution web équestre pour gérer votre contenu vous-même, sans dépendre de personne.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+              <!-- Vidéo démo (placeholder) -->
+              <div v-motion-slide-visible-once-left>
+                <div class="aspect-video rounded-2xl bg-white/5 backdrop-blur-xs border border-white/10 shadow-lg flex flex-col items-center justify-center relative overflow-hidden">
+                  <div class="absolute inset-0 bg-gradient-to-br from-primary-900/40 to-transparent"></div>
+                  <div class="relative z-10 flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-4">
+                      <PlayCircle :size="36" class="text-white" />
+                    </div>
+                    <p class="text-white/80 text-sm font-medium">Vidéo démo à venir</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Description -->
+              <div v-motion-slide-visible-once-right>
+                <p class="text-base sm:text-lg text-secondary-300 leading-relaxed mb-6">
+                  Votre entreprise évolue, votre site aussi. Grâce à l'outil Sanity, configuré spécialement pour votre projet équestre, mettez à jour votre contenu en toute simplicité, sans aucune compétence technique.
+                </p>
+                <p class="text-sm font-semibold text-secondary-400 uppercase tracking-wide mb-4">Par exemple</p>
+                <div class="flex flex-wrap gap-2 sm:gap-3">
+                  <span
+                    v-for="(item, i) in adminFeatures"
+                    :key="i"
+                    class="inline-flex items-center px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm sm:text-base text-secondary-200 font-medium"
+                  >
+                    {{ item }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+   <!--  <FeaturesSection
         title="L'IA pour un site qui vit et qui engage."
         subtitle="Pour que votre site ne soit pas juste une page statique, j'y intègre des fonctionnalités interactives intelligentes sans jamais perdre votre authenticité."
         :features="studioAIFeatures"
-      />
+      />-->
+
+      <!-- Section : La formule -->
+      <section class="py-12 sm:py-16 md:py-20">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
+            <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">La formule équestre</h2>
+            <p class="text-base sm:text-lg text-secondary-600 max-w-3xl mx-auto">
+              Un socle complet pour lancer votre présence en ligne, que vous faites évoluer à votre rythme.
+            </p>
+          </div>
+
+          <div class="max-w-5xl mx-auto">
+            <!-- Le socle -->
+            <div class="bg-white rounded-2xl border-2 border-primary-200 shadow-lg overflow-hidden" v-motion-slide-visible-once-bottom>
+              <div class="grid grid-cols-1 md:grid-cols-2">
+                <!-- Prix -->
+                <div class="bg-gradient-to-br from-primary-50 to-primary-100 p-6 sm:p-8 lg:p-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-primary-200">
+                  <span class="inline-block bg-primary-600 text-white text-xs font-semibold px-3 py-1 rounded-full w-max mb-4">Le socle</span>
+                  <p class="text-4xl sm:text-5xl font-bold text-secondary-900 mb-2">1 500€</p>
+                  <p class="text-sm sm:text-base text-secondary-600">Paiement en 3 fois possible · Devis gratuit</p>
+                  <div class="mt-6 pt-6 border-t border-primary-200">
+                    <p class="text-sm text-secondary-600 mb-1">Hébergement annuel</p>
+                    <p class="text-lg sm:text-xl font-bold text-secondary-900">108€ <span class="text-sm font-medium text-secondary-500">/ an (soit 9€/mois)</span></p>
+                  </div>
+                </div>
+                <!-- Inclus -->
+                <div class="p-6 sm:p-8 lg:p-10">
+                  <p class="font-semibold text-secondary-900 mb-4">Tout est inclus :</p>
+                  <div class="space-y-3">
+                    <div v-for="(item, i) in socleIncludes" :key="i" class="flex items-start gap-3">
+                      <div class="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <Check :size="14" class="text-primary-600" />
+                      </div>
+                      <div>
+                        <p class="text-sm sm:text-base text-secondary-700">{{ item.label }}</p>
+                        <p v-if="item.example" class="text-xs text-secondary-500 mt-0.5">{{ item.example }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Options -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 sm:mt-8">
+              <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md border border-secondary-100" v-motion-slide-visible-once-bottom>
+                <div class="flex items-center gap-3 mb-3">
+                  <FileText :size="22" class="text-primary-600" />
+                  <h3 class="text-lg font-bold">Page supplémentaire</h3>
+                </div>
+                <p class="text-2xl font-bold text-secondary-900 mb-2">à partir de 200€</p>
+                <p class="text-sm sm:text-base text-secondary-600">Blog, réalisations, galerie, catalogue de chevaux...</p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md border border-secondary-100" v-motion-slide-visible-once-bottom :delay="100">
+                <div class="flex items-center gap-3 mb-3">
+                  <Puzzle :size="22" class="text-primary-600" />
+                  <h3 class="text-lg font-bold">Module supplémentaire</h3>
+                </div>
+                <p class="text-2xl font-bold text-secondary-900 mb-2">à partir de 150€</p>
+                <p class="text-sm sm:text-base text-secondary-600">Newsletter, site multilingue...</p>
+              </div>
+            </div>
+
+            <!-- CTA sur-mesure -->
+            <div class="text-center mt-8 sm:mt-10">
+              <p class="text-secondary-600 mb-4">Besoin d'une page ou d'un module sur-mesure ?</p>
+              <a href="#contact" class="btn-primary inline-flex items-center">
+                <span>Demander un devis</span>
+                <ArrowRight :size="20" class="ml-2" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- Étapes Section -->
       <section class="py-12 sm:py-16 md:py-20 relative overflow-hidden">
@@ -82,126 +204,84 @@
 
         <div class="container mx-auto px-6">
           <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
-            <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">On avance main dans la main</h2>
+            <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Les étapes de création de votre site équestre</h2>
             <p class="text-base sm:text-lg text-secondary-600 max-w-3xl mx-auto">
-              Pas de jargon compliqué, juste des étapes claires pour un projet zen.
+              De la première discussion à la mise en ligne, on avance main dans la main : un accompagnement clair, sans jargon technique, pour un projet serein.
             </p>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-            <!-- Étape 1 -->
-            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-shadow" v-motion-slide-visible-once-bottom>
-              <div class="flex items-center mb-4 sm:mb-6">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-                  <span class="text-primary-600 font-bold text-base sm:text-lg">1</span>
+          <div class="max-w-3xl mx-auto space-y-4">
+            <div
+              v-for="(step, index) in steps"
+              :key="index"
+              class="border border-secondary-200 rounded-2xl overflow-hidden bg-white transition-colors"
+              :class="openStep === index ? 'border-primary-300 shadow-md' : 'hover:border-secondary-300'"
+              v-motion-slide-visible-once-bottom
+            >
+              <button
+                @click="toggleStep(index)"
+                class="w-full px-5 sm:px-6 py-4 sm:py-5 flex items-center justify-between text-left gap-4"
+              >
+                <div class="flex items-center gap-3 sm:gap-4">
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="text-primary-600 font-bold text-base sm:text-lg">{{ index + 1 }}</span>
+                  </div>
+                  <h3 class="text-base sm:text-lg font-bold text-secondary-900">{{ step.title }}</h3>
                 </div>
-                <h3 class="text-lg sm:text-xl font-bold">Analyse de votre projet</h3>
+                <ChevronDown
+                  :size="20"
+                  class="text-secondary-500 transition-transform duration-200 flex-shrink-0"
+                  :class="openStep === index ? 'rotate-180' : ''"
+                />
+              </button>
+              <div v-show="openStep === index" class="px-5 sm:px-6 pb-5 sm:pb-6 pl-[4.25rem] sm:pl-[5.5rem]">
+                <p class="text-sm sm:text-base text-secondary-600 leading-relaxed">
+                  {{ step.description }}
+                </p>
               </div>
-              <p class="text-sm sm:text-base text-secondary-600 leading-relaxed">
-                Une session en direct pour comprendre votre vision et valider la faisabilité technique.
-              </p>
-            </div>
-
-            <!-- Étape 2 -->
-            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-shadow" v-motion-slide-visible-once-bottom :delay="100">
-              <div class="flex items-center mb-4 sm:mb-6">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-                  <span class="text-primary-600 font-bold text-base sm:text-lg">2</span>
-                </div>
-                <h3 class="text-lg sm:text-xl font-bold">Offre & Devis</h3>
-              </div>
-              <p class="text-sm sm:text-base text-secondary-600 leading-relaxed">
-                Je vous présente une proposition chiffrée transparente, adaptée à vos besoins réels.
-              </p>
-            </div>
-
-            <!-- Étape 3 -->
-            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-shadow" v-motion-slide-visible-once-bottom :delay="200">
-              <div class="flex items-center mb-4 sm:mb-6">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-                  <span class="text-primary-600 font-bold text-base sm:text-lg">3</span>
-                </div>
-                <h3 class="text-lg sm:text-xl font-bold">Cadrage de départ</h3>
-              </div>
-              <p class="text-sm sm:text-base text-secondary-600 leading-relaxed">
-                Dès le devis signé, nous fixons les objectifs précis pour lancer le développement.
-              </p>
-            </div>
-
-            <!-- Étape 4 -->
-            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-shadow" v-motion-slide-visible-once-bottom :delay="300">
-              <div class="flex items-center mb-4 sm:mb-6">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-                  <span class="text-primary-600 font-bold text-base sm:text-lg">4</span>
-                </div>
-                <h3 class="text-lg sm:text-xl font-bold">Développement</h3>
-              </div>
-              <p class="text-sm sm:text-base text-secondary-600 leading-relaxed">
-                Phase de création pure où votre site prend vie, sous mon oeil expert.
-              </p>
-            </div>
-
-            <!-- Étape 5 -->
-            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-shadow" v-motion-slide-visible-once-bottom :delay="400">
-              <div class="flex items-center mb-4 sm:mb-6">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-                  <span class="text-primary-600 font-bold text-base sm:text-lg">5</span>
-                </div>
-                <h3 class="text-lg sm:text-xl font-bold">Phase de test</h3>
-              </div>
-              <p class="text-sm sm:text-base text-secondary-600 leading-relaxed">
-              On vérifie ensemble que tout fonctionne parfaitement sur tous les écrans avant le grand saut.
-              </p>
-            </div>
-
-            <!-- Étape 6 -->
-            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-shadow" v-motion-slide-visible-once-bottom :delay="500">
-              <div class="flex items-center mb-4 sm:mb-6">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-                  <span class="text-primary-600 font-bold text-base sm:text-lg">6</span>
-                </div>
-                <h3 class="text-lg sm:text-xl font-bold">Mise en ligne</h3>
-              </div>
-              <p class="text-sm sm:text-base text-secondary-600 leading-relaxed">
-               Votre site est officiellement accessible ! Je reste à vos côtés pour le lancement.
-              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Pricing Banner -->
-      <section class="py-12 sm:py-16 md:py-20">
+      <!-- FAQ Section -->
+      <section class="py-12 sm:py-16 md:py-20 bg-gray-50">
         <div class="container mx-auto px-6">
           <div class="max-w-3xl mx-auto">
-            <div class="border-t border-b border-primary-200 py-8 sm:py-10">
-              <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div>
-                  <p class="text-sm sm:text-base text-secondary-600 mb-1">Tarif de base</p>
-                  <p class="text-2xl sm:text-3xl font-bold text-secondary-900">À partir de 1500€</p>
-                </div>
-                <div class="text-center sm:text-right">
-                  <p class="text-xs sm:text-sm text-secondary-500">Paiement en 3 fois possible</p>
-                  <p class="text-xs sm:text-sm text-secondary-500">Devis personnalisé gratuit</p>
-                </div>
-              </div>
+            <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
+              <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Questions fréquentes</h2>
+              <p class="text-base sm:text-lg text-secondary-600">
+                Tout ce qu'il faut savoir avant de lancer votre projet équestre.
+              </p>
             </div>
+            <Accordion :items="faqItems" />
           </div>
         </div>
       </section>
 
       <!-- Contact Section -->
-      <section class="py-12 sm:py-16 md:py-20">
+      <section id="contact" class="relative py-12 sm:py-16 md:py-20 overflow-hidden">
+        <!-- Image de fond + overlay sombre -->
+        <div class="absolute inset-0 -z-10">
+          <img
+            src="/images/Hestabien.jpg"
+            alt="Création de site internet pour les prestataires équestres"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-b from-secondary-900/90 via-secondary-900/80 to-secondary-900/90"></div>
+        </div>
+
         <div class="container mx-auto px-6">
           <div class="max-w-4xl mx-auto">
             <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
-              <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">On en discute ?</h2>
-              <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">
+              <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white">On en discute ?</h2>
+              <p class="text-base sm:text-lg text-secondary-200 leading-relaxed">
                 Chaque projet est unique. Envoyez-moi un message pour une première analyse gratuite de votre projet.
               </p>
             </div>
 
-            <div class="bg-white rounded-2xl p-6 sm:p-8 lg:p-12 shadow-sm border border-secondary-100" v-motion-slide-visible-once-bottom>
+            <div class="bg-white rounded-2xl p-6 sm:p-8 lg:p-12 shadow-xl border border-secondary-100" v-motion-slide-visible-once-bottom>
               <form @submit.prevent="handleSubmit" class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -212,7 +292,7 @@
                       id="name"
                       required
                       class="w-full px-4 py-3 border border-secondary-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
-                      placeholder="Votre nom"
+                      placeholder="Ex : Claire Martin"
                     />
                   </div>
                   <div>
@@ -223,7 +303,7 @@
                       id="email"
                       required
                       class="w-full px-4 py-3 border border-secondary-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
-                      placeholder="votre@email.com"
+                      placeholder="Ex : claire.martin@gmail.com"
                     />
                   </div>
                 </div>
@@ -236,9 +316,7 @@
                     disabled
                     class="w-full px-4 py-3 border border-secondary-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none bg-white bg-secondary-100 cursor-not-allowed"
                   >
-                    <option value="studio">Création sur mesure (Studio)</option>
-                    <option value="template">Template personnalisable</option>
-                    <option value="consultation">Consultation</option>
+                    <option value="studio">Création de site internet sur-mesure</option>
                   </select>
                 </div>
 
@@ -250,7 +328,7 @@
                     rows="6"
                     required
                     class="w-full px-4 py-3 border border-secondary-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none resize-none"
-                    placeholder="Décrivez-moi votre projet..."
+                    placeholder="Ex : Je suis ostéopathe équin près de Lyon et je souhaite un site pour être trouvée sur Google. J'aimerais une page prestations et un blog..."
                   ></textarea>
                 </div>
 
@@ -275,7 +353,105 @@
 </template>
 
 <script setup lang="ts">
-import { Code, ShoppingBag, Palette, Zap, Search, Smartphone, Database, Check, ArrowRight, Send, Heart, Sparkles, Target, MessageSquare } from 'lucide-vue-next'
+import { Code, Zap, Check, ArrowRight, Send, Target, ChevronDown, PlayCircle, FileText, Puzzle, HeartPulse, Home, Award, Camera, Briefcase, Rocket } from 'lucide-vue-next'
+
+// Section "Pour qui ?" : profils de prestataires équestres
+const profiles = [
+  {
+    icon: HeartPulse,
+    title: 'Praticien du bien-être équin et animal',
+    examples: 'ostéopathe équin, masseur équin, équicoach, communication animale...',
+    objective: 'Pour développer votre visibilité locale et être immédiatement trouvable par les clients de votre région sur Google.'
+  },
+  {
+    icon: Home,
+    title: 'Écuries de propriétaires et centres équestres',
+    examples: 'pension pour chevaux, enseignement, écurie active...',
+    objective: 'Pour présenter clairement vos infrastructures et cibler les clients idéaux de votre région.'
+  },
+  {
+    icon: Award,
+    title: 'Haras, élevages, étalonniers et écuries de valorisation',
+    examples: 'élevage de chevaux de sport, station de monte, valorisation...',
+    objective: 'Pour affirmer le prestige de votre structure à travers un catalogue exclusif valorisant la génétique, la qualité de votre élevage ou les performances de vos chevaux de sport.'
+  },
+  {
+    icon: Camera,
+    title: 'Tourisme équestre, médias et photographes équins',
+    examples: 'centre de tourisme équestre, photographe, magazine, blog équin...',
+    objective: 'Pour donner envie de réserver et de vous suivre grâce à un portfolio immersif qui valorise vos images.'
+  },
+  {
+    icon: Briefcase,
+    title: 'Services B2B du secteur équin',
+    examples: 'agence de communication équestre, avocat équin, conseil...',
+    objective: 'Pour affirmer votre expertise à travers vos réalisations pour inspirer confiance à vos clients professionnels.'
+  },
+  {
+    icon: Rocket,
+    title: 'Startups et solutions équitech',
+    examples: 'plateforme, application, innovation pour le secteur équin...',
+    objective: 'Pour crédibiliser votre innovation auprès des utilisateurs et des investisseurs.'
+  }
+]
+
+const openProfile = ref(0)
+const toggleProfile = (index: number) => {
+  openProfile.value = openProfile.value === index ? -1 : index
+}
+
+// Section "On avance main dans la main" : étapes du projet
+const steps = [
+  { title: 'Analyse de votre projet', description: 'Une session en direct pour comprendre votre vision et valider la faisabilité technique.' },
+  { title: 'Offre & Devis', description: 'Je vous présente une proposition chiffrée transparente, adaptée à vos besoins réels.' },
+  { title: 'Cadrage de départ', description: 'Dès le devis signé, nous fixons les objectifs précis pour lancer le développement.' },
+  { title: 'Développement', description: 'Phase de création pure, où votre site prend vie, que vous pouvez suivre en temps réel.' },
+  { title: 'Phase de test', description: 'On vérifie ensemble que tout fonctionne parfaitement sur tous les écrans avant le grand saut.' },
+  { title: 'Mise en ligne', description: 'Votre site est officiellement accessible ! Je reste à vos côtés pour le lancement.' }
+]
+
+const openStep = ref(0)
+const toggleStep = (index: number) => {
+  openStep.value = openStep.value === index ? -1 : index
+}
+
+// Section "Pourquoi nous choisir ?" : contenus modifiables en autonomie
+const adminFeatures = [
+  'Articles de blog',
+  'Projets et réalisations clients',
+  'Fiches équidés',
+  'Prestations et tarifs',
+  'Galerie'
+]
+
+// Section "La formule" : éléments inclus dans le socle
+const socleIncludes = [
+  { label: '5 pages', example: 'Par exemple : accueil, prestations, contact, à propos, pages légales' },
+  { label: 'Référencement sur Google' },
+  { label: 'Création du nom de domaine' },
+  { label: 'Interface de l\'adresse mail professionnel' },
+  { label: 'Interface d\'administration' }
+]
+
+// FAQ
+const faqItems = [
+  {
+    question: 'Combien de temps faut-il pour créer mon site ?',
+    answer: 'Cela dépend du nombre de pages et de modules, mais comptez généralement quelques semaines après le cadrage. Je vous donne un délai précis dès le devis.'
+  },
+  {
+    question: 'Puis-je modifier mon contenu moi-même après la mise en ligne ?',
+    answer: 'Oui ! C\'est tout l\'intérêt de l\'**interface d\'administration** incluse : vous mettez à jour vos articles, prestations, fiches équidés et projets en toute autonomie, sans aucune compétence technique.'
+  },
+  {
+    question: 'Que comprend l\'abonnement annuel de 108€ ?',
+    answer: 'L\'**Hébergement Essentiel** est un abonnement annuel (12 mois) qui inclut :\n\n- **Hébergement & Rapidité** : maintien du site sur serveurs haute performance.\n- **Maintenance & Sécurité** : mises à jour techniques pour éviter les bugs (2 fois par an).\n- **Gestion du contenu** : accès illimité à votre interface de modification (Sanity).\n- **Suivi SEO** : vérification de votre bon référencement sur Google (2 fois par an).\n- **Assistance** : intervention en cas de problème technique sur l\'affichage.'
+  },
+  {
+    question: 'Puis-je ajouter des pages ou des modules plus tard ?',
+    answer: 'Absolument. Votre site évolue avec votre activité : page supplémentaire à partir de **200€**, module à partir de **150€**. On peut aussi imaginer du **sur-mesure**.'
+  }
+]
 
 const studioAIFeatures = [
   {
@@ -335,7 +511,7 @@ const handleSubmit = async () => {
 }
 
 useHead({
-  title: 'Création et refonte de site internet pour les prestataires équestres | Lise Web Equine',
+  title: 'Création et refonte de site internet équestre | Lise Web Equine',
   meta: [
     { name: 'description', content: 'Création de sites internet sur-mesure pour ostéopathes, éleveurs, centres équestres et professionnels du cheval. Accompagnement personnalisé.' },
     { property: 'og:title', content: 'Création et refonte de site internet pour les prestataires équestres' },

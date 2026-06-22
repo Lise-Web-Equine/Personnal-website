@@ -703,6 +703,9 @@ definePageMeta({
   middleware: 'auth'
 })
 
+// Page privée : exclue de l'indexation Google
+useHead({ meta: [{ name: 'robots', content: 'noindex, nofollow' }] })
+
 // Import database types
 import { Star, Download, ShoppingCart } from 'lucide-vue-next'
 import { useCartStore } from '~/stores/cart'

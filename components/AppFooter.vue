@@ -3,24 +3,26 @@
     <div class="container mx-auto px-6 py-12">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-center md:text-left">
         <div>
-          <div class="text-2xl font-bold mb-4 flex items-center justify-center md:justify-start">
+          <NuxtLink to="/" class="text-2xl font-bold mb-4 flex items-center justify-center md:justify-start" aria-label="Lise Web Equine - Retour à l'accueil">
             <span class="gradient-primary-light bg-clip-text text-transparent">Lise</span>
             <span class="ml-2 text-white">Web Equine</span>
-          </div>
+          </NuxtLink>
           <p class="text-secondary-300 text-sm leading-relaxed">
             Création de site web pour le secteur équin.
           </p>
-          <p class="text-secondary-300 text-sm leading-relaxed">Fait avec ❤️ pour les indépendants de la filière équine.</p>
+          <p class="text-secondary-300 text-sm leading-relaxed">Fait avec ❤️ pour les prestataires de la filière équine.</p>
         </div>
 
-        <div>
+        <nav aria-label="Navigation de pied de page">
           <h3 class="font-semibold mb-4 text-lg text-white">Navigation</h3>
           <ul class="space-y-2 text-sm">
-            <li><NuxtLink to="/creation-site-internet-equestre" class="text-secondary-300 hover:text-white transition-colors">Le studio</NuxtLink></li>
-            <li><NuxtLink to="/template-site-internet-equestre" class="text-secondary-300 hover:text-white transition-colors">Templates</NuxtLink></li>
+            <li><NuxtLink to="/" class="text-secondary-300 hover:text-white transition-colors">Accueil</NuxtLink></li>
+            <li><NuxtLink to="/creation-site-internet-equestre" class="text-secondary-300 hover:text-white transition-colors">Création de site internet équestre</NuxtLink></li>
+            <li><NuxtLink to="/template-site-internet-equestre" class="text-secondary-300 hover:text-white transition-colors">Templates de site équestre</NuxtLink></li>
+            <li><NuxtLink to="/about" class="text-secondary-300 hover:text-white transition-colors">À propos</NuxtLink></li>
             <li><NuxtLink to="/contact" class="text-secondary-300 hover:text-white transition-colors">Contact</NuxtLink></li>
           </ul>
-        </div>
+        </nav>
 
         <div>
           <h3 class="font-semibold mb-4 text-lg text-white">Contact</h3>
@@ -63,7 +65,7 @@
           <p class="text-secondary-300 text-sm text-center sm:text-left">
             &copy; {{ currentYear }} Lise Web Equine. Tous droits réservés.
           </p>
-          <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 text-sm">
+          <nav aria-label="Liens légaux" class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 text-sm">
             <NuxtLink to="/mentions-legales" class="text-secondary-300 hover:text-white transition-colors">Mentions légales</NuxtLink>
             <span class="hidden sm:inline text-secondary-600">•</span>
             <NuxtLink to="/politique-confidentialite" class="text-secondary-300 hover:text-white transition-colors">Politique de confidentialité</NuxtLink>
@@ -71,7 +73,7 @@
             <NuxtLink to="/cgu" class="text-secondary-300 hover:text-white transition-colors">CGU</NuxtLink>
             <span class="hidden sm:inline text-secondary-600">•</span>
             <NuxtLink to="/cgv" class="text-secondary-300 hover:text-white transition-colors">CGV</NuxtLink>
-          </div>
+          </nav>
         </div>
       </div>
     </div>

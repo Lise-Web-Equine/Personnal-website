@@ -7,7 +7,7 @@
     <div class="relative overflow-hidden aspect-[4/3] bg-secondary-100">
       <img
         :src="template.image"
-        :alt="template.name"
+        :alt="`${template.name} site internet`"
         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         loading="lazy"
       />

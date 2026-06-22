@@ -54,4 +54,7 @@
 definePageMeta({
   layout: false,
 })
+
+// Page de maintenance : exclue de l'indexation Google
+useHead({ meta: [{ name: 'robots', content: 'noindex, nofollow' }] })
 </script>

@@ -69,6 +69,9 @@ definePageMeta({
   layout: 'default'
 })
 
+// Page privée : exclue de l'indexation Google
+useHead({ meta: [{ name: 'robots', content: 'noindex, nofollow' }] })
+
 const supabase = useSupabase()
 const router = useRouter()
 const user = useSupabaseUser()

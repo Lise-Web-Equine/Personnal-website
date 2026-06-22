@@ -35,7 +35,7 @@
                   >
                     <img
                       :src="template.image"
-                      :alt="template.name"
+                      :alt="`${template.name} site internet`"
                       class="w-full h-auto transition-transform duration-500 group-hover:scale-105"
                     />
                     <!-- Overlay with CTA - always visible -->
@@ -60,7 +60,7 @@
                   <img
                     v-else
                     :src="template.image"
-                    :alt="template.name"
+                    :alt="`${template.name} site internet`"
                     class="w-full h-auto"
                   />
                 </div>
@@ -344,7 +344,7 @@
 
         <section id="modeles-similaires" class="py-10 sm:py-12 md:py-16">
           <div class="container mx-auto px-4 sm:px-6">
-            <h2 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8">Templates similaires</h2>
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8">Templates équestres similaires</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               <TemplateCardMockup
                 v-for="relatedTemplate in relatedTemplates"

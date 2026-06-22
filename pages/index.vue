@@ -130,8 +130,8 @@
       </section>
 
       <FeaturesSection
-        title="Une expertise IA pensée pour vos projets web"
-        subtitle="Je mets l'intelligence artificielle au service de votre passion pour créer des sites web performants et agréables à utiliser."
+        title="Un site internet équestre rapide, visible et facile à gérer"
+        subtitle="Grâce à l'IA, je m'occupe de la technique pour me concentrer sur l'essentiel : un site qui attire vos clients, vous fait gagner du temps et que vous gérez en toute autonomie."
         :features="aiFeatures"
       />
 
@@ -201,13 +201,22 @@
         </div>
       </section>
 
-      <section class="py-12 sm:py-16 md:py-20 lg:py-24 bg-secondary text-white relative overflow-hidden">
-        <GradientAnimation />
-        
+      <section class="py-12 sm:py-16 md:py-20 lg:py-24 text-white relative overflow-hidden">
+        <!-- Image de fond + overlay sombre -->
+        <div class="absolute inset-0 -z-10">
+          <img
+            src="/images/Hestabien.jpg"
+            alt="Création de site internet pour les prestataires équestres"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-b from-secondary-900/90 via-secondary-900/80 to-secondary-900/90"></div>
+        </div>
+
         <div class="relative container mx-auto px-6">
           <div class="max-w-7xl mx-auto">
             <div class="text-left sm:text-center" v-motion-slide-visible-once-bottom>
-              <h2 class="mb-4 sm:mb-6 text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Prêt à montrer votre professionnalisme ?</h2>
+              <h2 class="mb-4 sm:mb-6 text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Créez votre site internet équestre professionnel</h2>
               <p class="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10">
                 Créons ensemble le site web pour votre structure équestre qui reflète votre expertise.
               </p>
@@ -215,7 +224,7 @@
                 <NuxtLink to="/creation-site-internet-equestre" class="btn-primary group relative w-auto">
                     <span class="flex items-center justify-start sm:justify-center">
                       <LayersIcon :size="20" color="white" class="mr-3" />
-                      Découvrir le studio
+                      Créer mon site équestre
                     </span>
                   </NuxtLink>
                 <NuxtLink to="/contact" class="btn-secondary-dark inline-flex items-center justify-start sm:justify-center">
@@ -263,26 +272,26 @@ const aiFeatures = [
   {
     icon: Zap,
     iconColor: 'text-primary-600',
-    title: 'Vitesse & Coûts réduits',
-    description: 'J\'utilise l\'IA pour accélérer ma production technique. Résultat : des délais divisés par deux et des tarifs plus compétitifs qu\'un projet traditionnel.'
+    title: 'Plus rapide, moins cher',
+    description: 'L\'IA m\'aide à aller plus vite sur la partie technique. Concrètement pour vous : votre site est prêt plus tôt et coûte moins cher qu\'avec une agence classique.'
   },
   {
-    icon: Code,
+    icon: PenTool,
     iconColor: 'text-primary-500',
-    title: 'Zéro CMS, 100% Propriétaire',
-    description: 'Fini les lourdeurs de WordPress ou Wix. Je vous livre un code qui vous appartient totalement, sans abonnement caché ni dépendance technique.'
+    title: 'Autonome sur votre site',
+    description: 'Une interface simple vous rend totalement autonome : mettez à jour vous-même vos prestations, vos photos ou vos actualités équestres, sans dépendre de personne ni payer à chaque modification.'
   },
   {
     icon: Search,
     iconColor: 'text-primary-400',
-    title: 'SEO de Haute Précision',
-    description: 'Je m\'appuie sur l\'IA pour structurer vos données et optimiser la sémantique, garantissant une visibilité maximale sur Google.'
+    title: 'Bien visible sur Google',
+    description: 'J\'organise soigneusement le contenu de votre site pour que vos futurs clients vous trouvent facilement quand ils cherchent sur Google.'
   },
   {
     icon: Sparkles,
     iconColor: 'text-primary-300',
-    title: 'Possibilités Infinies',
-    description: 'L\'IA me permet d\'intégrer des fonctionnalités complexes (chatbots, analyse, automatisation) sans aucune limite créative.'
+    title: 'Des idées sans limites',
+    description: 'Une réservation en ligne, un assistant qui répond à vos visiteurs, une tâche répétitive automatisée... Si vous en rêvez, l\'IA me permet de le rendre possible.'
   }
 ]
 

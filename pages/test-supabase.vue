@@ -33,6 +33,9 @@
 </template>
 
 <script setup lang="ts">
+// Page technique : exclue de l'indexation Google
+useHead({ meta: [{ name: 'robots', content: 'noindex, nofollow' }] })
+
 // Restreindre l'accès aux administrateurs uniquement
 definePageMeta({ 
   middleware: 'auth'

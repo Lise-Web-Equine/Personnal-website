@@ -29,7 +29,7 @@
             <div class="relative" style="aspect-ratio: 16/10;">
               <img
                 :src="template.image"
-                :alt="template.name"
+                :alt="`${template.name} site internet`"
                 class="w-full h-full object-cover"
                 loading="lazy"
               />

@@ -483,19 +483,30 @@
 
       <!-- Section CTA Final -->
 
-      <section class="py-16">
+      <section class="relative py-16 md:py-20 lg:py-24 overflow-hidden text-white">
 
-        <div class="container mx-auto px-6">
+        <!-- Image de fond + overlay sombre -->
+        <div class="absolute inset-0 -z-10">
+          <img
+            src="/images/Hestabien.jpg"
+            alt="Création de site internet pour les prestataires équestres"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-b from-secondary-900/90 via-secondary-900/80 to-secondary-900/90"></div>
+        </div>
+
+        <div class="relative container mx-auto px-6">
 
           <div class="text-center">
 
-            <h2 class="text-3xl md:text-4xl font-bold text-secondary-900 mb-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
 
               Prêt à lancer votre site web pro équin ?
 
             </h2>
 
-            <p class="text-lg text-secondary-600 max-w-2xl mx-auto mb-8">
+            <p class="text-lg text-secondary-200 max-w-2xl mx-auto mb-8">
 
               Choisissez parmi nos templates et commencez dès aujourd'hui
 

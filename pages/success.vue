@@ -117,6 +117,9 @@
 </template>
 
 <script setup lang="ts">
+// Page transactionnelle : exclue de l'indexation Google
+useHead({ meta: [{ name: 'robots', content: 'noindex, nofollow' }] })
+
 // Récupérer les paramètres de l'URL (session_id)
 const route = useRoute()
 const sessionId = route.query.session_id as string

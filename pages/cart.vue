@@ -26,7 +26,7 @@
             >
               <img
                 :src="item.template.image"
-                :alt="item.template.name"
+                :alt="`${item.template.name} site internet`"
                 class="w-full h-48 sm:w-32 sm:h-32 object-cover rounded-lg flex-shrink-0"
               />
 
@@ -112,6 +112,9 @@
 <script setup lang="ts">
 import { ShoppingCart, Trash2, Minus, Plus, CreditCard, Shield, Check } from 'lucide-vue-next'
 import { useCartStore } from '~/stores/cart'
+
+// Page panier : exclue de l'indexation Google
+useHead({ meta: [{ name: 'robots', content: 'noindex, nofollow' }] })
 
 const cartStore = useCartStore()
 const paymentModal = ref()

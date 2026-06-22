@@ -54,7 +54,7 @@ const duplicatedClients = [...clients, ...clients]
             <div class="h-auto overflow-hidden bg-white">
               <img
                 :src="client.image"
-                :alt="`Site web de ${client.name}`"
+                :alt="`Site internet équestre réalisé pour ${client.name}`"
                 class="w-full h-auto object-cover"
                 loading="lazy"
               />

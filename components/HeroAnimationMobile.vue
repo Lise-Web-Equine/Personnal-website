@@ -52,7 +52,7 @@ onUnmounted(() => {
             <img 
               src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&q=80&w=800" 
               class="absolute inset-0 w-full h-full object-cover filter saturate-[0.9] brightness-[0.7]"
-              alt="Zen Equine Mobile"
+              alt="Cheval au calme, univers équestre de Lise Web Equine"
             />
             <div class="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-transparent to-slate-900/90"></div>
             
