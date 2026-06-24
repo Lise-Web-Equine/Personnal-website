@@ -30,7 +30,7 @@
       <!-- Incitation à voir le site -->
       <div
         v-if="realisation.site_url"
-        class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4"
+        class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4"
       >
         <span class="flex items-center gap-2 text-white font-semibold text-sm">
           Voir le site

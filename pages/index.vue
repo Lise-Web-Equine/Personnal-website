@@ -98,8 +98,8 @@
               badge-text="Clé en main"
               badge-variant="primary"
               price="290€"
-              cta-text="Découvrir le Pack Sérénité"
-              cta-link="/template-site-internet-equestre"
+              cta-text="Découvrir l'offre template"
+              cta-link="/creation-template-site-internet-equestre"
               motion-direction="right"
             />
           </div>
