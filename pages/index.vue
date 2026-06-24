@@ -75,60 +75,37 @@
             </p>
           </div>
 
-          <div class="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
-            <!-- Le Studio -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
+            <!-- Le Studio : création sur-mesure (haut de gamme) -->
             <ServiceCard
               variant="primary"
               title="Création et refonte de site internet équestre"
               description="Pour les structures équestres établies qui veulent un site internet évolutif, performant et administrable en toute simplicité."
-              :icon="LayersIcon"
               badge-text="Sur mesure"
               badge-variant="primary"
               price="À partir de 1500€"
               cta-text="En savoir plus"
               cta-link="/creation-site-internet-equestre"
+              motion-direction="left"
               featured
+            />
+
+            <!-- Le Pack Sérénité : clé en main, offre mise en avant (done-for-you) -->
+            <ServiceCard
+              variant="default"
+              title="Création de site internet à partir d'un template équestre"
+              description="Pour les professionnels équestres qui démarrent leur activité, manquent de temps et veulent un site professionnel rapidement."
+              badge-text="Clé en main"
+              badge-variant="primary"
+              price="290€"
+              cta-text="Découvrir le Pack Sérénité"
+              cta-link="/template-site-internet-equestre"
+              motion-direction="right"
             />
           </div>
         </div>
       </section>
       
-      <section class="py-20">
-        <div class="container mx-auto px-6">
-          <div class="flex justify-between items-end mb-12" v-motion-slide-visible-once-bottom>
-            <div>
-              <h2 class="mb-4 text-2xl sm:text-3xl md:text-4xl">La boutique de template équestre</h2>
-              <p class="section-subtitle text-left max-w-none text-sm sm:text-base md:text-lg">
-                Envie de créer votre site internet vous même ? Découvrez nos templates personnalisables pour prestataires de services équestres.
-              </p>
-            </div>
-            <NuxtLink to="/template-site-internet-equestre" class="hidden md:inline-flex items-center text-black font-semibold hover:gap-2 transition-all">
-              Voir tous
-              <ArrowRight :size="20" class="ml-1" />
-            </NuxtLink>
-          </div>
-
-          <div v-if="loading" class="text-center py-20">
-            <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
-          </div>
-
-          <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <TemplateCardMockup
-              v-for="template in featuredTemplates"
-              :key="template.id"
-              :template="template"
-            />
-          </div>
-
-          <div class="text-center mt-12 md:hidden">
-            <NuxtLink to="/template-site-internet-equestre" class="btn-primary inline-flex items-center">
-              Voir tous les templates
-              <ArrowRight :size="20" class="ml-2" />
-            </NuxtLink>
-          </div>
-        </div>
-      </section>
-
       <FeaturesSection
         title="Un site internet équestre rapide, visible et facile à gérer"
         subtitle="Grâce à l'IA, je m'occupe de la technique pour me concentrer sur l'essentiel : un site qui attire vos clients, vous fait gagner du temps et que vous gérez en toute autonomie."
@@ -206,6 +183,43 @@
         </div>
       </section>
 
+      <!-- Boutique de templates : option "faites-le vous-même" (DIY, en fin de page) -->
+      <section class="py-16 sm:py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+          <div class="flex justify-between items-end mb-12" v-motion-slide-visible-once-bottom>
+            <div>
+              <h2 class="mb-4 text-2xl sm:text-3xl md:text-4xl">La boutique de template équestre</h2>
+              <p class="section-subtitle text-left max-w-none text-sm sm:text-base md:text-lg">
+                Personnalisez l'un de nos templates équestres en toute autonomie, accompagné de notre guide stratégique pas à pas.
+              </p>
+            </div>
+            <NuxtLink to="/template-site-internet-equestre" class="hidden md:inline-flex items-center text-secondary-900 font-semibold hover:gap-2 transition-all">
+              Voir tous
+              <ArrowRight :size="20" class="ml-1" />
+            </NuxtLink>
+          </div>
+
+          <div v-if="loading" class="text-center py-20">
+            <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500"></div>
+          </div>
+
+          <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <TemplateCardMockup
+              v-for="template in featuredTemplates"
+              :key="template.id"
+              :template="template"
+            />
+          </div>
+
+          <div class="text-center mt-12 md:hidden">
+            <NuxtLink to="/template-site-internet-equestre" class="btn-primary inline-flex items-center">
+              Voir tous les templates
+              <ArrowRight :size="20" class="ml-2" />
+            </NuxtLink>
+          </div>
+        </div>
+      </section>
+
       <section class="py-12 sm:py-16 md:py-20 lg:py-24 text-white relative overflow-hidden">
         <!-- Image de fond + overlay sombre -->
         <div class="absolute inset-0 -z-10">
@@ -245,7 +259,7 @@
 </template>
 
 <script setup lang="ts">
-import { Code, Palette, Zap, MessageSquare, ArrowRight, PenTool, Image, Search, Sparkles } from 'lucide-vue-next'
+import { Code, Palette, Zap, MessageSquare, ArrowRight, PenTool, Image, Search, Sparkles, ShieldCheck } from 'lucide-vue-next'
 import LayersIcon from '~/components/icons/LayersIcon.vue'
 import type { Template } from '~/models'
 import type { Database } from '~/types/database.types'
@@ -273,6 +287,14 @@ onMounted(() => {
     clearInterval(interval)
   })
 })
+
+// Prestations incluses dans le Pack Sérénité (carte Services)
+const packFeatures = [
+  { title: 'Installation clé en main' },
+  { title: 'Visio de lancement (30 min)' },
+  { title: 'Mise en place de votre contenu' },
+  { title: 'Support 1 mois inclus' }
+]
 
 const aiFeatures = [
   {

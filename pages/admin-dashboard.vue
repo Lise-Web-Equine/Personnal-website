@@ -606,6 +606,366 @@
             </div>
           </div>
 
+          <!-- Realisations Management (Social Proof) -->
+          <div class="bg-white rounded-2xl p-8 shadow-sm mt-8">
+            <div class="flex justify-between items-center mb-6">
+              <div>
+                <h2 class="text-2xl font-bold">Réalisations & témoignages</h2>
+                <p class="text-gray-600 mt-1 text-sm">Preuve sociale affichée sur les pages templates</p>
+              </div>
+              <button
+                @click="showRealisationForm = !showRealisationForm; showRealisationEditForm = false"
+                class="btn-primary"
+              >
+                {{ showRealisationForm ? 'Annuler' : 'Ajouter une réalisation' }}
+              </button>
+            </div>
+
+            <!-- Add Realisation Form -->
+            <div v-if="showRealisationForm" class="space-y-6">
+              <!-- Client identity -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Nom du client *</label>
+                  <input
+                    v-model="newRealisation.client_name"
+                    type="text"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="Ex: Marie D."
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Profession équestre *</label>
+                  <input
+                    v-model="newRealisation.client_profession"
+                    type="text"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="Ex: Ostéopathe équin"
+                  />
+                </div>
+              </div>
+
+              <!-- Type and linked template -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Type de réalisation *</label>
+                  <select
+                    v-model="newRealisation.type"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  >
+                    <option value="pack">Pack Sérénité (réalisé par moi)</option>
+                    <option value="template">Template (personnalisé en autonomie)</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Template lié (optionnel)</label>
+                  <select
+                    v-model="newRealisation.template_id"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  >
+                    <option :value="null">Aucun</option>
+                    <option v-for="t in templates" :key="t.id" :value="t.id">{{ t.name }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Site URL -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">URL du site client (optionnel)</label>
+                <input
+                  v-model="newRealisation.site_url"
+                  type="url"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  placeholder="https://nom-du-client.carrd.co"
+                />
+              </div>
+
+              <!-- Quote -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Témoignage *</label>
+                <textarea
+                  v-model="newRealisation.quote"
+                  rows="3"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  placeholder="Le retour du client sur son site..."
+                ></textarea>
+              </div>
+
+              <!-- Site image upload -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Capture du site *</label>
+                <div class="flex items-center space-x-4">
+                  <label class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors cursor-pointer">
+                    <input type="file" accept="image/*" @change="handleSiteImageUpload" class="hidden" />
+                    Choisir une image
+                  </label>
+                  <span class="text-sm text-gray-500">{{ siteImageFile?.name || 'Aucun fichier sélectionné' }}</span>
+                </div>
+                <div v-if="siteImagePreview" class="mt-4">
+                  <img :src="siteImagePreview" alt="Prévisualisation du site" class="w-48 h-32 object-cover rounded-lg border border-gray-200" />
+                </div>
+              </div>
+
+              <!-- Client photo upload -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Photo du client (optionnel)</label>
+                <div class="flex items-center space-x-4">
+                  <label class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors cursor-pointer">
+                    <input type="file" accept="image/*" @change="handleClientPhotoUpload" class="hidden" />
+                    Choisir une image
+                  </label>
+                  <span class="text-sm text-gray-500">{{ clientPhotoFile?.name || 'Aucun fichier sélectionné' }}</span>
+                </div>
+                <div v-if="clientPhotoPreview" class="mt-4">
+                  <img :src="clientPhotoPreview" alt="Photo du client" class="w-20 h-20 object-cover rounded-full border border-gray-200" />
+                </div>
+              </div>
+
+              <!-- Rating, order, featured -->
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Note (sur 5, optionnel)</label>
+                  <input
+                    v-model="newRealisation.rating"
+                    type="number"
+                    step="0.1"
+                    min="0"
+                    max="5"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="5"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Ordre d'affichage</label>
+                  <input
+                    v-model="newRealisation.display_order"
+                    type="number"
+                    min="0"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="0"
+                  />
+                </div>
+                <div class="flex items-end">
+                  <label class="inline-flex items-center gap-2 cursor-pointer">
+                    <input v-model="newRealisation.featured" type="checkbox" class="w-4 h-4 text-primary-600 rounded focus:ring-primary-500" />
+                    <span class="text-sm font-medium text-gray-700">Mettre en avant</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Form Actions -->
+              <div class="flex justify-end space-x-4 pt-6 border-t border-gray-200">
+                <button
+                  @click="resetRealisationForm"
+                  class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  Annuler
+                </button>
+                <button
+                  @click="addNewRealisation"
+                  :disabled="realisationLoading"
+                  class="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <span v-if="realisationLoading">Ajout en cours...</span>
+                  <span v-else>Ajouter la réalisation</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Edit Realisation Form -->
+            <div v-else-if="showRealisationEditForm && editingRealisation" class="space-y-6">
+              <h3 class="text-lg font-bold">Modifier : {{ editingRealisation.client_name }}</h3>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Nom du client *</label>
+                  <input
+                    v-model="editingRealisation.client_name"
+                    type="text"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Profession équestre *</label>
+                  <input
+                    v-model="editingRealisation.client_profession"
+                    type="text"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Type de réalisation *</label>
+                  <select
+                    v-model="editingRealisation.type"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  >
+                    <option value="pack">Pack Sérénité (réalisé par moi)</option>
+                    <option value="template">Template (personnalisé en autonomie)</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Template lié (optionnel)</label>
+                  <select
+                    v-model="editingRealisation.template_id"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  >
+                    <option :value="null">Aucun</option>
+                    <option v-for="t in templates" :key="t.id" :value="t.id">{{ t.name }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">URL du site client (optionnel)</label>
+                <input
+                  v-model="editingRealisation.site_url"
+                  type="url"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Témoignage *</label>
+                <textarea
+                  v-model="editingRealisation.quote"
+                  rows="3"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                ></textarea>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Capture du site</label>
+                <div class="flex items-center space-x-4">
+                  <label class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors cursor-pointer">
+                    <input type="file" accept="image/*" @change="handleSiteImageUpload" class="hidden" />
+                    Changer l'image
+                  </label>
+                  <span class="text-sm text-gray-500">{{ siteImageFile?.name || 'Image actuelle conservée' }}</span>
+                </div>
+                <div v-if="siteImagePreview" class="mt-4">
+                  <img :src="siteImagePreview" alt="Prévisualisation du site" class="w-48 h-32 object-cover rounded-lg border border-gray-200" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Photo du client (optionnel)</label>
+                <div class="flex items-center space-x-4">
+                  <label class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors cursor-pointer">
+                    <input type="file" accept="image/*" @change="handleClientPhotoUpload" class="hidden" />
+                    Changer la photo
+                  </label>
+                  <span class="text-sm text-gray-500">{{ clientPhotoFile?.name || 'Photo actuelle conservée' }}</span>
+                </div>
+                <div v-if="clientPhotoPreview" class="mt-4">
+                  <img :src="clientPhotoPreview" alt="Photo du client" class="w-20 h-20 object-cover rounded-full border border-gray-200" />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Note (sur 5, optionnel)</label>
+                  <input
+                    v-model="editingRealisation.rating"
+                    type="number"
+                    step="0.1"
+                    min="0"
+                    max="5"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Ordre d'affichage</label>
+                  <input
+                    v-model="editingRealisation.display_order"
+                    type="number"
+                    min="0"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  />
+                </div>
+                <div class="flex items-end">
+                  <label class="inline-flex items-center gap-2 cursor-pointer">
+                    <input v-model="editingRealisation.featured" type="checkbox" class="w-4 h-4 text-primary-600 rounded focus:ring-primary-500" />
+                    <span class="text-sm font-medium text-gray-700">Mettre en avant</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="flex justify-end space-x-4 pt-6 border-t border-gray-200">
+                <button
+                  @click="resetRealisationEditForm"
+                  class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  Annuler
+                </button>
+                <button
+                  @click="updateRealisation"
+                  :disabled="realisationLoading"
+                  class="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <span v-if="realisationLoading">Modification en cours...</span>
+                  <span v-else>Mettre à jour</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Realisations List -->
+            <div v-else>
+              <div v-if="realisationLoading && !realisations.length" class="text-center py-8">
+                <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
+                <p class="mt-2 text-gray-600">Chargement...</p>
+              </div>
+
+              <div v-else-if="!realisations.length" class="text-center py-8 text-gray-500">
+                Aucune réalisation pour le moment. Ajoutez votre première preuve sociale !
+              </div>
+
+              <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div
+                  v-for="realisation in realisations"
+                  :key="realisation.id"
+                  class="border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow"
+                >
+                  <img :src="realisation.site_image" :alt="`Site de ${realisation.client_name}`" class="w-full h-40 object-cover" />
+                  <div class="p-4">
+                    <div class="flex items-center justify-between mb-2">
+                      <span
+                        class="text-xs font-semibold px-2 py-1 rounded-full"
+                        :class="realisation.type === 'pack' ? 'bg-primary-100 text-primary-700' : 'bg-secondary-100 text-secondary-700'"
+                      >
+                        {{ realisation.type === 'pack' ? 'Pack Sérénité' : 'Template' }}
+                      </span>
+                      <span v-if="realisation.featured" class="text-xs font-semibold px-2 py-1 bg-amber-100 text-amber-700 rounded-full">En avant</span>
+                    </div>
+                    <h3 class="font-semibold">{{ realisation.client_name }}</h3>
+                    <p class="text-sm text-gray-500 mb-2">{{ realisation.client_profession }}</p>
+                    <p class="text-gray-600 text-sm line-clamp-3 italic">"{{ realisation.quote }}"</p>
+                    <p v-if="templateNameById(realisation.template_id)" class="text-xs text-gray-400 mt-2">
+                      Template : {{ templateNameById(realisation.template_id) }}
+                    </p>
+
+                    <div class="mt-3 pt-3 border-t border-gray-100 flex gap-2">
+                      <button
+                        @click="startEditRealisation(realisation)"
+                        class="flex-1 px-3 py-1 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 transition-colors text-sm"
+                      >
+                        Modifier
+                      </button>
+                      <button
+                        @click="deleteRealisation(realisation.id)"
+                        class="flex-1 px-3 py-1 bg-red-50 text-red-600 rounded hover:bg-red-100 transition-colors text-sm"
+                      >
+                        Supprimer
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- Legal Texts Management -->
           <div class="bg-white rounded-2xl p-8 shadow-sm mt-8">
             <div class="flex justify-between items-center mb-6">
@@ -709,7 +1069,7 @@ useHead({ meta: [{ name: 'robots', content: 'noindex, nofollow' }] })
 // Import database types
 import { Star, Download, ShoppingCart } from 'lucide-vue-next'
 import { useCartStore } from '~/stores/cart'
-import type { Template, TemplateUpdate, TemplateCreate } from '~/models'
+import type { Template, TemplateUpdate, TemplateCreate, Realisation, RealisationCreate, RealisationUpdate } from '~/models'
 import type { Database } from '~/types/database.types'
 
 const supabase = useSupabaseClient<Database>()
@@ -1024,10 +1384,236 @@ const addNewTemplate = async () => {
   }
 }
 
+// ─────────────────────────────────────────────────────────────
+// Réalisations (preuve sociale : sites clients + témoignages)
+// ─────────────────────────────────────────────────────────────
+const realisations = ref<Realisation[]>([])
+const realisationLoading = ref(false)
+const showRealisationForm = ref(false)
+const showRealisationEditForm = ref(false)
+const editingRealisation = ref<Realisation | null>(null)
+
+// Fichiers d'images dédiés aux réalisations (capture du site + photo client)
+const siteImageFile = ref<File | null>(null)
+const siteImagePreview = ref<string>('')
+const clientPhotoFile = ref<File | null>(null)
+const clientPhotoPreview = ref<string>('')
+
+const emptyRealisation = (): RealisationCreate => ({
+  client_name: '',
+  client_profession: '',
+  client_photo: null,
+  site_url: null,
+  site_image: '',
+  quote: '',
+  rating: null,
+  type: 'pack',
+  template_id: null,
+  featured: false,
+  display_order: 0
+})
+
+const newRealisation = ref<RealisationCreate>(emptyRealisation())
+
+// Convertit un fichier image en data URL (même approche que pour les templates)
+const fileToDataUrl = (file: File): Promise<string> =>
+  new Promise((resolve) => {
+    const reader = new FileReader()
+    reader.onload = (e) => resolve(e.target?.result as string)
+    reader.readAsDataURL(file)
+  })
+
+const handleSiteImageUpload = (event: Event) => {
+  const file = (event.target as HTMLInputElement).files?.[0]
+  if (file) {
+    siteImageFile.value = file
+    const reader = new FileReader()
+    reader.onload = (e) => { siteImagePreview.value = e.target?.result as string }
+    reader.readAsDataURL(file)
+  }
+}
+
+const handleClientPhotoUpload = (event: Event) => {
+  const file = (event.target as HTMLInputElement).files?.[0]
+  if (file) {
+    clientPhotoFile.value = file
+    const reader = new FileReader()
+    reader.onload = (e) => { clientPhotoPreview.value = e.target?.result as string }
+    reader.readAsDataURL(file)
+  }
+}
+
+const resetRealisationForm = () => {
+  newRealisation.value = emptyRealisation()
+  siteImageFile.value = null
+  siteImagePreview.value = ''
+  clientPhotoFile.value = null
+  clientPhotoPreview.value = ''
+  showRealisationForm.value = false
+}
+
+const resetRealisationEditForm = () => {
+  editingRealisation.value = null
+  siteImageFile.value = null
+  siteImagePreview.value = ''
+  clientPhotoFile.value = null
+  clientPhotoPreview.value = ''
+  showRealisationEditForm.value = false
+}
+
+const loadRealisations = async () => {
+  realisationLoading.value = true
+  try {
+    const { data, error } = await supabase
+      .from('realisations')
+      .select('*')
+      .order('display_order', { ascending: true })
+      .order('created_at', { ascending: false })
+
+    if (error) throw error
+    realisations.value = (data as Realisation[]) || []
+  } catch (error) {
+    console.error('Error loading realisations:', error)
+    showMessage('Erreur lors du chargement des réalisations', false)
+  } finally {
+    realisationLoading.value = false
+  }
+}
+
+const addNewRealisation = async () => {
+  if (!newRealisation.value.client_name || !newRealisation.value.client_profession || !newRealisation.value.quote) {
+    showMessage('Veuillez remplir le nom, la profession et le témoignage', false)
+    return
+  }
+  if (!siteImageFile.value) {
+    showMessage('Veuillez fournir une capture du site', false)
+    return
+  }
+
+  realisationLoading.value = true
+  message.value = ''
+
+  try {
+    const siteImage = await fileToDataUrl(siteImageFile.value)
+    const clientPhoto = clientPhotoFile.value ? await fileToDataUrl(clientPhotoFile.value) : null
+
+    const toInsert: RealisationCreate = {
+      ...newRealisation.value,
+      site_image: siteImage,
+      client_photo: clientPhoto,
+      site_url: newRealisation.value.site_url || null,
+      rating: newRealisation.value.rating ? Number(newRealisation.value.rating) : null,
+      display_order: Number(newRealisation.value.display_order) || 0
+    }
+
+    const { error } = await supabase
+      .from('realisations')
+      .insert(toInsert as any)
+
+    if (error) throw error
+
+    showMessage('Réalisation ajoutée avec succès !', true)
+    resetRealisationForm()
+    await loadRealisations()
+  } catch (error) {
+    console.error('Error adding realisation:', error)
+    showMessage('Erreur lors de l\'ajout de la réalisation', false)
+  } finally {
+    realisationLoading.value = false
+  }
+}
+
+const startEditRealisation = (realisation: Realisation) => {
+  editingRealisation.value = { ...realisation }
+  siteImagePreview.value = realisation.site_image
+  clientPhotoPreview.value = realisation.client_photo || ''
+  siteImageFile.value = null
+  clientPhotoFile.value = null
+  showRealisationEditForm.value = true
+  showRealisationForm.value = false
+}
+
+const updateRealisation = async () => {
+  if (!editingRealisation.value) {
+    showMessage('Aucune réalisation sélectionnée', false)
+    return
+  }
+
+  realisationLoading.value = true
+  message.value = ''
+
+  try {
+    const siteImage = siteImageFile.value ? await fileToDataUrl(siteImageFile.value) : editingRealisation.value.site_image
+    const clientPhoto = clientPhotoFile.value ? await fileToDataUrl(clientPhotoFile.value) : editingRealisation.value.client_photo
+
+    const toUpdate: RealisationUpdate = {
+      client_name: editingRealisation.value.client_name,
+      client_profession: editingRealisation.value.client_profession,
+      client_photo: clientPhoto || null,
+      site_url: editingRealisation.value.site_url || null,
+      site_image: siteImage,
+      quote: editingRealisation.value.quote,
+      rating: editingRealisation.value.rating ? Number(editingRealisation.value.rating) : null,
+      type: editingRealisation.value.type,
+      template_id: editingRealisation.value.template_id || null,
+      featured: editingRealisation.value.featured,
+      display_order: Number(editingRealisation.value.display_order) || 0,
+      updated_at: new Date().toISOString()
+    }
+
+    const { error } = await supabase
+      .from('realisations')
+      .update(toUpdate as any)
+      .eq('id', editingRealisation.value.id)
+
+    if (error) throw error
+
+    showMessage('Réalisation mise à jour avec succès !', true)
+    resetRealisationEditForm()
+    await loadRealisations()
+  } catch (error) {
+    console.error('Error updating realisation:', error)
+    showMessage('Erreur lors de la mise à jour de la réalisation', false)
+  } finally {
+    realisationLoading.value = false
+  }
+}
+
+const deleteRealisation = async (id: string) => {
+  if (!confirm('Êtes-vous sûr de vouloir supprimer cette réalisation ? Cette action est irréversible.')) {
+    return
+  }
+
+  realisationLoading.value = true
+  try {
+    const { error } = await supabase
+      .from('realisations')
+      .delete()
+      .eq('id', id)
+
+    if (error) throw error
+
+    showMessage('Réalisation supprimée avec succès !', true)
+    await loadRealisations()
+  } catch (error) {
+    console.error('Error deleting realisation:', error)
+    showMessage('Erreur lors de la suppression de la réalisation', false)
+  } finally {
+    realisationLoading.value = false
+  }
+}
+
+// Retourne le nom du template lié (pour l'affichage dans la liste)
+const templateNameById = (templateId: string | null): string => {
+  if (!templateId) return ''
+  return templates.value.find(t => t.id === templateId)?.name || ''
+}
+
 // Load templates on mount
 onMounted(() => {
   refreshTemplates()
   loadLegalTexts()
+  loadRealisations()
 })
 
 const refreshTemplates = async () => {

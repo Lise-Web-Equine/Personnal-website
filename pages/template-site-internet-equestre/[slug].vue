@@ -346,6 +346,30 @@
         </div>
         </section>
 
+        <!-- Preuve sociale : réalisations clients -->
+        <section v-if="realisations.length > 0" class="py-12 sm:py-16 md:py-20 bg-gray-50">
+          <div class="container mx-auto px-4 sm:px-6">
+            <div class="max-w-6xl mx-auto">
+              <div class="text-center mb-10 md:mb-14">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary-900 mb-3">
+                  Ils ont lancé leur site
+                </h2>
+                <p class="text-base sm:text-lg text-secondary-600 max-w-2xl mx-auto">
+                  Des professionnels équestres comme vous, déjà en ligne et sereins.
+                </p>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <RealisationCard
+                  v-for="realisation in realisations"
+                  :key="realisation.id"
+                  :realisation="realisation"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="modeles-similaires" class="py-10 sm:py-12 md:py-16">
           <div class="container mx-auto px-4 sm:px-6">
             <h2 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8">Templates équestres similaires</h2>
@@ -439,7 +463,7 @@
 <script setup lang="ts">
 import { ArrowLeft, Star, Download, ShoppingCart, ExternalLink, Check, X } from 'lucide-vue-next'
 import { useCartStore } from '~/stores/cart'
-import type { Template } from '~/models'
+import type { Template, Realisation } from '~/models'
 import Badge from '~/components/Badge.vue'
 
 const route = useRoute()
@@ -460,6 +484,7 @@ useHead({
 const loading = ref(true)
 const template = ref<Template | null>(null)
 const relatedTemplates = ref<Template[]>([])
+const realisations = ref<Realisation[]>([])
 const showGuideModal = ref(false)
 
 const siteUrl = 'https://lisewebequine.fr'
@@ -527,6 +552,27 @@ onMounted(async () => {
     template.value = data
 
     if (data) {
+      // Récupérer les réalisations liées à ce template (preuve sociale ciblée).
+      // Repli sur les réalisations mises en avant si aucune n'est liée.
+      const { data: linkedRealisations } = await supabase
+        .from('realisations')
+        .select('*')
+        .eq('template_id', (data as Template).id)
+        .order('display_order', { ascending: true })
+
+      if (linkedRealisations && linkedRealisations.length > 0) {
+        realisations.value = linkedRealisations as Realisation[]
+      } else {
+        const { data: featuredRealisations } = await supabase
+          .from('realisations')
+          .select('*')
+          .eq('featured', true)
+          .order('display_order', { ascending: true })
+          .limit(3)
+
+        realisations.value = (featuredRealisations as Realisation[]) || []
+      }
+
       // Essayer de récupérer des templates de la même spécialité
       const { data: related } = await supabase
         .from('templates')
