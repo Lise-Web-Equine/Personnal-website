@@ -13,7 +13,7 @@
             Un site adapté à ton début d'activité équestre
           </h2>
           <p class="text-base sm:text-lg text-secondary-600 max-w-3xl mx-auto">
-            Cet accompagnement est-il fait pour toi ? Réponds à ces quelques questions pour le découvrir.
+            Cet accompagnement est-il fait pour toi ? 
           </p>
         </div>
 
@@ -117,39 +117,29 @@
           <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
             <span class="inline-block text-primary-400 font-semibold text-sm sm:text-base mb-3">Pourquoi nous choisir ?</span>
             <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white">
-              Rassure tes futurs clients grâce à ton site internet
+               Rassure tes futurs clients grâce à ton site internet
             </h2>
             <p class="text-base sm:text-lg text-secondary-300 max-w-3xl mx-auto">
-              Une seule page bien pensée : c'est la solution web équestre pour convertir ton audience en futurs clients.
+Inutile de viser un site énorme : une page bien pensée suffit à convaincre.
             </p>
           </div>
 
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-            <!-- Idée principale -->
-            <div v-motion-slide-visible-once-left>
-              <p class="text-base sm:text-lg text-secondary-300 leading-relaxed mb-6">
-                Tu n'as pas besoin d'un « gros » site web pour te lancer. Les pros de la santé équine le disent : tout se passe en bouche-à-oreille.
-              </p>
-              <p class="text-base sm:text-lg text-secondary-300 leading-relaxed">
-                Ici, l'idée est de convertir les curieux qui te découvrent via Instagram. Ta page sera <span class="text-white font-semibold">complémentaire, claire et attirante</span>.
-              </p>
-            </div>
-
-            <!-- Points clés -->
-            <div v-motion-slide-visible-once-right>
-              <div class="space-y-4">
-                <div
-                  v-for="(item, i) in reasons"
-                  :key="i"
-                  class="flex items-start gap-4 bg-white/5 backdrop-blur-xs border border-white/10 rounded-2xl p-5"
-                >
-                  <div class="w-10 h-10 rounded-xl bg-primary-500/20 flex items-center justify-center flex-shrink-0">
-                    <component :is="item.icon" :size="20" class="text-primary-400" />
-                  </div>
-                  <div>
-                    <h3 class="text-white font-bold mb-1">{{ item.title }}</h3>
-                    <p class="text-sm text-secondary-300 leading-relaxed">{{ item.description }}</p>
-                  </div>
+          <!-- Points clés -->
+          <div class="grid grid-cols-1 gap-y-8 max-w-3xl mx-auto">
+            <div
+              v-for="(item, i) in reasons"
+              :key="i"
+              class="bg-white/5 backdrop-blur-xs rounded-xl p-6 border border-white/5"
+              v-motion-slide-visible-once-bottom
+              :style="{ 'animation-delay': `${i * 100}ms` }"
+            >
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-white/5">
+                  <component :is="item.icon" :size="24" class="text-primary-400" />
+                </div>
+                <div>
+                  <h3 class="text-base sm:text-lg md:text-xl font-semibold text-white mb-2">{{ item.title }}</h3>
+                  <p class="text-sm sm:text-base text-secondary-300 leading-relaxed">{{ item.description }}</p>
                 </div>
               </div>
             </div>
@@ -164,7 +154,7 @@
         <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
           <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">L'offre template clé en main</h2>
           <p class="text-base sm:text-lg text-secondary-600 max-w-3xl mx-auto">
-            Un site professionnel installé pour toi, prêt à convertir, à un prix pensé pour un début d'activité.
+            Votre template personnalisée par notre agence pour un gain de temps et un rendu professionnel sans aucun doute.
           </p>
         </div>
 
@@ -190,6 +180,18 @@
                 </div>
               </div>
             </div>
+          </div>
+
+          <div class="text-center mt-8" v-motion-slide-visible-once-bottom>
+            <button
+              data-cal-link="lisewebequine/pack-serenite"
+              data-cal-namespace="pack-serenite"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"false"}'
+              class="btn-primary inline-flex items-center"
+            >
+              <span>Réserver un créneau</span>
+              <ArrowRight :size="20" class="ml-2" />
+            </button>
           </div>
         </div>
       </div>
@@ -217,22 +219,36 @@
     </section>
 
     <!-- Section : CTA final -->
-    <section class="relative py-12 sm:py-16 md:py-20 overflow-hidden bg-secondary">
-      <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-900/30 to-transparent rounded-full blur-3xl"></div>
-      <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
+    <section class="relative py-16 md:py-20 lg:py-24 overflow-hidden text-white">
+      <!-- Image de fond + overlay sombre -->
+      <div class="absolute inset-0 -z-10">
+        <NuxtImg
+          src="/images/Hestabien.jpg"
+          alt="Création de site internet pour les prestataires équestres"
+          class="w-full h-full object-cover"
+          sizes="100vw"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-secondary-900/90 via-secondary-900/80 to-secondary-900/90"></div>
+      </div>
 
       <div class="relative container mx-auto px-6">
         <div class="max-w-3xl mx-auto text-center" v-motion-slide-visible-once-bottom>
-          <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white">
-            Prêt à lancer ton site équestre ?
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+            Prêt à lancer votre site équestre ?
           </h2>
-          <p class="text-base sm:text-lg text-secondary-300 mb-8 leading-relaxed">
-            Une page claire et attirante pour convertir ton audience en futurs clients. Parlons de ton projet dès aujourd'hui.
+          <p class="text-lg text-secondary-200 max-w-2xl mx-auto mb-8 leading-relaxed">
+            Réservez votre rendez-vous découverte gratuit. En 30 minutes, nous faisons le point sur votre activité et nous vous expliquons comment votre site peut vous amener plus de clients.
           </p>
-          <NuxtLink to="/contact" class="btn-primary inline-flex items-center">
-            <span>Demander mon devis gratuit</span>
+          <button
+            data-cal-link="lisewebequine/pack-serenite"
+            data-cal-namespace="pack-serenite"
+            data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"false"}'
+            class="btn-primary inline-flex items-center"
+          >
+            <span>Réserver votre rendez-vous gratuit</span>
             <ArrowRight :size="20" class="ml-2" />
-          </NuxtLink>
+          </button>
         </div>
       </div>
     </section>
@@ -323,28 +339,37 @@ onMounted(async () => {
 const reasons = [
   {
     icon: Instagram,
-    title: 'Complémentaire à Instagram',
-    description: 'Ta page prolonge ta présence sur les réseaux et rassure ceux qui te découvrent.'
+    title: 'Le prolongement de ton Instagram',
+    description: 'Ta page rassure ceux qui te découvrent sur les réseaux et leur donne envie de te contacter.'
   },
   {
     icon: Target,
-    title: 'Pensée pour convertir',
-    description: 'Un message clair et un appel à l\'action évident pour transformer les curieux en clients.'
+    title: 'Pensée pour décrocher des rendez-vous',
+    description: 'Un message simple et un bouton "prendre rendez-vous" bien visible : les visiteurs passent à l\'action.'
   },
   {
     icon: Wallet,
-    title: 'Abordable pour démarrer',
-    description: 'Un investissement maîtrisé, adapté à un début d\'activité, sans superflu.'
+    title: 'Un prix abordable pour bien démarrer',
+    description: 'Un budget maîtrisé, parfait quand on lance son activité équestre, sans options inutiles.'
   }
 ]
 
 useHead({
-  title: 'Création de site internet avec template équestre | Lise Web Equine',
+  title: 'Création de site internet équestre pour praticiens du cheval | Lise Web Equine',
   meta: [
-    { name: 'description', content: 'Un site internet professionnel et abordable basé sur un template, pensé pour les praticiens du bien-être équin en début d\'activité.' },
-    { property: 'og:title', content: 'Création de site internet avec template équestre' },
-    { property: 'og:description', content: 'Une page web claire et attirante pour convertir ton audience Instagram en futurs clients.' },
+    { name: 'description', content: 'Site internet professionnel et abordable pour ostéopathes équins, soigneurs et coachs : attire tes premiers clients et reçois des demandes de rendez-vous. Devis gratuit.' },
+    { name: 'keywords', content: 'site internet équestre, création site web cheval, ostéopathe équin, soigneur équin, praticien bien-être équin, site web professionnel équestre' },
+    { property: 'og:title', content: 'Création de site internet équestre pour praticiens du cheval' },
+    { property: 'og:description', content: 'Un site clair et professionnel pour transformer ton audience Instagram en clients et décrocher des rendez-vous.' },
     { property: 'og:type', content: 'website' }
+  ],
+  // Script Cal.com pour la prise de rendez-vous (popup "Réserver un créneau")
+  script: [
+    {
+      innerHTML: `(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.eu/embed/embed.js", "init"); Cal("init", "pack-serenite", {origin:"https://app.cal.eu"}); Cal.ns["pack-serenite"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});`,
+      type: 'text/javascript',
+      tagPosition: 'bodyClose'
+    }
   ]
 })
 

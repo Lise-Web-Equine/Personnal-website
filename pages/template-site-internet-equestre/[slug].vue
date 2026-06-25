@@ -171,7 +171,7 @@
                       <span class="text-xs opacity-80">TTC</span>
                     </div>
                   </button>
-                  <div class="flex items-center justify-center gap-3 mt-2 text-xs text-gray-500">
+                  <div class="flex items-center justify-center gap-3 mt-4 text-xs text-gray-500">
                     <span class="flex items-center gap-1">
                       <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
@@ -187,160 +187,6 @@
                     Pour utiliser toutes les fonctionnalités, l'abonnement Pro Standard sur la plateforme sera nécessaire (à partir d'environ 1,50€/mois).
                   </p>
                 </div>
-            </div>
-          </div>
-        </div>
-        </section>
-
-        <!-- Accompagnement Pack Sérénité -->
-        <section class="py-20 sm:py-24 md:py-32 relative overflow-hidden">
-          <!-- Halo backgrounds with fade mask -->
-          <div class="absolute inset-0 -z-10" style="mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);">
-            <div class="absolute inset-x-0 -top-20 sm:-top-40 transform-gpu overflow-hidden blur-2xl sm:blur-3xl" aria-hidden="true">
-              <div
-                class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff9a76] to-[#9089fc] opacity-30 sm:opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-                style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
-              ></div>
-            </div>
-            <div class="absolute inset-x-0 top-[calc(50%-20rem)] transform-gpu overflow-hidden blur-2xl sm:blur-3xl sm:top-[calc(50%-30rem)]" aria-hidden="true">
-              <div
-                class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 bg-gradient-to-tr from-[#9089fc] to-[#ffb380] opacity-25 sm:opacity-15 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-                style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
-              ></div>
-            </div>
-          </div>
-
-          <div class="container mx-auto px-4 sm:px-6">
-            <div class="max-w-6xl mx-auto">
-              <!-- En-tête de la section -->
-              <div class="text-center mb-12 md:mb-16">
-                <h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-secondary-900 mb-4">Tu as besoin d'un site qui reflète ton professionnalisme sans attendre ?</h2>
-                <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-                  Je personnalise ton site web.
-                </p>
-              </div>
-
-<!-- Carte principale -->
-              <div class="relative">
-                <!-- Badge on the border -->
-                <div class="absolute -top-3 right-4 sm:right-6 z-10">
-                  <Badge variant="primary" text="Le Pack Sérénité" />
-                </div>
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-                  <div class="grid grid-cols-1 lg:grid-cols-3">
-                    <!-- Partie gauche - Bénéfices en 2 colonnes -->
-                    <div class="lg:col-span-2 p-6 md:p-10 lg:p-16 bg-white">
-                      <div class="mb-8 md:mb-12">
-                        <h3 class="text-xl md:text-2xl font-bold text-secondary-900">
-                          L'expertise pro, la rapidité en plus.
-                        </h3>
-                      </div>
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-                      <!-- Gagnez du temps -->
-                      <div class="flex items-start">
-                        <div class="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-3 md:mr-4">
-                          <svg class="w-5 h-5 md:w-6 md:h-6 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
-                          </svg>
-                        </div>
-                        <div>
-                          <h4 class="font-bold text-gray-900 text-base md:text-lg mb-2">Gagnez du temps</h4>
-                          <p class="text-gray-600 text-xs md:text-sm">Je gère toute la technique. Pendant ce temps, tu gères ton business.</p>
-                        </div>
-                      </div>
-
-                      <!-- Rendu Professionnel -->
-                      <div class="flex items-start">
-                        <div class="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-3 md:mr-4">
-                          <svg class="w-5 h-5 md:w-6 md:h-6 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                          </svg>
-                        </div>
-                        <div>
-                          <h4 class="font-bold text-gray-900 text-base md:text-lg mb-2">Rendu Professionnel</h4>
-                          <p class="text-gray-600 text-xs md:text-sm">Un design moderne et élégant qui inspire confiance à tes clients dès la première seconde.</p>
-                        </div>
-                      </div>
-
-                      <!-- Livraison Rapide -->
-                      <div class="flex items-start">
-                        <div class="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-3 md:mr-4">
-                          <svg class="w-5 h-5 md:w-6 md:h-6 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path>
-                            <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"></path>
-                          </svg>
-                        </div>
-                        <div>
-                          <h4 class="font-bold text-gray-900 text-base md:text-lg mb-2">Livraison Rapide</h4>
-                          <p class="text-gray-600 text-xs md:text-sm">Ta présence en ligne est opérationnelle en un temps record, sans erreurs.</p>
-                        </div>
-                      </div>
-
-                      <!-- Zéro Stress Technique -->
-                      <div class="flex items-start">
-                        <div class="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-3 md:mr-4">
-                          <svg class="w-5 h-5 md:w-6 md:h-6 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                          </svg>
-                        </div>
-                        <div>
-                          <h4 class="font-bold text-gray-900 text-base md:text-lg mb-2">Zéro Stress Technique</h4>
-                          <p class="text-gray-600 text-xs md:text-sm">Hébergement, sécurité, mises à jour... Je m'occupe de la face cachée du web.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Partie droite - Prix et services (fond sombre) -->
-                  <div class="lg:col-span-1 p-6 md:p-8 lg:p-10 bg-secondary text-white flex flex-col justify-center">
-                    <div class="mb-6 md:mb-8">
-                      <div class="text-gray-400 text-xs md:text-sm font-medium mb-2">CLÉ EN MAIN</div>
-                      <div class="text-4xl md:text-5xl font-bold mb-2">290€</div>
-                      <div class="text-amber-300 font-medium text-sm md:text-base">Investissement unique</div>
-                    </div>
-
-                    <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 md:p-6 mb-6 md:mb-8 border border-white/10">
-                      <h4 class="font-bold text-base md:text-lg mb-4">Ce qui est inclus :</h4>
-                      <div class="space-y-3">
-                        <div class="flex items-center">
-                          <svg class="w-5 h-5 mr-3 flex-shrink-0 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                          </svg>
-                          <span>Installation clé en main</span>
-                        </div>
-                        <div class="flex items-center">
-                          <svg class="w-5 h-5 mr-3 flex-shrink-0 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                          </svg>
-                          <span>Visio de lancement (30min)</span>
-                        </div>
-                        <div class="flex items-center">
-                          <svg class="w-5 h-5 mr-3 flex-shrink-0 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                          </svg>
-                          <span>Mise en place de ton contenu</span>
-                        </div>
-                        <div class="flex items-center">
-                          <svg class="w-5 h-5 mr-3 flex-shrink-0 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                          </svg>
-                          <span>Support 1 mois</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <button
-                      data-cal-link="lisewebequine/pack-serenite"
-                      data-cal-namespace="pack-serenite"
-                      data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"false"}'
-                      class="w-full bg-white text-secondary-900 font-bold py-3 md:py-4 px-4 md:px-6 rounded-xl hover:bg-gray-100 transition-colors shadow-lg text-sm md:text-base"
-                    >
-                      Réserver un créneau
-                    </button>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -379,6 +225,39 @@
                 :key="relatedTemplate.id"
                 :template="relatedTemplate"
               />
+            </div>
+          </div>
+        </section>
+
+                <!-- Section CTA avec image : redirection vers le service de template clé en main -->
+        <section class="relative py-16 md:py-20 lg:py-24 overflow-hidden text-white">
+          <!-- Image de fond + overlay sombre -->
+          <div class="absolute inset-0 -z-10">
+            <NuxtImg
+              src="/images/Hestabien.jpg"
+              alt="Création de site internet équestre clé en main"
+              class="w-full h-full object-cover"
+              sizes="100vw"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-b from-secondary-900/90 via-secondary-900/80 to-secondary-900/90"></div>
+          </div>
+
+          <div class="relative container mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center">
+              <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+                Vous préférez qu'on s'en occupe ?
+              </h2>
+              <p class="text-base sm:text-lg text-secondary-200 max-w-2xl mx-auto mb-8 leading-relaxed">
+                Nous personnalisons votre template de A à Z. Vous gagnez du temps, nous assurons le rendu professionnel.
+              </p>
+              <NuxtLink
+                to="/creation-template-site-internet-equestre"
+                class="btn-primary inline-flex items-center"
+              >
+                <span>Découvrir le service clé en main</span>
+                <ArrowRight :size="20" class="ml-2" />
+              </NuxtLink>
             </div>
           </div>
         </section>
@@ -461,7 +340,7 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowLeft, Star, Download, ShoppingCart, ExternalLink, Check, X } from 'lucide-vue-next'
+import { ArrowLeft, ArrowRight, Star, Download, ShoppingCart, ExternalLink, Check, X } from 'lucide-vue-next'
 import { useCartStore } from '~/stores/cart'
 import type { Template, Realisation } from '~/models'
 import Badge from '~/components/Badge.vue'

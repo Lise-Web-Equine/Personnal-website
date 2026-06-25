@@ -14,7 +14,7 @@
 
 
 
-      <section class="py-8 sm:py-12 md:py-16">
+      <section id="grille-templates" class="py-8 sm:py-12 md:py-16">
         <div class="container mx-auto px-6">
 
           <div class="mb-6 text-sm sm:text-base text-gray-600">
@@ -482,9 +482,7 @@
 
 
       <!-- Section CTA Final -->
-
       <section class="relative py-16 md:py-20 lg:py-24 overflow-hidden text-white">
-
         <!-- Image de fond + overlay sombre -->
         <div class="absolute inset-0 -z-10">
           <NuxtImg
@@ -498,27 +496,29 @@
         </div>
 
         <div class="relative container mx-auto px-6">
-
-          <div class="text-center">
-
+          <div class="text-center max-w-3xl mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-
-              Prêt à lancer votre site web pro équin ?
-
+             Vous préférez qu'on s'en occupe ?
             </h2>
-
             <p class="text-lg text-secondary-200 max-w-2xl mx-auto mb-8">
-
-              Choisissez parmi nos templates et commencez dès aujourd'hui
-
-            </p>
-
-            <Button to="/template-site-internet-equestre" variant="primary" text="Voir tous les templates" class="inline-flex" />
-
+              Nous personnalisons votre template de A à Z. Vous gagnez du temps, nous assurons le rendu professionnel. </p>
+            <NuxtLink
+              to="/creation-template-site-internet-equestre"
+              class="btn-primary inline-flex items-center"
+            >
+              <span>Découvrir le service clé en main</span>
+              <ArrowRight :size="20" class="ml-2" />
+            </NuxtLink>
+            <div class="mt-6">
+              <NuxtLink
+                to="#grille-templates"
+                class="text-sm text-secondary-300 hover:text-white underline underline-offset-4 transition-colors"
+              >
+                ← Revoir les templates disponibles
+              </NuxtLink>
+            </div>
           </div>
-
         </div>
-
       </section>
 
   </NuxtLayout>
@@ -529,7 +529,7 @@
 
 <script setup lang="ts">
 
-import { Package, BookOpen, Lightbulb, Sparkles, MessageSquare } from 'lucide-vue-next'
+import { Package, BookOpen, Lightbulb, Sparkles, MessageSquare, ArrowRight } from 'lucide-vue-next'
 
 import type { Template } from '~/models'
 
