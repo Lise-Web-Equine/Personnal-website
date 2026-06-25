@@ -97,7 +97,7 @@
               description="Pour les professionnels équestres qui démarrent leur activité, manquent de temps et veulent un site professionnel rapidement."
               badge-text="Clé en main"
               badge-variant="primary"
-              price="290€"
+              price="À partir de 290€"
               cta-text="Découvrir l'offre template"
               cta-link="/creation-template-site-internet-equestre"
               motion-direction="right"
@@ -220,41 +220,26 @@
         </div>
       </section>
 
-      <section class="py-12 sm:py-16 md:py-20 lg:py-24 text-white relative overflow-hidden">
-        <!-- Image de fond + overlay sombre -->
-        <div class="absolute inset-0 -z-10">
-          <NuxtImg
-            src="/images/Hestabien.jpg"
-            alt="Création de site internet pour les prestataires équestres"
-            class="w-full h-full object-cover"
-            sizes="100vw"
-            loading="lazy"
-          />
-          <div class="absolute inset-0 bg-gradient-to-b from-secondary-900/90 via-secondary-900/80 to-secondary-900/90"></div>
-        </div>
-
-        <div class="relative container mx-auto px-6">
-          <div class="max-w-7xl mx-auto">
-            <div class="text-left sm:text-center" v-motion-slide-visible-once-bottom>
-              <h2 class="mb-4 sm:mb-6 text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Créez votre site internet équestre professionnel</h2>
-              <p class="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10">
-                Créons ensemble le site web pour votre structure équestre qui reflète votre expertise.
-              </p>
-              <div class="flex flex-col sm:flex-row gap-4 justify-start sm:justify-center">
-                <NuxtLink to="/creation-site-internet-equestre" class="btn-primary group relative w-auto">
-                    <span class="flex items-center justify-start sm:justify-center">
-                      <LayersIcon :size="20" color="white" class="mr-3" />
-                      Créer mon site équestre
-                    </span>
-                  </NuxtLink>
-                <NuxtLink to="/contact" class="btn-secondary-dark inline-flex items-center justify-start sm:justify-center">
-                  <span>Me contacter</span>
-                </NuxtLink>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaSection
+        title="Créez votre site internet équestre professionnel"
+        description="Créons ensemble le site web pour votre structure équestre qui reflète votre expertise."
+        image="/images/Hestabien.jpg"
+        image-alt="Création de site internet pour les prestataires équestres"
+        align="responsive"
+        size="large"
+      >
+        <template #actions>
+          <NuxtLink to="/creation-site-internet-equestre" class="btn-primary group relative w-auto">
+            <span class="flex items-center justify-start sm:justify-center">
+              <LayersIcon :size="20" color="white" class="mr-3" />
+              Créer mon site équestre
+            </span>
+          </NuxtLink>
+          <NuxtLink to="/contact" class="btn-secondary-dark inline-flex items-center justify-start sm:justify-center">
+            <span>Me contacter</span>
+          </NuxtLink>
+        </template>
+      </CtaSection>
   </NuxtLayout>
 </template>
 

@@ -96,28 +96,21 @@
         </div>
       </section>
 
-      <!-- CTA Section -->
-      <section class="py-20 bg-secondary-50">
-        <div class="container mx-auto px-6">
-          <div class="max-w-3xl mx-auto text-center" v-motion-slide-visible-once-bottom>
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-secondary-900">
-              Prêt à commencer votre projet ?
-            </h2>
-            <p class="text-xl text-secondary-600 mb-8">
-              Discutons ensemble de votre vision et transformons-la en réalité digitale
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <NuxtLink to="/contact" class="btn-primary inline-flex items-center justify-center">
-                <span>Me contacter</span>
-                <ArrowRight :size="20" class="ml-2" />
-              </NuxtLink>
-              <NuxtLink to="/creation-site-internet-equestre" class="inline-flex items-center justify-center px-6 py-3 text-secondary-700 font-semibold rounded-lg border border-secondary-300 hover:bg-secondary-50 transition-colors">
-                <span>Découvrir le studio</span>
-              </NuxtLink>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaSection
+        title="Prêt à commencer votre projet ?"
+        description="Discutons ensemble de votre vision et transformons-la en réalité digitale"
+        variant="light"
+      >
+        <template #actions>
+          <NuxtLink to="/contact" class="btn-primary inline-flex items-center justify-center">
+            <span>Me contacter</span>
+            <ArrowRight :size="20" class="ml-2" />
+          </NuxtLink>
+          <NuxtLink to="/creation-site-internet-equestre" class="btn-secondary inline-flex items-center justify-center">
+            <span>Découvrir le studio</span>
+          </NuxtLink>
+        </template>
+      </CtaSection>
   </NuxtLayout>
 </template>
 

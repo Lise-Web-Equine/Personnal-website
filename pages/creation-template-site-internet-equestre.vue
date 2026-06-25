@@ -163,13 +163,16 @@ Inutile de viser un site énorme : une page bien pensée suffit à convaincre.
             <div class="grid grid-cols-1 md:grid-cols-2">
               <!-- Prix -->
               <div class="bg-gradient-to-br from-primary-50 to-primary-100 p-6 sm:p-8 lg:p-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-primary-200">
-                <span class="inline-block bg-primary-600 text-white text-xs font-semibold px-3 py-1 rounded-full w-max mb-4">Clé en main</span>
+                <span class="inline-block bg-primary-600 text-white text-xs font-semibold px-3 py-1 rounded-full w-max mb-4">Investissement unique</span>
                 <p class="text-4xl sm:text-5xl font-bold text-secondary-900 mb-2">290€</p>
-                <p class="text-sm sm:text-base text-secondary-600">Paiement en plusieurs fois possible · Devis gratuit</p>
+                <div class="mt-6 pt-6 border-t border-primary-200">
+                  <p class="text-sm text-secondary-600 mb-1">Abonnement / Hébergement Carrd.co</p>
+                  <p class="text-lg sm:text-xl font-bold text-secondary-900">19$ <span class="text-sm font-medium text-secondary-500">/ an (soit environ 1,50€/mois)</span></p>
+                </div>
               </div>
               <!-- Inclus -->
               <div class="p-6 sm:p-8 lg:p-10">
-                <p class="font-semibold text-secondary-900 mb-4">Tout est inclus :</p>
+                <p class="font-semibold text-secondary-900 mb-4">Ce qui est inclus :</p>
                 <div class="space-y-3">
                   <div v-for="(item, i) in packFeatures" :key="i" class="flex items-start gap-3">
                     <div class="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -182,7 +185,7 @@ Inutile de viser un site énorme : une page bien pensée suffit à convaincre.
             </div>
           </div>
 
-          <div class="text-center mt-8" v-motion-slide-visible-once-bottom>
+          <div class="text-center mt-8 sm:mt-10" v-motion-slide-visible-once-bottom>
             <button
               data-cal-link="lisewebequine/pack-serenite"
               data-cal-namespace="pack-serenite"
@@ -192,6 +195,32 @@ Inutile de viser un site énorme : une page bien pensée suffit à convaincre.
               <span>Réserver un créneau</span>
               <ArrowRight :size="20" class="ml-2" />
             </button>
+          </div>
+
+          <!-- Options supplémentaires -->
+          <div class="mt-8 sm:mt-10">
+            <p class="text-center text-sm sm:text-base text-secondary-500 mb-4">En option, si besoin :</p>
+            <div class="border-t border-secondary-200" v-motion-slide-visible-once-bottom>
+              <div class="flex items-center justify-between py-3 sm:py-4 border-b border-secondary-100">
+                <span class="text-sm text-secondary-700">Nom de domaine personnalisé</span>
+                <span class="text-sm font-medium text-secondary-900">30€</span>
+              </div>
+              <div class="flex items-center justify-between py-3 sm:py-4 border-b border-secondary-100">
+                <span class="text-sm text-secondary-700">Identité graphique</span>
+                <span class="text-sm font-medium text-secondary-900">30€</span>
+              </div>
+              <div class="flex items-center justify-between py-3 sm:py-4 border-b border-secondary-100">
+                <a href="https://vitequide.fr/" target="_blank" rel="noopener noreferrer" class="text-sm text-secondary-700 hover:text-primary-600 hover:underline inline-flex items-center gap-1">
+                  Configuration ViteEquidé
+                  <ExternalLink :size="12" />
+                </a>
+                <span class="text-sm font-medium text-secondary-900">30€</span>
+              </div>
+              <div class="flex items-center justify-between py-3 sm:py-4">
+                <span class="text-sm text-secondary-700">Section supplémentaire</span>
+                <span class="text-sm font-medium text-secondary-900">15€</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -219,44 +248,30 @@ Inutile de viser un site énorme : une page bien pensée suffit à convaincre.
     </section>
 
     <!-- Section : CTA final -->
-    <section class="relative py-16 md:py-20 lg:py-24 overflow-hidden text-white">
-      <!-- Image de fond + overlay sombre -->
-      <div class="absolute inset-0 -z-10">
-        <NuxtImg
-          src="/images/Hestabien.jpg"
-          alt="Création de site internet pour les prestataires équestres"
-          class="w-full h-full object-cover"
-          sizes="100vw"
-          loading="lazy"
-        />
-        <div class="absolute inset-0 bg-gradient-to-b from-secondary-900/90 via-secondary-900/80 to-secondary-900/90"></div>
-      </div>
+    <CtaSection
+      title="On en discute ?"
+      description="Vous avez des questions ou un projet en tête ? En 30 minutes, nous répondons à vos interrogations et vous conseillons un accompagnement adapté à votre besoin."
+      image="/images/Hestabien.jpg"
+      image-alt="Création de site internet pour les prestataires équestres"
+    >
+      <template #actions>
+        <button
+          data-cal-link="lisewebequine/visio-decouverte"
+          data-cal-namespace="visio-decouverte"
+          data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+          class="btn-primary inline-flex items-center"
+        >
+          <span>Réserver votre appel gratuit</span>
+          <ArrowRight :size="20" class="ml-2" />
+        </button>
+      </template>
+    </CtaSection>
 
-      <div class="relative container mx-auto px-6">
-        <div class="max-w-3xl mx-auto text-center" v-motion-slide-visible-once-bottom>
-          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-            Prêt à lancer votre site équestre ?
-          </h2>
-          <p class="text-lg text-secondary-200 max-w-2xl mx-auto mb-8 leading-relaxed">
-            Réservez votre rendez-vous découverte gratuit. En 30 minutes, nous faisons le point sur votre activité et nous vous expliquons comment votre site peut vous amener plus de clients.
-          </p>
-          <button
-            data-cal-link="lisewebequine/pack-serenite"
-            data-cal-namespace="pack-serenite"
-            data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"false"}'
-            class="btn-primary inline-flex items-center"
-          >
-            <span>Réserver votre rendez-vous gratuit</span>
-            <ArrowRight :size="20" class="ml-2" />
-          </button>
-        </div>
-      </div>
-    </section>
   </NuxtLayout>
 </template>
 
 <script setup lang="ts">
-import { Check, X, Sparkles, Gift, Instagram, Target, Wallet, ArrowRight } from 'lucide-vue-next'
+import { Calendar, Check, ExternalLink, Gift, Globe, LayoutGrid, Palette, Sparkles, X, Instagram, Target, Wallet, ArrowRight } from 'lucide-vue-next'
 import type { Realisation } from '~/models'
 
 const supabase = useSupabase()
@@ -301,10 +316,10 @@ const handleEmailSubmit = () => {
 
 // Prestations incluses dans l'offre template clé en main
 const packFeatures = [
-  'Installation clé en main',
-  'Visio de lancement (30 min)',
-  'Mise en place de votre contenu',
-  'Support 1 mois inclus'
+  'Réunion de lancement',
+  'Personnalisation des images, textes et couleurs',
+  'Formation à l\'interface',
+  'Référencement de base sur Google'
 ]
 
 // Réalisations (preuve sociale) : sites de type "template", repli sur les mises en avant
@@ -366,7 +381,7 @@ useHead({
   // Script Cal.com pour la prise de rendez-vous (popup "Réserver un créneau")
   script: [
     {
-      innerHTML: `(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.eu/embed/embed.js", "init"); Cal("init", "pack-serenite", {origin:"https://app.cal.eu"}); Cal.ns["pack-serenite"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});`,
+      innerHTML: `(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.eu/embed/embed.js", "init"); Cal("init", "visio-decouverte", {origin:"https://app.cal.eu"}); Cal("init", "pack-serenite", {origin:"https://app.cal.eu"}); Cal.config = Cal.config || {}; Cal.config.forwardQueryParams = true; Cal.ns["visio-decouverte"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"}); Cal.ns["pack-serenite"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});`,
       type: 'text/javascript',
       tagPosition: 'bodyClose'
     }
