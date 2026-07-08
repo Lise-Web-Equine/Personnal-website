@@ -3,6 +3,21 @@ import { ResendService } from '~/server/services/resend.service'
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
+
+  if (!config.stripeSecretKey) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'Stripe secret key is not configured'
+    })
+  }
+
+  if (!config.appUrl) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'APP_URL is not configured'
+    })
+  }
+
   const stripe = new Stripe(config.stripeSecretKey)
 
   try {
@@ -34,7 +49,11 @@ export default defineEventHandler(async (event) => {
 
     // Limiter à un seul produit
     const firstItem = body.cartItems[0]
-    
+
+    // Stripe n'accepte que des URLs publiques pour les images (pas de base64)
+    const imageUrl = [firstItem.template.image_url, firstItem.template.image]
+      .find(url => typeof url === 'string' && url.startsWith('http'))
+
     // Créer les line items pour Stripe
     const lineItems = [
       {
@@ -43,7 +62,7 @@ export default defineEventHandler(async (event) => {
           product_data: {
             name: firstItem.template.name,
             description: firstItem.template.description,
-            images: firstItem.template.image_url ? [firstItem.template.image_url] : []
+            images: imageUrl ? [imageUrl] : []
           },
           unit_amount: Math.round(firstItem.template.price * 100)
         },
@@ -81,6 +100,7 @@ export default defineEventHandler(async (event) => {
       url: session.url
     }
   } catch (error) {
+    console.error('Stripe create session error:', error)
     throw createError({
       statusCode: 500,
       statusMessage: 'Error creating Stripe session'
