@@ -17,7 +17,7 @@
           <h3 class="font-semibold mb-4 text-lg text-white">Navigation</h3>
           <ul class="space-y-2 text-sm">
             <li><NuxtLink to="/" class="text-secondary-300 hover:text-white transition-colors">Accueil</NuxtLink></li>
-            <li><NuxtLink to="/creation-site-internet-equestre" class="text-secondary-300 hover:text-white transition-colors">Création de site internet équestre</NuxtLink></li>
+            <li><NuxtLink to="/creation-site-internet-equestre/sur-mesure" class="text-secondary-300 hover:text-white transition-colors">Création de site internet équestre</NuxtLink></li>
             <li><NuxtLink to="/template-site-internet-equestre" class="text-secondary-300 hover:text-white transition-colors">Templates de site équestre</NuxtLink></li>
             <li><NuxtLink to="/about" class="text-secondary-300 hover:text-white transition-colors">À propos</NuxtLink></li>
             <li><NuxtLink to="/contact" class="text-secondary-300 hover:text-white transition-colors">Contact</NuxtLink></li>

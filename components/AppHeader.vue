@@ -24,12 +24,14 @@
           <template v-for="link in navLinks" :key="link.name">
             <!-- Lien avec sous-menu (dropdown) -->
             <div v-if="link.children" class="relative group">
-              <button
+              <NuxtLink
+                :to="link.path"
                 class="flex items-center gap-1 text-gray-700 group-hover:text-black font-medium transition-colors"
+                active-class="text-black font-semibold"
               >
                 {{ link.name }}
                 <ChevronDown :size="16" class="transition-transform duration-200 group-hover:rotate-180" />
-              </button>
+              </NuxtLink>
               <div class="absolute left-0 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                 <div class="bg-white rounded-xl shadow-lg border border-gray-100 py-2 min-w-[16rem]">
                   <NuxtLink
@@ -103,6 +105,15 @@
               </button>
               <div v-show="isMobileDropdownOpen" class="pl-4 mt-1 space-y-1">
                 <NuxtLink
+                  v-if="link.path"
+                  :to="link.path"
+                  @click="toggleMenu"
+                  class="block text-gray-600 hover:text-black font-medium transition-colors py-2 px-4 hover:bg-gray-50 rounded-lg"
+                  active-class="text-black font-semibold bg-gray-100"
+                >
+                  Vue d'ensemble
+                </NuxtLink>
+                <NuxtLink
                   v-for="child in link.children"
                   :key="child.path"
                   :to="child.path"
@@ -172,9 +183,10 @@ interface NavLink {
 const navLinks: NavLink[] = [
   {
     name: 'Création de site internet',
+    path: '/creation-site-internet-equestre',
     children: [
-      { name: 'Site internet sur-mesure', path: '/creation-site-internet-equestre' },
-      { name: 'Site internet avec template', path: '/creation-template-site-internet-equestre' },
+      { name: 'Site internet sur-mesure', path: '/creation-site-internet-equestre/sur-mesure' },
+      { name: 'Site internet avec template', path: '/creation-site-internet-equestre/cle-en-main' },
     ],
   },
   { name: 'Les templates', path: '/template-site-internet-equestre' },

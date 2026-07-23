@@ -238,7 +238,7 @@
         >
           <template #actions>
             <NuxtLink
-              to="/creation-template-site-internet-equestre"
+              to="/creation-site-internet-equestre/cle-en-main"
               class="btn-primary inline-flex items-center"
             >
               <span>Découvrir le service clé en main</span>

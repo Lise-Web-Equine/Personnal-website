@@ -10,6 +10,19 @@ export default {
   ],
   theme: {
     extend: {
+      // Conteneur global : largeur cohérente et centrée sur tout le site
+      // (bandeau, header, footer et contenu partagent la même largeur max).
+      container: {
+        center: true,
+        padding: '1.5rem',
+        screens: {
+          sm: '640px',
+          md: '768px',
+          lg: '1024px',
+          xl: '1280px',
+          '2xl': '1280px',
+        },
+      },
       colors: {
         secondary: {
           ...colors.slate,

@@ -5,7 +5,7 @@
     <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
     
     <div class="relative container mx-auto px-6">
-      <div class="max-w-5xl" v-motion-slide-visible-once-bottom>
+      <div class="max-w-7xl" v-motion-slide-visible-once-bottom>
         <h1 class="mb-4 sm:mb-6 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight block">{{ title }}</h1>
         <div v-if="badge" class="mt-6">
           <Badge variant="primary" :text="badge" />

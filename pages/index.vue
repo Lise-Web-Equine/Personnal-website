@@ -38,7 +38,7 @@
                 
                 <div class="flex flex-col items-start sm:items-center">
                   <div class="inline-flex flex-col items-stretch gap-3 sm:gap-4">
-                    <NuxtLink to="/creation-site-internet-equestre" class="btn-primary group relative">
+                    <NuxtLink to="/creation-site-internet-equestre/sur-mesure" class="btn-primary group relative">
                       <span class="flex items-center justify-center">
                         <LayersIcon :size="20" color="white" class="mr-3" />
                         Création de site internet
@@ -85,7 +85,7 @@
               badge-variant="primary"
               price="À partir de 1500€"
               cta-text="En savoir plus"
-              cta-link="/creation-site-internet-equestre"
+              cta-link="/creation-site-internet-equestre/sur-mesure"
               motion-direction="left"
               featured
             />
@@ -99,7 +99,7 @@
               badge-variant="primary"
               price="À partir de 290€"
               cta-text="Découvrir l'offre template"
-              cta-link="/creation-template-site-internet-equestre"
+              cta-link="/creation-site-internet-equestre/cle-en-main"
               motion-direction="right"
             />
           </div>
@@ -229,7 +229,7 @@
         size="large"
       >
         <template #actions>
-          <NuxtLink to="/creation-site-internet-equestre" class="btn-primary group relative w-auto">
+          <NuxtLink to="/creation-site-internet-equestre/sur-mesure" class="btn-primary group relative w-auto">
             <span class="flex items-center justify-start sm:justify-center">
               <LayersIcon :size="20" color="white" class="mr-3" />
               Créer mon site équestre

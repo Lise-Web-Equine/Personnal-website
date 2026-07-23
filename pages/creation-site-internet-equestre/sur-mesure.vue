@@ -512,26 +512,26 @@ const handleSubmit = async () => {
 }
 
 useHead({
-  title: 'Création et refonte de site internet équestre | Lise Web Equine',
+  title: 'Création et refonte de site internet équestre sur-mesure | Lise Web Equine',
   meta: [
     { name: 'description', content: 'Création de sites internet sur-mesure pour ostéopathes, éleveurs, centres équestres et professionnels du cheval. Accompagnement personnalisé.' },
-    { property: 'og:title', content: 'Création et refonte de site internet pour les prestataires équestres' },
+    { property: 'og:title', content: 'Création et refonte de site internet sur-mesure pour les prestataires équestres' },
     { property: 'og:description', content: 'Création de sites internet sur-mesure pour ostéopathes, éleveurs, centres équestres et professionnels du cheval.' },
     { property: 'og:type', content: 'website' },
-    { name: 'twitter:title', content: 'Création et refonte de site internet pour les prestataires équestres' },
+    { name: 'twitter:title', content: 'Création et refonte de site internet sur-mesure pour les prestataires équestres' },
     { name: 'twitter:description', content: 'Création de sites internet sur-mesure pour ostéopathes, éleveurs, centres équestres et professionnels du cheval.' }
   ]
 })
 
-// Données structurées Schema.org : service de création de sites web équestres.
+// Données structurées Schema.org : service de création de sites web équestres sur-mesure.
 useStructuredData({
   '@context': 'https://schema.org',
   '@type': 'Service',
   serviceType: 'Création et refonte de site internet sur-mesure',
-  name: 'Création de site internet pour professionnels équestres',
+  name: 'Création de site internet sur-mesure pour professionnels équestres',
   description:
     'Création de sites internet sur-mesure pour ostéopathes, éleveurs, centres équestres et professionnels du cheval, avec un accompagnement personnalisé.',
-  url: 'https://lisewebequine.fr/creation-site-internet-equestre',
+  url: 'https://lisewebequine.fr/creation-site-internet-equestre/sur-mesure',
   areaServed: 'FR',
   provider: { '@id': 'https://lisewebequine.fr/#organization' }
 })

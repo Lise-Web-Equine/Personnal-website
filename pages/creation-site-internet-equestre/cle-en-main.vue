@@ -370,11 +370,11 @@ const reasons = [
 ]
 
 useHead({
-  title: 'Création de site internet équestre pour praticiens du cheval | Lise Web Equine',
+  title: 'Création de site internet équestre clé en main pour praticiens du cheval | Lise Web Equine',
   meta: [
     { name: 'description', content: 'Site internet professionnel et abordable pour ostéopathes équins, soigneurs et coachs : attire tes premiers clients et reçois des demandes de rendez-vous. Devis gratuit.' },
     { name: 'keywords', content: 'site internet équestre, création site web cheval, ostéopathe équin, soigneur équin, praticien bien-être équin, site web professionnel équestre' },
-    { property: 'og:title', content: 'Création de site internet équestre pour praticiens du cheval' },
+    { property: 'og:title', content: 'Création de site internet équestre clé en main pour praticiens du cheval' },
     { property: 'og:description', content: 'Un site clair et professionnel pour transformer ton audience Instagram en clients et décrocher des rendez-vous.' },
     { property: 'og:type', content: 'website' }
   ],
@@ -396,7 +396,7 @@ useStructuredData({
   name: 'Création de site internet avec template pour professionnels équestres',
   description:
     'Un site internet professionnel et abordable basé sur un template, pensé pour les praticiens du bien-être équin en début d\'activité.',
-  url: 'https://lisewebequine.fr/creation-template-site-internet-equestre',
+  url: 'https://lisewebequine.fr/creation-site-internet-equestre/cle-en-main',
   areaServed: 'FR',
   provider: { '@id': 'https://lisewebequine.fr/#organization' }
 })

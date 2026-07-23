@@ -65,7 +65,8 @@ export default defineNuxtConfig({
 
   nitro: {
     routeRules: {
-      '/studio': { redirect: '/creation-site-internet-equestre', statusCode: 301 },
+      '/studio': { redirect: '/creation-site-internet-equestre/sur-mesure', statusCode: 301 },
+      '/creation-template-site-internet-equestre': { redirect: '/creation-site-internet-equestre/cle-en-main', statusCode: 301 },
       '/templates': { redirect: '/template-site-internet-equestre', statusCode: 301 },
       '/templates/:slug': { redirect: '/template-site-internet-equestre/:slug', statusCode: 301 },
       '/images/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
@@ -105,6 +106,8 @@ export default defineNuxtConfig({
     urls: [
       { loc: '/', changefreq: 'weekly', priority: 1.0 },
       { loc: '/creation-site-internet-equestre', changefreq: 'monthly', priority: 0.9 },
+      { loc: '/creation-site-internet-equestre/sur-mesure', changefreq: 'monthly', priority: 0.9 },
+      { loc: '/creation-site-internet-equestre/cle-en-main', changefreq: 'monthly', priority: 0.9 },
       { loc: '/template-site-internet-equestre', changefreq: 'weekly', priority: 0.9 },
       { loc: '/contact', changefreq: 'monthly', priority: 0.8 },
       { loc: '/template-site-internet-equestre/osteopathe-equin', changefreq: 'monthly', priority: 0.8 },
