@@ -1,6 +1,6 @@
 <template>
   <footer class="bg-secondary-900 border-t border-secondary-800">
-    <div class="container mx-auto px-6 py-12">
+    <div class="site-container py-12">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-center md:text-left">
         <div>
           <NuxtLink to="/" class="text-2xl font-bold mb-4 flex items-center justify-center md:justify-start" aria-label="Lise Web Equine - Retour à l'accueil">

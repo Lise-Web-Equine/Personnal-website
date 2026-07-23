@@ -1,7 +1,7 @@
 <template>
   <NuxtLayout>
       <PageHeader
-        title="Création et refonte de site internet sur-mesure pour les prestataires équestres"
+        title="Site internet sur-mesure pour les prestataires équestres"
       />
 
       <!-- Section : Pour qui ? -->
@@ -515,10 +515,10 @@ useHead({
   title: 'Création et refonte de site internet équestre sur-mesure | Lise Web Equine',
   meta: [
     { name: 'description', content: 'Création de sites internet sur-mesure pour ostéopathes, éleveurs, centres équestres et professionnels du cheval. Accompagnement personnalisé.' },
-    { property: 'og:title', content: 'Création et refonte de site internet sur-mesure pour les prestataires équestres' },
+    { property: 'og:title', content: 'Site internet sur-mesure pour les prestataires équestres' },
     { property: 'og:description', content: 'Création de sites internet sur-mesure pour ostéopathes, éleveurs, centres équestres et professionnels du cheval.' },
     { property: 'og:type', content: 'website' },
-    { name: 'twitter:title', content: 'Création et refonte de site internet sur-mesure pour les prestataires équestres' },
+    { name: 'twitter:title', content: 'Site internet sur-mesure pour les prestataires équestres' },
     { name: 'twitter:description', content: 'Création de sites internet sur-mesure pour ostéopathes, éleveurs, centres équestres et professionnels du cheval.' }
   ]
 })

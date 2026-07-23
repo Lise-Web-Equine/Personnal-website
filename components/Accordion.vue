@@ -20,7 +20,10 @@
         v-show="openItems[index]"
         class="px-4 sm:px-6 py-3 sm:py-4 bg-secondary-50 border-t border-secondary-200"
       >
-        <div class="text-sm sm:text-base text-secondary-600 leading-relaxed" v-html="formatAnswer(item.answer)"></div>
+        <div v-if="item.answer" class="text-sm sm:text-base text-secondary-600 leading-relaxed" v-html="formatAnswer(item.answer)"></div>
+        <ul v-if="item.list" class="list-disc list-inside mt-3 space-y-1 text-sm sm:text-base text-secondary-600 leading-relaxed">
+          <li v-for="(li, i) in item.list" :key="i" v-html="formatListItem(li)"></li>
+        </ul>
       </div>
     </div>
   </div>
@@ -31,7 +34,8 @@ import { ChevronDown } from 'lucide-vue-next'
 
 interface AccordionItem {
   question: string
-  answer: string
+  answer?: string
+  list?: string[]
 }
 
 interface Props {
@@ -59,5 +63,11 @@ const formatAnswer = (answer: string) => {
     .replace(/\n/g, '<br>')
     // Wrap dans des paragraphes
     .replace(/^(.*)$/g, '<p class="mb-2">$1</p>')
+}
+
+const formatListItem = (text: string) => {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-primary-600 hover:text-primary-700 underline" target="_blank" rel="noopener noreferrer">$1</a>')
 }
 </script>

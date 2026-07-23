@@ -6,12 +6,16 @@
 
     <!-- Section : Introduction -->
     <section class="py-12 sm:py-16 md:py-20">
-      <div class="container mx-auto px-6">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+      <div class="site-container">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div class="space-y-6" v-motion-slide-visible-once-bottom>
+            <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold"> Vous êtes professionnel de la filière équine</h2>
             <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">
-              Vous êtes professionnel de la filière équine et, chaque jour, vous mettez tout votre cœur à offrir le meilleur sur le terrain. Pourtant, votre présence en ligne ne reflète pas encore cette expertise. Vous savez qu'il est temps d'avoir un site internet dont vous êtes fier, pour poser des bases solides et inspirer confiance dès le premier coup d'œil.
+              Chaque jour, vous accompagnez vos clients sur le terrain avec sérieux. Pourtant, votre présence en ligne ne reflète pas encore cette expertise. 
             </p>
+             <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">
+              Vous savez qu'il est temps d'avoir un site internet dont vous êtes fier, pour poser des bases solides et inspirer confiance dès le premier coup d'œil.
+             </p>
             <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">
               Que vous lanciez tout juste votre activité ou que votre structure équestre passe à l'étape supérieure, construisons ensemble l'outil qui vous ressemble et qui porte votre voix.
             </p>
@@ -30,52 +34,27 @@
 
     <!-- Section : Pour qui ? -->
     <section class="py-12 sm:py-16 md:py-20 bg-gray-50">
-      <div class="container mx-auto px-6">
-        <div class="max-w-7xl mx-auto text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
+      <div class="site-container">
+        <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
           <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Un site adapté à votre métier équestre</h2>
           <p class="text-base sm:text-lg text-secondary-600">
             Quelle que soit votre activité dans le monde du cheval, votre site est pensé pour vous rendre visible, crédible et autonome. Trouvez votre profil ci-dessous.
           </p>
         </div>
 
-        <div class="max-w-7xl mx-auto space-y-4">
-          <div
+        <div class="space-y-4">
+          <ProfileCard
             v-for="(profile, index) in profiles"
             :key="index"
-            class="border border-secondary-200 rounded-2xl overflow-hidden bg-white transition-colors"
-            :class="openProfile === index ? 'border-primary-300 shadow-md' : 'hover:border-secondary-300'"
             v-motion-slide-visible-once-bottom
-          >
-            <button
-              @click="toggleProfile(index)"
-              class="w-full px-5 sm:px-6 py-4 sm:py-5 flex items-center justify-between text-left gap-4"
-            >
-              <div class="flex items-center gap-3 sm:gap-4">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary-100 flex items-center justify-center flex-shrink-0">
-                  <component :is="profile.icon" :size="22" class="text-primary-600" />
-                </div>
-                <h3 class="text-base sm:text-lg font-bold text-secondary-900">{{ profile.title }}</h3>
-              </div>
-              <ChevronDown
-                :size="20"
-                class="text-secondary-500 transition-transform duration-200 flex-shrink-0"
-                :class="openProfile === index ? 'rotate-180' : ''"
-              />
-            </button>
-            <div v-show="openProfile === index" class="px-5 sm:px-6 pb-5 sm:pb-6">
-            <div>
-             <span class="font-semibold text-secondary-700">Exemples :</span> 
-              <h4 class="text-sm sm:text-base text-secondary-500 mb-3">
-               {{ profile.examples }}
-              </h4>
-              </div>
-              <div class="flex items-start gap-2">
-                <p class="text-sm sm:text-base text-secondary-700 leading-relaxed">
-                  {{ profile.objective }}
-                </p>
-              </div>
-            </div>
-          </div>
+            :title="profile.title"
+            :examples="profile.examples"
+            :objective="profile.objective"
+            :icon="profile.icon"
+            :image="profile.image"
+            :is-open="openProfile === index"
+            @toggle="toggleProfile(index)"
+          />
         </div>
       </div>
     </section>
@@ -98,77 +77,77 @@
         </div>
       </div>
 
-      <div class="container mx-auto px-6">
-        <div class="max-w-7xl mx-auto text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
+      <div class="site-container">
+        <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
           <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Quel site web pour votre structure équestre ?</h2>
           <p class="text-base sm:text-lg text-secondary-600">
             Répondez à quelques questions pour découvrir l'offre la plus adaptée à votre profil.
           </p>
         </div>
 
-        <div class="max-w-7xl mx-auto" v-motion-slide-visible-once-bottom>
-          <div class="bg-white rounded-2xl border border-secondary-200 shadow-lg p-6 sm:p-8 lg:p-10">
-            <Transition name="fade" mode="out-in">
-              <!-- Étape 1 : type de profil -->
-              <div v-if="formStep === 0" key="profile">
-                <h3 class="text-xl sm:text-2xl font-bold text-secondary-900 text-center mb-8">Vous êtes :</h3>
-                <div class="space-y-3">
-                  <button
-                    v-for="option in profileOptions"
-                    :key="option.key"
-                    @click="selectProfile(option.key)"
-                    class="w-full flex items-center gap-4 px-5 py-4 rounded-xl border-2 border-secondary-200 bg-white text-left hover:border-primary-400 hover:bg-primary-50 transition-colors"
-                  >
-                    <div class="w-11 h-11 rounded-xl bg-primary-100 flex items-center justify-center flex-shrink-0">
-                      <component :is="option.icon" :size="22" class="text-primary-600" />
-                    </div>
-                    <span class="text-sm sm:text-base font-semibold text-secondary-900">{{ option.label }}</span>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Étape 2 : question de suivi -->
-              <div v-else-if="formStep === 1 && followUp" key="follow-up">
-                <button @click="resetForm" class="text-sm text-secondary-500 hover:text-secondary-700 transition-colors mb-6 inline-flex items-center gap-1">
-                  <ChevronLeft :size="16" /> Retour
+        <div v-motion-slide-visible-once-bottom class="max-w-3xl mx-auto">
+          <Transition name="fade" mode="out-in">
+            <!-- Étape 1 : type de profil -->
+            <div v-if="formStep === 0" key="profile">
+              <h3 class="text-xl sm:text-2xl font-bold text-secondary-900 text-center mb-8">Vous êtes :</h3>
+              <div class="space-y-3">
+                <button
+                  v-for="option in profileOptions"
+                  :key="option.key"
+                  @click="selectProfile(option.key)"
+                  class="w-full flex items-center gap-4 px-5 py-4 rounded-xl border-2 border-secondary-200 bg-white text-left hover:border-primary-400 hover:bg-primary-50 transition-colors"
+                >
+                  <div class="w-11 h-11 rounded-xl bg-primary-100 flex items-center justify-center flex-shrink-0">
+                    <component :is="option.icon" :size="22" class="text-primary-600" />
+                  </div>
+                  <span class="text-sm sm:text-base font-semibold text-secondary-900">{{ option.label }}</span>
                 </button>
-                <h3 class="text-xl sm:text-2xl font-bold text-secondary-900 text-center mb-8">{{ followUp.question }}</h3>
-                <div class="space-y-3">
-                  <button
-                    v-for="(opt, i) in followUp.options"
-                    :key="i"
-                    @click="selectOption(i)"
-                    class="w-full px-5 py-4 rounded-xl border-2 border-secondary-200 bg-white text-left text-sm sm:text-base text-secondary-700 hover:border-primary-400 hover:bg-primary-50 transition-colors"
-                  >
-                    {{ opt }}
-                  </button>
-                </div>
               </div>
+            </div>
 
-              <!-- Étape 3 : offre recommandée (carte mise en valeur) -->
-              <div v-else-if="formStep === 2 && recommendation" key="result">
-                <div class="rounded-2xl border-2 border-primary-500 ring-4 ring-primary-100 shadow-lg overflow-hidden">
-                  <div class="bg-primary-50 px-5 sm:px-6 py-3 flex items-center gap-2 border-b border-primary-100">
-                    <Sparkles :size="18" class="text-primary-600" />
-                    <span class="text-sm font-semibold text-primary-700">Recommandé pour votre profil</span>
-                  </div>
-                  <div class="p-6 sm:p-8">
-                    <h3 class="text-xl sm:text-2xl font-bold text-secondary-900 mb-3">{{ recommendation.title }}</h3>
-                    <p class="text-sm sm:text-base text-secondary-600 leading-relaxed mb-6">{{ recommendation.description }}</p>
-                    <NuxtLink :to="recommendation.link" class="btn-primary inline-flex items-center">
-                      <span>{{ recommendation.cta }}</span>
-                      <ArrowRight :size="20" class="ml-2" />
-                    </NuxtLink>
-                  </div>
+            <!-- Étape 2 : question de suivi -->
+            <div v-else-if="formStep === 1 && followUp" key="follow-up">
+              <h3 class="text-xl sm:text-2xl font-bold text-secondary-900 text-center mb-8">{{ followUp.question }}</h3>
+              <div class="space-y-3">
+                <button
+                  v-for="(opt, i) in followUp.options"
+                  :key="i"
+                  @click="selectOption(i)"
+                  class="w-full px-5 py-4 rounded-xl border-2 border-secondary-200 bg-white text-left text-sm sm:text-base text-secondary-700 hover:border-primary-400 hover:bg-primary-50 transition-colors"
+                >
+                  {{ opt }}
+                </button>
+              </div>
+              <div class="mt-6 flex justify-start">
+                <button @click="resetForm" class="text-sm text-secondary-500 hover:text-secondary-700 transition-colors inline-flex items-center gap-1">
+                  <ChevronLeft :size="16" /> Précédent
+                </button>
+              </div>
+            </div>
+
+            <!-- Étape 3 : offre recommandée (carte mise en valeur) -->
+            <div v-else-if="formStep === 2 && recommendation" key="result">
+              <div class="rounded-2xl border-2 border-primary-500 ring-4 ring-primary-100 shadow-lg overflow-hidden">
+                <div class="bg-primary-50 px-5 sm:px-6 py-3 flex items-center gap-2 border-b border-primary-100">
+                  <Sparkles :size="18" class="text-primary-600" />
+                  <span class="text-sm font-semibold text-primary-700">Recommandé pour votre profil</span>
                 </div>
-                <div class="text-center mt-6">
-                  <button @click="resetForm" class="text-sm text-secondary-500 hover:text-secondary-700 transition-colors inline-flex items-center gap-1">
-                    <RotateCcw :size="14" /> Recommencer
-                  </button>
+                <div class="p-6 sm:p-8">
+                  <h3 class="text-xl sm:text-2xl font-bold text-secondary-900 mb-3">{{ recommendation.title }}</h3>
+                  <p class="text-sm sm:text-base text-secondary-600 leading-relaxed mb-6">{{ recommendation.description }}</p>
+                  <NuxtLink :to="recommendation.link" class="btn-primary inline-flex items-center">
+                    <span>{{ recommendation.cta }}</span>
+                    <ArrowRight :size="20" class="ml-2" />
+                  </NuxtLink>
                 </div>
               </div>
-            </Transition>
-          </div>
+              <div class="text-center mt-6">
+                <button @click="resetForm" class="text-sm text-secondary-500 hover:text-secondary-700 transition-colors inline-flex items-center gap-1">
+                  <RotateCcw :size="14" /> Recommencer
+                </button>
+              </div>
+            </div>
+          </Transition>
         </div>
       </div>
     </section>
@@ -179,8 +158,8 @@
       <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
       <GradientAnimation />
 
-      <div class="relative container mx-auto px-6">
-        <div class="max-w-7xl mx-auto">
+      <div class="relative site-container">
+        <div>
           <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
             <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white">Pourquoi travailler ensemble ?</h2>
           </div>
@@ -227,12 +206,12 @@
 
     <!-- Section : Offres -->
     <section class="py-12 sm:py-16 md:py-20 bg-gray-50">
-      <div class="container mx-auto px-6">
-        <div class="max-w-7xl mx-auto text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
+      <div class="site-container">
+        <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
           <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Des offres de sites internet adaptées à votre budget</h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-7xl mx-auto items-stretch">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
           <ServiceCard
             v-for="(offer, i) in offers"
             :key="i"
@@ -242,7 +221,6 @@
             :badge-text="offer.badge"
             badge-variant="primary"
             :price="offer.price"
-            :features="[{ title: offer.qualifierLabel, description: offer.qualifier }]"
             cta-text="En savoir plus"
             :cta-link="offer.link"
             :featured="offer.featured"
@@ -254,15 +232,15 @@
 
     <!-- Section : Prise de rendez-vous (Cal.com inline) -->
     <section class="py-12 sm:py-16 md:py-20">
-      <div class="container mx-auto px-6">
-        <div class="max-w-7xl mx-auto text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
+      <div class="site-container">
+        <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
           <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Validons la faisabilité de votre projet</h2>
           <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">
             Chaque projet équestre a ses spécificités. Cet échange permet d'apprendre à vous connaître pour aborder sereinement vos contraintes, répondre à vos interrogations techniques ou budgétaires et vous conseiller au mieux — que vous choisissiez de continuer avec nous ou non.
           </p>
         </div>
 
-        <div class="max-w-7xl mx-auto" v-motion-slide-visible-once-bottom>
+        <div v-motion-slide-visible-once-bottom>
           <!-- Cal.com inline embed : rendez-vous "visio-découverte" -->
           <div
             id="my-cal-inline-visio-decouverte"
@@ -273,11 +251,22 @@
     </section>
 
     <!-- Section : FAQ -->
-    <section class="py-12 sm:py-16 md:py-20 bg-gray-50">
-      <div class="container mx-auto px-6">
-        <div class="max-w-7xl mx-auto">
+    <section class="py-12 sm:py-16 md:py-20 relative overflow-hidden">
+      <div class="absolute inset-0 -z-10">
+        <NuxtImg
+          src="/images/desk-girl.jpg"
+          alt=""
+          class="w-full h-full object-cover"
+          aria-hidden="true"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-secondary-900/80"></div>
+      </div>
+
+      <div class="relative z-10 site-container">
+        <div>
           <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
-            <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Questions fréquentes</h2>
+            <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white">Questions fréquentes</h2>
           </div>
           <Accordion :items="faqItems" />
         </div>
@@ -294,29 +283,34 @@ const profiles = [
   {
     icon: HeartPulse,
     title: 'Professionnel du bien-être équin et animal',
-    examples: 'ostéopathe, shiatsu et masseur équin, cabinet vétérinaire',
+    image: '/images/veterinarian.png',
+    examples: 'Ostéopathe, shiatsu et masseur équin, cabinet vétérinaire ...',
     objective: 'Pour développer votre visibilité locale et être immédiatement trouvable par les clients de votre région sur Google.'
   },
   {
     icon: Home,
     title: 'Écuries de propriétaires, centres équestres et enseignant d\'équitation',
-    examples: 'pension pour chevaux, poney-club, enseignant indépendant (BPJEPS/DEJEPS), coach de compétition, écurie de commerce...',
+    image: '/images/stable.png',
+    examples: 'Pension pour chevaux, poney-club, enseignant indépendant (BPJEPS/DEJEPS), coach de compétition, écurie de commerce...',
     objective: 'Présentez vos infrastructures et votre pédagogie, attirez les cavaliers idéaux de votre secteur et simplifiez votre quotidien. Un site web clair pour valoriser vos formules (pensions, cours, stages), clarifier vos plannings et publier facilement vos actualités.'
   },
   {
     icon: Award,
     title: 'Haras, élevages, étalonniers et écuries de valorisation',
-    examples: 'élevage de chevaux de sport, station de monte, valorisation...',
+    image: '/images/breeding.png',
+    examples: 'Elevage de chevaux de sport, station de monte, valorisation...',
     objective: 'Pour affirmer le prestige de votre structure à travers un catalogue exclusif valorisant la génétique, la qualité de votre élevage ou les performances de vos chevaux de sport.'
   },
   {
     icon: Briefcase,
     title: 'Agence de communication, conseil et stratégie équestre',
-    examples: 'agence de marketing, community management, études de marché de la filière équine...',
+    image: '/images/agency.png',
+    examples: 'Agence de marketing, community management, études de marché de la filière équine...',
     objective: 'Passez un cap et ciblez des clients plus exigeants. Transformez vos projets réussis en études de cas pour faire de votre site web le meilleur ambassadeur de votre agence.'
   },
   {
     icon: Rocket,
+    image: '/images/data.png',
     title: 'Startup, Innovation & Technologie équine',
     examples: 'application & suivi connecté du cheval, santé & bien-être équin, nutrition intelligente, data équestre...',
     objective: 'Crédibilisez votre innovation et validez votre concept. Nous concevons des plateformes et landing pages modernes, pensées pour séduire vos premiers utilisateurs (B2C/B2B) et convaincre les investisseurs.'
@@ -489,8 +483,6 @@ const offers = [
     badge: 'Sur mesure',
     description: 'Un site évolutif, performant et administrable en toute autonomie, conçu pour valoriser votre expertise et grandir au rythme de votre structure équestre.',
     price: 'À partir de 1500€',
-    qualifierLabel: 'Idéal pour',
-    qualifier: 'les structures équestres établies qui veulent un site sur-mesure et évolutif.',
     link: SUR_MESURE,
     featured: true
   },
@@ -499,8 +491,6 @@ const offers = [
     badge: 'Clé en main',
     description: 'Rassurez vos premiers clients avec un site web simple, pro et soigné pour démarrer sereinement votre activité équestre, sans y passer des heures.',
     price: 'À partir de 290€',
-    qualifierLabel: 'Idéal pour',
-    qualifier: 'les praticiens du bien-être animal, enseignants d\'équitation et indépendants qui se lancent.',
     link: CLE_EN_MAIN,
     featured: false
   }
@@ -566,7 +556,13 @@ const faqItems = [
   },
   {
     question: 'Comment développer une entreprise dans le monde du cheval grâce à son site internet ?',
-    answer: 'Dans la filière équine, un site internet efficace sert à attirer des clients qualifiés, crédibiliser votre savoir-faire et automatiser la prise de contact ou de réservation.\n\n**Les 4 leviers clés :**\n• **Référencement ciblé (SEO)** : Attirer les cavaliers et professionnels de votre secteur grâce aux recherches géolocalisées ou spécialisées.\n• **Preuve sociale** : Rassurer avec des photos des installations, des avis clients ou des études de cas.\n• **Clarté des offres** : Présenter vos tarifs et prestations pour qualifier les demandes et gagner du temps.\n• **Action directe** : Faciliter la prise de rendez-vous, la demande de devis ou la réservation en ligne.'
+    answer: 'Dans la filière équine, un site internet efficace sert à attirer des clients qualifiés, crédibiliser votre savoir-faire et automatiser la prise de contact ou de réservation.\n\n**Les 4 leviers clés :**',
+    list: [
+      '**Référencement ciblé (SEO)** : Attirer les cavaliers et professionnels de votre secteur grâce aux recherches géolocalisées ou spécialisées.',
+      '**Preuve sociale** : Rassurer avec des photos des installations, des avis clients ou des études de cas.',
+      '**Clarté des offres** : Présenter vos tarifs et prestations pour qualifier les demandes et gagner du temps.',
+      '**Action directe** : Faciliter la prise de rendez-vous, la demande de devis ou la réservation en ligne.'
+    ]
   }
 ]
 

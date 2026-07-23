@@ -22,6 +22,13 @@
 }
 
 @layer components {
+  /* Conteneur global : point unique pour la largeur, le centrage et le padding
+     horizontal du site. La largeur max est pilotée par `container` dans
+     tailwind.config.js. Utilisé par le header, le bandeau, le footer et le contenu. */
+  .site-container {
+    @apply container mx-auto px-6;
+  }
+
   .gradient-primary {
     background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 40%, #5b21b6 70%, #4c1d95 100%);
   }
