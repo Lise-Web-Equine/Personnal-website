@@ -1,8 +1,11 @@
 <template>
   <NuxtLayout>
-      <section class="relative py-12 sm:py-16 md:py-20 lg:py-32 overflow-hidden overflow-x-hidden">
-        <!-- Image de fond + overlay sombre (s'étend derrière le header) -->
-        <div class="absolute -top-20 left-0 right-0 bottom-0 z-0">
+      <!-- -mt-20 annule le pt-20 global de <main> pour que le hero démarre tout en haut (derrière le header).
+           Le padding-top compense la hauteur du header fixe pour que le texte ne passe pas sous le menu. -->
+      <section class="relative -mt-20 pt-32 pb-12 sm:pt-36 sm:pb-16 md:pt-40 md:pb-20 lg:pt-52 lg:pb-32 overflow-hidden overflow-x-hidden bg-gray-50">
+        <!-- Image de fond + overlay sombre (couvre toute la section, du haut de l'écran au bas du hero) -->
+        <!-- mask-brace-bottom : découpe le bas de l'image selon la courbe de l'accolade -->
+        <div class="absolute inset-0 z-0 mask-brace-bottom">
           <NuxtImg
             src="/images/Hestabien-27.jpg"
             alt="Agence web équestre"
@@ -15,7 +18,7 @@
           <div class="absolute inset-0 bg-gradient-to-b from-secondary-900/90 via-secondary-900/80 to-secondary-900/90"></div>
         </div>
 
-        <div class="relative z-10 container mx-auto px-6">
+        <div class="relative z-10">
           <div class="max-w-7xl mx-auto">
             <div class="flex flex-col items-center justify-center gap-8 sm:gap-12 lg:gap-16 min-h-[60vh] sm:min-h-[70vh]">
               <!-- Text Content -->
@@ -27,14 +30,11 @@
                 
                 <h1 class="mb-8 sm:mb-8 font-sans text-left sm:text-center">
                     <span class="text-white font-bold block text-5xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight">AGENCE WEB ÉQUESTRE</span>
-                    <span class="text-gray-200 font-semibold block text-lg sm:text-xl md:text-2xl lg:text-3xl mt-2 sm:mt-3">Votre site internet sur-mesure ou template</span>
+                    <span class="text-gray-200 font-semibold block text-lg sm:text-xl md:text-2xl lg:text-3xl mt-2 sm:mt-3">Votre site internet sur-mesure ou clé en main</span>
                 </h1>
                 <!-- <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent px-2 text-lg sm:text-4xl md:text-5xl lg:text-6xl">{{ currentWord }}</span> de montrer
                <span class="font-bold border-b-2 border-transparent" style="border-image: linear-gradient(to right, #9333ea, #8b5cf6, #6366f1) 1;">-->
                 
-                <p class="text-sm sm:text-base md:text-lg text-gray-300 mb-6 sm:mb-8 leading-relaxed max-w-2xl sm:mx-auto">
-                  <span>Un accompagnement sur-mesure, pensé par et pour les passionnés du monde équestre.</span>
-                </p>
                 
                 <div class="flex flex-col items-start sm:items-center">
                   <div class="inline-flex flex-col items-stretch gap-3 sm:gap-4">
@@ -60,22 +60,25 @@
             </div>
           </div>
         </div>
-      </section>
 
-      <!-- Séparation -->
-      <div class="border-b border-secondary-200"></div>
+        <!-- Bordure décorative en forme d'accolade, pointe centrée vers le bas -->
+        <CurlyBraceBorder
+          class="text-white/70"
+          height="2.5rem"
+          :stroke-width="2"
+        />
+      </section>
 
       <!-- Services Section -->
       <section class="py-4 sm:py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
           <div class="text-center mb-16" v-motion-slide-visible-once-bottom>
-            <h2 class="mb-4 text-2xl sm:text-3xl md:text-4xl">Mes Services</h2>
+            <h2 class="mb-4">Mes Services</h2>
             <p class="text-sm sm:text-base md:text-lg text-secondary-600 max-w-2xl mx-auto">
               Découvrez nos solutions web pour les professionnels du secteur équestre.
             </p>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
             <!-- Le Studio : création sur-mesure (haut de gamme) -->
             <ServiceCard
               variant="primary"
@@ -103,7 +106,6 @@
               motion-direction="right"
             />
           </div>
-        </div>
       </section>
       
       <FeaturesSection
@@ -114,8 +116,6 @@
 
       <!-- A propos Section -->
       <section class="py-20">
-        <div class="container mx-auto px-6">
-          <div class="max-w-6xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <!-- Text Content -->
               <div v-motion-slide-visible-once-left>
@@ -123,7 +123,7 @@
 
                 </div>
                 
-                <h2 class="mb-6 leading-tight text-2xl sm:text-3xl md:text-4xl">
+                <h2 class="mb-6 leading-tight">
                  Où la passion équestre rencontre l'innovation digitale
                 </h2>
                 
@@ -179,16 +179,13 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
       </section>
 
       <!-- Boutique de templates : option "faites-le vous-même" (DIY, en fin de page) -->
       <section class="py-16 sm:py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
           <div class="flex justify-between items-end mb-12" v-motion-slide-visible-once-bottom>
             <div>
-              <h2 class="mb-4 text-2xl sm:text-3xl md:text-4xl">La boutique de template équestre</h2>
+              <h2 class="mb-4">La boutique de template équestre</h2>
               <p class="section-subtitle text-left max-w-none text-sm sm:text-base md:text-lg">
                 Personnalisez l'un de nos templates équestres en toute autonomie, accompagné de notre guide stratégique pas à pas.
               </p>
@@ -217,7 +214,6 @@
               <ArrowRight :size="20" class="ml-2" />
             </NuxtLink>
           </div>
-        </div>
       </section>
 
       <CtaSection

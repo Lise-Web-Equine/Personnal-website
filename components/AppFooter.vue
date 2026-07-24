@@ -1,5 +1,12 @@
 <template>
-  <footer class="bg-secondary-900 border-t border-secondary-800">
+  <footer class="relative bg-secondary-900">
+    <!-- Transition en accolade : la couleur du footer remonte dans le contenu du dessus.
+         S'applique à toutes les pages, quelle que soit la dernière section. -->
+    <div class="pointer-events-none absolute inset-x-0 bottom-full h-10">
+      <div class="absolute inset-0 bg-secondary-900 mask-brace-top"></div>
+      <CurlyBraceBorder class="" height="2.5rem" :stroke-width="2" />
+    </div>
+
     <div class="site-container py-12">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-center md:text-left">
         <div>

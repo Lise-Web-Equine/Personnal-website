@@ -7,9 +7,8 @@
 
     <!-- Section : Un site adapté à ton début d'activité -->
     <section class="py-12 sm:py-16 md:py-20">
-      <div class="container mx-auto px-6">
         <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
-          <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
+          <h2 class="mb-4 sm:mb-6">
             Un site adapté à ton début d'activité équestre
           </h2>
           <p class="text-base sm:text-lg text-secondary-600 max-w-3xl mx-auto">
@@ -103,7 +102,6 @@
             </Transition>
           </div>
         </div>
-      </div>
     </section>
 
     <!-- Section : Pourquoi nous choisir ? (fond sombre) -->
@@ -112,11 +110,11 @@
       <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
       <GradientAnimation />
 
-      <div class="relative container mx-auto px-6">
+      <div class="relative">
         <div class="max-w-6xl mx-auto">
           <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
             <span class="inline-block text-primary-400 font-semibold text-sm sm:text-base mb-3">Pourquoi nous choisir ?</span>
-            <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+            <h2 class="mb-4 sm:mb-6 text-white">
                Rassure tes futurs clients grâce à ton site internet
             </h2>
             <p class="text-base sm:text-lg text-secondary-300 max-w-3xl mx-auto">
@@ -150,9 +148,8 @@ Inutile de viser un site énorme : une page bien pensée suffit à convaincre.
 
     <!-- Section : L'offre template clé en main -->
     <section class="py-12 sm:py-16 md:py-20">
-      <div class="container mx-auto px-6">
         <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
-          <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">L'offre template clé en main</h2>
+          <h2 class="mb-4 sm:mb-6">L'offre template clé en main</h2>
           <p class="text-base sm:text-lg text-secondary-600 max-w-3xl mx-auto">
             Votre template personnalisée par notre agence pour un gain de temps et un rendu professionnel sans aucun doute.
           </p>
@@ -223,14 +220,12 @@ Inutile de viser un site énorme : une page bien pensée suffit à convaincre.
             </div>
           </div>
         </div>
-      </div>
     </section>
 
     <!-- Section : Réalisations (preuve sociale, affichée seulement s'il y en a) -->
     <section v-if="realisations.length" class="py-12 sm:py-16 md:py-20 bg-gray-50">
-      <div class="container mx-auto px-6">
         <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
-          <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Ils ont lancé leur site avec un template</h2>
+          <h2 class="mb-4 sm:mb-6">Ils ont lancé leur site avec un template</h2>
           <p class="text-base sm:text-lg text-secondary-600 max-w-3xl mx-auto">
             Découvre des sites réalisés pour des professionnels équestres comme toi.
           </p>
@@ -244,7 +239,6 @@ Inutile de viser un site énorme : une page bien pensée suffit à convaincre.
             v-motion-slide-visible-once-bottom
           />
         </div>
-      </div>
     </section>
 
     <!-- Section : CTA final -->

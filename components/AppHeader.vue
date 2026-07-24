@@ -7,13 +7,13 @@
     <nav class="w-full px-4 sm:px-6 py-4 md:container md:mx-auto">
       <div class="flex items-center justify-between">
         <NuxtLink to="/" class="text-lg sm:text-xl md:text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity flex items-center">
-          <span class="gradient-primary bg-clip-text text-transparent">Lise</span>
-          <span class="ml-1.5 sm:ml-2">Web Equine</span>
+          <span class="ml-1.5 sm:ml-2 transition-colors" :class="isScrolled ? 'text-secondary-900' : 'text-white'">Lise Web Equine</span>
         </NuxtLink>
 
         <button
           @click="toggleMenu"
-          class="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          class="md:hidden p-2 rounded-lg transition-colors"
+          :class="isScrolled ? 'text-secondary-900 hover:bg-gray-100' : 'text-white hover:bg-white/10'"
           aria-label="Toggle menu"
         >
           <Menu v-if="!isMenuOpen" :size="24" />
@@ -26,8 +26,9 @@
             <div v-if="link.children" class="relative group">
               <NuxtLink
                 :to="link.path"
-                class="flex items-center gap-1 text-gray-700 group-hover:text-black font-medium transition-colors"
-                active-class="text-black font-semibold"
+                class="flex items-center gap-1 font-medium transition-colors"
+                :class="navTextClass"
+                :active-class="navActiveClass"
               >
                 {{ link.name }}
                 <ChevronDown :size="16" class="transition-transform duration-200 group-hover:rotate-180" />
@@ -50,8 +51,9 @@
             <NuxtLink
               v-else
               :to="link.path"
-              class="text-gray-700 hover:text-black font-medium transition-colors"
-              active-class="text-black font-semibold"
+              class="font-medium transition-colors"
+              :class="navTextClass"
+              :active-class="navActiveClass"
             >
               {{ link.name }}
             </NuxtLink>
@@ -60,7 +62,8 @@
           <NuxtLink
             v-if="cartStore.itemCount > 0"
             to="/cart"
-            class="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            class="relative p-2 rounded-lg transition-colors"
+            :class="isScrolled ? 'text-secondary-900 hover:bg-gray-100' : 'text-white hover:bg-white/10'"
           >
             <ShoppingCart :size="20" />
             <span
@@ -70,7 +73,11 @@
             </span>
           </NuxtLink>
 
-          <NuxtLink to="/contact" class="btn-secondary">
+          <NuxtLink
+            to="/contact"
+            class="inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg border transition-all duration-200"
+            :class="isScrolled ? 'border-secondary-300 text-secondary-900 hover:border-secondary-400 hover:bg-secondary-50' : 'border-white/60 text-white hover:border-white hover:bg-white/10'"
+          >
             Demander un devis
           </NuxtLink>
         </div>
@@ -179,6 +186,18 @@ interface NavLink {
   path?: string
   children?: NavChild[]
 }
+
+// Couleur des liens de navigation adaptée au fond du header :
+// clair (blanc) quand le header est transparent en haut de page,
+// foncé quand le header a un fond blanc au scroll.
+const navTextClass = computed(() =>
+  isScrolled.value
+    ? 'text-gray-700 hover:text-black group-hover:text-black'
+    : 'text-white/90 hover:text-white group-hover:text-white'
+)
+const navActiveClass = computed(() =>
+  isScrolled.value ? 'text-black font-semibold' : 'text-white font-semibold'
+)
 
 const navLinks: NavLink[] = [
   {

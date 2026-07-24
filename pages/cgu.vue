@@ -6,7 +6,6 @@
     />
 
     <section class="py-12 sm:py-16 md:py-20">
-      <div class="container mx-auto px-6">
         <div class="max-w-4xl mx-auto">
           <div v-if="loading" class="text-center py-20">
             <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
@@ -20,7 +19,6 @@
             Chargement des conditions générales d'utilisation...
           </div>
         </div>
-      </div>
     </section>
   </NuxtLayout>
 </template>

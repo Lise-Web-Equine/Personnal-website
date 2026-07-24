@@ -15,7 +15,7 @@
 
 
       <section id="grille-templates" class="py-8 sm:py-12 md:py-16">
-        <div class="container mx-auto px-6">
+        <div>
 
           <div class="mb-6 text-sm sm:text-base text-gray-600">
 
@@ -130,7 +130,7 @@
           </div>
         </div>
 
-        <div class="container mx-auto px-6">
+        <div>
 
           <div class="max-w-6xl mx-auto">
 
@@ -445,7 +445,7 @@
 
       <section class="py-16 sm:py-20 md:py-24">
 
-        <div class="container mx-auto px-4 sm:px-6">
+        <div>
 
           <div class="max-w-3xl sm:max-w-4xl md:max-w-5xl lg:max-w-6xl mx-auto">
 
@@ -453,7 +453,7 @@
 
             <div class="text-center mb-12 md:mb-16">
 
-              <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary-900 mb-4">
+              <h2 class="mb-4">
 
                 Questions fréquentes
 

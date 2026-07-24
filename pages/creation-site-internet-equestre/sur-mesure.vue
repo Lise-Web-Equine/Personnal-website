@@ -6,9 +6,8 @@
 
       <!-- Section : Pour qui ? -->
       <section class="py-12 sm:py-16 md:py-20">
-        <div class="container mx-auto px-6">
           <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
-            <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Un site adapté à votre métier équestre</h2>
+            <h2 class="mb-4 sm:mb-6">Un site adapté à votre métier équestre</h2>
             <p class="text-base sm:text-lg text-secondary-600 max-w-3xl mx-auto">
               Quelle que soit votre activité dans le monde du cheval, votre site est pensé pour vous rendre visible, crédible et autonome. Trouvez votre profil ci-dessous.
             </p>
@@ -50,7 +49,6 @@
               </div>
             </div>
           </div>
-        </div>
       </section>
 
       <!-- Section : Pourquoi nous choisir ? -->
@@ -59,11 +57,11 @@
         <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
         <GradientAnimation />
 
-        <div class="relative container mx-auto px-6">
+        <div class="relative">
           <div class="max-w-6xl mx-auto">
             <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
               <span class="inline-block text-primary-400 font-semibold text-sm sm:text-base mb-3">Pourquoi nous choisir ?</span>
-              <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white">Restez autonome sur votre site internet</h2>
+              <h2 class="mb-4 sm:mb-6 text-white">Restez autonome sur votre site internet</h2>
               <p class="text-base sm:text-lg text-secondary-300 max-w-3xl mx-auto">
                 L'interface administrable : la solution web équestre pour gérer votre contenu vous-même, sans dépendre de personne.
               </p>
@@ -112,9 +110,8 @@
 
       <!-- Section : La formule -->
       <section class="py-12 sm:py-16 md:py-20">
-        <div class="container mx-auto px-6">
           <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
-            <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">La formule équestre</h2>
+            <h2 class="mb-4 sm:mb-6">La formule équestre</h2>
             <p class="text-base sm:text-lg text-secondary-600 max-w-3xl mx-auto">
               Un socle complet pour lancer votre présence en ligne, que vous faites évoluer à votre rythme.
             </p>
@@ -181,7 +178,6 @@
               </a>
             </div>
           </div>
-        </div>
       </section>
 
       <!-- Étapes Section -->
@@ -202,9 +198,8 @@
           </div>
         </div>
 
-        <div class="container mx-auto px-6">
           <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
-            <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Les étapes de création de votre site équestre</h2>
+            <h2 class="mb-4 sm:mb-6">Les étapes de création de votre site équestre</h2>
             <p class="text-base sm:text-lg text-secondary-600 max-w-3xl mx-auto">
               De la première discussion à la mise en ligne, on avance main dans la main : un accompagnement clair, sans jargon technique, pour un projet serein.
             </p>
@@ -241,22 +236,19 @@
               </div>
             </div>
           </div>
-        </div>
       </section>
 
       <!-- FAQ Section -->
       <section class="py-12 sm:py-16 md:py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
           <div class="max-w-3xl mx-auto">
             <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
-              <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Questions fréquentes</h2>
+              <h2 class="mb-4 sm:mb-6">Questions fréquentes</h2>
               <p class="text-base sm:text-lg text-secondary-600">
                 Tout ce qu'il faut savoir avant de lancer votre projet équestre.
               </p>
             </div>
             <Accordion :items="faqItems" />
           </div>
-        </div>
       </section>
 
       <!-- Contact Section -->
@@ -273,10 +265,9 @@
           <div class="absolute inset-0 bg-gradient-to-b from-secondary-900/90 via-secondary-900/80 to-secondary-900/90"></div>
         </div>
 
-        <div class="container mx-auto px-6">
           <div class="max-w-4xl mx-auto">
             <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
-              <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white">On en discute ?</h2>
+              <h2 class="mb-4 sm:mb-6 text-white">On en discute ?</h2>
               <p class="text-base sm:text-lg text-secondary-200 leading-relaxed">
                 Chaque projet est unique. Envoyez-moi un message pour une première analyse gratuite de votre projet.
               </p>
@@ -348,7 +339,6 @@
               </form>
             </div>
           </div>
-        </div>
       </section>
   </NuxtLayout>
 </template>

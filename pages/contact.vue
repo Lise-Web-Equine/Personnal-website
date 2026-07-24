@@ -6,11 +6,10 @@
       />
 
       <section class="py-12 sm:py-16 md:py-20">
-        <div class="container mx-auto px-6">
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12">
             <div class="lg:col-span-2">
               <div class="bg-white rounded-2xl p-6 sm:p-8 lg:p-12 shadow-sm" v-motion-slide-visible-once-left>
-                <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-secondary-900">Envoyez-moi un message</h2>
+                <h2 class="mb-6 sm:mb-8">Envoyez-moi un message</h2>
 
                 <form @submit.prevent="handleSubmit" class="space-y-6">
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -118,7 +117,6 @@
               </div>
             </div>
           </div>
-        </div>
       </section>
   </NuxtLayout>
 </template>

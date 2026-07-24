@@ -6,18 +6,21 @@
 
     <!-- Section : Introduction -->
     <section class="py-12 sm:py-16 md:py-20">
-      <div class="site-container">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div class="space-y-6" v-motion-slide-visible-once-bottom>
-            <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold"> Vous êtes professionnel de la filière équine</h2>
+            <h2 class="mb-4 sm:mb-6"> Vous êtes professionnel de la filière équine</h2>
+            <NuxtLink to="#quiz-recommandation" class="inline-block text-primary-500 font-semibold underline hover:text-primary-600 transition-colors mt-2 mb-4">
+              Quel site équestre est fait pour vous ?
+            </NuxtLink>
             <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">
               Chaque jour, vous accompagnez vos clients sur le terrain avec sérieux. Pourtant, votre présence en ligne ne reflète pas encore cette expertise. 
             </p>
              <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">
-              Vous savez qu'il est temps d'avoir un site internet dont vous êtes fier, pour poser des bases solides et inspirer confiance dès le premier coup d'œil.
+              Vous savez qu'il est temps d'avoir un site internet dont vous êtes fier, pour poser des bases solides et <strong class="text-secondary-900 font-bold text-lg sm:text-xl">inspirer confiance dès le premier coup d'œil.</strong>
              </p>
             <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">
-              Que vous lanciez tout juste votre activité ou que votre structure équestre passe à l'étape supérieure, construisons ensemble l'outil qui vous ressemble et qui porte votre voix.
+              Que vous lanciez tout juste votre activité ou que votre structure équestre passe à l'étape supérieure : construisons ensemble un site internet qui donne de la crédibilité à votre savoir-faire sur le terrain
+              <strong class="text-secondary-900 font-bold text-lg sm:text-xl">pensé pour votre réalité, votre budget et vos vrais objectifs.</strong>
             </p>
           </div>
           <div v-motion-slide-visible-once-bottom>
@@ -29,14 +32,12 @@
             />
           </div>
         </div>
-      </div>
     </section>
 
     <!-- Section : Pour qui ? -->
     <section class="py-12 sm:py-16 md:py-20 bg-gray-50">
-      <div class="site-container">
         <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
-          <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Un site adapté à votre métier équestre</h2>
+          <h2 class="mb-4 sm:mb-6">Un site adapté à votre métier équestre</h2>
           <p class="text-base sm:text-lg text-secondary-600">
             Quelle que soit votre activité dans le monde du cheval, votre site est pensé pour vous rendre visible, crédible et autonome. Trouvez votre profil ci-dessous.
           </p>
@@ -56,7 +57,6 @@
             @toggle="toggleProfile(index)"
           />
         </div>
-      </div>
     </section>
 
     <!-- Section : Formulaire dynamique de recommandation d'offre -->
@@ -77,9 +77,8 @@
         </div>
       </div>
 
-      <div class="site-container">
         <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
-          <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Quel site web pour votre structure équestre ?</h2>
+          <h2 id="quiz-recommandation" class="mb-4 sm:mb-6">Quel site web pour votre structure équestre ?</h2>
           <p class="text-base sm:text-lg text-secondary-600">
             Répondez à quelques questions pour découvrir l'offre la plus adaptée à votre profil.
           </p>
@@ -95,12 +94,10 @@
                   v-for="option in profileOptions"
                   :key="option.key"
                   @click="selectProfile(option.key)"
-                  class="w-full flex items-center gap-4 px-5 py-4 rounded-xl border-2 border-secondary-200 bg-white text-left hover:border-primary-400 hover:bg-primary-50 transition-colors"
+                  class="w-full px-5 py-4 rounded-xl border-2 border-secondary-200 bg-white text-left hover:border-primary-400 hover:bg-primary-50 transition-colors"
                 >
-                  <div class="w-11 h-11 rounded-xl bg-primary-100 flex items-center justify-center flex-shrink-0">
-                    <component :is="option.icon" :size="22" class="text-primary-600" />
-                  </div>
                   <span class="text-sm sm:text-base font-semibold text-secondary-900">{{ option.label }}</span>
+                  <span v-if="option.examples" class="block text-sm text-secondary-500 mt-1">{{ option.examples }}</span>
                 </button>
               </div>
             </div>
@@ -149,7 +146,6 @@
             </div>
           </Transition>
         </div>
-      </div>
     </section>
 
     <!-- Section : Pourquoi travailler ensemble ? (style sombre) -->
@@ -158,10 +154,11 @@
       <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
       <GradientAnimation />
 
-      <div class="relative site-container">
+      <div class="relative">
         <div>
           <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
-            <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white">Pourquoi travailler ensemble ?</h2>
+            <span class="inline-block text-primary-400 font-semibold text-sm sm:text-base mb-3">Pourquoi travailler ensemble ?</span>
+            <h2 class="mb-4 sm:mb-6 text-white">Une approche humaine et technique</h2>
           </div>
 
           <!-- Items en accordéon, le premier ouvert par défaut -->
@@ -194,9 +191,8 @@
                   v-for="(paragraph, j) in item.paragraphs"
                   :key="j"
                   class="text-sm sm:text-base text-secondary-300 leading-relaxed"
-                >
-                  {{ paragraph }}
-                </p>
+                  v-html="formatParagraph(paragraph)"
+                ></p>
               </div>
             </div>
           </div>
@@ -206,9 +202,8 @@
 
     <!-- Section : Offres -->
     <section class="py-12 sm:py-16 md:py-20 bg-gray-50">
-      <div class="site-container">
         <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
-          <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Des offres de sites internet adaptées à votre budget</h2>
+          <h2 class="mb-4 sm:mb-6">Des offres de sites internet adaptées à votre budget</h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
@@ -227,14 +222,12 @@
             motion-direction="bottom"
           />
         </div>
-      </div>
     </section>
 
     <!-- Section : Prise de rendez-vous (Cal.com inline) -->
     <section class="py-12 sm:py-16 md:py-20">
-      <div class="site-container">
         <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
-          <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Validons la faisabilité de votre projet</h2>
+          <h2 class="mb-4 sm:mb-6">Validons la faisabilité de votre projet</h2>
           <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">
             Chaque projet équestre a ses spécificités. Cet échange permet d'apprendre à vous connaître pour aborder sereinement vos contraintes, répondre à vos interrogations techniques ou budgétaires et vous conseiller au mieux — que vous choisissiez de continuer avec nous ou non.
           </p>
@@ -247,7 +240,6 @@
             class="w-full h-[600px] sm:h-[720px] overflow-scroll"
           ></div>
         </div>
-      </div>
     </section>
 
     <!-- Section : FAQ -->
@@ -263,10 +255,10 @@
         <div class="absolute inset-0 bg-secondary-900/80"></div>
       </div>
 
-      <div class="relative z-10 site-container">
+      <div class="relative z-10">
         <div>
           <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
-            <h2 class="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white">Questions fréquentes</h2>
+            <h2 class="mb-4 sm:mb-6 text-white">Questions fréquentes</h2>
           </div>
           <Accordion :items="faqItems" />
         </div>
@@ -276,7 +268,7 @@
 </template>
 
 <script setup lang="ts">
-import { ChevronDown, ChevronLeft, HeartPulse, Home, Award, Briefcase, Rocket, Building2, Megaphone, Sparkles, ArrowRight, RotateCcw, Code, Handshake, Users } from 'lucide-vue-next'
+import { ChevronDown, ChevronLeft, HeartPulse, Home, Award, Briefcase, Rocket, Sparkles, ArrowRight, RotateCcw, Code, Handshake, Users } from 'lucide-vue-next'
 
 // Section "Pour qui ?" : profils de prestataires équestres
 const profiles = [
@@ -334,28 +326,32 @@ const collaborationReasons = [
     icon: Code,
     title: 'Le savoir-faire technique',
     paragraphs: [
-      'Développeuse web diplômée d\'un Master MIAGE (BAC +5) à Bordeaux en 2020, je cumule plus de 6 ans d\'expérience en entreprise. Spécialisée exclusivement dans la création de sites internet, j\'allie le développement sur-mesure au webdesign pour concevoir des plateformes aussi solides techniquement qu\'agréables à naviguer.',
-      'Concevoir un site web ne s\'arrête pas à aligner du code : il faut structurer l\'information pour rendre votre offre lisible, valorisante et surtout convaincante. Je crée des sites fluides, rapides et pensés pour convertir vos visiteurs en clients.'
+      'Développeuse web diplômée d\'un Master MIAGE (BAC +5) à Bordeaux en 2020, **je cumule plus de 6 ans d\'expérience en entreprise**. Spécialisée exclusivement dans la création de sites internet, j\'allie le développement sur-mesure au webdesign pour concevoir des plateformes aussi solides techniquement qu\'agréables à naviguer.',
+      'Concevoir un site web ne s\'arrête pas à aligner du code : il faut **structurer l\'information pour rendre votre offre lisible**, valorisante et surtout convaincante. Je crée des sites fluides, rapides et pensés pour convertir vos visiteurs en clients.'
     ]
   },
   {
     icon: Handshake,
     title: 'La relation humaine',
     paragraphs: [
-      'Je crois en une approche humaine et transparente : il existe une solution pour chaque budget, à condition de définir clairement ce dont vous avez réellement besoin aujourd\'hui.',
-      'On pose des bases solides maintenant, et on fait évoluer votre site au rythme de votre activité. Pas de superflu, pas de fonctionnalités inutiles : mon rôle est de vous conseiller avec justesse pour investir intelligemment.',
-      'Et si votre projet nécessite encore un temps de réflexion ou de maturation, je vous oriente en toute franchise et on se retrouve plus tard, quand vous aurez le budget ou que vous serez prêt.'
+      '**Je crois en une approche humaine et transparente** : il existe une solution pour chaque budget, à condition de définir clairement ce dont vous avez réellement besoin aujourd\'hui.',
+      'On pose des bases solides maintenant, et on fait **évoluer votre site au rythme de votre activité.** Pas de superflu, pas de fonctionnalités inutiles : mon rôle est de vous conseiller avec justesse pour investir intelligemment.',
+      'Et si votre projet nécessite encore un temps de réflexion ou de maturation, **je vous oriente en toute franchise** et on se retrouve plus tard, quand vous aurez le budget ou que vous serez prêt.'
     ]
   },
   {
     icon: Users,
     title: 'La force du collectif',
     paragraphs: [
-      'J\'ai fait le choix de me consacrer exclusivement à la création de sites internet pour vous délivrer de la qualité : c\'est mon véritable cœur d\'expertise.',
-      'Pour autant, un site web s\'inscrit toujours dans une stratégie plus globale. C\'est pourquoi je collabore avec d\'autres professionnels spécialisés de la filière équine (stratégie, community management, réseaux sociaux...). Je vous oriente avec plaisir vers eux, car chacun d\'entre nous a une vision unique pour développer votre projet.'
+      'J\'ai fait le choix de me consacrer exclusivement à la création de sites internet pour **vous délivrer de la qualité** : c\'est mon véritable cœur d\'expertise.',
+      'Pour autant, **un site web s\'inscrit toujours dans une stratégie plus globale.** C\'est pourquoi je collabore avec d\'autres professionnels spécialisés de la filière équine (stratégie, community management, réseaux sociaux...). Je vous oriente avec plaisir vers eux, car chacun d\'entre nous a une vision unique pour développer votre projet.'
     ]
   }
 ]
+
+const formatParagraph = (text: string): string => {
+  return text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-bold text-base sm:text-lg">$1</strong>')
+}
 
 // Formulaire dynamique : recommandation d'offre selon le profil
 type ProfileKey = 'praticien' | 'structure' | 'agence'
@@ -376,9 +372,9 @@ const SUR_MESURE = '/creation-site-internet-equestre/sur-mesure'
 const CLE_EN_MAIN = '/creation-site-internet-equestre/cle-en-main'
 
 const profileOptions = [
-  { key: 'praticien' as ProfileKey, label: 'Praticien & Thérapeute (masseur, enseignant, ostéopathe…)', icon: HeartPulse },
-  { key: 'structure' as ProfileKey, label: 'Structure & Centre (haras, élevage, écuries, centres équestres)', icon: Building2 },
-  { key: 'agence' as ProfileKey, label: 'Marque & Agence', icon: Megaphone }
+  { key: 'praticien' as ProfileKey, label: 'Praticien & Thérapeute', examples: 'masseur, enseignant, ostéopathe…' },
+  { key: 'structure' as ProfileKey, label: 'Structure & Centre', examples: 'haras, élevage, écuries, centres équestres' },
+  { key: 'agence' as ProfileKey, label: 'Marque & Agence', examples: 'agence de communication, marketing, marque équestre…' }
 ]
 
 // Questions de suivi par profil (le profil "agence" n'en a pas et va directement au résultat)

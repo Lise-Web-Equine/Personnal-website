@@ -17,9 +17,9 @@
       <div class="absolute inset-0 bg-gradient-to-b from-secondary-900/90 via-secondary-900/80 to-secondary-900/90"></div>
     </div>
 
-    <div class="relative container mx-auto px-6">
+    <div class="relative">
       <div
-        class="max-w-3xl mx-auto"
+        class=""
         :class="alignClasses"
         v-motion-slide-visible-once-bottom
       >
@@ -106,11 +106,7 @@ const actionsJustifyClasses = computed(() => {
   return 'justify-center'
 })
 
-const titleClasses = computed(() => {
-  const base = 'font-bold mb-4'
-  const sizeClass = props.size === 'large'
-    ? 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl'
-    : 'text-2xl sm:text-3xl md:text-4xl'
-  return `${base} ${sizeClass} ${isDark.value ? 'text-white' : 'text-secondary-900'}`
-})
+// Size/weight come from the global h2 base styles; only margin and the
+// context color (white on dark backgrounds) are set here.
+const titleClasses = computed(() => `mb-4 ${isDark.value ? 'text-white' : 'text-secondary-900'}`)
 </script>
