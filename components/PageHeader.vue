@@ -1,7 +1,7 @@
 <template>
   <!-- -mt-20 annule le pt-20 global de <main> : le bandeau démarre tout en haut (derrière le header).
        Le padding-top compense la hauteur du header fixe pour que le titre ne passe pas sous le menu. -->
-  <section class="-mt-20 pt-32 pb-12 sm:pt-36 sm:pb-16 md:pt-40 md:pb-20 lg:pt-44 lg:pb-24 relative overflow-hidden text-white">
+  <section class="-mt-20 pt-32 pb-12 sm:pt-36 sm:pb-16 md:pt-40 md:pb-20 lg:pt-44 lg:pb-24 relative overflow-hidden text-white text-center">
     <!-- Fond masqué : bg-secondary découpé en accolade (révèle la couleur de la section suivante) -->
     <div class="absolute inset-0 bg-secondary mask-brace-bottom">
       <!-- Background decoration -->

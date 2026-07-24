@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-white text-secondary antialiased overflow-x-hidden;
+    @apply bg-white text-secondary-800 font-sans antialiased overflow-x-hidden;
   }
 
   html {
@@ -169,22 +169,5 @@
     mask-position: top left, bottom left;
     -webkit-mask-repeat: no-repeat, no-repeat;
     mask-repeat: no-repeat, no-repeat;
-  }
-
-  /* Bord SUPÉRIEUR en forme d'accolade : ne garde que la zone SOUS la courbe.
-     Utilisé sur une bande de la couleur du footer placée au-dessus de celui-ci,
-     pour que la couleur du footer "remonte" dans le contenu selon l'accolade.
-     Le SVG est étiré sur tout l'élément (preserveAspectRatio='none'). */
-  .mask-brace-top {
-    -webkit-mask-image:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 100' preserveAspectRatio='none'%3E%3Cpath d='M0,10 C250,10 250,45 400,45 C520,45 540,50 600,90 C660,50 680,45 800,45 C950,45 950,10 1200,10 L1200,100 L0,100 Z' fill='%23000'/%3E%3C/svg%3E");
-    mask-image:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 100' preserveAspectRatio='none'%3E%3Cpath d='M0,10 C250,10 250,45 400,45 C520,45 540,50 600,90 C660,50 680,45 800,45 C950,45 950,10 1200,10 L1200,100 L0,100 Z' fill='%23000'/%3E%3C/svg%3E");
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    -webkit-mask-position: center;
-    mask-position: center;
   }
 }

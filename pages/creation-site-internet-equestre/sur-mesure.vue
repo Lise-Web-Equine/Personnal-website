@@ -3,53 +3,29 @@
       <PageHeader
         title="Site internet sur-mesure pour les prestataires équestres"
       />
+      
+    <!-- Section : Introduction -->
+    <section class="py-12 sm:py-16 md:py-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div class="space-y-6" v-motion-slide-visible-once-bottom>
+            <h2 class="mb-4 sm:mb-6"> À l'écoute des enjeux de votre filière</h2>
 
-      <!-- Section : Pour qui ? -->
-      <section class="py-12 sm:py-16 md:py-20">
-          <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
-            <h2 class="mb-4 sm:mb-6">Un site adapté à votre métier équestre</h2>
-            <p class="text-base sm:text-lg text-secondary-600 max-w-3xl mx-auto">
-              Quelle que soit votre activité dans le monde du cheval, votre site est pensé pour vous rendre visible, crédible et autonome. Trouvez votre profil ci-dessous.
-            </p>
-          </div>
+            <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">À l'ère de l'IA et des incertitudes,  <strong class="text-secondary-900 font-bold text-lg sm:text-xl">je mise avant tout sur l'humain</strong> : mettre en avant vos forces, votre histoire et votre professionnalisme pour toucher vos clients ou acheteurs idéaux, sans jamais oublier votre authenticité.</p>
+             
+              <p class="text-base sm:text-lg text-secondary-600 leading-relaxed"> Pour autant, je ne rejette pas la technologie : j'intègre l'IA à certaines étapes de mon processus. Mais <strong class="text-secondary-900 font-bold text-lg sm:text-xl">l'écoute, le conseil et la compréhension de votre projet</strong> restent — et resteront toujours — un échange humain entre vous et moi.
+              </p>
 
-          <div class="max-w-4xl mx-auto space-y-4">
-            <div
-              v-for="(profile, index) in profiles"
-              :key="index"
-              class="border border-secondary-200 rounded-2xl overflow-hidden bg-white transition-colors"
-              :class="openProfile === index ? 'border-primary-300 shadow-md' : 'hover:border-secondary-300'"
-              v-motion-slide-visible-once-bottom
-            >
-              <button
-                @click="toggleProfile(index)"
-                class="w-full px-5 sm:px-6 py-4 sm:py-5 flex items-center justify-between text-left gap-4"
-              >
-                <div class="flex items-center gap-3 sm:gap-4">
-                  <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary-100 flex items-center justify-center flex-shrink-0">
-                    <component :is="profile.icon" :size="22" class="text-primary-600" />
-                  </div>
-                  <h3 class="text-base sm:text-lg font-bold text-secondary-900">{{ profile.title }}</h3>
-                </div>
-                <ChevronDown
-                  :size="20"
-                  class="text-secondary-500 transition-transform duration-200 flex-shrink-0"
-                  :class="openProfile === index ? 'rotate-180' : ''"
-                />
-              </button>
-              <div v-show="openProfile === index" class="px-5 sm:px-6 pb-5 sm:pb-6">
-                <p class="text-sm sm:text-base text-secondary-500 mb-3">
-                  <span class="font-semibold text-secondary-700">Exemples :</span> {{ profile.examples }}
-                </p>
-                <div class="flex items-start gap-2">
-                  <p class="text-sm sm:text-base text-secondary-700 leading-relaxed">
-                    {{ profile.objective }}
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
-      </section>
+          <div v-motion-slide-visible-once-bottom>
+            <NuxtImg
+              src="/images/desk-girl.jpg"
+              alt="Création de site internet pour les professionnels équestres"
+              class="w-full h-full object-cover rounded-2xl shadow-lg"
+              loading="lazy"
+            />
+          </div>
+        </div>
+    </section>
 
       <!-- Section : Pourquoi nous choisir ? -->
       <section class="py-12 sm:py-16 md:py-20 relative overflow-hidden bg-secondary">
@@ -68,17 +44,45 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-              <!-- Vidéo démo (placeholder) -->
+              <!-- Vidéo démo : ajout d'une étude de cas -->
               <div v-motion-slide-visible-once-left>
-                <div class="aspect-video rounded-2xl bg-white/5 backdrop-blur-xs border border-white/10 shadow-lg flex flex-col items-center justify-center relative overflow-hidden">
-                  <div class="absolute inset-0 bg-gradient-to-br from-primary-900/40 to-transparent"></div>
-                  <div class="relative z-10 flex flex-col items-center">
-                    <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-4">
-                      <PlayCircle :size="36" class="text-white" />
+                <figure>
+                  <div class="aspect-video rounded-2xl overflow-hidden shadow-lg bg-secondary relative">
+                    <video
+                      ref="videoEl"
+                      class="w-full h-full object-contain"
+                      src="/videos/demo-portfolios.mp4"
+                      muted
+                      :controls="isPlaying"
+                      loop
+                      playsinline
+                      preload="auto"
+                      aria-label="Ajout d'une étude de cas pour une agence de marketing et communication équestre"
+                      @play="isPlaying = true"
+                      @pause="isPlaying = false"
+                    ></video>
+                    <div
+                      v-if="!isPlaying"
+                      class="absolute inset-0 bg-secondary-900/40 flex items-center justify-center cursor-pointer"
+                      @click="playVideo"
+                    >
+                      <button
+                        type="button"
+                        class="relative inline-flex items-center gap-3 px-6 py-3 bg-secondary text-white font-semibold rounded-full shadow-2xl border border-white/20 hover:bg-secondary-700 hover:scale-105 transition-all duration-200"
+                        aria-label="Voir la démo"
+                      >
+                        <span class="absolute -inset-1 rounded-full bg-white/30 animate-ping"></span>
+                        <span class="relative inline-flex items-center gap-3">
+                          <Play :size="20" />
+                          <span>Voir la démo</span>
+                        </span>
+                      </button>
                     </div>
-                    <p class="text-white/80 text-sm font-medium">Vidéo démo à venir</p>
                   </div>
-                </div>
+                  <figcaption class="mt-3 text-sm text-secondary-300">
+                    Ajout d'une étude de cas pour une agence de marketing et communication équestre
+                  </figcaption>
+                </figure>
               </div>
 
               <!-- Description -->
@@ -102,18 +106,13 @@
         </div>
       </section>
 
-   <!--  <FeaturesSection
-        title="L'IA pour un site qui vit et qui engage."
-        subtitle="Pour que votre site ne soit pas juste une page statique, j'y intègre des fonctionnalités interactives intelligentes sans jamais perdre votre authenticité."
-        :features="studioAIFeatures"
-      />-->
-
       <!-- Section : La formule -->
       <section class="py-12 sm:py-16 md:py-20">
           <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
             <h2 class="mb-4 sm:mb-6">La formule équestre</h2>
             <p class="text-base sm:text-lg text-secondary-600 max-w-3xl mx-auto">
-              Un socle complet pour lancer votre présence en ligne, que vous faites évoluer à votre rythme.
+              Un socle complet pour lancer votre présence en ligne, 
+              que vous faites évoluer à votre rythme.
             </p>
           </div>
 
@@ -128,7 +127,7 @@
                   <p class="text-sm sm:text-base text-secondary-600">Paiement en 3 fois possible · Devis gratuit</p>
                   <div class="mt-6 pt-6 border-t border-primary-200">
                     <p class="text-sm text-secondary-600 mb-1">Hébergement annuel</p>
-                    <p class="text-lg sm:text-xl font-bold text-secondary-900">108€ <span class="text-sm font-medium text-secondary-500">/ an (soit 9€/mois)</span></p>
+                    <p class="text-lg sm:text-xl font-bold text-secondary-900">à partir de 108€ <span class="text-sm font-medium text-secondary-500">/ an (soit 9€/mois)</span></p>
                   </div>
                 </div>
                 <!-- Inclus -->
@@ -344,7 +343,7 @@
 </template>
 
 <script setup lang="ts">
-import { Code, Zap, Check, ArrowRight, Send, Target, ChevronDown, PlayCircle, FileText, Puzzle, HeartPulse, Home, Award, Camera, Briefcase, Rocket } from 'lucide-vue-next'
+import { Code, Zap, Check, ArrowRight, Send, Target, ChevronDown, FileText, Play, Puzzle, HeartPulse, Home, Award, Camera, Briefcase, Rocket } from 'lucide-vue-next'
 
 // Section "Pour qui ?" : profils de prestataires équestres
 const profiles = [
@@ -406,6 +405,19 @@ const toggleStep = (index: number) => {
   openStep.value = openStep.value === index ? -1 : index
 }
 
+// Lecteur vidéo démo
+const isPlaying = ref(false)
+const videoEl = ref<HTMLVideoElement | null>(null)
+
+const playVideo = async () => {
+  if (!videoEl.value) return
+  try {
+    await videoEl.value.play()
+  } catch (err) {
+    console.error('Erreur lecture vidéo:', err)
+  }
+}
+
 // Section "Pourquoi nous choisir ?" : contenus modifiables en autonomie
 const adminFeatures = [
   'Articles de blog',
@@ -420,8 +432,8 @@ const socleIncludes = [
   { label: '5 pages', example: 'Par exemple : accueil, prestations, contact, à propos, pages légales' },
   { label: 'Référencement sur Google' },
   { label: 'Création du nom de domaine' },
-  { label: 'Interface de l\'adresse mail professionnel' },
-  { label: 'Interface d\'administration' }
+  { label: 'Création de l\'adresse mail professionnel' },
+  { label: 'Configuration de l\'interface d\'administration' }
 ]
 
 // FAQ

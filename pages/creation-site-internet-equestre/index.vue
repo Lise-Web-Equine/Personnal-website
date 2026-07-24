@@ -39,7 +39,9 @@
         <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
           <h2 class="mb-4 sm:mb-6">Un site adapté à votre métier équestre</h2>
           <p class="text-base sm:text-lg text-secondary-600">
-            Quelle que soit votre activité dans le monde du cheval, votre site est pensé pour vous rendre visible, crédible et autonome. Trouvez votre profil ci-dessous.
+            Quelle que soit votre activité dans le monde du cheval, votre site est pensé pour vous rendre visible, crédible et autonome. 
+            <br />
+            Trouvez votre profil ci-dessous.
           </p>
         </div>
 
@@ -540,15 +542,33 @@ onMounted(() => {
 const faqItems = [
   {
     question: 'Existe-t-il des templates de site internet adaptés aux prestataires équestres ?',
-    answer: 'Oui, il existe des templates et formules clés en main conçus spécifiquement pour les prestataires équestres (moniteurs indépendants, coaches, ostéopathes équins, masseurs équins, enseignants d\'équitation, shiatsu équin…). Ils permettent de présenter vos prestations, d\'afficher vos tarifs et d\'intégrer la prise de rendez-vous en ligne rapidement.'
+    answer: 'Oui, des templates et formules clés en main ont été créés spécifiquement pour répondre aux besoins uniques des prestataires de la filière équestre. Ces modèles sur-mesure permettent de valoriser votre savoir-faire et de simplifier la gestion de votre activité au quotidien, sans avoir à créer un site en partant de zéro. \n\n**Ce que permettent ces templates équestres**',
+    list: [
+      '**S\'adapter à tous les métiers :** Moniteurs indépendants, coachs, ostéopathes, masseurs équins, enseignants, praticiens en shiatsu...',
+      '**Présenter vos prestations :** Expliciter clairement vos services et votre démarche.',
+      '**Afficher vos tarifs :** Donner une vision transparente de vos formules.',
+      '**Intégrer la réservation en ligne :** Permettre la prise de rendez-vous rapide pour vos clients.',
+      '**Mettre en valeur votre image :** Bénéficier d\'un design professionnel et crédible dès le lancement.',
+    ]
   },
   {
     question: 'Quel est le meilleur outil pour créer son site internet équestre ?',
-    answer: 'Le meilleur outil dépend de vos compétences techniques, de votre temps et de vos objectifs. Si Wix ou Squarespace permettent de concevoir une vitrine simple, ils demandent de nombreuses heures de prise en main. C\'est pourquoi il existe des sites clé en main et templates conçus spécifiquement pour les prestataires équestres (moniteurs, coachs, ostéopathes, masseurs équins, enseignants d\'équitation, praticiens en shiatsu…). Ils permettent d\'obtenir un site professionnel sans perdre de temps avec la technique.'
+    answer: 'Le meilleur outil dépend de vos compétences techniques, de votre temps et de vos objectifs. Si Wix ou Squarespace permettent de concevoir une vitrine simple, ils demandent de nombreuses heures de prise en main. C\'est pourquoi il existe des sites clé en main et templates conçus spécifiquement pour les prestataires équestres (moniteurs, coachs, ostéopathes, masseurs équins, enseignants d\'équitation, praticiens en shiatsu…). Ils permettent d\'obtenir un site professionnel sans perdre de temps avec la technique. \n\n**Avantages des solutions dédiées au secteur équestre :**',
+    list: [
+      '**Gain de temps :** : Prise en main rapide sans passer des heures sur la technique.',
+      '**Design adapté :** : Structure et visuels taillés pour l\'univers du cheval.',
+      '**Image professionnelle :** : Un rendu crédible pour valoriser votre activité.',
+      '**Sérénité :** : Un accompagnement complet pour vous assurer d\'avoir un site qui fonctionne bien.',
+    ]
   },
   {
     question: 'Comment vendre ses poulains au bon prix grâce à son site web ?',
-    answer: 'Vendre un poulain à sa juste valeur ne repose pas sur de simples petites annonces éphémères : il faut transmettre la réalité de votre travail d\'éleveur. Un site internet soigné met en lumière l\'histoire de votre haras, votre éthique et votre savoir-faire au quotidien. Votre site web crée un véritable coup de cœur chez l\'acheteur tout en légitimant le prix de votre travail d\'élevage.'
+    answer: 'Vendre un poulain à sa juste valeur ne repose pas sur de simples petites annonces éphémères : il faut transmettre la réalité de votre travail d\'éleveur. Un site internet soigné met en lumière l\'histoire de votre haras, votre éthique et votre savoir-faire au quotidien. Votre site web crée un véritable coup de cœur chez l\'acheteur tout en légitimant le prix de votre travail d\'élevage.\n\n**Les 3 leviers pour valoriser votre élevage sur le web :**',
+    list: [
+      '**Transmettre votre histoire & votre éthique :** : Présenter la vie des poulains au pré, l\'attention portée au bien-être animal et le soin apporté à leur éducation.',
+      '**Mettre en avant votre savoir-faire :** : Valoriser la souche maternelle, la rigueur de vos croisements et les performances de la lignée via des fiches et médias soignés.',
+      '**Centraliser vos poulains à la vente :** : Proposer une vitrine professionnelle claire et toujours à jour, permettant d\'envoyer la fiche complète d\'un poulain en un clic par message à un acheteur potentiel.',
+    ]
   },
   {
     question: 'Comment développer une entreprise dans le monde du cheval grâce à son site internet ?',
