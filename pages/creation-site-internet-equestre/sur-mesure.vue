@@ -1,7 +1,7 @@
 <template>
   <NuxtLayout>
       <PageHeader
-        title="Site internet sur-mesure pour les prestataires équestres"
+        title="Création de site internet sur-mesure"
       />
       
     <!-- Section : Introduction -->
@@ -12,111 +12,258 @@
 
             <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">À l'ère de l'IA et des incertitudes,  <strong class="text-secondary-900 font-bold text-lg sm:text-xl">je mise avant tout sur l'humain</strong> : mettre en avant vos forces, votre histoire et votre professionnalisme pour toucher vos clients ou acheteurs idéaux, sans jamais oublier votre authenticité.</p>
              
-              <p class="text-base sm:text-lg text-secondary-600 leading-relaxed"> Pour autant, je ne rejette pas la technologie : j'intègre l'IA à certaines étapes de mon processus. Mais <strong class="text-secondary-900 font-bold text-lg sm:text-xl">l'écoute, le conseil et la compréhension de votre projet</strong> restent — et resteront toujours — un échange humain entre vous et moi.
+              <p class="text-base sm:text-lg text-secondary-600 leading-relaxed"> Pour autant, je ne rejette pas la technologie : je l'intègres à certaines étapes de mon processus. Mais <strong class="text-secondary-900 font-bold text-lg sm:text-xl">l'écoute, le conseil et la compréhension de votre projet</strong> restent — et resteront toujours — un échange humain entre vous et moi.
               </p>
 
           </div>
           <div v-motion-slide-visible-once-bottom>
-            <NuxtImg
-              src="/images/desk-girl.jpg"
-              alt="Création de site internet pour les professionnels équestres"
-              class="w-full h-full object-cover rounded-2xl shadow-lg"
-              loading="lazy"
-            />
+            <video
+              src="/videos/presentation-sur-mesure.mp4"
+              class="w-full aspect-[862/1081] object-cover rounded-2xl shadow-lg"
+              autoplay
+              muted
+              loop
+              playsinline
+            ></video>
           </div>
         </div>
     </section>
 
-      <!-- Section : Pourquoi nous choisir ? -->
+      <!-- Section : L'unicité de l'agence via la plateforme personnalisable (fond sombre) -->
       <section class="py-12 sm:py-16 md:py-20 relative overflow-hidden bg-secondary">
         <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-900/30 to-transparent rounded-full blur-3xl"></div>
         <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
         <GradientAnimation />
 
         <div class="relative">
-          <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
-              <span class="inline-block text-primary-400 font-semibold text-sm sm:text-base mb-3">Pourquoi nous choisir ?</span>
-              <h2 class="mb-4 sm:mb-6 text-white">Restez autonome sur votre site internet</h2>
-              <p class="text-base sm:text-lg text-secondary-300 max-w-3xl mx-auto">
-                L'interface administrable : la solution web équestre pour gérer votre contenu vous-même, sans dépendre de personne.
-              </p>
+          <!-- En-tête -->
+          <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
+            <span class="inline-block text-primary-400 font-semibold text-sm sm:text-base mb-3">Pourquoi nous choisir ?</span>
+            <h2 class="mb-4 sm:mb-6 text-white">Un site internet livré avec sa plateforme de gestion, personnalisée pour votre métier</h2>
+            <p class="text-base sm:text-lg text-secondary-300 leading-relaxed">
+             Nous conçevons pour chaque professionnel du cheval une <strong class="text-white font-semibold">interface d'administration sur-mesure</strong> : vous faites évoluer votre contenu en toute autonomie, sans la moindre ligne de code.
+            </p>
+          </div>
+
+          <!-- Sélecteur interactif d'activité (SEO-friendly : contenu complet rendu dans le DOM) -->
+          <div v-motion-slide-visible-once-bottom>
+            <!-- Question + menu déroulant intégré -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
+              <label for="activity-select" class="text-white font-semibold text-lg sm:text-xl text-center sm:text-right">
+                Je suis
+              </label>
+              <div class="relative w-full sm:w-auto">
+                <select
+                  id="activity-select"
+                  v-model.number="selectedCategory"
+                  class="appearance-none w-full sm:w-72 bg-white/10 border border-white/20 text-white font-medium rounded-xl pl-4 pr-10 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors cursor-pointer"
+                >
+                  <option
+                    v-for="(cat, i) in siteCategories"
+                    :key="i"
+                    :value="i"
+                    class="text-secondary-900"
+                  >
+                    {{ cat.profession }}
+                  </option>
+                </select>
+                <ChevronDown class="w-5 h-5 text-primary-300 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+              </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-              <!-- Vidéo démo : ajout d'une étude de cas -->
-              <div v-motion-slide-visible-once-left>
-                <figure>
-                  <div class="aspect-video rounded-2xl overflow-hidden shadow-lg bg-secondary relative">
-                    <video
-                      ref="videoEl"
-                      class="w-full h-full object-contain"
-                      src="/videos/demo-portfolios.mp4"
-                      muted
-                      :controls="isPlaying"
-                      loop
-                      playsinline
-                      preload="auto"
-                      aria-label="Ajout d'une étude de cas pour une agence de marketing et communication équestre"
-                      @play="isPlaying = true"
-                      @pause="isPlaying = false"
-                    ></video>
-                    <div
-                      v-if="!isPlaying"
-                      class="absolute inset-0 bg-secondary-900/40 flex items-center justify-center cursor-pointer"
-                      @click="playVideo"
-                    >
-                      <button
-                        type="button"
-                        class="relative inline-flex items-center gap-3 px-6 py-3 bg-secondary text-white font-semibold rounded-full shadow-2xl border border-white/20 hover:bg-secondary-700 hover:scale-105 transition-all duration-200"
-                        aria-label="Voir la démo"
-                      >
-                        <span class="absolute -inset-1 rounded-full bg-white/30 animate-ping"></span>
-                        <span class="relative inline-flex items-center gap-3">
-                          <Play :size="20" />
-                          <span>Voir la démo</span>
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-                  <figcaption class="mt-3 text-sm text-secondary-300">
-                    Ajout d'une étude de cas pour une agence de marketing et communication équestre
-                  </figcaption>
-                </figure>
-              </div>
-
-              <!-- Description -->
-              <div v-motion-slide-visible-once-right>
-                <p class="text-base sm:text-lg text-secondary-300 leading-relaxed mb-6">
-                  Votre entreprise évolue, votre site aussi. Grâce à l'outil Sanity, configuré spécialement pour votre projet équestre, mettez à jour votre contenu en toute simplicité, sans aucune compétence technique.
-                </p>
-                <p class="text-sm font-semibold text-secondary-400 uppercase tracking-wide mb-4">Par exemple</p>
-                <div class="flex flex-wrap gap-2 sm:gap-3">
+            <!-- Aperçu de l'interface sur-mesure correspondante -->
+            <Transition name="fade" mode="out-in">
+              <div
+                :key="selectedCategory"
+                class="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8"
+              >
+                <h3 class="text-xl font-bold text-white mb-2">{{ siteCategories[selectedCategory].profession }}</h3>
+                <p class="text-sm sm:text-base text-secondary-300 mb-5">{{ siteCategories[selectedCategory].description }}</p>
+                <div class="flex flex-wrap gap-2">
                   <span
-                    v-for="(item, i) in adminFeatures"
-                    :key="i"
-                    class="inline-flex items-center px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm sm:text-base text-secondary-200 font-medium"
+                    v-for="(mod, j) in siteCategories[selectedCategory].modules"
+                    :key="j"
+                    class="inline-flex items-center px-3 py-1.5 rounded-full bg-primary-500/20 text-primary-200 text-sm font-medium"
                   >
-                    {{ item }}
+                    {{ mod }}
                   </span>
                 </div>
               </div>
+            </Transition>
+
+            <!-- Contenu complet rendu pour le SEO (masqué visuellement, lisible par les moteurs de recherche) -->
+            <div class="sr-only">
+              <p
+                v-for="(cat, i) in siteCategories"
+                :key="i"
+              >
+                {{ cat.profession }} : {{ cat.description }} Modules inclus : {{ cat.modules.join(', ') }}.
+              </p>
             </div>
           </div>
+
         </div>
       </section>
+
+      <!-- Section : Cas concret d'espace de gestion -->
+      <section class="py-12 sm:py-16 md:py-20 bg-gray-50">
+        <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
+          <span class="inline-block text-primary-600 font-semibold text-sm sm:text-base mb-3">Exemple concret</span>
+          <h2 class="mb-4 sm:mb-6">Une agence de marketing et communication équestre, autonome sur son site</h2>
+          <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">
+            Sans aucune compétence technique, découvrez comment une agence met en avant son expertise en ajoutant elle-même ses études de cas et son portefeuille de clients.
+          </p>
+        </div>
+
+        <!-- Carrousel : vidéo démo + images zoomables en pleine largeur -->
+        <figure v-motion-slide-visible-once-bottom>
+          <div class="relative rounded-2xl overflow-hidden shadow-lg bg-secondary-100 group">
+            <!-- Slide vidéo -->
+            <div v-if="caseImages[currentCase].type === 'video'" class="relative bg-secondary">
+              <video
+                ref="videoEl"
+                class="w-full h-auto block"
+                :src="caseImages[currentCase].src"
+                muted
+                :controls="isPlaying"
+                loop
+                playsinline
+                preload="auto"
+                :aria-label="caseImages[currentCase].alt"
+                @play="isPlaying = true"
+                @pause="isPlaying = false"
+              ></video>
+              <div
+                v-if="!isPlaying"
+                class="absolute inset-0 bg-secondary-900/40 flex items-center justify-center cursor-pointer"
+                @click="playVideo"
+              >
+                <button
+                  type="button"
+                  class="relative inline-flex items-center gap-3 px-6 py-3 bg-secondary text-white font-semibold rounded-full shadow-2xl border border-white/20 hover:bg-secondary-700 hover:scale-105 transition-all duration-200"
+                  aria-label="Voir la démo"
+                >
+                  <span class="absolute -inset-1 rounded-full bg-white/30 animate-ping"></span>
+                  <span class="relative inline-flex items-center gap-3">
+                    <Play :size="20" />
+                    <span>Voir la démo</span>
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Slide image -->
+            <button
+              v-else
+              type="button"
+              class="block w-full cursor-zoom-in"
+              @click="openZoom(caseImages[currentCase])"
+              :aria-label="`Agrandir : ${caseImages[currentCase].caption}`"
+            >
+              <NuxtImg
+                :src="caseImages[currentCase].src"
+                :alt="caseImages[currentCase].alt"
+                class="w-full h-auto object-contain"
+                loading="lazy"
+              />
+              <span class="absolute top-3 right-3 inline-flex items-center justify-center w-9 h-9 rounded-full bg-secondary-900/60 text-white opacity-80 group-hover:opacity-100 transition-opacity">
+                <ZoomIn :size="18" />
+              </span>
+            </button>
+
+            <!-- Navigation carrousel -->
+            <button
+              type="button"
+              class="absolute left-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/90 text-secondary-900 shadow-md hover:bg-white transition-colors"
+              @click="prevCase"
+              aria-label="Image précédente"
+            >
+              <ChevronLeft :size="20" />
+            </button>
+            <button
+              type="button"
+              class="absolute right-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/90 text-secondary-900 shadow-md hover:bg-white transition-colors"
+              @click="nextCase"
+              aria-label="Image suivante"
+            >
+              <ChevronRight :size="20" />
+            </button>
+          </div>
+
+          <figcaption class="mt-3 text-sm text-secondary-500 text-center">
+            {{ caseImages[currentCase].caption }}
+          </figcaption>
+
+          <!-- Indicateurs -->
+          <div class="flex justify-center gap-2 mt-3">
+            <button
+              v-for="(img, i) in caseImages"
+              :key="i"
+              type="button"
+              class="w-2.5 h-2.5 rounded-full transition-colors"
+              :class="i === currentCase ? 'bg-primary-600' : 'bg-secondary-300 hover:bg-secondary-400'"
+              @click="goToCase(i)"
+              :aria-label="`Aller à l'image ${i + 1}`"
+            ></button>
+          </div>
+        </figure>
+
+        <!-- Cas concret : récit authentique 
+        <div class="mt-10 sm:mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8" v-motion-slide-visible-once-bottom>
+          <div>
+            <p class="text-sm font-semibold text-primary-600 uppercase tracking-wide mb-2">Son activité</p>
+            <p class="text-base text-secondary-700 leading-relaxed">Une agence de communication et de marketing équestre, spécialisée dans l'accompagnement des professionnels du cheval.</p>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-primary-600 uppercase tracking-wide mb-2">Son besoin</p>
+            <p class="text-base text-secondary-700 leading-relaxed">Prouver ses 5 années d'expertise à ses futurs clients, en mettant en avant des résultats concrets plutôt que de simples promesses.</p>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-primary-600 uppercase tracking-wide mb-2">La solution</p>
+            <p class="text-base text-secondary-700 leading-relaxed">Un espace de gestion sur-mesure pour publier en toute autonomie ses études de cas et enrichir son portefeuille de clients, sans la moindre ligne de code.</p>
+          </div>
+        </div>-->
+      </section>
+
+      <!-- Lightbox : zoom d'image -->
+      <Teleport to="body">
+        <div
+          v-if="zoomedImage"
+          class="fixed inset-0 z-[100] bg-secondary-900/90 flex items-center justify-center p-4 sm:p-8 cursor-zoom-out"
+          @click="closeZoom"
+        >
+          <button
+            type="button"
+            class="absolute top-4 right-4 inline-flex items-center justify-center w-11 h-11 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+            @click="closeZoom"
+            aria-label="Fermer"
+          >
+            <X :size="24" />
+          </button>
+          <figure class="max-w-5xl w-full" @click.stop>
+            <NuxtImg
+              :src="zoomedImage.src"
+              :alt="zoomedImage.alt"
+              class="w-full h-auto max-h-[85vh] object-contain rounded-xl"
+            />
+            <figcaption class="mt-3 text-sm text-secondary-300 text-center">
+              {{ zoomedImage.caption }}
+            </figcaption>
+          </figure>
+        </div>
+      </Teleport>
 
       <!-- Section : La formule -->
       <section class="py-12 sm:py-16 md:py-20">
           <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
             <h2 class="mb-4 sm:mb-6">La formule équestre</h2>
-            <p class="text-base sm:text-lg text-secondary-600 max-w-3xl mx-auto">
+            <p class="text-base sm:text-lg text-secondary-600">
               Un socle complet pour lancer votre présence en ligne, 
               que vous faites évoluer à votre rythme.
             </p>
           </div>
 
-          <div class="max-w-5xl mx-auto">
+          <div>
             <!-- Le socle -->
             <div class="bg-white rounded-2xl border-2 border-primary-200 shadow-lg overflow-hidden" v-motion-slide-visible-once-bottom>
               <div class="grid grid-cols-1 md:grid-cols-2">
@@ -180,66 +327,56 @@
       </section>
 
       <!-- Étapes Section -->
-      <section class="py-12 sm:py-16 md:py-20 relative overflow-hidden">
-        <!-- Halo backgrounds with fade mask -->
-        <div class="absolute inset-0 -z-10" style="mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);">
-          <div class="absolute inset-x-0 -top-20 sm:-top-40 transform-gpu overflow-hidden blur-2xl sm:blur-3xl" aria-hidden="true">
-            <div
-              class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff9a76] to-[#9089fc] opacity-30 sm:opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-              style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
-            ></div>
-          </div>
-          <div class="absolute inset-x-0 top-[calc(50%-20rem)] transform-gpu overflow-hidden blur-2xl sm:blur-3xl sm:top-[calc(50%-30rem)]" aria-hidden="true">
-            <div
-              class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 bg-gradient-to-tr from-[#9089fc] to-[#ffb380] opacity-25 sm:opacity-15 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-              style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
-            ></div>
-          </div>
-        </div>
-
-          <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
+      <section class="py-12 sm:py-16 md:py-20 bg-gray-50">
+          <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
+            <span class="inline-block text-primary-600 font-semibold text-sm sm:text-base mb-3">Comment ça se passe ?</span>
             <h2 class="mb-4 sm:mb-6">Les étapes de création de votre site équestre</h2>
-            <p class="text-base sm:text-lg text-secondary-600 max-w-3xl mx-auto">
-              De la première discussion à la mise en ligne, on avance main dans la main : un accompagnement clair, sans jargon technique, pour un projet serein.
+            <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">
+              De la première discussion à la mise en ligne, on avance main dans la main.
             </p>
           </div>
 
-          <div class="max-w-3xl mx-auto space-y-4">
-            <div
-              v-for="(step, index) in steps"
-              :key="index"
-              class="border border-secondary-200 rounded-2xl overflow-hidden bg-white transition-colors"
-              :class="openStep === index ? 'border-primary-300 shadow-md' : 'hover:border-secondary-300'"
-              v-motion-slide-visible-once-bottom
-            >
+          <div v-motion-slide-visible-once-bottom>
+            <!-- Colonnes d'étapes (cliquables) -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
               <button
-                @click="toggleStep(index)"
-                class="w-full px-5 sm:px-6 py-4 sm:py-5 flex items-center justify-between text-left gap-4"
+                v-for="(step, index) in steps"
+                :key="index"
+                type="button"
+                :aria-pressed="openStep === index"
+                @click="openStep = index"
+                class="flex flex-col items-center text-center gap-3 p-6 rounded-2xl border bg-white transition-colors"
+                :class="openStep === index
+                  ? 'border-primary-300 shadow-md'
+                  : 'border-secondary-200 hover:border-secondary-300'"
               >
-                <div class="flex items-center gap-3 sm:gap-4">
-                  <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span class="text-primary-600 font-bold text-base sm:text-lg">{{ index + 1 }}</span>
-                  </div>
-                  <h3 class="text-base sm:text-lg font-bold text-secondary-900">{{ step.title }}</h3>
-                </div>
-                <ChevronDown
-                  :size="20"
-                  class="text-secondary-500 transition-transform duration-200 flex-shrink-0"
-                  :class="openStep === index ? 'rotate-180' : ''"
-                />
+                <span
+                  class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold text-base sm:text-lg transition-colors"
+                  :class="openStep === index ? 'bg-primary-500 text-white' : 'bg-primary-100 text-primary-600'"
+                >
+                  {{ index + 1 }}
+                </span>
+                <h3 class="text-base sm:text-lg font-bold text-secondary-900 leading-tight">{{ step.title }}</h3>
               </button>
-              <div v-show="openStep === index" class="px-5 sm:px-6 pb-5 sm:pb-6 pl-[4.25rem] sm:pl-[5.5rem]">
-                <p class="text-sm sm:text-base text-secondary-600 leading-relaxed">
-                  {{ step.description }}
-                </p>
-              </div>
+            </div>
+
+            <!-- Description de l'étape active -->
+            <Transition name="fade" mode="out-in">
+              <p :key="openStep" class="text-center text-base sm:text-lg text-secondary-600 leading-relaxed mt-8">
+                {{ steps[openStep].description }}
+              </p>
+            </Transition>
+
+            <!-- Descriptions complètes rendues pour le SEO -->
+            <div class="sr-only">
+              <p v-for="(step, index) in steps" :key="index">{{ step.title }} : {{ step.description }}</p>
             </div>
           </div>
       </section>
 
       <!-- FAQ Section -->
       <section class="py-12 sm:py-16 md:py-20 bg-gray-50">
-          <div class="max-w-3xl mx-auto">
+          <div>
             <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
               <h2 class="mb-4 sm:mb-6">Questions fréquentes</h2>
               <p class="text-base sm:text-lg text-secondary-600">
@@ -264,7 +401,7 @@
           <div class="absolute inset-0 bg-gradient-to-b from-secondary-900/90 via-secondary-900/80 to-secondary-900/90"></div>
         </div>
 
-          <div class="max-w-4xl mx-auto">
+          <div>
             <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
               <h2 class="mb-4 sm:mb-6 text-white">On en discute ?</h2>
               <p class="text-base sm:text-lg text-secondary-200 leading-relaxed">
@@ -343,7 +480,105 @@
 </template>
 
 <script setup lang="ts">
-import { Code, Zap, Check, ArrowRight, Send, Target, ChevronDown, FileText, Play, Puzzle, HeartPulse, Home, Award, Camera, Briefcase, Rocket } from 'lucide-vue-next'
+import { Code, Zap, Check, ArrowRight, Send, Target, ChevronDown, FileText, Play, Puzzle, HeartPulse, Home, Award, Camera, Briefcase, Rocket, ZoomIn, ChevronLeft, ChevronRight, X } from 'lucide-vue-next'
+
+// Section "Cas concret" : carrousel (vidéo démo + images zoomables)
+type CaseImage = { type: 'video' | 'image'; src: string; alt: string; caption: string }
+const caseImages: CaseImage[] = [
+  {
+    type: 'video',
+    src: '/videos/demo-portfolios.mp4',
+    alt: "Ajout d'une étude de cas pour une agence de marketing et communication équestre",
+    caption: 'Ajout en autonomie d\'une étude de cas (démo vidéo)'
+  },
+  {
+    type: 'image',
+    src: '/images/clients/lepaddockdigital_portfolio_lefeuvre.png',
+    alt: "Ajout d'une étude de cas (portfolio) sur le site internet d'une agence de communication équestre",
+    caption: 'Ajout en autonomie d\'une étude de cas (portfolio)'
+  },
+  {
+    type: 'image',
+    src: '/images/clients/lepaddockdigital_clients_lefeuvre.png',
+    alt: "Ajout d'un client dans le portefeuille de clients sur le site internet d'une agence de communication équestre",
+    caption: 'Ajout en autonomie de son portefeuille de clients'
+  }
+]
+const currentCase = ref(0)
+const nextCase = () => {
+  isPlaying.value = false
+  currentCase.value = (currentCase.value + 1) % caseImages.length
+}
+const prevCase = () => {
+  isPlaying.value = false
+  currentCase.value = (currentCase.value - 1 + caseImages.length) % caseImages.length
+}
+const goToCase = (index: number) => {
+  isPlaying.value = false
+  currentCase.value = index
+}
+
+// Section "Ce qui rend mon agence unique" : les 3 différenciateurs
+const uniqueReasons = [
+  {
+    title: 'Une plateforme, pas un site figé',
+    description: 'Votre site vit avec votre activité : ajoutez une étude de cas, un cheval à vendre ou une actualité en quelques clics.'
+  },
+  {
+    title: 'Pensée pour la filière équestre',
+    description: 'Pas de modules e-commerce inutiles : uniquement les contenus qui font vendre votre expertise cheval.'
+  },
+  {
+    title: 'Zéro dépendance technique',
+    description: 'Plus besoin de rappeler un développeur (ni de payer) à chaque mise à jour de votre site internet équestre.'
+  }
+]
+
+// Section "Un espace pensé pour votre métier" : catégories de sites par activité équestre
+const siteCategories = [
+  {
+    profession: 'Praticien du bien-être équin',
+    description: 'Ostéopathe, masseur, équicoach, communication animale...',
+    modules: ['Prestations & tarifs', 'Zone d\'intervention', 'Témoignages', 'Prise de contact']
+  },
+  {
+    profession: 'Éleveur',
+    description: 'Élevage de chevaux de sport, de loisir ou de course.',
+    modules: ['Fiches étalons & poulains', 'Pedigrees', 'Chevaux à vendre', 'Galerie']
+  },
+  {
+    profession: 'Centre équestre & écurie',
+    description: 'Club, pension, écurie de propriétaires.',
+    modules: ['Planning des cours', 'Tarifs & forfaits', 'Événements', 'Actualités']
+  },
+  {
+    profession: 'Agence de communication équestre',
+    description: 'Marketing et communication pour la filière cheval.',
+    modules: ['Études de cas (portfolio)', 'Portefeuille clients', 'Prestations']
+  },
+  {
+    profession: 'Marchand & négociant',
+    description: 'Achat, vente et commerce de chevaux.',
+    modules: ['Catalogue de chevaux', 'Annonces de vente', 'Galerie']
+  },
+  {
+    profession: 'Votre activité équestre',
+    description: 'Un autre métier du cheval ? On conçoit vos modules sur-mesure.',
+    modules: ['Contenus 100% sur-mesure']
+  }
+]
+
+// Activité sélectionnée pour l'aperçu interactif de l'interface sur-mesure
+const selectedCategory = ref(0)
+
+// Lightbox : zoom d'image
+const zoomedImage = ref<CaseImage | null>(null)
+const openZoom = (img: CaseImage) => {
+  zoomedImage.value = img
+}
+const closeZoom = () => {
+  zoomedImage.value = null
+}
 
 // Section "Pour qui ?" : profils de prestataires équestres
 const profiles = [
@@ -401,9 +636,6 @@ const steps = [
 ]
 
 const openStep = ref(0)
-const toggleStep = (index: number) => {
-  openStep.value = openStep.value === index ? -1 : index
-}
 
 // Lecteur vidéo démo
 const isPlaying = ref(false)
@@ -417,15 +649,6 @@ const playVideo = async () => {
     console.error('Erreur lecture vidéo:', err)
   }
 }
-
-// Section "Pourquoi nous choisir ?" : contenus modifiables en autonomie
-const adminFeatures = [
-  'Articles de blog',
-  'Projets et réalisations clients',
-  'Fiches équidés',
-  'Prestations et tarifs',
-  'Galerie'
-]
 
 // Section "La formule" : éléments inclus dans le socle
 const socleIncludes = [
@@ -517,10 +740,10 @@ useHead({
   title: 'Création et refonte de site internet équestre sur-mesure | Lise Web Equine',
   meta: [
     { name: 'description', content: 'Création de sites internet sur-mesure pour ostéopathes, éleveurs, centres équestres et professionnels du cheval. Accompagnement personnalisé.' },
-    { property: 'og:title', content: 'Site internet sur-mesure pour les prestataires équestres' },
+    { property: 'og:title', content: 'Création de site internet sur-mesure' },
     { property: 'og:description', content: 'Création de sites internet sur-mesure pour ostéopathes, éleveurs, centres équestres et professionnels du cheval.' },
     { property: 'og:type', content: 'website' },
-    { name: 'twitter:title', content: 'Site internet sur-mesure pour les prestataires équestres' },
+    { name: 'twitter:title', content: 'Création de site internet sur-mesure' },
     { name: 'twitter:description', content: 'Création de sites internet sur-mesure pour ostéopathes, éleveurs, centres équestres et professionnels du cheval.' }
   ]
 })
@@ -538,3 +761,16 @@ useStructuredData({
   provider: { '@id': 'https://lisewebequine.fr/#organization' }
 })
 </script>
+
+<style scoped>
+/* Transition douce lors du changement de carte d'activité */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(8px);
+}
+</style>

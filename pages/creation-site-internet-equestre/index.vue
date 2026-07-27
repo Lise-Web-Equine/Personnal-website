@@ -52,6 +52,7 @@
             v-motion-slide-visible-once-bottom
             :title="profile.title"
             :examples="profile.examples"
+            :features="profile.features"
             :objective="profile.objective"
             :icon="profile.icon"
             :image="profile.image"
@@ -279,6 +280,7 @@ const profiles = [
     title: 'Professionnel du bien-être équin et animal',
     image: '/images/veterinarian.png',
     examples: 'Ostéopathe, shiatsu et masseur équin, cabinet vétérinaire ...',
+    features: ['Prestations & tarifs', 'Zone d\'intervention', 'Prise de rendez-vous', 'Témoignages', 'Galerie'],
     objective: 'Pour développer votre visibilité locale et être immédiatement trouvable par les clients de votre région sur Google.'
   },
   {
@@ -286,6 +288,7 @@ const profiles = [
     title: 'Écuries de propriétaires, centres équestres et enseignant d\'équitation',
     image: '/images/stable.png',
     examples: 'Pension pour chevaux, poney-club, enseignant indépendant (BPJEPS/DEJEPS), coach de compétition, écurie de commerce...',
+    features: ['Planning des cours', 'Formules & tarifs', 'Actualités', 'Événements', 'Galerie'],
     objective: 'Présentez vos infrastructures et votre pédagogie, attirez les cavaliers idéaux de votre secteur et simplifiez votre quotidien. Un site web clair pour valoriser vos formules (pensions, cours, stages), clarifier vos plannings et publier facilement vos actualités.'
   },
   {
@@ -293,6 +296,7 @@ const profiles = [
     title: 'Haras, élevages, étalonniers et écuries de valorisation',
     image: '/images/breeding.png',
     examples: 'Elevage de chevaux de sport, station de monte, valorisation...',
+    features: ['Fiches étalons & poulains', 'Pedigrees', 'Chevaux à vendre', 'Palmarès', 'Galerie'],
     objective: 'Pour affirmer le prestige de votre structure à travers un catalogue exclusif valorisant la génétique, la qualité de votre élevage ou les performances de vos chevaux de sport.'
   },
   {
@@ -300,6 +304,7 @@ const profiles = [
     title: 'Agence de communication, conseil et stratégie équestre',
     image: '/images/agency.png',
     examples: 'Agence de marketing, community management, études de marché de la filière équine...',
+    features: ['Études de cas (portfolio)', 'Portefeuille clients', 'Prestations', 'Blog'],
     objective: 'Passez un cap et ciblez des clients plus exigeants. Transformez vos projets réussis en études de cas pour faire de votre site web le meilleur ambassadeur de votre agence.'
   },
   {
@@ -307,6 +312,7 @@ const profiles = [
     image: '/images/data.png',
     title: 'Startup, Innovation & Technologie équine',
     examples: 'application & suivi connecté du cheval, santé & bien-être équin, nutrition intelligente, data équestre...',
+    features: ['Landing page produit', 'Blog', 'Contact investisseurs', 'Newsletter'],
     objective: 'Crédibilisez votre innovation et validez votre concept. Nous concevons des plateformes et landing pages modernes, pensées pour séduire vos premiers utilisateurs (B2C/B2B) et convaincre les investisseurs.'
   }
 ]

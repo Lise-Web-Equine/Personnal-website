@@ -35,16 +35,21 @@
     </button>
 
     <div v-show="isOpen" class="px-5 sm:px-6 pb-5 sm:pb-6 relative z-10">
-      <div>
+      <div class="mb-4">
         <span class="font-semibold" :class="image ? 'text-white' : 'text-secondary-700'">Exemples d'activité :</span>
-        <h4 class="text-sm sm:text-base mb-3" :class="image ? 'text-white/80' : 'text-secondary-500'">
+        <p class="text-sm sm:text-base" :class="image ? 'text-white/80' : 'text-secondary-500'">
           {{ examples }}
-        </h4>
-      </div>
-      <div class="flex items-start gap-2">
-        <p class="text-sm sm:text-base leading-relaxed" :class="image ? 'text-white/90' : 'text-secondary-700'">
-          {{ objective }}
         </p>
+      </div>
+      <p class="font-semibold mb-3" :class="image ? 'text-white' : 'text-secondary-700'">Fonctionnalités :</p>
+      <div class="flex flex-wrap gap-2">
+        <span
+          v-for="(feature, i) in features"
+          :key="i"
+          class="inline-flex items-center px-3 py-1.5 rounded-full bg-white text-secondary-800 border border-secondary-200 text-sm font-medium"
+        >
+          {{ feature }}
+        </span>
       </div>
     </div>
   </div>
@@ -57,7 +62,8 @@ import type { Component } from 'vue'
 interface Props {
   title: string
   examples: string
-  objective: string
+  features: string[]
+  objective?: string
   icon: Component
   image?: string
   isOpen: boolean
