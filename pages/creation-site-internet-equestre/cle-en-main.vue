@@ -1,7 +1,7 @@
 <template>
   <NuxtLayout>
     <PageHeader
-      title="Création de site internet avec template"
+      title="Création de site internet clé en main"
       description="Un site professionnel et abordable pour bien démarrer ton activité équestre."
     />
 
@@ -17,7 +17,7 @@
         </div>
 
         <!-- Quiz / Sondage interactif -->
-        <div class="max-w-2xl mx-auto" v-motion-slide-visible-once-bottom>
+        <div v-motion-slide-visible-once-bottom>
           <div class="bg-white rounded-2xl border border-secondary-200 shadow-lg p-6 sm:p-8 lg:p-10">
             <!-- Barre de progression -->
             <div v-if="!showResult" class="mb-8">
@@ -111,7 +111,7 @@
       <GradientAnimation />
 
       <div class="relative">
-        <div class="max-w-6xl mx-auto">
+        <div>
           <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
             <span class="inline-block text-primary-400 font-semibold text-sm sm:text-base mb-3">Pourquoi nous choisir ?</span>
             <h2 class="mb-4 sm:mb-6 text-white">
@@ -123,7 +123,7 @@ Inutile de viser un site énorme : une page bien pensée suffit à convaincre.
           </div>
 
           <!-- Points clés -->
-          <div class="grid grid-cols-1 gap-y-8 max-w-3xl mx-auto">
+          <div class="grid grid-cols-1 gap-y-8">
             <div
               v-for="(item, i) in reasons"
               :key="i"
@@ -149,13 +149,13 @@ Inutile de viser un site énorme : une page bien pensée suffit à convaincre.
     <!-- Section : L'offre template clé en main -->
     <section class="py-12 sm:py-16 md:py-20">
         <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
-          <h2 class="mb-4 sm:mb-6">L'offre template clé en main</h2>
+          <h2 class="mb-4 sm:mb-6">L'offre site internet clé en main</h2>
           <p class="text-base sm:text-lg text-secondary-600 max-w-3xl mx-auto">
             Votre template personnalisée par notre agence pour un gain de temps et un rendu professionnel sans aucun doute.
           </p>
         </div>
 
-        <div class="max-w-3xl mx-auto">
+        <div>
           <div class="bg-white rounded-2xl border-2 border-primary-200 shadow-lg overflow-hidden" v-motion-slide-visible-once-bottom>
             <div class="grid grid-cols-1 md:grid-cols-2">
               <!-- Prix -->
@@ -199,22 +199,14 @@ Inutile de viser un site énorme : une page bien pensée suffit à convaincre.
             <p class="text-center text-sm sm:text-base text-secondary-500 mb-4">En option, si besoin :</p>
             <div class="border-t border-secondary-200" v-motion-slide-visible-once-bottom>
               <div class="flex items-center justify-between py-3 sm:py-4 border-b border-secondary-100">
-                <span class="text-sm text-secondary-700">Nom de domaine personnalisé</span>
-                <span class="text-sm font-medium text-secondary-900">30€</span>
-              </div>
-              <div class="flex items-center justify-between py-3 sm:py-4 border-b border-secondary-100">
-                <span class="text-sm text-secondary-700">Identité graphique</span>
-                <span class="text-sm font-medium text-secondary-900">30€</span>
-              </div>
-              <div class="flex items-center justify-between py-3 sm:py-4 border-b border-secondary-100">
                 <a href="https://vitequide.fr/" target="_blank" rel="noopener noreferrer" class="text-sm text-secondary-700 hover:text-primary-600 hover:underline inline-flex items-center gap-1">
-                  Configuration ViteEquidé
+                  Configuration du module de prise de rendez-vous : ViteEquidé
                   <ExternalLink :size="12" />
                 </a>
                 <span class="text-sm font-medium text-secondary-900">30€</span>
               </div>
               <div class="flex items-center justify-between py-3 sm:py-4">
-                <span class="text-sm text-secondary-700">Section supplémentaire</span>
+                <span class="text-sm text-secondary-700">Section supplémentaire sur-mesure</span>
                 <span class="text-sm font-medium text-secondary-900">15€</span>
               </div>
             </div>
@@ -231,13 +223,68 @@ Inutile de viser un site énorme : une page bien pensée suffit à convaincre.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <RealisationCard
-            v-for="realisation in realisations"
-            :key="realisation.id"
-            :realisation="realisation"
-            v-motion-slide-visible-once-bottom
-          />
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center" v-motion-slide-visible-once-bottom>
+          <!-- Capture du site -->
+          <component
+            :is="realisations[0].site_url ? 'a' : 'div'"
+            :href="realisations[0].site_url || undefined"
+            :target="realisations[0].site_url ? '_blank' : undefined"
+            :rel="realisations[0].site_url ? 'noopener noreferrer' : undefined"
+            class="block rounded-2xl overflow-hidden shadow-lg"
+          >
+            <NuxtImg
+              :src="realisations[0].site_image"
+              :alt="`Site de ${realisations[0].client_name}, ${realisations[0].client_profession}`"
+              class="w-full h-auto object-contain"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              loading="lazy"
+            />
+          </component>
+
+          <!-- Témoignage client -->
+          <div class="space-y-6">
+            <span
+              class="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full"
+              :class="realisations[0].type === 'pack' ? 'bg-primary-100 text-primary-700' : 'bg-white text-secondary-700 border border-secondary-200'"
+            >
+              {{ realisations[0].type === 'pack' ? 'Offre clé en main' : 'Personnalisé en autonomie' }}
+            </span>
+
+            <blockquote class="text-xl sm:text-2xl font-medium text-secondary-900 leading-relaxed">
+              "{{ realisations[0].quote }}"
+            </blockquote>
+
+            <div class="flex items-center gap-4">
+              <NuxtImg
+                v-if="realisations[0].client_photo"
+                :src="realisations[0].client_photo"
+                :alt="realisations[0].client_name"
+                class="w-14 h-14 rounded-full object-cover flex-shrink-0"
+                loading="lazy"
+              />
+              <div
+                v-else
+                class="w-14 h-14 rounded-full bg-primary-100 flex items-center justify-center text-primary-700 font-bold text-lg flex-shrink-0"
+              >
+                {{ realisations[0].client_name.split(' ').map(part => part.charAt(0)).slice(0, 2).join('').toUpperCase() }}
+              </div>
+              <div>
+                <p class="font-semibold text-secondary-900">{{ realisations[0].client_name }}</p>
+                <p class="text-secondary-600">{{ realisations[0].client_profession }}</p>
+              </div>
+            </div>
+
+            <a
+              v-if="realisations[0].site_url"
+              :href="realisations[0].site_url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary inline-flex items-center"
+            >
+              Voir le site
+              <ExternalLink :size="20" class="ml-2" />
+            </a>
+          </div>
         </div>
     </section>
 
@@ -310,7 +357,8 @@ const handleEmailSubmit = () => {
 
 // Prestations incluses dans l'offre template clé en main
 const packFeatures = [
-  'Réunion de lancement',
+  'Configuration de votre nom  de domaine',
+  'Configuration de votre adresse mail professionnelle',
   'Personnalisation des images, textes et couleurs',
   'Formation à l\'interface',
   'Référencement de base sur Google'
@@ -386,8 +434,8 @@ useHead({
 useStructuredData({
   '@context': 'https://schema.org',
   '@type': 'Service',
-  serviceType: 'Création de site internet avec template',
-  name: 'Création de site internet avec template pour professionnels équestres',
+  serviceType: 'Création de site internet clé en main',
+  name: 'Création de site internet clé en main pour professionnels équestres',
   description:
     'Un site internet professionnel et abordable basé sur un template, pensé pour les praticiens du bien-être équin en début d\'activité.',
   url: 'https://lisewebequine.fr/creation-site-internet-equestre/cle-en-main',

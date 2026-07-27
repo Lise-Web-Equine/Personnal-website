@@ -219,7 +219,7 @@
             :badge-text="offer.badge"
             badge-variant="primary"
             :price="offer.price"
-            cta-text="En savoir plus"
+            :cta-text="i === 0 ? 'Découvrir l\'offre sur-mesure' : 'Lancer mon site rapidement'"
             :cta-link="offer.link"
             :featured="offer.featured"
             motion-direction="bottom"
@@ -237,9 +237,9 @@
         </div>
 
         <div v-motion-slide-visible-once-bottom>
-          <!-- Cal.com inline embed : rendez-vous "visio-découverte" -->
+          <!-- Cal.com inline embed : rendez-vous "échange-découverte" -->
           <div
-            id="my-cal-inline-visio-decouverte"
+            id="my-cal-inline-echange-decouverte"
             class="w-full h-[600px] sm:h-[720px] overflow-scroll"
           ></div>
         </div>
@@ -483,15 +483,15 @@ const recommendation = computed<Recommendation | null>(() => {
 // Section "Offres" : les différentes formules de création de site
 const offers = [
   {
-    title: 'Site internet sur-mesure',
+    title: 'Création et refonte de site internet équestre',
     badge: 'Sur mesure',
     description: 'Un site évolutif, performant et administrable en toute autonomie, conçu pour valoriser votre expertise et grandir au rythme de votre structure équestre.',
     price: 'À partir de 1500€',
     link: SUR_MESURE,
-    featured: true
+    featured: false
   },
   {
-    title: 'Site internet clé en main',
+    title: 'Création de site internet clé en main',
     badge: 'Clé en main',
     description: 'Rassurez vos premiers clients avec un site web simple, pro et soigné pour démarrer sereinement votre activité équestre, sans y passer des heures.',
     price: 'À partir de 290€',
@@ -500,7 +500,7 @@ const offers = [
   }
 ]
 
-// Initialisation de l'embed Cal.com inline (rendez-vous visio-découverte)
+// Initialisation de l'embed Cal.com inline (rendez-vous échange-découverte)
 onMounted(() => {
   const w = window as any
   ;(function (C: any, A: string, L: string) {
@@ -533,15 +533,15 @@ onMounted(() => {
   })(w, 'https://app.cal.eu/embed/embed.js', 'init')
 
   const Cal = w.Cal
-  Cal('init', 'visio-decouverte', { origin: 'https://app.cal.eu' })
+  Cal('init', 'echange-decouverte', { origin: 'https://www.cal.eu' })
   Cal.config = Cal.config || {}
   Cal.config.forwardQueryParams = true
-  Cal.ns['visio-decouverte']('inline', {
-    elementOrSelector: '#my-cal-inline-visio-decouverte',
+  Cal.ns['echange-decouverte']('inline', {
+    elementOrSelector: '#my-cal-inline-echange-decouverte',
     config: { layout: 'month_view', useSlotsViewOnSmallScreen: 'true' },
-    calLink: 'lisewebequine/visio-decouverte'
+    calLink: 'lisewebequine/echange-decouverte'
   })
-  Cal.ns['visio-decouverte']('ui', { hideEventTypeDetails: false, layout: 'month_view' })
+  Cal.ns['echange-decouverte']('ui', { hideEventTypeDetails: false, layout: 'month_view' })
 })
 
 // Section "FAQ" : questions fréquentes (rendu via le composant générique Accordion)

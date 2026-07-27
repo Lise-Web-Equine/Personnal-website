@@ -132,7 +132,7 @@
 
         <div>
 
-          <div class="max-w-6xl mx-auto">
+          <div>
 
             <!-- Header -->
 
@@ -447,7 +447,7 @@
 
         <div>
 
-          <div class="max-w-3xl sm:max-w-4xl md:max-w-5xl lg:max-w-6xl mx-auto">
+          <div>
 
             <!-- Header -->
 

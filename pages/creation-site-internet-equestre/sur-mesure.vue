@@ -736,6 +736,7 @@ const handleSubmit = async () => {
   }
 }
 
+
 useHead({
   title: 'Création et refonte de site internet équestre sur-mesure | Lise Web Equine',
   meta: [

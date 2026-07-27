@@ -15,6 +15,8 @@
       </div>
 
       <div v-else>
+        <PageHeader :title="template.name" :description="template.description" />
+
         <section class="py-6 sm:py-8 md:py-12">
           <div class="container mx-auto px-4 sm:px-6">
             <div class="mb-6">
@@ -71,7 +73,6 @@
               </div>
 
               <div v-motion-slide-visible-once-right>
-                <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-secondary-900 mb-4">{{ template.name }}</h1>
 
                 <div v-if="template.rating > 0" class="flex items-center space-x-6 mb-4">
                   <div class="flex items-center space-x-2">
@@ -194,8 +195,7 @@
 
         <!-- Preuve sociale : réalisations clients -->
         <section v-if="realisations.length > 0" class="py-12 sm:py-16 md:py-20 bg-gray-50">
-          <div class="container mx-auto px-4 sm:px-6">
-            <div class="max-w-6xl mx-auto">
+          <div class="container mx-auto">
               <div class="text-center mb-10 md:mb-14">
                 <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary-900 mb-3">
                   Ils ont lancé leur site
@@ -205,14 +205,69 @@
                 </p>
               </div>
 
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <RealisationCard
-                  v-for="realisation in realisations"
-                  :key="realisation.id"
-                  :realisation="realisation"
-                />
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                <!-- Capture du site -->
+                <component
+                  :is="realisations[0].site_url ? 'a' : 'div'"
+                  :href="realisations[0].site_url || undefined"
+                  :target="realisations[0].site_url ? '_blank' : undefined"
+                  :rel="realisations[0].site_url ? 'noopener noreferrer' : undefined"
+                  class="block rounded-2xl overflow-hidden shadow-lg"
+                >
+                  <NuxtImg
+                    :src="realisations[0].site_image"
+                    :alt="`Site de ${realisations[0].client_name}, ${realisations[0].client_profession}`"
+                    class="w-full h-auto object-contain"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    loading="lazy"
+                  />
+                </component>
+
+                <!-- Témoignage client -->
+                <div class="space-y-6">
+                  <span
+                    class="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full"
+                    :class="realisations[0].type === 'pack' ? 'bg-primary-100 text-primary-700' : 'bg-white text-secondary-700 border border-secondary-200'"
+                  >
+                    {{ realisations[0].type === 'pack' ? 'Offre clé en main' : 'Personnalisé en autonomie' }}
+                  </span>
+
+                  <blockquote class="text-xl sm:text-2xl font-medium text-secondary-900 leading-relaxed">
+                    "{{ realisations[0].quote }}"
+                  </blockquote>
+
+                  <div class="flex items-center gap-4">
+                    <NuxtImg
+                      v-if="realisations[0].client_photo"
+                      :src="realisations[0].client_photo"
+                      :alt="realisations[0].client_name"
+                      class="w-14 h-14 rounded-full object-cover flex-shrink-0"
+                      loading="lazy"
+                    />
+                    <div
+                      v-else
+                      class="w-14 h-14 rounded-full bg-primary-100 flex items-center justify-center text-primary-700 font-bold text-lg flex-shrink-0"
+                    >
+                      {{ realisations[0].client_name.split(' ').map(part => part.charAt(0)).slice(0, 2).join('').toUpperCase() }}
+                    </div>
+                    <div>
+                      <p class="font-semibold text-secondary-900">{{ realisations[0].client_name }}</p>
+                      <p class="text-secondary-600">{{ realisations[0].client_profession }}</p>
+                    </div>
+                  </div>
+
+                  <a
+                    v-if="realisations[0].site_url"
+                    :href="realisations[0].site_url"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-primary inline-flex items-center"
+                  >
+                    Voir le site
+                    <ExternalLink :size="20" class="ml-2" />
+                  </a>
+                </div>
               </div>
-            </div>
           </div>
         </section>
 

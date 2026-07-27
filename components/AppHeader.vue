@@ -205,7 +205,7 @@ const navLinks: NavLink[] = [
     path: '/creation-site-internet-equestre',
     children: [
       { name: 'Site internet sur-mesure', path: '/creation-site-internet-equestre/sur-mesure' },
-      { name: 'Site internet avec template', path: '/creation-site-internet-equestre/cle-en-main' },
+      { name: 'Site internet clé en main', path: '/creation-site-internet-equestre/cle-en-main' },
     ],
   },
   { name: 'Les templates', path: '/template-site-internet-equestre' },

@@ -23,7 +23,7 @@
           class="text-xs font-semibold px-3 py-1 rounded-full shadow-sm"
           :class="realisation.type === 'pack' ? 'bg-primary-500 text-white' : 'bg-white text-secondary-700'"
         >
-          {{ realisation.type === 'pack' ? 'Réalisé pour le client' : 'Personnalisé en autonomie' }}
+          {{ realisation.type === 'pack' ? 'Offre clé en main' : 'Personnalisé en autonomie' }}
         </span>
       </div>
 
