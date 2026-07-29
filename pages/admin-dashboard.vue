@@ -237,6 +237,106 @@
                 </div>
               </div>
 
+              <!-- SEO -->
+              <div class="border border-gray-200 rounded-xl p-6 bg-gray-50 space-y-4">
+                <h3 class="text-lg font-semibold text-gray-900">Référencement (SEO)</h3>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Titre SEO
+                  </label>
+                  <input
+                    v-model="newTemplate.seo_title"
+                    type="text"
+                    maxlength="70"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="Ex: Template site internet ostéopathe équin | Lise Web Equine"
+                  />
+                  <p class="text-xs text-gray-500 mt-1">Idéalement 50-60 caractères. Affiché dans l'onglet et les résultats Google.</p>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Description SEO
+                  </label>
+                  <textarea
+                    v-model="newTemplate.seo_description"
+                    rows="3"
+                    maxlength="180"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="Résumé attractif de la page pour les moteurs de recherche..."
+                  ></textarea>
+                  <p class="text-xs text-gray-500 mt-1">Idéalement 120-160 caractères.</p>
+                </div>
+              </div>
+
+              <!-- Métier descriptive section -->
+              <div class="border border-gray-200 rounded-xl p-6 bg-gray-50 space-y-4">
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-900">Section description du métier</h3>
+                  <p class="text-sm text-gray-500">Bloc de contenu affiché sur la page du template (titre, texte puis listes).</p>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Titre de la section
+                  </label>
+                  <input
+                    v-model="newTemplate.metier_title"
+                    type="text"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="Ex: Un site pensé pour les ostéopathes équins"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Texte d'introduction
+                  </label>
+                  <textarea
+                    v-model="newTemplate.metier_text"
+                    rows="4"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="Décrivez le métier, ses enjeux et ce que le template apporte..."
+                  ></textarea>
+                </div>
+
+                <!-- Lists -->
+                <div class="space-y-4">
+                  <div
+                    v-for="(list, index) in newTemplate.metier_lists"
+                    :key="index"
+                    class="border border-gray-200 rounded-lg p-4 bg-white space-y-3"
+                  >
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm font-semibold text-gray-700">Liste {{ index + 1 }}</span>
+                      <button
+                        @click="removeMetierList(newTemplate.metier_lists, index)"
+                        class="text-sm text-red-600 hover:text-red-700"
+                      >
+                        Supprimer
+                      </button>
+                    </div>
+                    <input
+                      v-model="list.subtitle"
+                      type="text"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      placeholder="Sous-titre de la liste (ex: Ce que vous obtenez)"
+                    />
+                    <textarea
+                      :value="list.items.join('\n')"
+                      @input="setMetierItems(list, $event)"
+                      rows="4"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      placeholder="Un élément par ligne&#10;Premier élément&#10;Deuxième élément"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <button
+                  @click="addMetierList(newTemplate.metier_lists)"
+                  class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
+                >
+                  + Ajouter une liste
+                </button>
+              </div>
+
               <!-- Form Actions -->
               <div class="flex justify-end space-x-4 pt-6 border-t border-gray-200">
                 <button
@@ -512,6 +612,106 @@
                     placeholder="20"
                   />
                 </div>
+              </div>
+
+              <!-- SEO -->
+              <div class="border border-gray-200 rounded-xl p-6 bg-gray-50 space-y-4">
+                <h3 class="text-lg font-semibold text-gray-900">Référencement (SEO)</h3>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Titre SEO
+                  </label>
+                  <input
+                    v-model="editingTemplate!.seo_title"
+                    type="text"
+                    maxlength="70"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="Ex: Template site internet ostéopathe équin | Lise Web Equine"
+                  />
+                  <p class="text-xs text-gray-500 mt-1">Idéalement 50-60 caractères. Affiché dans l'onglet et les résultats Google.</p>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Description SEO
+                  </label>
+                  <textarea
+                    v-model="editingTemplate!.seo_description"
+                    rows="3"
+                    maxlength="180"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="Résumé attractif de la page pour les moteurs de recherche..."
+                  ></textarea>
+                  <p class="text-xs text-gray-500 mt-1">Idéalement 120-160 caractères.</p>
+                </div>
+              </div>
+
+              <!-- Métier descriptive section -->
+              <div class="border border-gray-200 rounded-xl p-6 bg-gray-50 space-y-4">
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-900">Section description du métier</h3>
+                  <p class="text-sm text-gray-500">Bloc de contenu affiché sur la page du template (titre, texte puis listes).</p>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Titre de la section
+                  </label>
+                  <input
+                    v-model="editingTemplate!.metier_title"
+                    type="text"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="Ex: Un site pensé pour les ostéopathes équins"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Texte d'introduction
+                  </label>
+                  <textarea
+                    v-model="editingTemplate!.metier_text"
+                    rows="4"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="Décrivez le métier, ses enjeux et ce que le template apporte..."
+                  ></textarea>
+                </div>
+
+                <!-- Lists -->
+                <div class="space-y-4">
+                  <div
+                    v-for="(list, index) in editingTemplate!.metier_lists"
+                    :key="index"
+                    class="border border-gray-200 rounded-lg p-4 bg-white space-y-3"
+                  >
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm font-semibold text-gray-700">Liste {{ index + 1 }}</span>
+                      <button
+                        @click="removeMetierList(editingTemplate!.metier_lists, index)"
+                        class="text-sm text-red-600 hover:text-red-700"
+                      >
+                        Supprimer
+                      </button>
+                    </div>
+                    <input
+                      v-model="list.subtitle"
+                      type="text"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      placeholder="Sous-titre de la liste (ex: Ce que vous obtenez)"
+                    />
+                    <textarea
+                      :value="list.items.join('\n')"
+                      @input="setMetierItems(list, $event)"
+                      rows="4"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      placeholder="Un élément par ligne&#10;Premier élément&#10;Deuxième élément"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <button
+                  @click="addMetierList(editingTemplate!.metier_lists)"
+                  class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
+                >
+                  + Ajouter une liste
+                </button>
               </div>
 
               <!-- Form Actions -->
@@ -1069,7 +1269,7 @@ useHead({ meta: [{ name: 'robots', content: 'noindex, nofollow' }] })
 // Import database types
 import { Star, Download, ShoppingCart } from 'lucide-vue-next'
 import { useCartStore } from '~/stores/cart'
-import type { Template, TemplateUpdate, TemplateCreate, Realisation, RealisationCreate, RealisationUpdate } from '~/models'
+import type { Template, TemplateUpdate, TemplateCreate, Realisation, RealisationCreate, RealisationUpdate, MetierList } from '~/models'
 import type { Database } from '~/types/database.types'
 
 const supabase = useSupabaseClient<Database>()
@@ -1115,7 +1315,12 @@ const newTemplate = ref<TemplateCreate>({
   specialties: [],
   badge: null,
   promo: null,
-  rating: 0
+  rating: 0,
+  seo_title: '',
+  seo_description: '',
+  metier_title: '',
+  metier_text: '',
+  metier_lists: []
 })
 
 // Utility function to generate slug from name
@@ -1240,12 +1445,44 @@ const resetForm = () => {
     specialties: [],
     badge: null,
     promo: null,
-    rating: 0
+    rating: 0,
+    seo_title: '',
+    seo_description: '',
+    metier_title: '',
+    metier_text: '',
+    metier_lists: []
   }
   imageFile.value = null
   imagePreview.value = ''
   showForm.value = false
 }
+
+// ─────────────────────────────────────────────────────────────
+// Métier section list helpers (title + text + multiple sub-lists)
+// ─────────────────────────────────────────────────────────────
+// Adds an empty list block to the given lists array.
+const addMetierList = (lists: MetierList[]) => {
+  lists.push({ subtitle: '', items: [] })
+}
+
+// Removes the list block at the given index.
+const removeMetierList = (lists: MetierList[], index: number) => {
+  lists.splice(index, 1)
+}
+
+// Keeps raw newline-separated text while editing (empty lines filtered on save).
+const setMetierItems = (list: MetierList, event: Event) => {
+  list.items = (event.target as HTMLTextAreaElement).value.split('\n')
+}
+
+// Cleans list blocks before persisting: trims items, drops empty items/blocks.
+const cleanMetierLists = (lists: MetierList[]): MetierList[] =>
+  lists
+    .map(l => ({
+      subtitle: (l.subtitle || '').trim(),
+      items: (l.items || []).map(i => i.trim()).filter(Boolean)
+    }))
+    .filter(l => l.subtitle || l.items.length > 0)
 
 const resetEditForm = () => {
   editingTemplate.value = null
@@ -1258,7 +1495,12 @@ const startEditTemplate = (template: Template) => {
   editingTemplate.value = { 
     ...template,
     slug: template.slug || generateSlug(template.name),
-    specialties: template.specialties || []
+    specialties: template.specialties || [],
+    seo_title: template.seo_title || '',
+    seo_description: template.seo_description || '',
+    metier_title: template.metier_title || '',
+    metier_text: template.metier_text || '',
+    metier_lists: (template.metier_lists || []).map(l => ({ subtitle: l.subtitle, items: [...(l.items || [])] }))
   }
   imagePreview.value = template.image
   showEditForm.value = true
@@ -1303,6 +1545,11 @@ const updateTemplate = async () => {
       badge: editingTemplate.value.badge,
       promo: editingTemplate.value.promo,
       rating: editingTemplate.value.rating,
+      seo_title: editingTemplate.value.seo_title,
+      seo_description: editingTemplate.value.seo_description,
+      metier_title: editingTemplate.value.metier_title,
+      metier_text: editingTemplate.value.metier_text,
+      metier_lists: cleanMetierLists(editingTemplate.value.metier_lists || []),
       updated_at: new Date().toISOString()
     }
     
@@ -1364,7 +1611,12 @@ const addNewTemplate = async () => {
       specialties: newTemplate.value.specialties,
       badge: newTemplate.value.badge,
       promo: newTemplate.value.promo,
-      rating: newTemplate.value.rating
+      rating: newTemplate.value.rating,
+      seo_title: newTemplate.value.seo_title,
+      seo_description: newTemplate.value.seo_description,
+      metier_title: newTemplate.value.metier_title,
+      metier_text: newTemplate.value.metier_text,
+      metier_lists: cleanMetierLists(newTemplate.value.metier_lists || [])
     }
     
     const { error } = await supabase
@@ -1651,9 +1903,15 @@ const addTemplates = async () => {
         download_url: 'https://carrd.co/build?template=horizon',
         features: ["Prestations phares & tarifs", "Expérience terrain", "Focus prestation technique", "Formulaire de contact", "Témoignages"],
         tags: ['equine', 'professionnel', 'bleu', 'confiance', 'technique'],
+        specialties: [],
         badge: 'best-seller',
         promo: null,
-        rating: 4.8
+        rating: 4.8,
+        seo_title: '',
+        seo_description: '',
+        metier_title: '',
+        metier_text: '',
+        metier_lists: []
       },
       {
         name: 'Ancrage',
@@ -1666,9 +1924,15 @@ const addTemplates = async () => {
         download_url: 'https://carrd.co/build?template=ancrage',
         features: ["Prestations phares & tarifs", "Bénéfices du soin", "Déroulement d'une séance", "Formulaire de contact", "Témoignages immersifs"],
         tags: ['equine', 'naturel', 'holistique', 'doux', 'apaisant'],
+        specialties: [],
         badge: 'new',
         promo: 20,
-        rating: 4.9
+        rating: 4.9,
+        seo_title: '',
+        seo_description: '',
+        metier_title: '',
+        metier_text: '',
+        metier_lists: []
       }
     ]
 

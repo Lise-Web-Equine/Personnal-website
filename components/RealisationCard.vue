@@ -33,7 +33,7 @@
         class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4"
       >
         <span class="flex items-center gap-2 text-white font-semibold text-sm">
-          Voir le site
+          {{ realisation.site_url }}
           <ExternalLink :size="16" />
         </span>
       </div>

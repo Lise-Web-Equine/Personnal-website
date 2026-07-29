@@ -1,24 +1,22 @@
 <template>
   <NuxtLayout>
-    <div class="min-h-screen">
-      <div v-if="loading" class="container mx-auto px-6 py-20">
-        <div class="text-center">
-          <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
-        </div>
+    <section v-if="loading" class="py-20">
+      <div class="text-center">
+        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
       </div>
+    </section>
 
-      <div v-else-if="!template" class="container mx-auto px-6 py-20 text-center">
-        <h1 class="text-3xl font-bold mb-4">Template Not Found</h1>
-        <NuxtLink to="/template-site-internet-equestre" class="btn-primary">
-          Back to Templates
-        </NuxtLink>
-      </div>
+    <section v-else-if="!template" class="py-20 text-center">
+      <h1 class="text-3xl font-bold mb-4">Template Not Found</h1>
+      <NuxtLink to="/template-site-internet-equestre" class="btn-primary">
+        Back to Templates
+      </NuxtLink>
+    </section>
 
-      <div v-else>
+    <template v-else>
         <PageHeader :title="template.name" :description="template.description" />
 
         <section class="py-6 sm:py-8 md:py-12">
-          <div class="container mx-auto px-4 sm:px-6">
             <div class="mb-6">
               <NuxtLink to="/template-site-internet-equestre" class="inline-flex items-center text-gray-600 hover:text-black">
                 <ArrowLeft :size="20" class="mr-2" />
@@ -190,15 +188,137 @@
                 </div>
             </div>
           </div>
-        </div>
         </section>
+
+        <!-- Section descriptive du métier (titre + texte + listes) -->
+        <section v-if="hasMetierContent" class="py-12 sm:py-16 md:py-20 relative overflow-hidden">
+          <!-- Halos décoratifs en arrière-plan avec fondu vers le bas -->
+          <div class="absolute inset-0 -z-10" style="mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);">
+            <div class="absolute inset-x-0 -top-20 sm:-top-40 transform-gpu overflow-hidden blur-2xl sm:blur-3xl" aria-hidden="true">
+              <div
+                class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff9a76] to-[#9089fc] opacity-30 sm:opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+                style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+              ></div>
+            </div>
+            <div class="absolute inset-x-0 top-[calc(50%-20rem)] transform-gpu overflow-hidden blur-2xl sm:blur-3xl sm:top-[calc(50%-30rem)]" aria-hidden="true">
+              <div
+                class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 bg-gradient-to-tr from-[#9089fc] to-[#ffb380] opacity-25 sm:opacity-15 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+                style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+              ></div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class=" text-left">
+              <h2 v-if="template.metier_title" class="mb-4">{{ template.metier_title }}</h2>
+              <p
+                v-if="template.metier_text"
+                class="text-base sm:text-lg text-gray-600 leading-relaxed mb-8 whitespace-pre-line"
+              >
+                {{ template.metier_text }}
+              </p>
+
+              <div
+                v-if="template.metier_lists && template.metier_lists.length > 0"
+                class="space-y-6"
+              >
+                <ul
+                  v-for="(list, index) in template.metier_lists"
+                  :key="index"
+                  class="list-disc pl-5 space-y-2 text-gray-700 marker:text-primary-600"
+                >
+                  <li
+                    v-for="(item, itemIndex) in list.items"
+                    :key="itemIndex"
+                  >
+                    {{ item }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section : Personnalisation en un clic -->
+        <section class="py-12 sm:py-16 md:py-20">
+            <div>
+              <div class="bg-secondary rounded-2xl shadow-xl overflow-hidden">
+                <div class="grid md:grid-cols-2 md:items-stretch">
+                  <!-- Démonstration vidéo de personnalisation des couleurs (colonne pleine) -->
+                  <video
+                    class="w-full h-full object-cover block"
+                    src="/videos/demo-colors-template.mp4"
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    aria-label="Démonstration de la personnalisation des couleurs d'un template"
+                  ></video>
+
+                  <!-- Instructions -->
+                  <div class="p-8 space-y-6">
+                    <h3 class="text-2xl font-bold text-white mb-2">
+                      Personnalisation en un clic
+                    </h3>
+
+                    <div class="flex items-start gap-4">
+                      <div class="w-8 h-8 bg-white/5 rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg class="w-4 h-4 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-white mb-1">Cliquez pour modifier</h4>
+                        <p class="text-secondary-300 text-sm">Sur n'importe quel élément, un simple clic vous permet de changer le texte, les couleurs ou les images.</p>
+                      </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                      <div class="w-8 h-8 bg-white/5 rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg class="w-4 h-4 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-white mb-1">Glissez-déposez</h4>
+                        <p class="text-secondary-300 text-sm">Réorganisez les sections, ajoutez des images ou déplacez des éléments en un seul mouvement.</p>
+                      </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                      <div class="w-8 h-8 bg-white/5 rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg class="w-4 h-4 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-white mb-1">Aperçu en temps réel</h4>
+                        <p class="text-secondary-300 text-sm">Voyez instantanément les changements que vous apportez, sans avoir besoin de sauvegarder.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </section>
+
+        <!-- Section Bonus Guide -->
+        <FeaturesSection
+          title="Votre guide stratégique de 30 pages offert"
+          subtitle="Ne soyez plus jamais seul devant votre écran. Nous vous remettons un guide complet pour transformer votre template en un véritable outil de travail."
+          :features="guideFeatures"
+        >
+          <template #cta>
+            <GuidePreviewCatalog variant="light" label="Découvrir un extrait du guide" />
+          </template>
+        </FeaturesSection>
 
         <!-- Preuve sociale : réalisations clients -->
         <section v-if="realisations.length > 0" class="py-12 sm:py-16 md:py-20 bg-gray-50">
-          <div class="container mx-auto">
               <div class="text-center mb-10 md:mb-14">
                 <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary-900 mb-3">
-                  Ils ont lancé leur site
+                  Ils ont lancé leur site avec un template équestre
                 </h2>
                 <p class="text-base sm:text-lg text-secondary-600 max-w-2xl mx-auto">
                   Des professionnels équestres comme vous, déjà en ligne et sereins.
@@ -256,23 +376,33 @@
                     </div>
                   </div>
 
-                  <a
-                    v-if="realisations[0].site_url"
-                    :href="realisations[0].site_url"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="btn-primary inline-flex items-center"
-                  >
-                    Voir le site
-                    <ExternalLink :size="20" class="ml-2" />
-                  </a>
+                  <div class="flex flex-col sm:flex-row items-start sm:items-center gap-x-6 gap-y-3">
+                    <!-- Si le témoignage concerne un autre template, on invite à le découvrir -->
+                    <NuxtLink
+                      v-if="realisationTemplate"
+                      :to="`/template-site-internet-equestre/${realisationTemplate.slug}`"
+                      class="btn-primary inline-flex items-center"
+                    >
+                      <span>Voir le template</span>
+                      <ArrowRight :size="20" class="ml-2" />
+                    </NuxtLink>
+                    <!-- Lien vers le site en ligne du client -->
+                    <a
+                      v-if="realisations[0].site_url"
+                      :href="realisations[0].site_url"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-sm sm:text-base text-secondary-600 hover:text-primary-600 font-medium transition-colors duration-200 inline-flex items-center justify-center group"
+                    >
+                      <span>{{ realisations[0].site_url }}</span>
+                      <ArrowRight :size="16" class="ml-2 group-hover:translate-x-1 transition-transform" />
+                    </a>
+                  </div>
                 </div>
               </div>
-          </div>
         </section>
 
         <section id="modeles-similaires" class="py-10 sm:py-12 md:py-16">
-          <div class="container mx-auto px-4 sm:px-6">
             <h2 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8">Templates équestres similaires</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               <TemplateCardMockup
@@ -281,29 +411,47 @@
                 :template="relatedTemplate"
               />
             </div>
+        </section>
+
+        <!-- Section : questions fréquentes -->
+        <section class="py-12 sm:py-16 md:py-20 bg-gray-50">
+          <div>
+            <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
+              <h2 class="mb-4 sm:mb-6">Questions fréquentes</h2>
+              <p class="text-base sm:text-lg text-secondary-600">
+                Tout ce qu'il faut savoir avant d'acheter votre template équestre.
+              </p>
+            </div>
+            <Accordion :items="faqItems" />
           </div>
         </section>
 
-                <!-- Section CTA avec image : redirection vers le service de template clé en main -->
+                <!-- Section CTA avec image : achat du template ou découverte de l'offre clé en main -->
         <CtaSection
-          title="Vous préférez qu'on s'en occupe ?"
-          description="Nous personnalisons votre template de A à Z. Vous gagnez du temps, nous assurons le rendu professionnel."
+          title="Choisissez la façon d'avancer sur votre site internet"
+          description="Créez votre site en autonomie avec le template ou laissez-nous nous occuper de tout."
           image="/images/Hestabien.jpg"
           image-alt="Création de site internet équestre clé en main"
         >
           <template #actions>
+            <button
+              @click="handleAddToCart"
+              :disabled="isInCart"
+              class="btn-primary inline-flex items-center disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <ShoppingCart :size="20" class="mr-2" />
+              <span>{{ isInCart ? 'Déjà dans le panier' : 'Acheter le template' }}</span>
+            </button>
             <NuxtLink
               to="/creation-site-internet-equestre/cle-en-main"
-              class="btn-primary inline-flex items-center"
+              class="text-sm sm:text-base text-gray-300 hover:text-primary-400 font-medium transition-colors duration-200 inline-flex items-center justify-center group"
             >
-              <span>Découvrir le service clé en main</span>
-              <ArrowRight :size="20" class="ml-2" />
+              <span>Découvrir l'offre clé en main</span>
+              <ArrowRight :size="16" class="ml-2 group-hover:translate-x-1 transition-transform" />
             </NuxtLink>
           </template>
         </CtaSection>
-
-      </div>
-    </div>
+    </template>
 
     <!-- Guide Modal -->
     <teleport to="body">
@@ -381,10 +529,13 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowLeft, ArrowRight, Star, Download, ShoppingCart, ExternalLink, Check, X } from 'lucide-vue-next'
+import { ArrowLeft, ArrowRight, Star, Download, ShoppingCart, Check, X, BookOpen, Sparkles } from 'lucide-vue-next'
 import { useCartStore } from '~/stores/cart'
 import type { Template, Realisation } from '~/models'
 import Badge from '~/components/Badge.vue'
+
+// Informations minimales d'un template ciblé par un lien de témoignage.
+type RealisationTemplateLink = Pick<Template, 'slug' | 'name'>
 
 const route = useRoute()
 const supabase = useSupabase()
@@ -405,7 +556,42 @@ const loading = ref(true)
 const template = ref<Template | null>(null)
 const relatedTemplates = ref<Template[]>([])
 const realisations = ref<Realisation[]>([])
+// Template concerné par le témoignage mis en avant, uniquement s'il diffère de
+// la page courante (permet d'afficher un bouton "Voir le template").
+const realisationTemplate = ref<RealisationTemplateLink | null>(null)
 const showGuideModal = ref(false)
+
+// Contenu de la section "guide stratégique offert" (identique à la page liste des templates).
+const guideFeatures = [
+  {
+    icon: BookOpen,
+    iconColor: 'text-primary-600',
+    title: 'Guide pas à pas',
+    description: 'Instructions détaillées pour personnaliser chaque élément de votre template et le lancer professionnellement.'
+  },
+  {
+    icon: Sparkles,
+    iconColor: 'text-primary-400',
+    title: 'Prompt IA exclusif',
+    description: 'Générez une palette de couleur professionnelle grâce au prompt IA.'
+  }
+]
+
+// Section "FAQ" : questions fréquentes affichées avant le CTA (rendu via le composant Accordion).
+const faqItems = [
+  {
+    question: "Combien me coûte mon site web au total ?",
+    answer: "**C'est la solution la moins chère du marché** pour un résultat professionnel :\n\n- **Le template** : Paiement unique (selon le template choisi)\n- **L'abonnement technique** : Pour activer toutes les fonctionnalités premium (votre propre nom de domaine, formulaires, etc.), il faudra souscrire à l'offre Carrd Pro Standard\n- **Le coût total** : Environ **19$ par an** (soit moins de **2€/mois**)\n\n**C'est imbattable** comparé aux 150€ ou 200€ demandés par d'autres plateformes !"
+  },
+  {
+    question: "Comment fonctionne l'achat d'un template ?",
+    answer: "Une fois votre achat effectué, vous recevez **immédiatement par email** un lien pour télécharger :\n\n- Le template complet\n- Votre guide stratégique de 30 pages\n- L'accès à notre support si besoin\n\n**Processus simple et instantané** pour commencer tout de suite !"
+  },
+  {
+    question: "Le nom de domaine est-il inclus ?",
+    answer: "**Un hébergement gratuit est inclus** via l'extension .carrd.co (ex: monactivite.carrd.co), ce qui vous permet de mettre votre site en ligne immédiatement.\n\n**Vous souhaitez un nom de domaine personnalisé** (ex: .fr ou .com) ? C'est tout à fait possible :\n- Le nom de domaine s'obtient auprès d'un registrar (à partir d'environ **10€/an**)\n- Sa connexion nécessite l'abonnement Carrd Pro Standard\n- Il suffit de [me contacter](/contact) pour que nous mettions cela en place ensemble une fois votre template acquis"
+  }
+]
 
 const siteUrl = 'https://lisewebequine.fr'
 
@@ -447,6 +633,19 @@ useStructuredData(() => {
   }
 
   return schema
+})
+
+// Métadonnées SEO : privilégie les champs dédiés, repli sur le nom/description du template.
+useSeoMeta({
+  title: () => template.value?.seo_title || (template.value ? `${template.value.name} – Template site internet équestre` : 'Template site internet équestre'),
+  description: () => template.value?.seo_description || template.value?.description || ''
+})
+
+// Indique si la section descriptive du métier contient du contenu à afficher.
+const hasMetierContent = computed(() => {
+  const t = template.value
+  if (!t) return false
+  return !!(t.metier_title || t.metier_text || (t.metier_lists && t.metier_lists.length > 0))
 })
 
 const isInCart = computed(() => {
@@ -491,6 +690,20 @@ onMounted(async () => {
           .limit(3)
 
         realisations.value = (featuredRealisations as Realisation[]) || []
+      }
+
+      // Si le témoignage mis en avant concerne un AUTRE template que celui de la
+      // page courante, on récupère son slug pour proposer un lien "Voir le template".
+      const featuredRea = realisations.value[0]
+      if (featuredRea?.template_id && featuredRea.template_id !== (data as Template).id) {
+        const { data: reaTemplate } = await supabase
+          .from('templates')
+          .select('slug, name')
+          .eq('id', featuredRea.template_id)
+          .maybeSingle()
+        realisationTemplate.value = (reaTemplate as RealisationTemplateLink | null) ?? null
+      } else {
+        realisationTemplate.value = null
       }
 
       // Essayer de récupérer des templates de la même spécialité

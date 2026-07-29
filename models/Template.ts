@@ -1,3 +1,9 @@
+// A list block inside the "métier" descriptive section: a subtitle + its bullet items.
+export interface MetierList {
+  subtitle: string
+  items: string[]
+}
+
 export interface Template {
   id: string
   name: string
@@ -14,6 +20,11 @@ export interface Template {
   badge: 'best-seller' | 'new' | null
   promo: number | null
   rating: number
+  seo_title: string
+  seo_description: string
+  metier_title: string
+  metier_text: string
+  metier_lists: MetierList[]
   created_at: string
   updated_at: string
 }
@@ -33,6 +44,11 @@ export interface TemplateCreate {
   badge: 'best-seller' | 'new' | null
   promo: number | null
   rating: number
+  seo_title: string
+  seo_description: string
+  metier_title: string
+  metier_text: string
+  metier_lists: MetierList[]
 }
 
 export interface TemplateUpdate {
@@ -50,5 +66,10 @@ export interface TemplateUpdate {
   badge?: 'best-seller' | 'new' | null
   promo?: number | null
   rating?: number
+  seo_title?: string
+  seo_description?: string
+  metier_title?: string
+  metier_text?: string
+  metier_lists?: MetierList[]
   updated_at?: string
 }

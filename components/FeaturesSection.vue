@@ -38,6 +38,11 @@
             </div>
           </div>
         </div>
+
+        <!-- Emplacement CTA optionnel (ex: bouton d'aperçu du guide) -->
+        <div v-if="$slots.cta" class="mt-14 flex justify-center" v-motion-slide-visible-once-bottom>
+          <slot name="cta" />
+        </div>
       </div>
     </div>
   </section>

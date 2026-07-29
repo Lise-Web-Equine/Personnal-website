@@ -87,7 +87,7 @@
               badge-text="Sur mesure"
               badge-variant="primary"
               price="À partir de 1500€"
-              cta-text="En savoir plus"
+              cta-text="Découvrir l'offre sur-mesure"
               cta-link="/creation-site-internet-equestre/sur-mesure"
               motion-direction="left"
               featured
@@ -96,12 +96,12 @@
             <!-- Le Pack Sérénité : clé en main, offre mise en avant (done-for-you) -->
             <ServiceCard
               variant="default"
-              title="Création de site internet à partir d'un template équestre"
+              title="Création de site internet clé en main"
               description="Pour les professionnels équestres qui démarrent leur activité, manquent de temps et veulent un site professionnel rapidement."
               badge-text="Clé en main"
               badge-variant="primary"
               price="À partir de 290€"
-              cta-text="Découvrir l'offre template"
+              cta-text="Lancer mon site rapidement"
               cta-link="/creation-site-internet-equestre/cle-en-main"
               motion-direction="right"
             />

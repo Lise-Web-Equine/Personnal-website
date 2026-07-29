@@ -5,8 +5,37 @@
       description="Un site professionnel et abordable pour bien démarrer ton activité équestre."
     />
 
+    <!-- Section : Introduction -->
+    <IntroMediaSection
+      title=" Une formule accessible pour lancer votre activité équestre"
+      image-src="/images/cle-en-main.jpg"
+      image-alt="Création de site internet équestre clé en main, rapide et pas cher."
+      media-aspect-class="aspect-[4/5]"
+    >
+      <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">La technique, les réglages, la mise en page...,  <strong class="text-secondary-900 font-bold text-lg sm:text-xl">Gardez votre énergie pour le terrain.</strong> On reprend votre template pour le personnaliser entièrement à votre image, afin que vous puissiez lancer votre activité sans vous prendre la tête.</p>
+
+      <p class="text-base sm:text-lg text-secondary-600 leading-relaxed"> <strong class="text-secondary-900 font-bold text-lg sm:text-xl">On va même plus loin pour vous simplifier la vie : </strong> on réserve votre nom de domaine et on configure votre adresse mail pro. Et parce qu'il est essentiel que vous restiez maître de votre outil, on vous forme à l'utilisation de la plateforme pour que vous soyez 100 % autonome et serein dès le premier jour.
+      </p>
+    </IntroMediaSection>
+
     <!-- Section : Un site adapté à ton début d'activité -->
-    <section class="py-12 sm:py-16 md:py-20">
+    <section class="py-12 sm:py-16 md:py-20 relative overflow-hidden">
+        <!-- Halos décoratifs en arrière-plan avec fondu vers le bas -->
+        <div class="absolute inset-0 -z-10" style="mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);">
+          <div class="absolute inset-x-0 -top-20 sm:-top-40 transform-gpu overflow-hidden blur-2xl sm:blur-3xl" aria-hidden="true">
+            <div
+              class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff9a76] to-[#9089fc] opacity-30 sm:opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+              style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+            ></div>
+          </div>
+          <div class="absolute inset-x-0 top-[calc(50%-20rem)] transform-gpu overflow-hidden blur-2xl sm:blur-3xl sm:top-[calc(50%-30rem)]" aria-hidden="true">
+            <div
+              class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 bg-gradient-to-tr from-[#9089fc] to-[#ffb380] opacity-25 sm:opacity-15 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+              style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+            ></div>
+          </div>
+        </div>
+
         <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
           <h2 class="mb-4 sm:mb-6">
             Un site adapté à ton début d'activité équestre
@@ -182,18 +211,6 @@ Inutile de viser un site énorme : une page bien pensée suffit à convaincre.
             </div>
           </div>
 
-          <div class="text-center mt-8 sm:mt-10" v-motion-slide-visible-once-bottom>
-            <button
-              data-cal-link="lisewebequine/pack-serenite"
-              data-cal-namespace="pack-serenite"
-              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"false"}'
-              class="btn-primary inline-flex items-center"
-            >
-              <span>Réserver un créneau</span>
-              <ArrowRight :size="20" class="ml-2" />
-            </button>
-          </div>
-
           <!-- Options supplémentaires -->
           <div class="mt-8 sm:mt-10">
             <p class="text-center text-sm sm:text-base text-secondary-500 mb-4">En option, si besoin :</p>
@@ -211,13 +228,33 @@ Inutile de viser un site énorme : une page bien pensée suffit à convaincre.
               </div>
             </div>
           </div>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8 sm:mt-10" v-motion-slide-visible-once-bottom>
+            <button
+              data-cal-link="lisewebequine/site-cle-en-main"
+              data-cal-namespace="site-cle-en-main"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+              class="btn-primary"
+            >
+              <span>Lancer mon site internet</span>
+            </button>
+            <button
+              data-cal-link="lisewebequine/echange-decouverte"
+              data-cal-namespace="echange-decouverte"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+              class="text-sm sm:text-base text-secondary-600 hover:text-primary-600 font-medium transition-colors duration-200 inline-flex items-center justify-center group"
+            >
+              <span>Discuter de mon projet ensemble</span>
+              <ArrowRight :size="16" class="ml-2 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
         </div>
     </section>
 
     <!-- Section : Réalisations (preuve sociale, affichée seulement s'il y en a) -->
     <section v-if="realisations.length" class="py-12 sm:py-16 md:py-20 bg-gray-50">
         <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
-          <h2 class="mb-4 sm:mb-6">Ils ont lancé leur site avec un template</h2>
+          <h2 class="mb-4 sm:mb-6">Ils ont lancé leur site</h2>
           <p class="text-base sm:text-lg text-secondary-600 max-w-3xl mx-auto">
             Découvre des sites réalisés pour des professionnels équestres comme toi.
           </p>
@@ -274,35 +311,47 @@ Inutile de viser un site énorme : une page bien pensée suffit à convaincre.
               </div>
             </div>
 
-            <a
-              v-if="realisations[0].site_url"
-              :href="realisations[0].site_url"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn-primary inline-flex items-center"
-            >
-              Voir le site
-              <ExternalLink :size="20" class="ml-2" />
-            </a>
+            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-x-6 gap-y-3">
+              <!-- Si le témoignage est lié à un template, on invite à le découvrir -->
+              <NuxtLink
+                v-if="realisationTemplate"
+                :to="`/template-site-internet-equestre/${realisationTemplate.slug}`"
+                class="btn-primary inline-flex items-center"
+              >
+                <span>Voir le template</span>
+                <ArrowRight :size="20" class="ml-2" />
+              </NuxtLink>
+              <!-- Lien vers le site en ligne du client -->
+              <a
+                v-if="realisations[0].site_url"
+                :href="realisations[0].site_url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm sm:text-base text-secondary-600 hover:text-primary-600 font-medium transition-colors duration-200 inline-flex items-center justify-center group"
+              >
+                <span>{{ realisations[0].site_url }}</span>
+                <ArrowRight :size="16" class="ml-2 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
           </div>
         </div>
     </section>
 
     <!-- Section : CTA final -->
     <CtaSection
-      title="On en discute ?"
-      description="Vous avez des questions ou un projet en tête ? En 30 minutes, nous répondons à vos interrogations et vous conseillons un accompagnement adapté à votre besoin."
+      title="Des questions ou un projet en tête ?"
+      description="Que l'on collabore ensemble ou non, c'est l'occasion de poser vos questions et d'obtenir des conseils pour faire avancer votre entreprise."
       image="/images/Hestabien.jpg"
       image-alt="Création de site internet pour les prestataires équestres"
     >
       <template #actions>
         <button
-          data-cal-link="lisewebequine/visio-decouverte"
-          data-cal-namespace="visio-decouverte"
+          data-cal-link="lisewebequine/echange-decouverte"
+          data-cal-namespace="echange-decouverte"
           data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
           class="btn-primary inline-flex items-center"
         >
-          <span>Réserver votre appel gratuit</span>
+          <span>Discuter de mon projet ensemble</span>
           <ArrowRight :size="20" class="ml-2" />
         </button>
       </template>
@@ -313,7 +362,10 @@ Inutile de viser un site énorme : une page bien pensée suffit à convaincre.
 
 <script setup lang="ts">
 import { Calendar, Check, ExternalLink, Gift, Globe, LayoutGrid, Palette, Sparkles, X, Instagram, Target, Wallet, ArrowRight } from 'lucide-vue-next'
-import type { Realisation } from '~/models'
+import type { Realisation, Template } from '~/models'
+
+// Informations minimales d'un template ciblé par un lien de témoignage.
+type RealisationTemplateLink = Pick<Template, 'slug' | 'name'>
 
 const supabase = useSupabase()
 
@@ -366,6 +418,8 @@ const packFeatures = [
 
 // Réalisations (preuve sociale) : sites de type "template", repli sur les mises en avant
 const realisations = ref<Realisation[]>([])
+// Template concerné par le témoignage mis en avant (pour le bouton "Voir le template").
+const realisationTemplate = ref<RealisationTemplateLink | null>(null)
 
 onMounted(async () => {
   try {
@@ -386,6 +440,19 @@ onMounted(async () => {
         .limit(3)
 
       realisations.value = (featured as Realisation[]) || []
+    }
+
+    // Récupère le slug du template lié au témoignage mis en avant, s'il existe.
+    const featuredRea = realisations.value[0]
+    if (featuredRea?.template_id) {
+      const { data: reaTemplate } = await supabase
+        .from('templates')
+        .select('slug, name')
+        .eq('id', featuredRea.template_id)
+        .maybeSingle()
+      realisationTemplate.value = (reaTemplate as RealisationTemplateLink | null) ?? null
+    } else {
+      realisationTemplate.value = null
     }
   } catch (error) {
     console.error('Erreur lors du chargement des réalisations:', error)
@@ -412,18 +479,18 @@ const reasons = [
 ]
 
 useHead({
-  title: 'Création de site internet équestre clé en main pour praticiens du cheval | Lise Web Equine',
+  title: 'Création de site internet équestres clé en main | Lise Web Equine',
   meta: [
-    { name: 'description', content: 'Site internet professionnel et abordable pour ostéopathes équins, soigneurs et coachs : attire tes premiers clients et reçois des demandes de rendez-vous. Devis gratuit.' },
+    { name: 'description', content: "Site internet accessible pour lancer votre activité d'ostéopathie équine, masseur équin, shiatsu équin ou d'enseignant d'équitation." },
     { name: 'keywords', content: 'site internet équestre, création site web cheval, ostéopathe équin, soigneur équin, praticien bien-être équin, site web professionnel équestre' },
-    { property: 'og:title', content: 'Création de site internet équestre clé en main pour praticiens du cheval' },
+    { property: 'og:title', content: 'Création de site internet équestre clé en main pour professionnels du cheval' },
     { property: 'og:description', content: 'Un site clair et professionnel pour transformer ton audience Instagram en clients et décrocher des rendez-vous.' },
     { property: 'og:type', content: 'website' }
   ],
-  // Script Cal.com pour la prise de rendez-vous (popup "Réserver un créneau")
+  // Script Cal.com pour la prise de rendez-vous (popup + element-click)
   script: [
     {
-      innerHTML: `(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.eu/embed/embed.js", "init"); Cal("init", "visio-decouverte", {origin:"https://app.cal.eu"}); Cal("init", "pack-serenite", {origin:"https://app.cal.eu"}); Cal.config = Cal.config || {}; Cal.config.forwardQueryParams = true; Cal.ns["visio-decouverte"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"}); Cal.ns["pack-serenite"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});`,
+      innerHTML: `(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.eu/embed/embed.js", "init"); Cal("init", "visio-decouverte", {origin:"https://app.cal.eu"}); Cal("init", "echange-decouverte", {origin:"https://app.cal.eu"}); Cal("init", "site-cle-en-main", {origin:"https://app.cal.eu"}); Cal.config = Cal.config || {}; Cal.config.forwardQueryParams = true; Cal.ns["visio-decouverte"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"}); Cal.ns["echange-decouverte"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"}); // Attributs data-cal-* du bouton "Lancer mon site internet" dans le template Cal.ns["site-cle-en-main"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});`,
       type: 'text/javascript',
       tagPosition: 'bodyClose'
     }

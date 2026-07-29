@@ -23,6 +23,15 @@
     @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-secondary-900;
   }
 
+  /* Mobile default: left-align all headings and body text. This lives in the
+     base layer (lowest priority), so any explicit Tailwind alignment utility
+     (text-center, text-right, ...) already used in components still wins. */
+  @media (max-width: 767px) {
+    h1, h2, h3, h4, h5, h6, p, li {
+      text-align: left;
+    }
+  }
+
 }
 
 @layer components {
@@ -169,5 +178,23 @@
     mask-position: top left, bottom left;
     -webkit-mask-repeat: no-repeat, no-repeat;
     mask-repeat: no-repeat, no-repeat;
+  }
+
+  /* Découpe en accolade pour une bande placée AU-DESSUS du footer.
+     La couleur remplit la zone SOUS la courbe (elle "remonte" dans le contenu du
+     dessus), en suivant exactement le tracé du composant <CurlyBraceBorder>
+     (position 'bottom', pointe centrale vers le bas). La bande fait la hauteur
+     de l'accolade, donc un seul masque SVG étiré sur tout l'élément suffit. */
+  .mask-brace-top {
+    -webkit-mask-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 100' preserveAspectRatio='none'%3E%3Cpath d='M0,10 C250,10 250,45 400,45 C520,45 540,50 600,90 C660,50 680,45 800,45 C950,45 950,10 1200,10 L1200,100 L0,100 Z' fill='%23000'/%3E%3C/svg%3E");
+    mask-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 100' preserveAspectRatio='none'%3E%3Cpath d='M0,10 C250,10 250,45 400,45 C520,45 540,50 600,90 C660,50 680,45 800,45 C950,45 950,10 1200,10 L1200,100 L0,100 Z' fill='%23000'/%3E%3C/svg%3E");
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
   }
 }

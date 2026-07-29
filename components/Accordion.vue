@@ -50,24 +50,49 @@ const toggleItem = (index: number) => {
   openItems.value[index] = !openItems.value[index]
 }
 
-const formatAnswer = (answer: string) => {
-  return answer
-    // Bold pour les termes importants
+// Applique le formatage inline (gras + liens) sur un fragment de texte.
+const formatInline = (text: string) => {
+  return text
+    // Gras pour les termes importants
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
     // Liens
     .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-primary-600 hover:text-primary-700 underline" target="_blank" rel="noopener noreferrer">$1</a>')
-    // Listes avec puces
-    .replace(/^• (.*$)/gim, '<li class="ml-4 my-1">• $1</li>')
-    // Sauts de ligne
-    .replace(/\n\n/g, '</p><p class="mt-3 mb-2">')
-    .replace(/\n/g, '<br>')
-    // Wrap dans des paragraphes
-    .replace(/^(.*)$/g, '<p class="mb-2">$1</p>')
 }
 
-const formatListItem = (text: string) => {
-  return text
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-primary-600 hover:text-primary-700 underline" target="_blank" rel="noopener noreferrer">$1</a>')
+// Convertit une réponse markdown en HTML sémantique :
+// - les lignes commençant par "-" ou "•" sont regroupées dans de vraies balises <ul>/<li>
+// - les autres lignes sont encapsulées dans des paragraphes <p>
+const formatAnswer = (answer: string) => {
+  const lines = answer.split('\n')
+  let html = ''
+  let listBuffer: string[] = []
+
+  const flushList = () => {
+    if (listBuffer.length) {
+      const listItems = listBuffer.map((li) => `<li>${formatInline(li)}</li>`).join('')
+      html += `<ul class="list-disc list-inside mt-3 space-y-1">${listItems}</ul>`
+      listBuffer = []
+    }
+  }
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim()
+    if (!line) {
+      flushList()
+      continue
+    }
+    const bullet = line.match(/^[-•]\s+(.*)$/)
+    if (bullet) {
+      listBuffer.push(bullet[1])
+    } else {
+      flushList()
+      html += `<p class="mb-2">${formatInline(line)}</p>`
+    }
+  }
+  flushList()
+
+  return html
 }
+
+const formatListItem = (text: string) => formatInline(text)
 </script>

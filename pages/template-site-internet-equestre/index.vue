@@ -258,172 +258,6 @@
 
             </div>
 
-
-
-            <!-- Illustration de personnalisation -->
-
-            <div class="mt-16">
-
-              <div class="bg-white rounded-2xl shadow-xl p-8">
-
-                <h3 class="text-2xl font-bold text-center text-secondary-900 mb-8">
-
-                  Personnalisation en un clic
-
-                </h3>
-
-                
-
-                <div class="grid md:grid-cols-2 gap-8 items-center">
-
-                  <!-- Interface simulée -->
-
-                  <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
-
-                    <div class="space-y-4">
-
-                      <!-- Header -->
-
-                      <div class="flex justify-between items-center">
-
-                        <div class="h-8 w-32 bg-primary-200 rounded animate-pulse"></div>
-
-                        <div class="flex gap-2">
-
-                          <div class="w-6 h-6 bg-gray-300 rounded-full"></div>
-
-                          <div class="w-6 h-6 bg-gray-300 rounded-full"></div>
-
-                        </div>
-
-                      </div>
-
-                      
-
-                      <!-- Hero section -->
-
-                      <div class="h-32 bg-gradient-to-r from-primary-100 to-secondary-100 rounded-lg flex items-center justify-center">
-
-                        <div class="text-center">
-
-                          <div class="h-6 w-24 bg-primary-300 rounded mx-auto mb-2"></div>
-
-                          <div class="h-4 w-32 bg-secondary-300 rounded mx-auto"></div>
-
-                        </div>
-
-                      </div>
-
-                      
-
-                      <!-- Text content -->
-
-                      <div class="space-y-2">
-
-                        <div class="h-4 w-full bg-gray-300 rounded"></div>
-
-                        <div class="h-4 w-5/6 bg-gray-300 rounded"></div>
-
-                        <div class="h-4 w-4/5 bg-gray-300 rounded"></div>
-
-                      </div>
-
-                      
-
-                      <!-- Button -->
-
-                      <div class="h-10 w-32 bg-primary-500 rounded-lg mx-auto"></div>
-
-                    </div>
-
-                  </div>
-
-                  
-
-                  <!-- Instructions -->
-
-                  <div class="space-y-6">
-
-                    <div class="flex items-start gap-4">
-
-                      <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
-
-                        <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
-
-                        </svg>
-
-                      </div>
-
-                      <div>
-
-                        <h4 class="font-semibold text-secondary-900 mb-1">Cliquez pour modifier</h4>
-
-                        <p class="text-secondary-600 text-sm">Sur n'importe quel élément, un simple clic vous permet de changer le texte, les couleurs ou les images.</p>
-
-                      </div>
-
-                    </div>
-
-                    
-
-                    <div class="flex items-start gap-4">
-
-                      <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
-
-                        <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
-
-                        </svg>
-
-                      </div>
-
-                      <div>
-
-                        <h4 class="font-semibold text-secondary-900 mb-1">Glissez-déposez</h4>
-
-                        <p class="text-secondary-600 text-sm">Réorganisez les sections, ajoutez des images ou déplacez des éléments en un seul mouvement.</p>
-
-                      </div>
-
-                    </div>
-
-                    
-
-                    <div class="flex items-start gap-4">
-
-                      <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
-
-                        <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-
-                        </svg>
-
-                      </div>
-
-                      <div>
-
-                        <h4 class="font-semibold text-secondary-900 mb-1">Aperçu en temps réel</h4>
-
-                        <p class="text-secondary-600 text-sm">Voyez instantanément les changements que vous apportez, sans avoir besoin de sauvegarder.</p>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
           </div>
 
         </div>
@@ -437,7 +271,11 @@
         title="Votre guide stratégique de 30 pages offert"
         subtitle="Ne soyez plus jamais seul devant votre écran. Nous vous remettons un guide complet pour transformer votre template en un véritable outil de travail."
         :features="guideFeatures"
-      />
+      >
+        <template #cta>
+          <GuidePreviewCatalog variant="light" label="Découvrir un extrait du guide" />
+        </template>
+      </FeaturesSection>
 
 
 
@@ -495,14 +333,6 @@
           >
             <span>Découvrir le service clé en main</span>
             <ArrowRight :size="20" class="ml-2" />
-          </NuxtLink>
-        </template>
-        <template #extra>
-          <NuxtLink
-            to="#grille-templates"
-            class="text-sm text-secondary-300 hover:text-white underline underline-offset-4 transition-colors"
-          >
-            ← Revoir les templates disponibles
           </NuxtLink>
         </template>
       </CtaSection>

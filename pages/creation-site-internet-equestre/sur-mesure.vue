@@ -5,29 +5,16 @@
       />
       
     <!-- Section : Introduction -->
-    <section class="py-12 sm:py-16 md:py-20">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-          <div class="space-y-6" v-motion-slide-visible-once-bottom>
-            <h2 class="mb-4 sm:mb-6"> À l'écoute des enjeux de votre filière</h2>
+    <IntroMediaSection
+      title=" À l'écoute des enjeux de votre filière"
+      video-src="/videos/presentation-sur-mesure.mp4"
+      media-aspect-class="aspect-[862/1081]"
+    >
+      <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">À l'ère de l'IA et des incertitudes,  <strong class="text-secondary-900 font-bold text-lg sm:text-xl">je mise avant tout sur l'humain</strong> : mettre en avant vos forces, votre histoire et votre professionnalisme pour toucher vos clients ou acheteurs idéaux, sans jamais oublier votre authenticité.</p>
 
-            <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">À l'ère de l'IA et des incertitudes,  <strong class="text-secondary-900 font-bold text-lg sm:text-xl">je mise avant tout sur l'humain</strong> : mettre en avant vos forces, votre histoire et votre professionnalisme pour toucher vos clients ou acheteurs idéaux, sans jamais oublier votre authenticité.</p>
-             
-              <p class="text-base sm:text-lg text-secondary-600 leading-relaxed"> Pour autant, je ne rejette pas la technologie : je l'intègres à certaines étapes de mon processus. Mais <strong class="text-secondary-900 font-bold text-lg sm:text-xl">l'écoute, le conseil et la compréhension de votre projet</strong> restent — et resteront toujours — un échange humain entre vous et moi.
-              </p>
-
-          </div>
-          <div v-motion-slide-visible-once-bottom>
-            <video
-              src="/videos/presentation-sur-mesure.mp4"
-              class="w-full aspect-[862/1081] object-cover rounded-2xl shadow-lg"
-              autoplay
-              muted
-              loop
-              playsinline
-            ></video>
-          </div>
-        </div>
-    </section>
+      <p class="text-base sm:text-lg text-secondary-600 leading-relaxed"> Pour autant, je ne rejette pas la technologie : je l'intègres à certaines étapes de mon processus. Mais <strong class="text-secondary-900 font-bold text-lg sm:text-xl">l'écoute, le conseil et la compréhension de votre projet</strong> restent — et resteront toujours — un échange humain entre vous et moi.
+      </p>
+    </IntroMediaSection>
 
       <!-- Section : L'unicité de l'agence via la plateforme personnalisable (fond sombre) -->
       <section class="py-12 sm:py-16 md:py-20 relative overflow-hidden bg-secondary">
