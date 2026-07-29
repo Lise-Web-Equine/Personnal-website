@@ -4,24 +4,90 @@
 
 @layer base {
   body {
-    @apply bg-white text-secondary antialiased overflow-x-hidden;
+    @apply bg-white text-secondary-800 font-sans antialiased overflow-x-hidden;
   }
 
   html {
     @apply overflow-x-hidden;
   }
 
+  /* Canonical, inherited heading typography. Every h1/h2 shares the same
+     responsive scale, weight and tracking (defined once here). Only the COLOR
+     is meant to vary per context: the default is dark (text-secondary-900) for
+     light backgrounds; headings on dark backgrounds just add `text-white`. */
   h1 {
-    @apply text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-secondary-900;
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-secondary-900;
   }
 
   h2 {
-    @apply text-4xl md:text-5xl font-bold tracking-tight text-secondary-900;
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-secondary-900;
+  }
+
+  /* Mobile default: left-align all headings and body text. This lives in the
+     base layer (lowest priority), so any explicit Tailwind alignment utility
+     (text-center, text-right, ...) already used in components still wins. */
+  @media (max-width: 767px) {
+    h1, h2, h3, h4, h5, h6, p, li {
+      text-align: left;
+    }
   }
 
 }
 
 @layer components {
+  /* Content-gutter grid: every <section> inside <main> automatically inherits
+     the site max-width, centering and horizontal gutters. Content lands in the
+     centered column on its own, so no `container mx-auto px-6` wrapper is needed.
+     - Full-width backgrounds stay edge-to-edge (they live on the <section>).
+     - Absolutely positioned decorations are out of flow and unaffected.
+     - Use `.full-bleed` on a direct child that must span the entire width. */
+  main > section {
+    display: grid;
+    grid-template-columns:
+      [full-start] minmax(1.5rem, 1fr)
+      [content-start] min(80rem, 100% - 3rem) [content-end]
+      minmax(1.5rem, 1fr) [full-end];
+  }
+
+  main > section > * {
+    grid-column: content;
+  }
+
+  /* Absolutely-positioned direct children (background images, halos, decorative
+     blobs) must stay edge-to-edge. Without this they would become
+     "grid-positioned" and their containing block would shrink to the centered
+     column. Resetting grid placement to auto makes their containing block the
+     whole section padding box again. */
+  main > section > .absolute {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  main > section > .full-bleed {
+    grid-column: full;
+  }
+
+  /* Full-width band that still keeps its own inner content aligned to the
+     centered column, via subgrid (e.g. a colored/photo band with centered text
+     placed inside a section). Put `.full-bleed-grid` on the band, its direct
+     children land back in the centered column automatically. */
+  main > section > .full-bleed-grid {
+    grid-column: full;
+    display: grid;
+    grid-template-columns: subgrid;
+  }
+
+  main > section > .full-bleed-grid > * {
+    grid-column: content;
+  }
+
+  /* Global container: single source for the site width, centering and
+     horizontal padding. Still used by the header and footer, which live
+     outside <main> and are therefore not covered by the section grid. */
+  .site-container {
+    @apply container mx-auto px-6;
+  }
+
   .gradient-primary {
     background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 40%, #5b21b6 70%, #4c1d95 100%);
   }
@@ -88,5 +154,47 @@
 
   .section-subtitle {
     @apply text-lg md:text-xl text-secondary-600 max-w-2xl mx-auto;
+  }
+
+  /* Découpe en forme d'accolade au bas d'un élément (ex: image de fond du hero).
+     Réutilisable : applique la classe sur l'élément à découper. Le bord bas suit
+     la même courbe que le composant <CurlyBraceBorder> (pointe centrée vers le bas).
+     - Superpose 2 couches de masque (union par défaut) :
+       1) un aplat opaque couvrant tout SAUF la bande basse,
+       2) un SVG (bande basse, hauteur fixe) opaque au-dessus de la courbe,
+          transparent en dessous -> l'élément est "coupé" selon l'accolade.
+     - preserveAspectRatio='none' + hauteur fixe -> responsive et calé sur le trait. */
+  .mask-brace-bottom {
+    --brace-h: 2.5rem;
+    -webkit-mask-image:
+      linear-gradient(#000, #000),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L1200,0 L1200,10 C950,10 950,45 800,45 C680,45 660,50 600,90 C540,50 520,45 400,45 C250,45 250,10 0,10 Z' fill='%23000'/%3E%3C/svg%3E");
+    mask-image:
+      linear-gradient(#000, #000),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L1200,0 L1200,10 C950,10 950,45 800,45 C680,45 660,50 600,90 C540,50 520,45 400,45 C250,45 250,10 0,10 Z' fill='%23000'/%3E%3C/svg%3E");
+    -webkit-mask-size: 100% calc(100% - var(--brace-h)), 100% var(--brace-h);
+    mask-size: 100% calc(100% - var(--brace-h)), 100% var(--brace-h);
+    -webkit-mask-position: top left, bottom left;
+    mask-position: top left, bottom left;
+    -webkit-mask-repeat: no-repeat, no-repeat;
+    mask-repeat: no-repeat, no-repeat;
+  }
+
+  /* Découpe en accolade pour une bande placée AU-DESSUS du footer.
+     La couleur remplit la zone SOUS la courbe (elle "remonte" dans le contenu du
+     dessus), en suivant exactement le tracé du composant <CurlyBraceBorder>
+     (position 'bottom', pointe centrale vers le bas). La bande fait la hauteur
+     de l'accolade, donc un seul masque SVG étiré sur tout l'élément suffit. */
+  .mask-brace-top {
+    -webkit-mask-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 100' preserveAspectRatio='none'%3E%3Cpath d='M0,10 C250,10 250,45 400,45 C520,45 540,50 600,90 C660,50 680,45 800,45 C950,45 950,10 1200,10 L1200,100 L0,100 Z' fill='%23000'/%3E%3C/svg%3E");
+    mask-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 100' preserveAspectRatio='none'%3E%3Cpath d='M0,10 C250,10 250,45 400,45 C520,45 540,50 600,90 C660,50 680,45 800,45 C950,45 950,10 1200,10 L1200,100 L0,100 Z' fill='%23000'/%3E%3C/svg%3E");
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
   }
 }

@@ -120,4 +120,11 @@ useHead({ meta: [{ name: 'robots', content: 'noindex, nofollow' }] })
 
 const cartStore = useCartStore()
 const paymentModal = ref()
+
+// Suivi e-commerce : consultation du panier (GA4).
+onMounted(() => {
+  if (cartStore.itemCount > 0) {
+    useEcommerceTracking().trackViewCart(cartStore.cartItems, cartStore.totalPrice)
+  }
+})
 </script>

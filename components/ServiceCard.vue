@@ -12,9 +12,9 @@
       <Badge :variant="badgeVariant" :text="badgeText" />
     </div>
     
-    <!-- Header with icon and title -->
+    <!-- Header with optional icon and title -->
     <div class="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
-      <div :class="iconClasses">
+      <div v-if="icon" :class="iconClasses">
         <component :is="icon" :size="24" :class="iconColor" />
       </div>
       <h3 class="text-lg sm:text-xl md:text-2xl font-semibold text-secondary-900">{{ title }}</h3>
@@ -48,6 +48,7 @@
       v-if="ctaLink && ctaText"
       :to="ctaLink"
       :class="buttonClasses"
+      @click="$emit('cta-click')"
     >
       <span class="font-bold">{{ ctaText }}</span>
       <ArrowRight :size="20" class="ml-2" />
@@ -67,7 +68,7 @@ interface Props {
   variant?: 'default' | 'primary' | 'secondary'
   title: string
   description: string
-  icon: any
+  icon?: any
   features?: Feature[]
   badgeText?: string
   badgeVariant?: 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger' | 'gray'
@@ -85,6 +86,9 @@ const props = withDefaults(defineProps<Props>(), {
   featured: false,
   motionDirection: 'bottom'
 })
+
+// Émis lors du clic sur le bouton CTA (permet le suivi analytics dans le parent).
+defineEmits(['cta-click'])
 
 const variantClasses = computed(() => {
   const variants = {

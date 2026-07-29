@@ -78,9 +78,13 @@ const acceptNewsletter = ref(true)
 const isLoading = ref(false)
 
 const cartStore = useCartStore()
+const { trackBeginCheckout } = useEcommerceTracking()
 
 const openPaymentModal = () => {
   showEmailModal.value = true
+
+  // Suivi e-commerce : démarrage du tunnel de paiement (GA4).
+  trackBeginCheckout(cartStore.cartItems, cartStore.totalPrice)
 }
 
 const handlePayment = async () => {

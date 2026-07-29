@@ -4,10 +4,10 @@
     <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
     <GradientAnimation />
     
-    <div class="relative container mx-auto px-6">
+    <div class="relative">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16" v-motion-slide-visible-once-bottom>
-          <h2 class="mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+          <h2 class="mb-6 text-white">
             {{ title }}
           </h2>
           <p class="text-sm sm:text-base md:text-lg text-secondary-300 max-w-3xl mx-auto">
@@ -15,7 +15,7 @@
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 max-w-5xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
           <div 
             v-for="(feature, index) in features" 
             :key="index"
@@ -37,6 +37,11 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <!-- Emplacement CTA optionnel (ex: bouton d'aperçu du guide) -->
+        <div v-if="$slots.cta" class="mt-14 flex justify-center" v-motion-slide-visible-once-bottom>
+          <slot name="cta" />
         </div>
       </div>
     </div>

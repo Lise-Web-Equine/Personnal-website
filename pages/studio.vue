@@ -1,5 +1,5 @@
 <script setup lang="ts">
-await navigateTo('/creation-site-internet-equestre', { redirectCode: 301 })
+await navigateTo('/creation-site-internet-equestre/sur-mesure', { redirectCode: 301 })
 </script>
 
 <template></template>

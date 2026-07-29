@@ -14,8 +14,8 @@
 
 
 
-      <section class="py-8 sm:py-12 md:py-16">
-        <div class="container mx-auto px-6">
+      <section id="grille-templates" class="py-8 sm:py-12 md:py-16">
+        <div>
 
           <div class="mb-6 text-sm sm:text-base text-gray-600">
 
@@ -130,9 +130,9 @@
           </div>
         </div>
 
-        <div class="container mx-auto px-6">
+        <div>
 
-          <div class="max-w-6xl mx-auto">
+          <div>
 
             <!-- Header -->
 
@@ -258,172 +258,6 @@
 
             </div>
 
-
-
-            <!-- Illustration de personnalisation -->
-
-            <div class="mt-16">
-
-              <div class="bg-white rounded-2xl shadow-xl p-8">
-
-                <h3 class="text-2xl font-bold text-center text-secondary-900 mb-8">
-
-                  Personnalisation en un clic
-
-                </h3>
-
-                
-
-                <div class="grid md:grid-cols-2 gap-8 items-center">
-
-                  <!-- Interface simulée -->
-
-                  <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
-
-                    <div class="space-y-4">
-
-                      <!-- Header -->
-
-                      <div class="flex justify-between items-center">
-
-                        <div class="h-8 w-32 bg-primary-200 rounded animate-pulse"></div>
-
-                        <div class="flex gap-2">
-
-                          <div class="w-6 h-6 bg-gray-300 rounded-full"></div>
-
-                          <div class="w-6 h-6 bg-gray-300 rounded-full"></div>
-
-                        </div>
-
-                      </div>
-
-                      
-
-                      <!-- Hero section -->
-
-                      <div class="h-32 bg-gradient-to-r from-primary-100 to-secondary-100 rounded-lg flex items-center justify-center">
-
-                        <div class="text-center">
-
-                          <div class="h-6 w-24 bg-primary-300 rounded mx-auto mb-2"></div>
-
-                          <div class="h-4 w-32 bg-secondary-300 rounded mx-auto"></div>
-
-                        </div>
-
-                      </div>
-
-                      
-
-                      <!-- Text content -->
-
-                      <div class="space-y-2">
-
-                        <div class="h-4 w-full bg-gray-300 rounded"></div>
-
-                        <div class="h-4 w-5/6 bg-gray-300 rounded"></div>
-
-                        <div class="h-4 w-4/5 bg-gray-300 rounded"></div>
-
-                      </div>
-
-                      
-
-                      <!-- Button -->
-
-                      <div class="h-10 w-32 bg-primary-500 rounded-lg mx-auto"></div>
-
-                    </div>
-
-                  </div>
-
-                  
-
-                  <!-- Instructions -->
-
-                  <div class="space-y-6">
-
-                    <div class="flex items-start gap-4">
-
-                      <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
-
-                        <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
-
-                        </svg>
-
-                      </div>
-
-                      <div>
-
-                        <h4 class="font-semibold text-secondary-900 mb-1">Cliquez pour modifier</h4>
-
-                        <p class="text-secondary-600 text-sm">Sur n'importe quel élément, un simple clic vous permet de changer le texte, les couleurs ou les images.</p>
-
-                      </div>
-
-                    </div>
-
-                    
-
-                    <div class="flex items-start gap-4">
-
-                      <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
-
-                        <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
-
-                        </svg>
-
-                      </div>
-
-                      <div>
-
-                        <h4 class="font-semibold text-secondary-900 mb-1">Glissez-déposez</h4>
-
-                        <p class="text-secondary-600 text-sm">Réorganisez les sections, ajoutez des images ou déplacez des éléments en un seul mouvement.</p>
-
-                      </div>
-
-                    </div>
-
-                    
-
-                    <div class="flex items-start gap-4">
-
-                      <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
-
-                        <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-
-                        </svg>
-
-                      </div>
-
-                      <div>
-
-                        <h4 class="font-semibold text-secondary-900 mb-1">Aperçu en temps réel</h4>
-
-                        <p class="text-secondary-600 text-sm">Voyez instantanément les changements que vous apportez, sans avoir besoin de sauvegarder.</p>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
           </div>
 
         </div>
@@ -437,7 +271,11 @@
         title="Votre guide stratégique de 30 pages offert"
         subtitle="Ne soyez plus jamais seul devant votre écran. Nous vous remettons un guide complet pour transformer votre template en un véritable outil de travail."
         :features="guideFeatures"
-      />
+      >
+        <template #cta>
+          <GuidePreviewCatalog variant="light" label="Découvrir un extrait du guide" />
+        </template>
+      </FeaturesSection>
 
 
 
@@ -445,15 +283,15 @@
 
       <section class="py-16 sm:py-20 md:py-24">
 
-        <div class="container mx-auto px-4 sm:px-6">
+        <div>
 
-          <div class="max-w-3xl sm:max-w-4xl md:max-w-5xl lg:max-w-6xl mx-auto">
+          <div>
 
             <!-- Header -->
 
             <div class="text-center mb-12 md:mb-16">
 
-              <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary-900 mb-4">
+              <h2 class="mb-4">
 
                 Questions fréquentes
 
@@ -482,44 +320,23 @@
 
 
       <!-- Section CTA Final -->
+      <CtaSection
+        title="Vous préférez qu'on s'en occupe ?"
+        description="Nous personnalisons votre template de A à Z. Vous gagnez du temps, nous assurons le rendu professionnel."
+        image="/images/Hestabien.jpg"
+        image-alt="Création de site internet pour les prestataires équestres"
+      >
+        <template #actions>
+          <NuxtLink
+            to="/creation-site-internet-equestre/cle-en-main"
+            class="btn-primary inline-flex items-center"
+          >
+            <span>Découvrir le service clé en main</span>
+            <ArrowRight :size="20" class="ml-2" />
+          </NuxtLink>
+        </template>
+      </CtaSection>
 
-      <section class="relative py-16 md:py-20 lg:py-24 overflow-hidden text-white">
-
-        <!-- Image de fond + overlay sombre -->
-        <div class="absolute inset-0 -z-10">
-          <NuxtImg
-            src="/images/Hestabien.jpg"
-            alt="Création de site internet pour les prestataires équestres"
-            class="w-full h-full object-cover"
-            sizes="100vw"
-            loading="lazy"
-          />
-          <div class="absolute inset-0 bg-gradient-to-b from-secondary-900/90 via-secondary-900/80 to-secondary-900/90"></div>
-        </div>
-
-        <div class="relative container mx-auto px-6">
-
-          <div class="text-center">
-
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-
-              Prêt à lancer votre site web pro équin ?
-
-            </h2>
-
-            <p class="text-lg text-secondary-200 max-w-2xl mx-auto mb-8">
-
-              Choisissez parmi nos templates et commencez dès aujourd'hui
-
-            </p>
-
-            <Button to="/template-site-internet-equestre" variant="primary" text="Voir tous les templates" class="inline-flex" />
-
-          </div>
-
-        </div>
-
-      </section>
 
   </NuxtLayout>
 
@@ -529,7 +346,7 @@
 
 <script setup lang="ts">
 
-import { Package, BookOpen, Lightbulb, Sparkles, MessageSquare } from 'lucide-vue-next'
+import { Package, BookOpen, Lightbulb, Sparkles, MessageSquare, ArrowRight } from 'lucide-vue-next'
 
 import type { Template } from '~/models'
 
@@ -545,29 +362,23 @@ useHead({
   ]
 })
 
-const loading = ref(true)
-const templates = ref<Template[]>([])
 const supabase = useSupabaseClient()
 
-const fetchTemplates = async () => {
-  try {
+// Récupération SSR de la liste des templates : rendue côté serveur (meilleur LCP
+// et SEO) au lieu d'un fetch client dans onMounted qui affichait un spinner.
+const { data: templates, pending: loading } = await useAsyncData(
+  'templates-list',
+  async () => {
     const { data, error } = await supabase
       .from('templates')
       .select('*')
       .order('created_at', { ascending: false })
 
     if (error) throw error
-    templates.value = data || []
-  } catch (error) {
-    console.error('Error fetching templates:', error)
-  } finally {
-    loading.value = false
-  }
-}
-
-onMounted(() => {
-  fetchTemplates()
-})
+    return (data || []) as Template[]
+  },
+  { default: () => [] as Template[] }
+)
 
 const faqItems = [
 

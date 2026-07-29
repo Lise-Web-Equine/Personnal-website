@@ -1,6 +1,13 @@
 <template>
-  <footer class="bg-secondary-900 border-t border-secondary-800">
-    <div class="container mx-auto px-6 py-12">
+  <footer class="relative bg-secondary-900">
+    <!-- Transition en accolade : la couleur du footer remonte dans le contenu du dessus.
+         S'applique à toutes les pages, quelle que soit la dernière section. -->
+    <div class="pointer-events-none absolute inset-x-0 bottom-full h-10">
+      <div class="absolute inset-0 bg-secondary-900 mask-brace-top"></div>
+      <CurlyBraceBorder class="" height="2.5rem" :stroke-width="2" />
+    </div>
+
+    <div class="site-container py-12">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-center md:text-left">
         <div>
           <NuxtLink to="/" class="text-2xl font-bold mb-4 flex items-center justify-center md:justify-start" aria-label="Lise Web Equine - Retour à l'accueil">
@@ -17,7 +24,7 @@
           <h3 class="font-semibold mb-4 text-lg text-white">Navigation</h3>
           <ul class="space-y-2 text-sm">
             <li><NuxtLink to="/" class="text-secondary-300 hover:text-white transition-colors">Accueil</NuxtLink></li>
-            <li><NuxtLink to="/creation-site-internet-equestre" class="text-secondary-300 hover:text-white transition-colors">Création de site internet équestre</NuxtLink></li>
+            <li><NuxtLink to="/creation-site-internet-equestre/sur-mesure" class="text-secondary-300 hover:text-white transition-colors">Création de site internet équestre</NuxtLink></li>
             <li><NuxtLink to="/template-site-internet-equestre" class="text-secondary-300 hover:text-white transition-colors">Templates de site équestre</NuxtLink></li>
             <li><NuxtLink to="/about" class="text-secondary-300 hover:text-white transition-colors">À propos</NuxtLink></li>
             <li><NuxtLink to="/contact" class="text-secondary-300 hover:text-white transition-colors">Contact</NuxtLink></li>

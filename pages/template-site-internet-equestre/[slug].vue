@@ -1,22 +1,22 @@
 <template>
   <NuxtLayout>
-    <div class="min-h-screen">
-      <div v-if="loading" class="container mx-auto px-6 py-20">
-        <div class="text-center">
-          <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
-        </div>
+    <section v-if="loading" class="py-20">
+      <div class="text-center">
+        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
       </div>
+    </section>
 
-      <div v-else-if="!template" class="container mx-auto px-6 py-20 text-center">
-        <h1 class="text-3xl font-bold mb-4">Template Not Found</h1>
-        <NuxtLink to="/template-site-internet-equestre" class="btn-primary">
-          Back to Templates
-        </NuxtLink>
-      </div>
+    <section v-else-if="!template" class="py-20 text-center">
+      <h1 class="text-3xl font-bold mb-4">Template Not Found</h1>
+      <NuxtLink to="/template-site-internet-equestre" class="btn-primary">
+        Back to Templates
+      </NuxtLink>
+    </section>
 
-      <div v-else>
+    <template v-else>
+        <PageHeader :title="template.name" :description="template.description" />
+
         <section class="py-6 sm:py-8 md:py-12">
-          <div class="container mx-auto px-4 sm:px-6">
             <div class="mb-6">
               <NuxtLink to="/template-site-internet-equestre" class="inline-flex items-center text-gray-600 hover:text-black">
                 <ArrowLeft :size="20" class="mr-2" />
@@ -71,7 +71,6 @@
               </div>
 
               <div v-motion-slide-visible-once-right>
-                <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-secondary-900 mb-4">{{ template.name }}</h1>
 
                 <div v-if="template.rating > 0" class="flex items-center space-x-6 mb-4">
                   <div class="flex items-center space-x-2">
@@ -171,7 +170,7 @@
                       <span class="text-xs opacity-80">TTC</span>
                     </div>
                   </button>
-                  <div class="flex items-center justify-center gap-3 mt-2 text-xs text-gray-500">
+                  <div class="flex items-center justify-center gap-3 mt-4 text-xs text-gray-500">
                     <span class="flex items-center gap-1">
                       <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
@@ -189,12 +188,11 @@
                 </div>
             </div>
           </div>
-        </div>
         </section>
 
-        <!-- Accompagnement Pack Sérénité -->
-        <section class="py-20 sm:py-24 md:py-32 relative overflow-hidden">
-          <!-- Halo backgrounds with fade mask -->
+        <!-- Section descriptive du métier (titre + texte + listes) -->
+        <section v-if="hasMetierContent" class="py-12 sm:py-16 md:py-20 relative overflow-hidden">
+          <!-- Halos décoratifs en arrière-plan avec fondu vers le bas -->
           <div class="absolute inset-0 -z-10" style="mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);">
             <div class="absolute inset-x-0 -top-20 sm:-top-40 transform-gpu overflow-hidden blur-2xl sm:blur-3xl" aria-hidden="true">
               <div
@@ -210,144 +208,200 @@
             </div>
           </div>
 
-          <div class="container mx-auto px-4 sm:px-6">
-            <div class="max-w-6xl mx-auto">
-              <!-- En-tête de la section -->
-              <div class="text-center mb-12 md:mb-16">
-                <h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-secondary-900 mb-4">Tu as besoin d'un site qui reflète ton professionnalisme sans attendre ?</h2>
-                <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-                  Je personnalise ton site web.
-                </p>
+          <div class="relative">
+            <div class=" text-left">
+              <h2 v-if="template.metier_title" class="mb-4">{{ template.metier_title }}</h2>
+              <p
+                v-if="template.metier_text"
+                class="text-base sm:text-lg text-gray-600 leading-relaxed mb-8 whitespace-pre-line"
+              >
+                {{ template.metier_text }}
+              </p>
+
+              <div
+                v-if="template.metier_lists && template.metier_lists.length > 0"
+                class="space-y-6"
+              >
+                <ul
+                  v-for="(list, index) in template.metier_lists"
+                  :key="index"
+                  class="list-disc list-inside space-y-1 text-base sm:text-lg text-gray-600 leading-relaxed"
+                >
+                  <li
+                    v-for="(item, itemIndex) in list.items"
+                    :key="itemIndex"
+                    v-html="formatListItem(item)"
+                  ></li>
+                </ul>
               </div>
+            </div>
+          </div>
+        </section>
 
-<!-- Carte principale -->
-              <div class="relative">
-                <!-- Badge on the border -->
-                <div class="absolute -top-3 right-4 sm:right-6 z-10">
-                  <Badge variant="primary" text="Le Pack Sérénité" />
-                </div>
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-                  <div class="grid grid-cols-1 lg:grid-cols-3">
-                    <!-- Partie gauche - Bénéfices en 2 colonnes -->
-                    <div class="lg:col-span-2 p-6 md:p-10 lg:p-16 bg-white">
-                      <div class="mb-8 md:mb-12">
-                        <h3 class="text-xl md:text-2xl font-bold text-secondary-900">
-                          L'expertise pro, la rapidité en plus.
-                        </h3>
+        <!-- Section : Personnalisation en un clic -->
+        <section class="py-12 sm:py-16 md:py-20">
+            <div>
+              <div class="bg-secondary rounded-2xl shadow-xl overflow-hidden">
+                <div class="grid md:grid-cols-2 md:items-stretch">
+                  <!-- Démonstration vidéo de personnalisation des couleurs (colonne pleine) -->
+                  <video
+                    class="w-full h-full object-cover block"
+                    src="/videos/demo-colors-template.mp4"
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    aria-label="Démonstration de la personnalisation des couleurs d'un template"
+                  ></video>
+
+                  <!-- Instructions -->
+                  <div class="p-8 space-y-6">
+                    <h3 class="text-2xl font-bold text-white mb-2">
+                      Personnalisation en un clic
+                    </h3>
+
+                    <div class="flex items-start gap-4">
+                      <div class="w-8 h-8 bg-white/5 rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg class="w-4 h-4 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                        </svg>
                       </div>
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-                      <!-- Gagnez du temps -->
-                      <div class="flex items-start">
-                        <div class="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-3 md:mr-4">
-                          <svg class="w-5 h-5 md:w-6 md:h-6 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
-                          </svg>
-                        </div>
-                        <div>
-                          <h4 class="font-bold text-gray-900 text-base md:text-lg mb-2">Gagnez du temps</h4>
-                          <p class="text-gray-600 text-xs md:text-sm">Je gère toute la technique. Pendant ce temps, tu gères ton business.</p>
-                        </div>
-                      </div>
-
-                      <!-- Rendu Professionnel -->
-                      <div class="flex items-start">
-                        <div class="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-3 md:mr-4">
-                          <svg class="w-5 h-5 md:w-6 md:h-6 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                          </svg>
-                        </div>
-                        <div>
-                          <h4 class="font-bold text-gray-900 text-base md:text-lg mb-2">Rendu Professionnel</h4>
-                          <p class="text-gray-600 text-xs md:text-sm">Un design moderne et élégant qui inspire confiance à tes clients dès la première seconde.</p>
-                        </div>
-                      </div>
-
-                      <!-- Livraison Rapide -->
-                      <div class="flex items-start">
-                        <div class="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-3 md:mr-4">
-                          <svg class="w-5 h-5 md:w-6 md:h-6 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path>
-                            <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"></path>
-                          </svg>
-                        </div>
-                        <div>
-                          <h4 class="font-bold text-gray-900 text-base md:text-lg mb-2">Livraison Rapide</h4>
-                          <p class="text-gray-600 text-xs md:text-sm">Ta présence en ligne est opérationnelle en un temps record, sans erreurs.</p>
-                        </div>
-                      </div>
-
-                      <!-- Zéro Stress Technique -->
-                      <div class="flex items-start">
-                        <div class="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-3 md:mr-4">
-                          <svg class="w-5 h-5 md:w-6 md:h-6 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                          </svg>
-                        </div>
-                        <div>
-                          <h4 class="font-bold text-gray-900 text-base md:text-lg mb-2">Zéro Stress Technique</h4>
-                          <p class="text-gray-600 text-xs md:text-sm">Hébergement, sécurité, mises à jour... Je m'occupe de la face cachée du web.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Partie droite - Prix et services (fond sombre) -->
-                  <div class="lg:col-span-1 p-6 md:p-8 lg:p-10 bg-secondary text-white flex flex-col justify-center">
-                    <div class="mb-6 md:mb-8">
-                      <div class="text-gray-400 text-xs md:text-sm font-medium mb-2">CLÉ EN MAIN</div>
-                      <div class="text-4xl md:text-5xl font-bold mb-2">290€</div>
-                      <div class="text-amber-300 font-medium text-sm md:text-base">Investissement unique</div>
-                    </div>
-
-                    <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 md:p-6 mb-6 md:mb-8 border border-white/10">
-                      <h4 class="font-bold text-base md:text-lg mb-4">Ce qui est inclus :</h4>
-                      <div class="space-y-3">
-                        <div class="flex items-center">
-                          <svg class="w-5 h-5 mr-3 flex-shrink-0 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                          </svg>
-                          <span>Installation clé en main</span>
-                        </div>
-                        <div class="flex items-center">
-                          <svg class="w-5 h-5 mr-3 flex-shrink-0 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                          </svg>
-                          <span>Visio de lancement (30min)</span>
-                        </div>
-                        <div class="flex items-center">
-                          <svg class="w-5 h-5 mr-3 flex-shrink-0 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                          </svg>
-                          <span>Mise en place de ton contenu</span>
-                        </div>
-                        <div class="flex items-center">
-                          <svg class="w-5 h-5 mr-3 flex-shrink-0 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                          </svg>
-                          <span>Support 1 mois</span>
-                        </div>
+                      <div>
+                        <h4 class="font-semibold text-white mb-1">Cliquez pour modifier</h4>
+                        <p class="text-secondary-300 text-sm">Sur n'importe quel élément, un simple clic vous permet de changer le texte, les couleurs ou les images.</p>
                       </div>
                     </div>
 
-                    <button
-                      data-cal-link="lisewebequine/pack-serenite"
-                      data-cal-namespace="pack-serenite"
-                      data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"false"}'
-                      class="w-full bg-white text-secondary-900 font-bold py-3 md:py-4 px-4 md:px-6 rounded-xl hover:bg-gray-100 transition-colors shadow-lg text-sm md:text-base"
-                    >
-                      Réserver un créneau
-                    </button>
+                    <div class="flex items-start gap-4">
+                      <div class="w-8 h-8 bg-white/5 rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg class="w-4 h-4 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-white mb-1">Glissez-déposez</h4>
+                        <p class="text-secondary-300 text-sm">Réorganisez les sections, ajoutez des images ou déplacez des éléments en un seul mouvement.</p>
+                      </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                      <div class="w-8 h-8 bg-white/5 rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg class="w-4 h-4 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-white mb-1">Aperçu en temps réel</h4>
+                        <p class="text-secondary-300 text-sm">Voyez instantanément les changements que vous apportez, sans avoir besoin de sauvegarder.</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+        </section>
+
+        <!-- Section Bonus Guide -->
+        <FeaturesSection
+          title="Votre guide stratégique de 30 pages offert"
+          subtitle="Ne soyez plus jamais seul devant votre écran. Nous vous remettons un guide complet pour transformer votre template en un véritable outil de travail."
+          :features="guideFeatures"
+        >
+          <template #cta>
+            <GuidePreviewCatalog variant="light" label="Découvrir un extrait du guide" />
+          </template>
+        </FeaturesSection>
+
+        <!-- Preuve sociale : réalisations clients -->
+        <section v-if="realisations.length > 0" class="py-12 sm:py-16 md:py-20 bg-gray-50">
+              <div class="text-center mb-10 md:mb-14">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary-900 mb-3">
+                  Ils ont lancé leur site avec un template équestre
+                </h2>
+                <p class="text-base sm:text-lg text-secondary-600 max-w-2xl mx-auto">
+                  Des professionnels équestres comme vous, déjà en ligne et sereins.
+                </p>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                <!-- Capture du site -->
+                <component
+                  :is="realisations[0].site_url ? 'a' : 'div'"
+                  :href="realisations[0].site_url || undefined"
+                  :target="realisations[0].site_url ? '_blank' : undefined"
+                  :rel="realisations[0].site_url ? 'noopener noreferrer' : undefined"
+                  class="block rounded-2xl overflow-hidden shadow-lg"
+                >
+                  <NuxtImg
+                    :src="realisations[0].site_image"
+                    :alt="`Site de ${realisations[0].client_name}, ${realisations[0].client_profession}`"
+                    class="w-full h-auto object-contain"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    loading="lazy"
+                  />
+                </component>
+
+                <!-- Témoignage client -->
+                <div class="space-y-6">
+                  <span
+                    class="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full"
+                    :class="realisations[0].type === 'pack' ? 'bg-primary-100 text-primary-700' : 'bg-white text-secondary-700 border border-secondary-200'"
+                  >
+                    {{ realisations[0].type === 'pack' ? 'Offre clé en main' : 'Personnalisé en autonomie' }}
+                  </span>
+
+                  <blockquote class="text-xl sm:text-2xl font-medium text-secondary-900 leading-relaxed">
+                    "{{ realisations[0].quote }}"
+                  </blockquote>
+
+                  <div class="flex items-center gap-4">
+                    <NuxtImg
+                      v-if="realisations[0].client_photo"
+                      :src="realisations[0].client_photo"
+                      :alt="realisations[0].client_name"
+                      class="w-14 h-14 rounded-full object-cover flex-shrink-0"
+                      loading="lazy"
+                    />
+                    <div
+                      v-else
+                      class="w-14 h-14 rounded-full bg-primary-100 flex items-center justify-center text-primary-700 font-bold text-lg flex-shrink-0"
+                    >
+                      {{ realisations[0].client_name.split(' ').map(part => part.charAt(0)).slice(0, 2).join('').toUpperCase() }}
+                    </div>
+                    <div>
+                      <p class="font-semibold text-secondary-900">{{ realisations[0].client_name }}</p>
+                      <p class="text-secondary-600">{{ realisations[0].client_profession }}</p>
+                    </div>
+                  </div>
+
+                  <div class="flex flex-col sm:flex-row items-start sm:items-center gap-x-6 gap-y-3">
+                    <!-- Si le témoignage concerne un autre template, on invite à le découvrir -->
+                    <NuxtLink
+                      v-if="realisationTemplate"
+                      :to="`/template-site-internet-equestre/${realisationTemplate.slug}`"
+                      class="btn-primary inline-flex items-center"
+                    >
+                      <span>Voir le template</span>
+                      <ArrowRight :size="20" class="ml-2" />
+                    </NuxtLink>
+                    <!-- Lien vers le site en ligne du client -->
+                    <a
+                      v-if="realisations[0].site_url"
+                      :href="realisations[0].site_url"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-sm sm:text-base text-secondary-600 hover:text-primary-600 font-medium transition-colors duration-200 inline-flex items-center justify-center group"
+                    >
+                      <span>{{ realisations[0].site_url }}</span>
+                      <ArrowRight :size="16" class="ml-2 group-hover:translate-x-1 transition-transform" />
+                    </a>
+                  </div>
+                </div>
+              </div>
         </section>
 
         <section id="modeles-similaires" class="py-10 sm:py-12 md:py-16">
-          <div class="container mx-auto px-4 sm:px-6">
             <h2 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8">Templates équestres similaires</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               <TemplateCardMockup
@@ -356,10 +410,47 @@
                 :template="relatedTemplate"
               />
             </div>
+        </section>
+
+        <!-- Section : questions fréquentes -->
+        <section class="py-12 sm:py-16 md:py-20 bg-gray-50">
+          <div>
+            <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
+              <h2 class="mb-4 sm:mb-6">Questions fréquentes</h2>
+              <p class="text-base sm:text-lg text-secondary-600">
+                Tout ce qu'il faut savoir avant d'acheter votre template équestre.
+              </p>
+            </div>
+            <Accordion :items="faqItems" />
           </div>
         </section>
-      </div>
-    </div>
+
+                <!-- Section CTA avec image : achat du template ou découverte de l'offre clé en main -->
+        <CtaSection
+          title="Choisissez la façon d'avancer sur votre site internet"
+          description="Créez votre site en autonomie avec le template ou laissez-nous nous occuper de tout."
+          image="/images/Hestabien.jpg"
+          image-alt="Création de site internet équestre clé en main"
+        >
+          <template #actions>
+            <button
+              @click="handleAddToCart"
+              :disabled="isInCart"
+              class="btn-primary inline-flex items-center disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <ShoppingCart :size="20" class="mr-2" />
+              <span>{{ isInCart ? 'Déjà dans le panier' : 'Acheter le template' }}</span>
+            </button>
+            <NuxtLink
+              to="/creation-site-internet-equestre/cle-en-main"
+              class="text-sm sm:text-base text-gray-300 hover:text-primary-400 font-medium transition-colors duration-200 inline-flex items-center justify-center group"
+            >
+              <span>Découvrir l'offre clé en main</span>
+              <ArrowRight :size="16" class="ml-2 group-hover:translate-x-1 transition-transform" />
+            </NuxtLink>
+          </template>
+        </CtaSection>
+    </template>
 
     <!-- Guide Modal -->
     <teleport to="body">
@@ -437,14 +528,18 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowLeft, Star, Download, ShoppingCart, ExternalLink, Check, X } from 'lucide-vue-next'
+import { ArrowLeft, ArrowRight, Star, Download, ShoppingCart, Check, X, BookOpen, Sparkles } from 'lucide-vue-next'
 import { useCartStore } from '~/stores/cart'
-import type { Template } from '~/models'
+import type { Template, Realisation } from '~/models'
 import Badge from '~/components/Badge.vue'
+
+// Informations minimales d'un template ciblé par un lien de témoignage.
+type RealisationTemplateLink = Pick<Template, 'slug' | 'name'>
 
 const route = useRoute()
 const supabase = useSupabase()
 const cartStore = useCartStore()
+const { trackViewItem } = useEcommerceTracking()
 
 // Load Calendly script
 useHead({
@@ -457,10 +552,148 @@ useHead({
   ]
 })
 
-const loading = ref(true)
-const template = ref<Template | null>(null)
-const relatedTemplates = ref<Template[]>([])
+// Récupération SSR : le template et ses données liées sont chargés côté serveur
+// (meilleur LCP/SEO), et les requêtes indépendantes sont parallélisées au lieu
+// de l'ancienne cascade de 5 requêtes séquentielles dans onMounted.
+const { data: pageData, pending: loading, error: fetchError } = await useAsyncData(
+  () => `template-${route.params.slug}`,
+  async () => {
+    const { data: tmpl, error: templateError } = await supabase
+      .from('templates')
+      .select('*')
+      .eq('slug', route.params.slug)
+      .maybeSingle()
+
+    if (templateError) throw templateError
+    // Slug inexistant -> on renvoie null, la vraie 404 est levée dans le setup.
+    if (!tmpl) return null
+
+    const currentTemplate = tmpl as Template
+
+    // Requêtes indépendantes lancées en parallèle.
+    const [linkedRealisationsRes, relatedRes] = await Promise.all([
+      supabase
+        .from('realisations')
+        .select('*')
+        .eq('template_id', currentTemplate.id)
+        .order('display_order', { ascending: true }),
+      supabase
+        .from('templates')
+        .select('*')
+        .eq('speciality', currentTemplate.speciality)
+        .neq('id', currentTemplate.id)
+        .limit(3)
+    ])
+
+    // Réalisations liées, avec repli sur les réalisations mises en avant.
+    let realisationsList = (linkedRealisationsRes.data as Realisation[]) || []
+    if (realisationsList.length === 0) {
+      const { data: featured } = await supabase
+        .from('realisations')
+        .select('*')
+        .eq('featured', true)
+        .order('display_order', { ascending: true })
+        .limit(3)
+      realisationsList = (featured as Realisation[]) || []
+    }
+
+    // Templates similaires, avec repli sur les premiers templates disponibles.
+    let related = (relatedRes.data as Template[]) || []
+    if (related.length === 0) {
+      const { data: fallback } = await supabase
+        .from('templates')
+        .select('*')
+        .neq('id', currentTemplate.id)
+        .limit(3)
+      related = (fallback as Template[]) || []
+    }
+
+    // Lien "Voir le template" si le témoignage mis en avant concerne un AUTRE template.
+    let linkedTestimonialTemplate: RealisationTemplateLink | null = null
+    const featuredRea = realisationsList[0]
+    if (featuredRea?.template_id && featuredRea.template_id !== currentTemplate.id) {
+      const { data: reaTemplate } = await supabase
+        .from('templates')
+        .select('slug, name')
+        .eq('id', featuredRea.template_id)
+        .maybeSingle()
+      linkedTestimonialTemplate = (reaTemplate as RealisationTemplateLink | null) ?? null
+    }
+
+    return {
+      template: currentTemplate,
+      realisations: realisationsList,
+      relatedTemplates: related,
+      realisationTemplate: linkedTestimonialTemplate
+    }
+  }
+)
+
+// Erreur base de données -> on la propage (500). Slug inexistant -> vraie 404
+// (au niveau setup pour que le statut HTTP soit correct, bon pour le SEO et
+// évite les pages fantômes type "/:slug").
+if (fetchError.value) {
+  throw fetchError.value
+}
+if (!pageData.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Template introuvable' })
+}
+
+// Vues dérivées de la donnée SSR (conservent la même API que les anciens refs).
+const template = computed(() => pageData.value?.template ?? null)
+const relatedTemplates = computed(() => pageData.value?.relatedTemplates ?? [])
+const realisations = computed(() => pageData.value?.realisations ?? [])
+const realisationTemplate = computed(() => pageData.value?.realisationTemplate ?? null)
 const showGuideModal = ref(false)
+
+// Contenu de la section "guide stratégique offert" (identique à la page liste des templates).
+const guideFeatures = [
+  {
+    icon: BookOpen,
+    iconColor: 'text-primary-600',
+    title: 'Guide pas à pas',
+    description: 'Instructions détaillées pour personnaliser chaque élément de votre template et le lancer professionnellement.'
+  },
+  {
+    icon: Sparkles,
+    iconColor: 'text-primary-400',
+    title: 'Prompt IA exclusif',
+    description: 'Générez une palette de couleur professionnelle grâce au prompt IA.'
+  }
+]
+
+// Section "FAQ" : questions fréquentes affichées avant le CTA (rendu via le composant Accordion).
+const defaultFaqItems = [
+  {
+    question: "Combien me coûte mon site web au total ?",
+    answer: "**C'est la solution la moins chère du marché** pour un résultat professionnel :\n\n- **Le template** : Paiement unique (selon le template choisi)\n- **L'abonnement technique** : Pour activer toutes les fonctionnalités premium (votre propre nom de domaine, formulaires, etc.), il faudra souscrire à l'offre Carrd Pro Standard\n- **Le coût total** : Environ **19$ par an** (soit moins de **2€/mois**)\n\n**C'est imbattable** comparé aux 150€ ou 200€ demandés par d'autres plateformes !"
+  },
+  {
+    question: "Comment fonctionne l'achat d'un template ?",
+    answer: "Une fois votre achat effectué, vous recevez **immédiatement par email** un lien pour télécharger :\n\n- Le template complet\n- Votre guide stratégique de 30 pages\n- L'accès à notre support si besoin\n\n**Processus simple et instantané** pour commencer tout de suite !"
+  },
+  {
+    question: "Le nom de domaine est-il inclus ?",
+    answer: "**Un hébergement gratuit est inclus** via l'extension .carrd.co (ex: monactivite.carrd.co), ce qui vous permet de mettre votre site en ligne immédiatement.\n\n**Vous souhaitez un nom de domaine personnalisé** (ex: .fr ou .com) ? C'est tout à fait possible :\n- Le nom de domaine s'obtient auprès d'un registrar (à partir d'environ **10€/an**)\n- Sa connexion nécessite l'abonnement Carrd Pro Standard\n- Il suffit de [me contacter](/contact) pour que nous mettions cela en place ensemble une fois votre template acquis"
+  }
+]
+
+// FAQ affichée : les questions personnalisées du template sont placées en tête,
+// suivies des questions génériques communes à tous les templates.
+const faqItems = computed(() => [
+  ...(template.value?.faq_items ?? []),
+  ...defaultFaqItems
+])
+
+// Applique le formatage inline (gras + liens) sur un item de liste,
+// à l'identique du rendu des listes de la FAQ (composant Accordion).
+const formatListItem = (text: string) => {
+  return text
+    // Gras pour les termes importants
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    // Liens
+    .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-primary-600 hover:text-primary-700 underline" target="_blank" rel="noopener noreferrer">$1</a>')
+}
 
 const siteUrl = 'https://lisewebequine.fr'
 
@@ -504,6 +737,19 @@ useStructuredData(() => {
   return schema
 })
 
+// Métadonnées SEO : privilégie les champs dédiés, repli sur le nom/description du template.
+useSeoMeta({
+  title: () => template.value?.seo_title || (template.value ? `${template.value.name} – Template site internet équestre` : 'Template site internet équestre'),
+  description: () => template.value?.seo_description || template.value?.description || ''
+})
+
+// Indique si la section descriptive du métier contient du contenu à afficher.
+const hasMetierContent = computed(() => {
+  const t = template.value
+  if (!t) return false
+  return !!(t.metier_title || t.metier_text || (t.metier_lists && t.metier_lists.length > 0))
+})
+
 const isInCart = computed(() => {
   if (!template.value) return false
   return cartStore.cartItems.some(item => item.template.id === template.value!.id)
@@ -515,43 +761,14 @@ const handleAddToCart = () => {
   }
 }
 
-onMounted(async () => {
-  try {
-    const { data, error } = await supabase
-      .from('templates')
-      .select('*')
-      .eq('slug', route.params.slug)
-      .maybeSingle()
-
-    if (error) throw error
-    template.value = data
-
-    if (data) {
-      // Essayer de récupérer des templates de la même spécialité
-      const { data: related } = await supabase
-        .from('templates')
-        .select('*')
-        .eq('speciality', (data as Template).speciality)
-        .neq('id', (data as Template).id)
-        .limit(3)
-
-      if (related && related.length > 0) {
-        relatedTemplates.value = related
-      } else {
-        // Si pas de templates de la même spécialité, récupérer les 3 premiers templates (sauf celui actuel)
-        const { data: fallback } = await supabase
-          .from('templates')
-          .select('*')
-          .neq('id', (data as Template).id)
-          .limit(3)
-
-        relatedTemplates.value = fallback || []
-      }
-    }
-  } catch (error) {
-    console.error('Error fetching template:', error)
-  } finally {
-    loading.value = false
-  }
-})
+// Suivi e-commerce (GA4) : consultation d'un produit. Déclenché côté client dès
+// que le template est disponible, et de nouveau si le slug change (navigation
+// entre deux fiches sans démontage du composant). trackViewItem no-op en SSR.
+watch(
+  template,
+  (value) => {
+    if (value) trackViewItem(value)
+  },
+  { immediate: true }
+)
 </script>

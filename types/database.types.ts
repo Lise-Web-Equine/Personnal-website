@@ -62,6 +62,56 @@ export interface Database {
           updated_at: string
         }
       }
+      realisations: {
+        Row: {
+          id: string
+          client_name: string
+          client_profession: string
+          client_photo: string | null
+          site_url: string | null
+          site_image: string
+          quote: string
+          rating: number | null
+          type: string
+          template_id: string | null
+          featured: boolean
+          display_order: number
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          client_name: string
+          client_profession: string
+          client_photo?: string | null
+          site_url?: string | null
+          site_image: string
+          quote: string
+          rating?: number | null
+          type?: string
+          template_id?: string | null
+          featured?: boolean
+          display_order?: number
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          client_name?: string
+          client_profession?: string
+          client_photo?: string | null
+          site_url?: string | null
+          site_image?: string
+          quote?: string
+          rating?: number | null
+          type?: string
+          template_id?: string | null
+          featured?: boolean
+          display_order?: number
+          created_at?: string
+          updated_at?: string
+        }
+      }
       legal_texts: {
         Row: {
           id: string
