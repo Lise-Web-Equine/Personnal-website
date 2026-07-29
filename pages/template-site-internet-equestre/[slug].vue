@@ -555,7 +555,7 @@ useHead({
 // Récupération SSR : le template et ses données liées sont chargés côté serveur
 // (meilleur LCP/SEO), et les requêtes indépendantes sont parallélisées au lieu
 // de l'ancienne cascade de 5 requêtes séquentielles dans onMounted.
-const { data: pageData, pending: loading } = await useAsyncData(
+const { data: pageData, pending: loading, error: fetchError } = await useAsyncData(
   () => `template-${route.params.slug}`,
   async () => {
     const { data: tmpl, error: templateError } = await supabase
@@ -565,10 +565,8 @@ const { data: pageData, pending: loading } = await useAsyncData(
       .maybeSingle()
 
     if (templateError) throw templateError
-    // Slug inexistant -> vraie 404 (bon SEO, évite les pages fantômes type ":slug").
-    if (!tmpl) {
-      throw createError({ statusCode: 404, statusMessage: 'Template introuvable' })
-    }
+    // Slug inexistant -> on renvoie null, la vraie 404 est levée dans le setup.
+    if (!tmpl) return null
 
     const currentTemplate = tmpl as Template
 
@@ -630,6 +628,16 @@ const { data: pageData, pending: loading } = await useAsyncData(
     }
   }
 )
+
+// Erreur base de données -> on la propage (500). Slug inexistant -> vraie 404
+// (au niveau setup pour que le statut HTTP soit correct, bon pour le SEO et
+// évite les pages fantômes type "/:slug").
+if (fetchError.value) {
+  throw fetchError.value
+}
+if (!pageData.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Template introuvable' })
+}
 
 // Vues dérivées de la donnée SSR (conservent la même API que les anciens refs).
 const template = computed(() => pageData.value?.template ?? null)
