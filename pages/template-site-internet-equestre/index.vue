@@ -362,29 +362,23 @@ useHead({
   ]
 })
 
-const loading = ref(true)
-const templates = ref<Template[]>([])
 const supabase = useSupabaseClient()
 
-const fetchTemplates = async () => {
-  try {
+// Récupération SSR de la liste des templates : rendue côté serveur (meilleur LCP
+// et SEO) au lieu d'un fetch client dans onMounted qui affichait un spinner.
+const { data: templates, pending: loading } = await useAsyncData(
+  'templates-list',
+  async () => {
     const { data, error } = await supabase
       .from('templates')
       .select('*')
       .order('created_at', { ascending: false })
 
     if (error) throw error
-    templates.value = data || []
-  } catch (error) {
-    console.error('Error fetching templates:', error)
-  } finally {
-    loading.value = false
-  }
-}
-
-onMounted(() => {
-  fetchTemplates()
-})
+    return (data || []) as Template[]
+  },
+  { default: () => [] as Template[] }
+)
 
 const faqItems = [
 

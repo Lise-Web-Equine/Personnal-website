@@ -305,7 +305,7 @@
             <!-- CTA sur-mesure -->
             <div class="text-center mt-8 sm:mt-10">
               <p class="text-secondary-600 mb-4">Besoin d'une page ou d'un module sur-mesure ?</p>
-              <a href="#contact" class="btn-primary inline-flex items-center">
+              <a href="#contact" class="btn-primary inline-flex items-center" @click="trackEvent('surmesure_devis_cta_click')">
                 <span>Demander un devis</span>
                 <ArrowRight :size="20" class="ml-2" />
               </a>
@@ -468,6 +468,9 @@
 
 <script setup lang="ts">
 import { Code, Zap, Check, ArrowRight, Send, Target, ChevronDown, FileText, Play, Puzzle, HeartPulse, Home, Award, Camera, Briefcase, Rocket, ZoomIn, ChevronLeft, ChevronRight, X } from 'lucide-vue-next'
+
+// Suivi conversion : événements GA4 personnalisés (CTA devis, génération de lead).
+const { trackEvent } = useAnalytics()
 
 // Section "Cas concret" : carrousel (vidéo démo + images zoomables)
 type CaseImage = { type: 'video' | 'image'; src: string; alt: string; caption: string }
@@ -706,6 +709,12 @@ const handleSubmit = async () => {
     
     submitMessage.value = 'Message envoyé avec succès ! Je vous répondrai dans les plus brefs délais.'
     submitSuccess.value = true
+
+    // Suivi conversion : lead généré via le formulaire de devis sur-mesure.
+    trackEvent('generate_lead', {
+      form: 'sur-mesure',
+      project_type: form.value.projectType
+    })
     
     // Réinitialiser le formulaire
     form.value = {

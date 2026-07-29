@@ -48,6 +48,7 @@
       v-if="ctaLink && ctaText"
       :to="ctaLink"
       :class="buttonClasses"
+      @click="$emit('cta-click')"
     >
       <span class="font-bold">{{ ctaText }}</span>
       <ArrowRight :size="20" class="ml-2" />
@@ -85,6 +86,9 @@ const props = withDefaults(defineProps<Props>(), {
   featured: false,
   motionDirection: 'bottom'
 })
+
+// Émis lors du clic sur le bouton CTA (permet le suivi analytics dans le parent).
+defineEmits(['cta-click'])
 
 const variantClasses = computed(() => {
   const variants = {

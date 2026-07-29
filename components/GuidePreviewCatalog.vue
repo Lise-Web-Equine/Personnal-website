@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, defineAsyncComponent } from 'vue'
 import { Eye, X, ChevronLeft, ChevronRight } from 'lucide-vue-next'
+
+// Visionneuse PDF chargée à la demande (pdf.js est lourd) : le chunk n'est
+// téléchargé qu'à l'ouverture de l'aperçu, pas sur toutes les pages du site.
+const VuePdfEmbed = defineAsyncComponent(() => import('vue-pdf-embed'))
 
 interface GuidePage {
   label: string

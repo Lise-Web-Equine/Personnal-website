@@ -123,6 +123,31 @@ useHead({ meta: [{ name: 'robots', content: 'noindex, nofollow' }] })
 // Récupérer les paramètres de l'URL (session_id)
 const route = useRoute()
 const sessionId = route.query.session_id as string
+const { trackPurchase } = useEcommerceTracking()
+
+// Suivi e-commerce : envoie l'event "purchase" à GA4, une seule fois par session
+// (une clé en sessionStorage évite un double comptage lors d'un rechargement).
+const trackPurchaseOnce = (sessionData: any) => {
+  if (typeof window === 'undefined') return
+  const storageKey = `purchase_tracked_${sessionId}`
+  if (sessionStorage.getItem(storageKey)) return
+
+  const lineItems = sessionData?.line_items?.data ?? []
+  const items = lineItems.map((line: any) => ({
+    item_id: line.price?.id || line.id,
+    item_name: line.description,
+    quantity: line.quantity ?? 1,
+    price: (line.amount_total ?? 0) / 100
+  }))
+
+  trackPurchase({
+    transactionId: sessionId,
+    value: (sessionData?.amount_total ?? 0) / 100,
+    items
+  })
+
+  sessionStorage.setItem(storageKey, '1')
+}
 
 // Envoyer l'email de confirmation au chargement de la page
 onMounted(async () => {
@@ -132,6 +157,10 @@ onMounted(async () => {
       
       // Récupérer d'abord les détails de la session
       const sessionData = await $fetch(`/api/stripe/session/${sessionId}`)
+
+      // Suivi e-commerce : achat finalisé (GA4).
+      trackPurchaseOnce(sessionData)
+
       const customerEmail = sessionData.customer_details?.email
       
       if (!customerEmail) {

@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: false },
 
-  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@vueuse/motion/nuxt', '@vercel/speed-insights/nuxt','@vercel/analytics', '@nuxt/image', ['@nuxtjs/supabase', {
+  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@vueuse/motion/nuxt', '@vercel/speed-insights/nuxt','@vercel/analytics', '@nuxt/image', '@nuxtjs/sitemap', ['@nuxtjs/supabase', {
     redirect: false
   }]],
 
@@ -65,6 +65,7 @@ export default defineNuxtConfig({
 
   nitro: {
     routeRules: {
+      '/template-site-internet-equestre/osteopathe-equin': { redirect: '/template-site-internet-equestre/masseur-equin', statusCode: 301 },
       '/studio': { redirect: '/creation-site-internet-equestre/sur-mesure', statusCode: 301 },
       '/creation-template-site-internet-equestre': { redirect: '/creation-site-internet-equestre/cle-en-main', statusCode: 301 },
       '/templates': { redirect: '/template-site-internet-equestre', statusCode: 301 },
@@ -103,16 +104,39 @@ export default defineNuxtConfig({
   },
 
   sitemap: {
+    // Rafraîchit automatiquement la date de dernière modification.
+    autoLastmod: true,
+
+    // Pages privées / transactionnelles / techniques exclues de l'indexation.
+    exclude: [
+      '/admin-dashboard',
+      '/login',
+      '/maintenance',
+      '/cart',
+      '/success',
+      '/debug-api',
+      '/studio',
+      '/test-email',
+      '/test-confirmation-email',
+      '/test-stripe-session',
+      '/test-supabase',
+      '/test-webhook',
+      '/templates',
+      '/templates/**'
+    ],
+
+    // Source dynamique : URLs des templates récupérées depuis Supabase.
+    sources: ['/api/__sitemap__/urls'],
+
+    // Pages statiques principales avec leurs priorités / fréquences.
     urls: [
       { loc: '/', changefreq: 'weekly', priority: 1.0 },
       { loc: '/creation-site-internet-equestre', changefreq: 'monthly', priority: 0.9 },
       { loc: '/creation-site-internet-equestre/sur-mesure', changefreq: 'monthly', priority: 0.9 },
       { loc: '/creation-site-internet-equestre/cle-en-main', changefreq: 'monthly', priority: 0.9 },
       { loc: '/template-site-internet-equestre', changefreq: 'weekly', priority: 0.9 },
+      { loc: '/about', changefreq: 'monthly', priority: 0.8 },
       { loc: '/contact', changefreq: 'monthly', priority: 0.8 },
-      { loc: '/template-site-internet-equestre/osteopathe-equin', changefreq: 'monthly', priority: 0.8 },
-      { loc: '/template-site-internet-equestre/shiatsu-equin', changefreq: 'monthly', priority: 0.8 },
-      { loc: '/template-site-internet-equestre/cart', changefreq: 'never', priority: 0.3 },
       { loc: '/mentions-legales', changefreq: 'yearly', priority: 0.3 },
       { loc: '/cgu', changefreq: 'yearly', priority: 0.3 },
       { loc: '/cgv', changefreq: 'yearly', priority: 0.3 },

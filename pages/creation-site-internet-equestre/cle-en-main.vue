@@ -235,6 +235,7 @@ Inutile de viser un site énorme : une page bien pensée suffit à convaincre.
               data-cal-namespace="site-cle-en-main"
               data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
               class="btn-primary"
+              @click="trackEvent('cle_en_main_booking_click', { cta: 'lancer-mon-site' })"
             >
               <span>Lancer mon site internet</span>
             </button>
@@ -243,6 +244,7 @@ Inutile de viser un site énorme : une page bien pensée suffit à convaincre.
               data-cal-namespace="echange-decouverte"
               data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
               class="text-sm sm:text-base text-secondary-600 hover:text-primary-600 font-medium transition-colors duration-200 inline-flex items-center justify-center group"
+              @click="trackEvent('cle_en_main_booking_click', { cta: 'discuter-projet' })"
             >
               <span>Discuter de mon projet ensemble</span>
               <ArrowRight :size="16" class="ml-2 group-hover:translate-x-1 transition-transform" />
@@ -369,6 +371,9 @@ type RealisationTemplateLink = Pick<Template, 'slug' | 'name'>
 
 const supabase = useSupabase()
 
+// Suivi conversion : événements GA4 personnalisés (quiz, lead magnet, RDV).
+const { trackEvent } = useAnalytics()
+
 // Questions du sondage de qualification (une après l'autre)
 const questions = [
   'Tu es praticien du bien-être animalier ?',
@@ -383,11 +388,23 @@ const showResult = ref(false)
 
 // Enregistre la réponse et passe à la question suivante (ou au résultat)
 const answer = (value: boolean) => {
+  // Suivi conversion : démarrage du quiz de qualification (à la première réponse).
+  if (answers.value.length === 0) {
+    trackEvent('cle_en_main_quiz_start')
+  }
+
   answers.value.push(value)
+  trackEvent('cle_en_main_quiz_answer', {
+    question_index: currentQuestion.value,
+    answer: value ? 'oui' : 'non'
+  })
+
   if (currentQuestion.value < questions.length - 1) {
     currentQuestion.value++
   } else {
     showResult.value = true
+    // Suivi conversion : quiz terminé, résultat affiché.
+    trackEvent('cle_en_main_quiz_complete')
   }
 }
 
@@ -405,6 +422,9 @@ const email = ref('')
 const emailSubmitted = ref(false)
 const handleEmailSubmit = () => {
   emailSubmitted.value = true
+
+  // Suivi conversion : lead généré via le guide gratuit (lead magnet).
+  trackEvent('generate_lead', { form: 'cle-en-main', source: 'guide-gratuit' })
 }
 
 // Prestations incluses dans l'offre template clé en main

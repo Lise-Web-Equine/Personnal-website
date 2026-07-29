@@ -35,13 +35,21 @@ export const useCartStore = defineStore('cart', {
       }
 
       this.saveToLocalStorage()
+
+      // Suivi e-commerce : ajout au panier (GA4).
+      useEcommerceTracking().trackAddToCart(template)
     },
 
     removeFromCart(templateId: string) {
       const index = this.items.findIndex(item => item.template.id === templateId)
       if (index > -1) {
-        this.items.splice(index, 1)
+        const [removed] = this.items.splice(index, 1)
         this.saveToLocalStorage()
+
+        // Suivi e-commerce : retrait du panier (GA4).
+        if (removed) {
+          useEcommerceTracking().trackRemoveFromCart(removed.template, removed.quantity)
+        }
       }
     },
 

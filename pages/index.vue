@@ -9,7 +9,7 @@
           <NuxtImg
             src="/images/Hestabien-27.jpg"
             alt="Agence web équestre"
-            class="w-full h-full object-cover"
+            class="absolute inset-0 w-full h-full object-cover"
             sizes="100vw"
             preload
             loading="eager"

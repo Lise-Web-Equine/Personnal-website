@@ -135,7 +135,7 @@
                 <div class="p-6 sm:p-8">
                   <h3 class="text-xl sm:text-2xl font-bold text-secondary-900 mb-3">{{ recommendation.title }}</h3>
                   <p class="text-sm sm:text-base text-secondary-600 leading-relaxed mb-6">{{ recommendation.description }}</p>
-                  <NuxtLink :to="recommendation.link" class="btn-primary inline-flex items-center">
+                  <NuxtLink :to="recommendation.link" class="btn-primary inline-flex items-center" @click="trackQuizCtaClick">
                     <span>{{ recommendation.cta }}</span>
                     <ArrowRight :size="20" class="ml-2" />
                   </NuxtLink>
@@ -223,6 +223,7 @@
             :cta-link="offer.link"
             :featured="offer.featured"
             motion-direction="bottom"
+            @cta-click="trackOfferCtaClick(offer)"
           />
         </div>
     </section>
@@ -317,9 +318,20 @@ const profiles = [
   }
 ]
 
+const { trackEvent } = useAnalytics()
+
 const openProfile = ref(0)
 const toggleProfile = (index: number) => {
-  openProfile.value = openProfile.value === index ? -1 : index
+  const willOpen = openProfile.value !== index
+  openProfile.value = willOpen ? index : -1
+
+  // Suivi conversion : ouverture d'une carte "Un site adapté à votre métier".
+  if (willOpen) {
+    trackEvent('creation_profile_card_open', {
+      profile_title: profiles[index]?.title,
+      position: index
+    })
+  }
 }
 
 // Section "Pourquoi travailler ensemble ?" : accordéon (premier item ouvert par défaut)
@@ -412,21 +424,67 @@ const followUp = computed<FollowUp | null>(() =>
 )
 
 const selectProfile = (key: ProfileKey) => {
+  // Suivi conversion : démarrage du quiz "Quel site web pour votre structure ?"
+  // (uniquement au tout premier choix de profil, depuis l'étape initiale).
+  if (formStep.value === 0) {
+    trackEvent('creation_quiz_start')
+  }
+
   selectedProfile.value = key
   selectedOption.value = null
+
+  const label = profileOptions.find(option => option.key === key)?.label
+  trackEvent('creation_quiz_select_profile', { profile_key: key, profile_label: label })
+
   // "Marque & Agence" n'a pas de question de suivi : on affiche directement la recommandation
   formStep.value = followUpQuestions[key] ? 1 : 2
+
+  // Si aucune question de suivi, la recommandation est affichée immédiatement.
+  if (formStep.value === 2) {
+    trackQuizViewResult()
+  }
 }
 
 const selectOption = (index: number) => {
   selectedOption.value = index
+  trackEvent('creation_quiz_answer', {
+    profile_key: selectedProfile.value,
+    answer_index: index
+  })
   formStep.value = 2
+  trackQuizViewResult()
 }
 
 const resetForm = () => {
   formStep.value = 0
   selectedProfile.value = null
   selectedOption.value = null
+}
+
+// Suivi conversion : la recommandation d'offre est affichée à l'utilisateur.
+const trackQuizViewResult = () => {
+  trackEvent('creation_quiz_view_result', {
+    profile_key: selectedProfile.value,
+    recommendation_title: recommendation.value?.title,
+    recommendation_link: recommendation.value?.link
+  })
+}
+
+// Suivi conversion : clic sur le CTA de la recommandation (fin du tunnel quiz).
+const trackQuizCtaClick = () => {
+  trackEvent('creation_quiz_cta_click', {
+    profile_key: selectedProfile.value,
+    cta_label: recommendation.value?.cta,
+    destination: recommendation.value?.link
+  })
+}
+
+// Suivi conversion : clic sur un CTA de la section "offres".
+const trackOfferCtaClick = (offer: { title: string, link: string }) => {
+  trackEvent('creation_offer_cta_click', {
+    offer_title: offer.title,
+    destination: offer.link
+  })
 }
 
 // Détermine l'offre recommandée selon le profil et la réponse de suivi

@@ -539,6 +539,7 @@ type RealisationTemplateLink = Pick<Template, 'slug' | 'name'>
 const route = useRoute()
 const supabase = useSupabase()
 const cartStore = useCartStore()
+const { trackViewItem } = useEcommerceTracking()
 
 // Load Calendly script
 useHead({
@@ -551,13 +552,90 @@ useHead({
   ]
 })
 
-const loading = ref(true)
-const template = ref<Template | null>(null)
-const relatedTemplates = ref<Template[]>([])
-const realisations = ref<Realisation[]>([])
-// Template concerné par le témoignage mis en avant, uniquement s'il diffère de
-// la page courante (permet d'afficher un bouton "Voir le template").
-const realisationTemplate = ref<RealisationTemplateLink | null>(null)
+// Récupération SSR : le template et ses données liées sont chargés côté serveur
+// (meilleur LCP/SEO), et les requêtes indépendantes sont parallélisées au lieu
+// de l'ancienne cascade de 5 requêtes séquentielles dans onMounted.
+const { data: pageData, pending: loading } = await useAsyncData(
+  () => `template-${route.params.slug}`,
+  async () => {
+    const { data: tmpl, error: templateError } = await supabase
+      .from('templates')
+      .select('*')
+      .eq('slug', route.params.slug)
+      .maybeSingle()
+
+    if (templateError) throw templateError
+    // Slug inexistant -> vraie 404 (bon SEO, évite les pages fantômes type ":slug").
+    if (!tmpl) {
+      throw createError({ statusCode: 404, statusMessage: 'Template introuvable' })
+    }
+
+    const currentTemplate = tmpl as Template
+
+    // Requêtes indépendantes lancées en parallèle.
+    const [linkedRealisationsRes, relatedRes] = await Promise.all([
+      supabase
+        .from('realisations')
+        .select('*')
+        .eq('template_id', currentTemplate.id)
+        .order('display_order', { ascending: true }),
+      supabase
+        .from('templates')
+        .select('*')
+        .eq('speciality', currentTemplate.speciality)
+        .neq('id', currentTemplate.id)
+        .limit(3)
+    ])
+
+    // Réalisations liées, avec repli sur les réalisations mises en avant.
+    let realisationsList = (linkedRealisationsRes.data as Realisation[]) || []
+    if (realisationsList.length === 0) {
+      const { data: featured } = await supabase
+        .from('realisations')
+        .select('*')
+        .eq('featured', true)
+        .order('display_order', { ascending: true })
+        .limit(3)
+      realisationsList = (featured as Realisation[]) || []
+    }
+
+    // Templates similaires, avec repli sur les premiers templates disponibles.
+    let related = (relatedRes.data as Template[]) || []
+    if (related.length === 0) {
+      const { data: fallback } = await supabase
+        .from('templates')
+        .select('*')
+        .neq('id', currentTemplate.id)
+        .limit(3)
+      related = (fallback as Template[]) || []
+    }
+
+    // Lien "Voir le template" si le témoignage mis en avant concerne un AUTRE template.
+    let linkedTestimonialTemplate: RealisationTemplateLink | null = null
+    const featuredRea = realisationsList[0]
+    if (featuredRea?.template_id && featuredRea.template_id !== currentTemplate.id) {
+      const { data: reaTemplate } = await supabase
+        .from('templates')
+        .select('slug, name')
+        .eq('id', featuredRea.template_id)
+        .maybeSingle()
+      linkedTestimonialTemplate = (reaTemplate as RealisationTemplateLink | null) ?? null
+    }
+
+    return {
+      template: currentTemplate,
+      realisations: realisationsList,
+      relatedTemplates: related,
+      realisationTemplate: linkedTestimonialTemplate
+    }
+  }
+)
+
+// Vues dérivées de la donnée SSR (conservent la même API que les anciens refs).
+const template = computed(() => pageData.value?.template ?? null)
+const relatedTemplates = computed(() => pageData.value?.relatedTemplates ?? [])
+const realisations = computed(() => pageData.value?.realisations ?? [])
+const realisationTemplate = computed(() => pageData.value?.realisationTemplate ?? null)
 const showGuideModal = ref(false)
 
 // Contenu de la section "guide stratégique offert" (identique à la page liste des templates).
@@ -675,78 +753,14 @@ const handleAddToCart = () => {
   }
 }
 
-onMounted(async () => {
-  try {
-    const { data, error } = await supabase
-      .from('templates')
-      .select('*')
-      .eq('slug', route.params.slug)
-      .maybeSingle()
-
-    if (error) throw error
-    template.value = data
-
-    if (data) {
-      // Récupérer les réalisations liées à ce template (preuve sociale ciblée).
-      // Repli sur les réalisations mises en avant si aucune n'est liée.
-      const { data: linkedRealisations } = await supabase
-        .from('realisations')
-        .select('*')
-        .eq('template_id', (data as Template).id)
-        .order('display_order', { ascending: true })
-
-      if (linkedRealisations && linkedRealisations.length > 0) {
-        realisations.value = linkedRealisations as Realisation[]
-      } else {
-        const { data: featuredRealisations } = await supabase
-          .from('realisations')
-          .select('*')
-          .eq('featured', true)
-          .order('display_order', { ascending: true })
-          .limit(3)
-
-        realisations.value = (featuredRealisations as Realisation[]) || []
-      }
-
-      // Si le témoignage mis en avant concerne un AUTRE template que celui de la
-      // page courante, on récupère son slug pour proposer un lien "Voir le template".
-      const featuredRea = realisations.value[0]
-      if (featuredRea?.template_id && featuredRea.template_id !== (data as Template).id) {
-        const { data: reaTemplate } = await supabase
-          .from('templates')
-          .select('slug, name')
-          .eq('id', featuredRea.template_id)
-          .maybeSingle()
-        realisationTemplate.value = (reaTemplate as RealisationTemplateLink | null) ?? null
-      } else {
-        realisationTemplate.value = null
-      }
-
-      // Essayer de récupérer des templates de la même spécialité
-      const { data: related } = await supabase
-        .from('templates')
-        .select('*')
-        .eq('speciality', (data as Template).speciality)
-        .neq('id', (data as Template).id)
-        .limit(3)
-
-      if (related && related.length > 0) {
-        relatedTemplates.value = related
-      } else {
-        // Si pas de templates de la même spécialité, récupérer les 3 premiers templates (sauf celui actuel)
-        const { data: fallback } = await supabase
-          .from('templates')
-          .select('*')
-          .neq('id', (data as Template).id)
-          .limit(3)
-
-        relatedTemplates.value = fallback || []
-      }
-    }
-  } catch (error) {
-    console.error('Error fetching template:', error)
-  } finally {
-    loading.value = false
-  }
-})
+// Suivi e-commerce (GA4) : consultation d'un produit. Déclenché côté client dès
+// que le template est disponible, et de nouveau si le slug change (navigation
+// entre deux fiches sans démontage du composant). trackViewItem no-op en SSR.
+watch(
+  template,
+  (value) => {
+    if (value) trackViewItem(value)
+  },
+  { immediate: true }
+)
 </script>

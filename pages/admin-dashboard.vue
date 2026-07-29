@@ -1114,7 +1114,7 @@
                   <span class="text-sm text-gray-500">{{ clientPhotoFile?.name || 'Photo actuelle conservée' }}</span>
                 </div>
                 <div v-if="clientPhotoPreview" class="mt-4">
-                  <img :src="clientPhotoPreview" alt="Photo du client" class="w-20 h-20 object-cover rounded-full border border-gray-200" />
+                  <img :src="clientPhotoPreview" alt="Développement de site internet pour leséquestre" class="w-20 h-20 object-cover rounded-full border border-gray-200" />
                 </div>
               </div>
 
