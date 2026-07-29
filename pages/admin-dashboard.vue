@@ -297,43 +297,70 @@
                   ></textarea>
                 </div>
 
-                <!-- Lists -->
+                <!-- Liste (un élément par ligne) -->
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-1">
+                    Liste
+                  </label>
+                  <textarea
+                    :value="metierListText(newTemplate.metier_lists)"
+                    @input="setMetierListText(newTemplate, $event)"
+                    rows="5"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="Un élément par ligne. **Gras** et [liens](/contact) supportés.&#10;Premier élément&#10;Deuxième élément"
+                  ></textarea>
+                </div>
+              </div>
+
+              <!-- Questions fréquentes personnalisées -->
+              <div class="border border-gray-200 rounded-xl p-6 bg-gray-50 space-y-4">
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-900">Questions fréquentes du template</h3>
+                  <p class="text-sm text-gray-500">Questions ajoutées à la section FAQ de la page de ce template (question, réponse texte et/ou liste).</p>
+                </div>
+
                 <div class="space-y-4">
                   <div
-                    v-for="(list, index) in newTemplate.metier_lists"
+                    v-for="(item, index) in newTemplate.faq_items"
                     :key="index"
                     class="border border-gray-200 rounded-lg p-4 bg-white space-y-3"
                   >
                     <div class="flex justify-between items-center">
-                      <span class="text-sm font-semibold text-gray-700">Liste {{ index + 1 }}</span>
+                      <span class="text-sm font-semibold text-gray-700">Question {{ index + 1 }}</span>
                       <button
-                        @click="removeMetierList(newTemplate.metier_lists, index)"
+                        @click="removeFaqItem(newTemplate.faq_items, index)"
                         class="text-sm text-red-600 hover:text-red-700"
                       >
                         Supprimer
                       </button>
                     </div>
                     <input
-                      v-model="list.subtitle"
+                      v-model="item.question"
                       type="text"
                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                      placeholder="Sous-titre de la liste (ex: Ce que vous obtenez)"
+                      placeholder="Question (ex: Ce template convient-il à mon activité ?)"
                     />
                     <textarea
-                      :value="list.items.join('\n')"
-                      @input="setMetierItems(list, $event)"
+                      v-model="item.answer"
                       rows="4"
                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                      placeholder="Un élément par ligne&#10;Premier élément&#10;Deuxième élément"
+                      placeholder="Réponse (texte). **Gras** et [liens](/contact) supportés."
+                    ></textarea>
+                    <textarea
+                      :value="(item.list || []).join('\n')"
+                      @input="setFaqList(item, $event)"
+                      rows="3"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      placeholder="Liste optionnelle (un élément par ligne)&#10;Premier élément&#10;Deuxième élément"
                     ></textarea>
                   </div>
                 </div>
 
                 <button
-                  @click="addMetierList(newTemplate.metier_lists)"
+                  @click="addFaqItem(newTemplate.faq_items)"
                   class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
                 >
-                  + Ajouter une liste
+                  + Ajouter une question
                 </button>
               </div>
 
@@ -674,43 +701,70 @@
                   ></textarea>
                 </div>
 
-                <!-- Lists -->
+                <!-- Liste (un élément par ligne) -->
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-1">
+                    Liste
+                  </label>
+                  <textarea
+                    :value="metierListText(editingTemplate!.metier_lists)"
+                    @input="setMetierListText(editingTemplate!, $event)"
+                    rows="5"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="Un élément par ligne. **Gras** et [liens](/contact) supportés.&#10;Premier élément&#10;Deuxième élément"
+                  ></textarea>
+                </div>
+              </div>
+
+              <!-- Questions fréquentes personnalisées -->
+              <div class="border border-gray-200 rounded-xl p-6 bg-gray-50 space-y-4">
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-900">Questions fréquentes du template</h3>
+                  <p class="text-sm text-gray-500">Questions ajoutées à la section FAQ de la page de ce template (question, réponse texte et/ou liste).</p>
+                </div>
+
                 <div class="space-y-4">
                   <div
-                    v-for="(list, index) in editingTemplate!.metier_lists"
+                    v-for="(item, index) in editingTemplate!.faq_items"
                     :key="index"
                     class="border border-gray-200 rounded-lg p-4 bg-white space-y-3"
                   >
                     <div class="flex justify-between items-center">
-                      <span class="text-sm font-semibold text-gray-700">Liste {{ index + 1 }}</span>
+                      <span class="text-sm font-semibold text-gray-700">Question {{ index + 1 }}</span>
                       <button
-                        @click="removeMetierList(editingTemplate!.metier_lists, index)"
+                        @click="removeFaqItem(editingTemplate!.faq_items, index)"
                         class="text-sm text-red-600 hover:text-red-700"
                       >
                         Supprimer
                       </button>
                     </div>
                     <input
-                      v-model="list.subtitle"
+                      v-model="item.question"
                       type="text"
                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                      placeholder="Sous-titre de la liste (ex: Ce que vous obtenez)"
+                      placeholder="Question (ex: Ce template convient-il à mon activité ?)"
                     />
                     <textarea
-                      :value="list.items.join('\n')"
-                      @input="setMetierItems(list, $event)"
+                      v-model="item.answer"
                       rows="4"
                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                      placeholder="Un élément par ligne&#10;Premier élément&#10;Deuxième élément"
+                      placeholder="Réponse (texte). **Gras** et [liens](/contact) supportés."
+                    ></textarea>
+                    <textarea
+                      :value="(item.list || []).join('\n')"
+                      @input="setFaqList(item, $event)"
+                      rows="3"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      placeholder="Liste optionnelle (un élément par ligne)&#10;Premier élément&#10;Deuxième élément"
                     ></textarea>
                   </div>
                 </div>
 
                 <button
-                  @click="addMetierList(editingTemplate!.metier_lists)"
+                  @click="addFaqItem(editingTemplate!.faq_items)"
                   class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
                 >
-                  + Ajouter une liste
+                  + Ajouter une question
                 </button>
               </div>
 
@@ -1269,7 +1323,7 @@ useHead({ meta: [{ name: 'robots', content: 'noindex, nofollow' }] })
 // Import database types
 import { Star, Download, ShoppingCart } from 'lucide-vue-next'
 import { useCartStore } from '~/stores/cart'
-import type { Template, TemplateUpdate, TemplateCreate, Realisation, RealisationCreate, RealisationUpdate, MetierList } from '~/models'
+import type { Template, TemplateUpdate, TemplateCreate, Realisation, RealisationCreate, RealisationUpdate, MetierList, FaqItem } from '~/models'
 import type { Database } from '~/types/database.types'
 
 const supabase = useSupabaseClient<Database>()
@@ -1320,7 +1374,8 @@ const newTemplate = ref<TemplateCreate>({
   seo_description: '',
   metier_title: '',
   metier_text: '',
-  metier_lists: []
+  metier_lists: [],
+  faq_items: []
 })
 
 // Utility function to generate slug from name
@@ -1450,7 +1505,8 @@ const resetForm = () => {
     seo_description: '',
     metier_title: '',
     metier_text: '',
-    metier_lists: []
+    metier_lists: [],
+    faq_items: []
   }
   imageFile.value = null
   imagePreview.value = ''
@@ -1458,31 +1514,53 @@ const resetForm = () => {
 }
 
 // ─────────────────────────────────────────────────────────────
-// Métier section list helpers (title + text + multiple sub-lists)
+// Métier section list helper (title + text + a single bullet list)
 // ─────────────────────────────────────────────────────────────
-// Adds an empty list block to the given lists array.
-const addMetierList = (lists: MetierList[]) => {
-  lists.push({ subtitle: '', items: [] })
+// Returns the list items as newline-separated text for the textarea.
+const metierListText = (lists: MetierList[]) =>
+  (lists?.[0]?.items || []).join('\n')
+
+// Stores the textarea content as a single list block (one item per line).
+// Raw newlines are kept while editing; empty lines are filtered on save.
+const setMetierListText = (target: { metier_lists: MetierList[] }, event: Event) => {
+  target.metier_lists = [{ items: (event.target as HTMLTextAreaElement).value.split('\n') }]
 }
 
-// Removes the list block at the given index.
-const removeMetierList = (lists: MetierList[], index: number) => {
-  lists.splice(index, 1)
-}
-
-// Keeps raw newline-separated text while editing (empty lines filtered on save).
-const setMetierItems = (list: MetierList, event: Event) => {
-  list.items = (event.target as HTMLTextAreaElement).value.split('\n')
-}
-
-// Cleans list blocks before persisting: trims items, drops empty items/blocks.
+// Cleans the list before persisting: trims items, drops empty items/blocks.
 const cleanMetierLists = (lists: MetierList[]): MetierList[] =>
   lists
     .map(l => ({
-      subtitle: (l.subtitle || '').trim(),
       items: (l.items || []).map(i => i.trim()).filter(Boolean)
     }))
-    .filter(l => l.subtitle || l.items.length > 0)
+    .filter(l => l.items.length > 0)
+
+// ─────────────────────────────────────────────────────────────
+// Custom FAQ helpers (per-template question + answer text + list)
+// ─────────────────────────────────────────────────────────────
+// Adds an empty FAQ entry to the given array.
+const addFaqItem = (items: FaqItem[]) => {
+  items.push({ question: '', answer: '', list: [] })
+}
+
+// Removes the FAQ entry at the given index.
+const removeFaqItem = (items: FaqItem[], index: number) => {
+  items.splice(index, 1)
+}
+
+// Keeps raw newline-separated text while editing the list (filtered on save).
+const setFaqList = (item: FaqItem, event: Event) => {
+  item.list = (event.target as HTMLTextAreaElement).value.split('\n')
+}
+
+// Cleans FAQ entries before persisting: trims fields, drops empty ones.
+const cleanFaqItems = (items: FaqItem[]): FaqItem[] =>
+  items
+    .map(i => ({
+      question: (i.question || '').trim(),
+      answer: (i.answer || '').trim(),
+      list: (i.list || []).map(li => li.trim()).filter(Boolean)
+    }))
+    .filter(i => i.question && (i.answer || i.list.length > 0))
 
 const resetEditForm = () => {
   editingTemplate.value = null
@@ -1500,7 +1578,8 @@ const startEditTemplate = (template: Template) => {
     seo_description: template.seo_description || '',
     metier_title: template.metier_title || '',
     metier_text: template.metier_text || '',
-    metier_lists: (template.metier_lists || []).map(l => ({ subtitle: l.subtitle, items: [...(l.items || [])] }))
+    metier_lists: (template.metier_lists || []).map(l => ({ items: [...(l.items || [])] })),
+    faq_items: (template.faq_items || []).map(i => ({ question: i.question, answer: i.answer || '', list: [...(i.list || [])] }))
   }
   imagePreview.value = template.image
   showEditForm.value = true
@@ -1550,6 +1629,7 @@ const updateTemplate = async () => {
       metier_title: editingTemplate.value.metier_title,
       metier_text: editingTemplate.value.metier_text,
       metier_lists: cleanMetierLists(editingTemplate.value.metier_lists || []),
+      faq_items: cleanFaqItems(editingTemplate.value.faq_items || []),
       updated_at: new Date().toISOString()
     }
     
@@ -1616,7 +1696,8 @@ const addNewTemplate = async () => {
       seo_description: newTemplate.value.seo_description,
       metier_title: newTemplate.value.metier_title,
       metier_text: newTemplate.value.metier_text,
-      metier_lists: cleanMetierLists(newTemplate.value.metier_lists || [])
+      metier_lists: cleanMetierLists(newTemplate.value.metier_lists || []),
+      faq_items: cleanFaqItems(newTemplate.value.faq_items || [])
     }
     
     const { error } = await supabase
@@ -1911,7 +1992,8 @@ const addTemplates = async () => {
         seo_description: '',
         metier_title: '',
         metier_text: '',
-        metier_lists: []
+        metier_lists: [],
+        faq_items: []
       },
       {
         name: 'Ancrage',
@@ -1932,7 +2014,8 @@ const addTemplates = async () => {
         seo_description: '',
         metier_title: '',
         metier_text: '',
-        metier_lists: []
+        metier_lists: [],
+        faq_items: []
       }
     ]
 

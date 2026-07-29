@@ -225,14 +225,13 @@
                 <ul
                   v-for="(list, index) in template.metier_lists"
                   :key="index"
-                  class="list-disc pl-5 space-y-2 text-gray-700 marker:text-primary-600"
+                  class="list-disc list-inside space-y-1 text-base sm:text-lg text-gray-600 leading-relaxed"
                 >
                   <li
                     v-for="(item, itemIndex) in list.items"
                     :key="itemIndex"
-                  >
-                    {{ item }}
-                  </li>
+                    v-html="formatListItem(item)"
+                  ></li>
                 </ul>
               </div>
             </div>
@@ -578,7 +577,7 @@ const guideFeatures = [
 ]
 
 // Section "FAQ" : questions fréquentes affichées avant le CTA (rendu via le composant Accordion).
-const faqItems = [
+const defaultFaqItems = [
   {
     question: "Combien me coûte mon site web au total ?",
     answer: "**C'est la solution la moins chère du marché** pour un résultat professionnel :\n\n- **Le template** : Paiement unique (selon le template choisi)\n- **L'abonnement technique** : Pour activer toutes les fonctionnalités premium (votre propre nom de domaine, formulaires, etc.), il faudra souscrire à l'offre Carrd Pro Standard\n- **Le coût total** : Environ **19$ par an** (soit moins de **2€/mois**)\n\n**C'est imbattable** comparé aux 150€ ou 200€ demandés par d'autres plateformes !"
@@ -592,6 +591,23 @@ const faqItems = [
     answer: "**Un hébergement gratuit est inclus** via l'extension .carrd.co (ex: monactivite.carrd.co), ce qui vous permet de mettre votre site en ligne immédiatement.\n\n**Vous souhaitez un nom de domaine personnalisé** (ex: .fr ou .com) ? C'est tout à fait possible :\n- Le nom de domaine s'obtient auprès d'un registrar (à partir d'environ **10€/an**)\n- Sa connexion nécessite l'abonnement Carrd Pro Standard\n- Il suffit de [me contacter](/contact) pour que nous mettions cela en place ensemble une fois votre template acquis"
   }
 ]
+
+// FAQ affichée : les questions personnalisées du template sont placées en tête,
+// suivies des questions génériques communes à tous les templates.
+const faqItems = computed(() => [
+  ...(template.value?.faq_items ?? []),
+  ...defaultFaqItems
+])
+
+// Applique le formatage inline (gras + liens) sur un item de liste,
+// à l'identique du rendu des listes de la FAQ (composant Accordion).
+const formatListItem = (text: string) => {
+  return text
+    // Gras pour les termes importants
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    // Liens
+    .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-primary-600 hover:text-primary-700 underline" target="_blank" rel="noopener noreferrer">$1</a>')
+}
 
 const siteUrl = 'https://lisewebequine.fr'
 
