@@ -56,6 +56,15 @@ export default defineNuxtConfig({
             window.axeptioSettings = {
               clientId: "6a7b363d164a9571857e38d7",
               cookiesVersion: "e2b99bce-df9c-4bb8-8bf7-e32a92114f99",
+              googleConsentMode: {
+                default: {
+                  analytics_storage: "denied",
+                  ad_storage: "denied",
+                  ad_user_data: "denied",
+                  ad_personalization: "denied",
+                  wait_for_update: 500
+                }
+              }
             };
             (function(d, s) {
               var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
