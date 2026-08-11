@@ -50,6 +50,20 @@ export default defineNuxtConfig({
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap' }
       ],
       script: [
+        // Axeptio - Gestion du consentement (doit se charger avant les scripts analytics)
+        {
+          innerHTML: `
+            window.axeptioSettings = {
+              clientId: "6a7b363d164a9571857e38d7",
+              cookiesVersion: "e2b99bce-df9c-4bb8-8bf7-e32a92114f99",
+            };
+            (function(d, s) {
+              var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
+              e.async = true; e.src = "//static.axept.io/sdk.js";
+              t.parentNode.insertBefore(e, t);
+            })(document, "script");
+          `
+        },
         { src: 'https://www.googletagmanager.com/gtag/js?id=G-THH7659RXF', async: true },
         {
           innerHTML: `
