@@ -328,9 +328,10 @@
               <video
                 class="w-full aspect-video object-cover bg-secondary-900"
                 src="/videos/prise-en-main.mp4"
+                poster="/videos/prise-en-main-poster.jpg"
                 controls
                 playsinline
-                preload="metadata"
+                preload="none"
                 aria-label="Tutoriel vidéo : prise en main de l'outil"
               ></video>
               <div class="p-5 sm:p-6 flex-1">
@@ -351,9 +352,10 @@
               <video
                 class="w-full aspect-video object-cover bg-secondary-900"
                 src="/videos/personnaliser-template.mp4"
+                poster="/videos/personnaliser-template-poster.jpg"
                 controls
                 playsinline
-                preload="metadata"
+                preload="none"
                 aria-label="Tutoriel vidéo : personnaliser son template"
               ></video>
               <div class="p-5 sm:p-6 flex-1">
