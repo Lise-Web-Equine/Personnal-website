@@ -47,6 +47,26 @@ export class ResendService {
     })
   }
 
+  // Send a contact-form notification to the site owner, with the visitor set as reply-to
+  static async sendContactNotification(options: {
+    to: string
+    subject: string
+    htmlContent: string
+    textContent: string
+    replyTo: string
+  }) {
+    const config = useRuntimeConfig()
+    const resend = getResendClient()
+    return await resend.emails.send({
+      from: `Formulaire de contact — Lise Web Equine <${config.resendFromEmail}>`,
+      to: [options.to],
+      replyTo: options.replyTo,
+      subject: options.subject,
+      html: options.htmlContent,
+      text: options.textContent
+    })
+  }
+
   static async sendTemplateEmail(to: string, templateId: string, variables: Record<string, any>) {
     const config = useRuntimeConfig()
     const resend = getResendClient()
