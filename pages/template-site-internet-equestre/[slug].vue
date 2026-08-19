@@ -302,6 +302,79 @@
             </div>
         </section>
 
+        <!-- Section : Tutoriels vidéo -->
+        <section id="tutoriels" class="py-12 sm:py-16 md:py-20 scroll-mt-24">
+          <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
+            <span class="inline-flex items-center gap-2 text-sm font-semibold text-primary-700 bg-primary-50 border border-primary-200 rounded-full px-4 py-1.5 mb-4">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
+              </svg>
+              Tutoriels vidéo
+            </span>
+            <h2 class="mb-4">On vous montre tout, pas à pas</h2>
+            <p class="text-base sm:text-lg text-secondary-600 max-w-2xl mx-auto">
+              Pas besoin d'être à l'aise avec l'informatique. Ces vidéos courtes vous accompagnent
+              de la prise en main de l'outil jusqu'à la personnalisation complète de votre template.
+              Vous avancez à votre rythme, sereinement.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            <!-- Tutoriel 1 : prise en main -->
+            <div
+              class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden flex flex-col"
+              v-motion-slide-visible-once-bottom
+            >
+              <video
+                class="w-full aspect-video object-cover bg-secondary-900"
+                src="/videos/prise-en-main.mp4"
+                controls
+                playsinline
+                preload="metadata"
+                aria-label="Tutoriel vidéo : prise en main de l'outil"
+              ></video>
+              <div class="p-5 sm:p-6 flex-1">
+                <span class="inline-block text-xs font-semibold text-primary-600 mb-2">Étape 1</span>
+                <h3 class="text-lg sm:text-xl font-bold text-secondary-900 mb-2">Prise en main de l'outil</h3>
+                <p class="text-sm sm:text-base text-secondary-600 leading-relaxed">
+                  Faites le tour de l'interface et découvrez où se trouve chaque réglage.
+                  En quelques minutes, vous savez comment vous repérer et par où commencer.
+                </p>
+              </div>
+            </div>
+
+            <!-- Tutoriel 2 : personnalisation du template -->
+            <div
+              class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden flex flex-col"
+              v-motion-slide-visible-once-bottom
+            >
+              <video
+                class="w-full aspect-video object-cover bg-secondary-900"
+                src="/videos/personnaliser-template.mp4"
+                controls
+                playsinline
+                preload="metadata"
+                aria-label="Tutoriel vidéo : personnaliser son template"
+              ></video>
+              <div class="p-5 sm:p-6 flex-1">
+                <span class="inline-block text-xs font-semibold text-primary-600 mb-2">Étape 2</span>
+                <h3 class="text-lg sm:text-xl font-bold text-secondary-900 mb-2">Personnaliser votre template</h3>
+                <p class="text-sm sm:text-base text-secondary-600 leading-relaxed">
+                  Modifiez les textes, les couleurs et les images pour rendre le site vraiment vôtre.
+                  Chaque étape est expliquée simplement, sans jargon technique.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-8 text-center text-sm text-secondary-500 flex items-center justify-center gap-2">
+            <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            Aucune compétence technique requise — et le guide de 30 pages vous accompagne à chaque étape.
+          </p>
+        </section>
+
         <!-- Section Bonus Guide -->
         <FeaturesSection
           title="Votre guide stratégique de 30 pages offert"
