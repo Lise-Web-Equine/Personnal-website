@@ -10,7 +10,7 @@
       <NuxtImg
         :src="image"
         :alt="imageAlt"
-        class="w-full h-full object-cover"
+        class="w-full h-full min-w-full min-h-full object-cover"
         sizes="100vw"
         loading="lazy"
       />

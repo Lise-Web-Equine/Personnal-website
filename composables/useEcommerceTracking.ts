@@ -12,12 +12,13 @@ interface Ga4Item {
 }
 
 // Maps a Template product to the GA4 e-commerce item format.
+// The reported price is the final (promo-aware) price actually paid.
 const toGa4Item = (template: Template, quantity = 1): Ga4Item => ({
   item_id: template.id,
   item_name: template.name,
   item_brand: 'Lise Web Equine',
   item_category: template.speciality,
-  price: template.price,
+  price: getFinalPrice(template),
   quantity
 })
 
@@ -40,7 +41,7 @@ export const useEcommerceTracking = () => {
   const trackViewItem = (template: Template) => {
     track('view_item', {
       currency: 'EUR',
-      value: template.price,
+      value: getFinalPrice(template),
       items: [toGa4Item(template)]
     })
   }
@@ -49,7 +50,7 @@ export const useEcommerceTracking = () => {
   const trackAddToCart = (template: Template, quantity = 1) => {
     track('add_to_cart', {
       currency: 'EUR',
-      value: template.price * quantity,
+      value: getFinalPrice(template) * quantity,
       items: [toGa4Item(template, quantity)]
     })
   }
@@ -58,7 +59,7 @@ export const useEcommerceTracking = () => {
   const trackRemoveFromCart = (template: Template, quantity = 1) => {
     track('remove_from_cart', {
       currency: 'EUR',
-      value: template.price * quantity,
+      value: getFinalPrice(template) * quantity,
       items: [toGa4Item(template, quantity)]
     })
   }

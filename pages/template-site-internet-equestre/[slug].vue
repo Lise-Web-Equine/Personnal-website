@@ -17,21 +17,36 @@
         <PageHeader :title="template.name" :description="template.description" />
 
         <section class="py-6 sm:py-8 md:py-12">
-            <div class="mb-6">
-              <NuxtLink to="/template-site-internet-equestre" class="inline-flex items-center text-gray-600 hover:text-black">
-                <ArrowLeft :size="20" class="mr-2" />
-                Voir tous les templates
-              </NuxtLink>
-            </div>
+
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
               <div v-motion-slide-visible-once-left>
-                <div class="relative rounded-2xl overflow-hidden shadow-2xl group">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200 group">
+                  <!-- Browser Header du mockup -->
+                  <div class="h-7 sm:h-8 bg-white border-b border-gray-200 flex items-center justify-between px-3 sm:px-4">
+                    <div class="flex items-center space-x-1.5 sm:space-x-2">
+                      <div class="w-2 h-2 bg-primary-300 rounded-full"></div>
+                      <div class="w-2 h-2 bg-primary-300 rounded-full"></div>
+                      <div class="w-2 h-2 bg-primary-300 rounded-full"></div>
+                    </div>
+                    <div v-if="hasPromo(template) || template.badge" class="flex items-center gap-1">
+                      <Badge
+                        v-if="hasPromo(template)"
+                        variant="minimal-danger"
+                        :text="`-${template.promo}%`"
+                      />
+                      <Badge
+                        v-if="template.badge"
+                        variant="minimal-plain"
+                        :text="template.badge === 'best-seller' ? 'Best-seller' : 'Nouveau'"
+                      />
+                    </div>
+                  </div>
                   <a
                     v-if="template.demo_url"
                     :href="template.demo_url"
                     target="_blank"
-                    class="block"
+                    class="block relative"
                   >
                     <NuxtImg
                       :src="template.image"
@@ -50,14 +65,6 @@
                         <span>Voir la démo</span>
                       </div>
                     </div>
-                    <!-- Template badge -->
-                    <div v-if="template.badge" class="flex absolute top-3 right-3 sm:top-4 sm:right-4">
-                      <Badge
-                        variant="minimal"
-                        :text="template.badge === 'best-seller' ? 'Best-seller' : 'Nouveau'"
-                        class="shadow-md"
-                      />
-                    </div>
                   </a>
                   <NuxtImg
                     v-else
@@ -70,122 +77,77 @@
                 </div>
               </div>
 
-              <div v-motion-slide-visible-once-right>
+              <div v-motion-slide-visible-once-right class="space-y-6">
 
-                <div v-if="template.rating > 0" class="flex items-center space-x-6 mb-4">
-                  <div class="flex items-center space-x-2">
-                    <div class="flex items-center text-yellow-500">
-                      <Star :size="20" fill="currentColor" />
-                      <span class="ml-1 text-lg font-semibold text-gray-900">{{ template.rating }}</span>
-                    </div>
+                <!-- Réassurance : note issue des avis clients (5 étoiles + ancre vers la section avis) -->
+                <a v-if="templateRating" href="#avis" class="group inline-flex items-center gap-2 w-fit">
+                  <div class="flex items-center gap-0.5">
+                    <Star
+                      v-for="star in 5"
+                      :key="star"
+                      :size="16"
+                      fill="currentColor"
+                      :class="star <= Math.round(templateRating.average) ? 'text-primary-500' : 'text-primary-200'"
+                    />
                   </div>
-                </div>
+                  <span class="text-xs text-secondary-500 underline underline-offset-2 group-hover:text-secondary-700 transition-colors">
+                    ({{ templateRating.count }} avis)
+                  </span>
+                </a>
 
-                <div v-else class="flex flex-wrap gap-2 mb-4">
-                  <Badge
-                    v-for="tag in template.tags"
-                    :key="tag"
-                    variant="tag-outline"
-                    :text="tag"
-                    icon="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
-                  />
-                </div>
-
-                <p class="text-base sm:text-lg md:text-xl text-gray-600 mb-6 leading-relaxed">
+                <!-- Description (conservée pour le SEO) -->
+                <p class="text-sm sm:text-base text-secondary-600 leading-relaxed">
                   {{ template.description }}
                 </p>
 
-                <!-- Specialties -->
-                <div v-if="template.specialties && template.specialties.length > 0" class="mb-6">
-                  <h2 class="text-base text-gray-700 mb-3 leading-relaxed">
-                    Pour les professionnels équestres du soin qui démarrent leur activité tels que
-                  </h2>
-                  <div class="flex flex-wrap gap-2">
-                    <h3
-                      v-for="specialty in template.specialties"
-                      :key="specialty"
-                      class="text-base font-semibold text-primary-700 bg-primary-50 border border-primary-200 rounded-lg px-3 py-1.5"
+                <!-- Bloc d'achat : unique conteneur encadré, point focal de la vente -->
+                <div class="border-y border-secondary-200 py-6 space-y-4">
+                  <div class="flex items-end flex-wrap gap-x-2 gap-y-1">
+                    <span
+                      class="text-3xl font-bold"
+                      :class="hasPromo(template) ? 'text-red-600' : 'text-secondary-900'"
                     >
-                      {{ specialty }}
-                    </h3>
+                      {{ formatPrice(getFinalPrice(template)) }}
+                    </span>
+                    <span v-if="hasPromo(template)" class="text-lg text-secondary-400 line-through">
+                      {{ formatPrice(template.price) }}
+                    </span>
+                    <span class="text-xs text-secondary-500 pb-1">TTC</span>
+                    <Badge
+                      v-if="hasPromo(template)"
+                      variant="minimal-danger"
+                      :text="`-${template.promo}%`"
+                      class="ml-auto"
+                    />
                   </div>
-                </div>
 
-                <!-- Sections du site -->
-                <div class="mb-6">
-                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                    <div
-                      v-for="(feature, index) in template.features"
-                      :key="index"
-                      class="flex items-start"
-                    >
-                      <Check :size="20" class="mr-3 mt-0.5 text-green-600 flex-shrink-0" />
-                      <span class="text-gray-700">{{ feature }}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Guide bonus section -->
-                <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 mb-6">
-                  <div class="flex items-center gap-3 mb-3 sm:mb-0">
-                    <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <svg class="w-5 h-5 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
-                      </svg>
-                    </div>
-                    <div class="min-w-0 flex-1">
-                      <div class="font-semibold text-gray-900 text-sm">Guide stratégique offert</div>
-                      <div class="text-xs text-gray-600">30 pages pour personnaliser votre site</div>
-                    </div>
-                    <button
-                      @click="showGuideModal = true"
-                      class="hidden sm:inline-flex items-center gap-1 text-primary-600 hover:text-primary-700 text-sm font-medium transition-colors flex-shrink-0"
-                    >
-                      En savoir plus
-                      <span aria-hidden="true">→</span>
-                    </button>
-                  </div>
-                  <button
-                    @click="showGuideModal = true"
-                    class="sm:hidden w-full flex items-center justify-center gap-1 bg-white border border-primary-200 text-primary-600 hover:bg-primary-50 text-sm font-medium py-2 px-4 rounded-lg transition-colors"
-                  >
-                    En savoir plus
-                    <span aria-hidden="true">→</span>
-                  </button>
-                </div>
-
-                <!-- Price and CTA section -->
-                <div class="border-t border-gray-200 pt-6">
                   <button
                     @click="handleAddToCart"
                     :disabled="isInCart"
-                    class="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-between px-6 py-4"
+                    class="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center px-6 py-4"
                   >
-                    <div class="flex items-center">
-                      <ShoppingCart :size="20" class="mr-2" />
-                      <span>{{ isInCart ? 'Déjà dans le panier' : 'Ajouter au panier' }}</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                      <span class="text-2xl font-bold">{{ template.price }}€</span>
-                      <span class="text-xs opacity-80">TTC</span>
-                    </div>
+                    <ShoppingCart :size="20" class="mr-2" />
+                    <span>{{ isInCart ? 'Déjà dans le panier' : 'Ajouter au panier' }}</span>
                   </button>
-                  <div class="flex items-center justify-center gap-3 mt-4 text-xs text-gray-500">
+
+                  <div class="flex items-center justify-center gap-3 text-xs text-secondary-500">
                     <span class="flex items-center gap-1">
                       <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                       </svg>
                       Paiement sécurisé
                     </span>
-                    <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                    <span class="w-1 h-1 bg-secondary-300 rounded-full"></span>
                     <span>Accès immédiat</span>
                   </div>
-                  <p class="mt-4 text-xs text-gray-500 leading-relaxed">
-                    *Ce template est conçu avec l'outil
-                    <a href="https://carrd.co" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700 underline">Carrd.co</a>.
-                    Pour utiliser toutes les fonctionnalités, l'abonnement Pro Standard sur la plateforme sera nécessaire (à partir d'environ 1,50€/mois).
-                  </p>
                 </div>
+
+                <!-- Ce que l'on obtient en achetant le template (dropdowns épurés) -->
+                <!-- Le clic sur le lien du guide (#guide-modal) ouvre la modale -->
+                <div @click="handleDetailsClick">
+                  <Accordion :items="templateDetails" plain />
+                </div>
+
             </div>
           </div>
         </section>
@@ -389,7 +351,7 @@
         </FeaturesSection>
 
         <!-- Preuve sociale : réalisations clients -->
-        <section v-if="realisations.length > 0" class="py-12 sm:py-16 md:py-20 bg-gray-50">
+        <section v-if="realisations.length > 0" id="avis" class="py-12 sm:py-16 md:py-20 bg-gray-50 scroll-mt-24">
               <div class="text-center mb-10 md:mb-14">
                 <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary-900 mb-3">
                   Ils ont lancé leur site avec un template équestre
@@ -603,7 +565,7 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowLeft, ArrowRight, Star, Download, ShoppingCart, Check, X, BookOpen, Sparkles } from 'lucide-vue-next'
+import { ArrowLeft, ArrowRight, Star, Download, ShoppingCart, X, BookOpen, Sparkles } from 'lucide-vue-next'
 import { useCartStore } from '~/stores/cart'
 import type { Template, Realisation } from '~/models'
 import Badge from '~/components/Badge.vue'
@@ -721,6 +683,72 @@ const realisations = computed(() => pageData.value?.realisations ?? [])
 const realisationTemplate = computed(() => pageData.value?.realisationTemplate ?? null)
 const showGuideModal = ref(false)
 
+// Intercepte le clic sur le lien "guide" (rendu en v-html dans l'accordéon)
+// pour ouvrir la modale au lieu de suivre l'ancre.
+const handleDetailsClick = (event: MouseEvent) => {
+  const link = (event.target as HTMLElement).closest('a[href="#guide-modal"]')
+  if (link) {
+    event.preventDefault()
+    showGuideModal.value = true
+  }
+}
+
+// Note du template dérivée des avis clients réellement rattachés à ce template
+// (on ignore les avis de repli affichés qui concernent d'autres templates).
+const templateRating = computed(() => {
+  const t = template.value
+  if (!t) return null
+  const rated = realisations.value.filter(
+    r => r.template_id === t.id && typeof r.rating === 'number' && r.rating > 0
+  )
+  if (rated.length === 0) return null
+  const avg = rated.reduce((sum, r) => sum + (r.rating as number), 0) / rated.length
+  return { average: Math.round(avg * 10) / 10, count: rated.length }
+})
+
+// Dropdowns détaillant ce que l'acheteur obtient (fonctionnalités, prise en
+// main, livrables, adéquation au métier). Réutilise le composant Accordion.
+interface TemplateDetailItem {
+  question: string
+  answer?: string
+  list?: string[]
+}
+const templateDetails = computed<TemplateDetailItem[]>(() => {
+  const t = template.value
+  if (!t) return []
+
+  return [
+    {
+      question: 'Les fonctionnalités',
+      list: t.features
+    },
+    {
+      question: 'Comment personnaliser',
+      answer:
+        "L'outil ne nécessite aucune compétence technique. Vous changez simplement les textes, les images et les couleurs.\n\n[Regarder les vidéos tutoriels →](#tutoriels)"
+    },
+    {
+      question: 'Vous recevez',
+      list: [
+        'Le template',
+        '[Un guide pas à pas de 30 pages →](#guide-modal)',
+        "L'accès aux tutoriels vidéos",
+        'Un SAV pour répondre à vos questions'
+      ]
+    },
+    ...(t.specialties && t.specialties.length > 0
+      ? [
+          {
+            question: 'Est-ce adapté à mon activité ?',
+            answer:
+              'Pour les professionnels équestres du soin qui démarrent leur activité tels que :\n' +
+              t.specialties.map(specialty => `- ${specialty}`).join('\n')
+          }
+        ]
+      : [])
+  ]
+})
+
 // Contenu de la section "guide stratégique offert" (identique à la page liste des templates).
 const guideFeatures = [
   {
@@ -791,7 +819,7 @@ useStructuredData(() => {
     brand: { '@type': 'Brand', name: 'Lise Web Equine' },
     offers: {
       '@type': 'Offer',
-      price: t.price,
+      price: getFinalPrice(t),
       priceCurrency: 'EUR',
       availability: 'https://schema.org/InStock',
       url: productUrl,
@@ -799,13 +827,13 @@ useStructuredData(() => {
     }
   }
 
-  // N'ajoute l'évaluation que si une note réelle est disponible.
-  if (t.rating && t.rating > 0) {
+  // N'ajoute l'évaluation que si des avis clients notés sont associés au template.
+  if (templateRating.value) {
     schema.aggregateRating = {
       '@type': 'AggregateRating',
-      ratingValue: t.rating,
+      ratingValue: templateRating.value.average,
       bestRating: 5,
-      ratingCount: 1
+      ratingCount: templateRating.value.count
     }
   }
 

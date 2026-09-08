@@ -14,8 +14,19 @@ export const useCartStore = defineStore('cart', {
   getters: {
     itemCount: (state) => state.items.reduce((count, item) => count + item.quantity, 0),
 
+    // Total à payer : le prix promo est appliqué lorsqu'un template est en promotion.
     totalPrice: (state) => state.items.reduce((total, item) => {
+      return total + (getFinalPrice(item.template) * item.quantity)
+    }, 0),
+
+    // Total sans promotion, utilisé pour afficher le montant barré.
+    originalTotalPrice: (state) => state.items.reduce((total, item) => {
       return total + (item.template.price * item.quantity)
+    }, 0),
+
+    // Montant total économisé grâce aux promotions du panier.
+    totalSavings: (state) => state.items.reduce((total, item) => {
+      return total + (getSavings(item.template) * item.quantity)
     }, 0),
 
     cartItems: (state) => state.items,

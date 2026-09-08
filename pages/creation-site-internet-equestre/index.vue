@@ -252,7 +252,7 @@
         <NuxtImg
           src="/images/desk-girl.jpg"
           alt=""
-          class="w-full h-full object-cover"
+          class="w-full h-full min-w-full min-h-full object-cover"
           aria-hidden="true"
           loading="lazy"
         />

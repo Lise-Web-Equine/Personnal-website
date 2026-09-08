@@ -50,6 +50,14 @@ export default defineEventHandler(async (event) => {
     // Limiter à un seul produit
     const firstItem = body.cartItems[0]
 
+    // Prix réellement facturé : applique la promotion éventuelle du template
+    // (cohérent avec le prix remisé affiché côté panier).
+    const promo = firstItem.template.promo
+    const hasPromo = typeof promo === 'number' && promo > 0
+    const finalPrice = hasPromo
+      ? Math.round(firstItem.template.price * (1 - promo / 100) * 100) / 100
+      : firstItem.template.price
+
     // Stripe n'accepte que des URLs publiques pour les images (pas de base64)
     const imageUrl = [firstItem.template.image_url, firstItem.template.image]
       .find(url => typeof url === 'string' && url.startsWith('http'))
@@ -64,7 +72,7 @@ export default defineEventHandler(async (event) => {
             description: firstItem.template.description,
             images: imageUrl ? [imageUrl] : []
           },
-          unit_amount: Math.round(firstItem.template.price * 100)
+          unit_amount: Math.round(finalPrice * 100)
         },
         quantity: firstItem.quantity || 1
       }

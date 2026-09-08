@@ -53,9 +53,24 @@
                   Guide inclus avec ce modèle
                 </p>
 
+                <div v-if="hasPromo(item.template)" class="inline-flex items-center gap-1 bg-red-50 text-red-600 text-xs font-bold px-2 py-1 rounded-full mb-3">
+                  <Flame :size="14" fill="currentColor" />
+                  Promotion -{{ item.template.promo }}%
+                </div>
+
                 <div class="flex items-center justify-between flex-wrap gap-2">
                   <span class="text-gray-600 text-sm">Quantité: {{ item.quantity }}</span>
-                  <span class="text-xl sm:text-2xl font-bold">{{ (item.template.price * item.quantity).toFixed(2) }}€</span>
+                  <div class="text-right">
+                    <span v-if="hasPromo(item.template)" class="block text-sm text-secondary-400 line-through">
+                      {{ formatPrice(item.template.price * item.quantity) }}
+                    </span>
+                    <span
+                      class="text-xl sm:text-2xl font-bold"
+                      :class="hasPromo(item.template) ? 'text-red-600' : ''"
+                    >
+                      {{ formatPrice(getFinalPrice(item.template) * item.quantity) }}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -68,7 +83,14 @@
               <div class="space-y-4 mb-6">
                 <div class="flex justify-between">
                   <span class="text-gray-600">Sous-total</span>
-                  <span class="font-semibold">{{ cartStore.totalPrice.toFixed(2) }}€</span>
+                  <span class="font-semibold">{{ formatPrice(cartStore.originalTotalPrice) }}</span>
+                </div>
+                <div v-if="cartStore.totalSavings > 0" class="flex justify-between text-red-600">
+                  <span class="flex items-center gap-1 font-medium">
+                    <Flame :size="16" fill="currentColor" />
+                    Réduction
+                  </span>
+                  <span class="font-semibold">-{{ formatPrice(cartStore.totalSavings) }}</span>
                 </div>
                 <div class="flex justify-between">
                   <span class="text-gray-600">Taxe (0%)</span>
@@ -77,8 +99,11 @@
                 <div class="border-t border-gray-200 pt-4">
                   <div class="flex justify-between items-center">
                     <span class="text-lg sm:text-xl font-bold">Total</span>
-                    <span class="text-2xl sm:text-3xl font-bold">{{ cartStore.totalPrice.toFixed(2) }}€</span>
+                    <span class="text-2xl sm:text-3xl font-bold">{{ formatPrice(cartStore.totalPrice) }}</span>
                   </div>
+                  <p v-if="cartStore.totalSavings > 0" class="text-right text-sm text-red-600 font-medium mt-1">
+                    Vous économisez {{ formatPrice(cartStore.totalSavings) }}
+                  </p>
                 </div>
               </div>
 
@@ -112,7 +137,7 @@
 </template>
 
 <script setup lang="ts">
-import { ShoppingCart, Trash2, Minus, Plus, CreditCard, Shield, Check } from 'lucide-vue-next'
+import { ShoppingCart, Trash2, Minus, Plus, CreditCard, Shield, Check, Flame } from 'lucide-vue-next'
 import { useCartStore } from '~/stores/cart'
 
 // Page panier : exclue de l'indexation Google

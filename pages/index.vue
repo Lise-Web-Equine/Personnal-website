@@ -9,7 +9,7 @@
           <NuxtImg
             src="/images/Hestabien-27.jpg"
             alt="Agence web équestre"
-            class="absolute inset-0 w-full h-full object-cover"
+            class="absolute inset-0 w-full h-full min-w-full min-h-full object-cover"
             sizes="100vw"
             preload
             loading="eager"
@@ -161,7 +161,7 @@
                     <NuxtImg
                       src="/images/lise-profile.jpg"
                       alt="Claire-Elise, fondatrice de Lise Web Equine"
-                      class="absolute inset-0 w-full h-full object-cover"
+                      class="absolute inset-0 w-full h-full min-w-full min-h-full object-cover"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                       loading="lazy"
                     />
@@ -208,12 +208,6 @@
             />
           </div>
 
-          <div class="text-center mt-12 md:hidden">
-            <NuxtLink to="/template-site-internet-equestre" class="btn-primary inline-flex items-center">
-              Voir tous les templates
-              <ArrowRight :size="20" class="ml-2" />
-            </NuxtLink>
-          </div>
       </section>
 
       <CtaSection

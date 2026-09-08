@@ -381,7 +381,7 @@
           <NuxtImg
             src="/images/Hestabien.jpg"
             alt="Création de site internet pour les prestataires équestres"
-            class="w-full h-full object-cover"
+            class="w-full h-full min-w-full min-h-full object-cover"
             sizes="100vw"
             loading="lazy"
           />

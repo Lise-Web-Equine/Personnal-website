@@ -1,13 +1,5 @@
 <template>
   <div class="relative">
-    <!-- Badge ancré sur la bordure -->
-    <div v-if="template.badge" class="absolute -top-3 right-4 sm:right-6 z-10">
-      <Badge
-        variant="minimal"
-        :text="template.badge === 'best-seller' ? 'Best-seller' : 'Nouveau'"
-        class="shadow-md transform hover:scale-105 transition-all duration-200"
-      />
-    </div>
 
     <!-- Unified Card -->
     <NuxtLink :to="`/template-site-internet-equestre/${template.slug}`" class="block">
@@ -23,6 +15,19 @@
                 <div class="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-primary-300 rounded-full"></div>
                 <div class="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-primary-300 rounded-full"></div>
               </div>
+              <!-- Badges promo + statut, alignés sur la même ligne du header -->
+              <div v-if="hasPromo(template) || template.badge" class="flex items-center gap-1">
+                <Badge
+                  v-if="hasPromo(template)"
+                  variant="minimal-danger"
+                  :text="`-${template.promo}%`"
+                />
+                <Badge
+                  v-if="template.badge"
+                  variant="minimal-plain"
+                  :text="template.badge === 'best-seller' ? 'Best-seller' : 'Nouveau'"
+                />
+              </div>
             </div>
             
             <!-- Screen -->
@@ -30,7 +35,7 @@
               <NuxtImg
                 :src="template.image"
                 :alt="`${template.name} site internet`"
-                class="w-full h-full object-cover"
+                class="w-full h-full min-w-full min-h-full object-cover"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 loading="lazy"
               />
@@ -45,9 +50,16 @@
           
           <!-- Title Section -->
           <div class="flex flex-col gap-1.5 sm:gap-2 mb-2 sm:mb-3 relative z-10">
-            <h3 class="text-xs sm:text-sm font-bold text-secondary-900 leading-tight">
-              {{ template.name }}
-            </h3>
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="text-xs sm:text-sm font-bold text-secondary-900 leading-tight">
+                {{ template.name }}
+              </h3>
+              <!-- Note issue des avis clients associés au template -->
+              <div v-if="rating" class="flex items-center gap-0.5 text-yellow-500 flex-shrink-0">
+                <Star :size="12" fill="currentColor" />
+                <span class="text-[10px] sm:text-xs font-bold text-secondary-900">{{ rating.average }}</span>
+              </div>
+            </div>
             <div class="flex flex-wrap gap-1">
               <span 
                 v-for="tag in template.tags.slice(0, 3)" 
@@ -62,11 +74,19 @@
           <!-- Price and Button Section -->
           <div class="flex items-center justify-between gap-2 sm:gap-3 relative z-10">
             <div>
-              <div class="text-lg sm:text-2xl font-bold text-secondary-900">
-                {{ template.price }}€
-              </div>
-              <div v-if="template.promo" class="text-[10px] sm:text-xs text-red-600 font-medium bg-red-50 px-1 sm:px-1.5 py-0.5 rounded inline-block mt-0.5 sm:mt-1">
-                -{{ template.promo }}%
+              <!-- Prix promo : ancien prix barré à gauche, prix remisé à droite (même taille) -->
+              <template v-if="hasPromo(template)">
+                <div class="flex items-center gap-1.5 sm:gap-2">
+                  <span class="text-sm sm:text-base text-secondary-400 line-through">
+                    {{ formatPrice(template.price) }}
+                  </span>
+                  <span class="text-sm sm:text-base font-bold text-red-600">
+                    {{ formatPrice(getFinalPrice(template)) }}
+                  </span>
+                </div>
+              </template>
+              <div v-else class="text-sm sm:text-base font-bold text-secondary-900">
+                {{ formatPrice(template.price) }}
               </div>
             </div>
             
@@ -95,6 +115,10 @@ const props = defineProps<{
 }>()
 
 const cartStore = useCartStore()
+
+// Note agrégée issue des avis clients associés à ce template.
+const { getRating } = useTemplateRatings()
+const rating = computed(() => getRating(props.template.id))
 
 const isInCart = computed(() => {
   return cartStore.cartItems.some(item => item.template.id === props.template.id)
