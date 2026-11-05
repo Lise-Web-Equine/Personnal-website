@@ -6,8 +6,14 @@
   >
     <nav class="w-full px-4 sm:px-6 py-4 md:container md:mx-auto">
       <div class="flex items-center justify-between">
-        <NuxtLink to="/" class="text-lg sm:text-xl md:text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity flex items-center">
-          <span class="ml-1.5 sm:ml-2 transition-colors" :class="isScrolled ? 'text-secondary-900' : 'text-white'">Lise Web Equine</span>
+        <NuxtLink to="/" class="hover:opacity-80 transition-opacity flex items-center" aria-label="Lise Web Equine - Retour à l'accueil">
+          <img
+            :src="isScrolled ? '/images/logo-couleurs.png' : '/images/logo-blanc.png'"
+            alt="Lise Web Equine"
+            width="822"
+            height="120"
+            class="h-7 sm:h-8 md:h-9 w-auto"
+          />
         </NuxtLink>
 
         <button

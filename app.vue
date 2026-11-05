@@ -37,7 +37,7 @@ useStructuredData([
     '@id': `${siteUrl}/#organization`,
     name: 'Lise Web Equine',
     url: siteUrl,
-    logo: `${siteUrl}/favicon.svg`,
+    logo: `${siteUrl}/favicon.png`,
     image: `${siteUrl}/images/lise-profile.jpg`,
     description:
       "Agence web spécialisée dans la création de sites internet sur mesure et de templates pour les prestataires équestres.",

@@ -10,9 +10,8 @@
     <div class="site-container py-12">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-center md:text-left">
         <div>
-          <NuxtLink to="/" class="text-2xl font-bold mb-4 flex items-center justify-center md:justify-start" aria-label="Lise Web Equine - Retour à l'accueil">
-            <span class="gradient-primary-light bg-clip-text text-transparent">Lise</span>
-            <span class="ml-2 text-white">Web Equine</span>
+          <NuxtLink to="/" class="mb-4 flex items-center justify-center md:justify-start" aria-label="Lise Web Equine - Retour à l'accueil">
+            <img src="/images/logo-blanc.png" alt="Lise Web Equine" width="822" height="120" class="h-9 w-auto" />
           </NuxtLink>
           <p class="text-secondary-300 text-sm leading-relaxed">
             Création de site web pour le secteur équin.
