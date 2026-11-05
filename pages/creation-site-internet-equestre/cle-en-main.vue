@@ -20,22 +20,6 @@
 
     <!-- Section : Un site adapté à ton début d'activité -->
     <section class="py-12 sm:py-16 md:py-20 relative overflow-hidden">
-        <!-- Halos décoratifs en arrière-plan avec fondu vers le bas -->
-        <div class="absolute inset-0 -z-10" style="mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);">
-          <div class="absolute inset-x-0 -top-20 sm:-top-40 transform-gpu overflow-hidden blur-2xl sm:blur-3xl" aria-hidden="true">
-            <div
-              class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff9a76] to-[#9089fc] opacity-30 sm:opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-              style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
-            ></div>
-          </div>
-          <div class="absolute inset-x-0 top-[calc(50%-20rem)] transform-gpu overflow-hidden blur-2xl sm:blur-3xl sm:top-[calc(50%-30rem)]" aria-hidden="true">
-            <div
-              class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 bg-gradient-to-tr from-[#9089fc] to-[#ffb380] opacity-25 sm:opacity-15 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-              style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
-            ></div>
-          </div>
-        </div>
-
         <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
           <h2 class="mb-4 sm:mb-6">
             Un site adapté à ton début d'activité équestre
@@ -134,46 +118,12 @@
     </section>
 
     <!-- Section : Pourquoi nous choisir ? (fond sombre) -->
-    <section class="py-12 sm:py-16 md:py-20 relative overflow-hidden bg-secondary">
-      <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-900/30 to-transparent rounded-full blur-3xl"></div>
-      <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
-      <GradientAnimation />
-
-      <div class="relative">
-        <div>
-          <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
-            <span class="inline-block text-primary-400 font-semibold text-sm sm:text-base mb-3">Pourquoi nous choisir ?</span>
-            <h2 class="mb-4 sm:mb-6 text-white">
-               Rassure tes futurs clients grâce à ton site internet
-            </h2>
-            <p class="text-base sm:text-lg text-secondary-300 max-w-3xl mx-auto">
-Inutile de viser un site énorme : une page bien pensée suffit à convaincre.
-            </p>
-          </div>
-
-          <!-- Points clés -->
-          <div class="grid grid-cols-1 gap-y-8">
-            <div
-              v-for="(item, i) in reasons"
-              :key="i"
-              class="bg-white/5 backdrop-blur-xs rounded-xl p-6 border border-white/5"
-              v-motion-slide-visible-once-bottom
-              :style="{ 'animation-delay': `${i * 100}ms` }"
-            >
-              <div class="flex items-start space-x-4">
-                <div class="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-white/5">
-                  <component :is="item.icon" :size="24" class="text-primary-400" />
-                </div>
-                <div>
-                  <h3 class="text-base sm:text-lg md:text-xl font-semibold text-white mb-2">{{ item.title }}</h3>
-                  <p class="text-sm sm:text-base text-secondary-300 leading-relaxed">{{ item.description }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <FeaturesSection
+      eyebrow="Pourquoi nous choisir ?"
+      title="Rassure tes futurs clients grâce à ton site internet"
+      subtitle="Inutile de viser un site énorme : une page bien pensée suffit à convaincre."
+      :features="reasons"
+    />
 
     <!-- Section : L'offre template clé en main -->
     <section class="py-12 sm:py-16 md:py-20">

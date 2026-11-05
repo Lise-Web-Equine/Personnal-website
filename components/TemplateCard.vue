@@ -74,7 +74,7 @@
           @click="handleAddToCart"
           :disabled="isInCart"
           class="flex-1 px-3 py-2 sm:px-4 sm:py-2.5 text-sm sm:text-base rounded-lg font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
-          :class="isInCart ? 'bg-green-100 text-green-700 hover:bg-green-200' : 'bg-primary-500 text-white hover:bg-primary-600'"
+          :class="isInCart ? 'bg-green-100 text-green-700 hover:bg-green-200' : 'bg-[#642F95] text-white hover:bg-[#3A1A5A]'"
         >
           <ShoppingCart :size="16" class="mr-2" />
           <span class="hidden sm:inline">{{ isInCart ? 'Déjà dans le panier' : 'Ajouter au panier' }}</span>

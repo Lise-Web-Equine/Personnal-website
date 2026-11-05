@@ -2,7 +2,7 @@
   <section
     :class="[
       'relative py-16 md:py-20 lg:py-24 overflow-hidden',
-      isDark ? 'text-white' : 'text-secondary-900'
+      isDark ? 'text-white on-dark' : 'text-secondary-900'
     ]"
   >
     <!-- Image de fond + overlay sombre -->

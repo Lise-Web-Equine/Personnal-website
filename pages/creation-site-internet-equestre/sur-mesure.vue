@@ -17,17 +17,14 @@
     </IntroMediaSection>
 
       <!-- Section : L'unicité de l'agence via la plateforme personnalisable (fond sombre) -->
-      <section class="py-12 sm:py-16 md:py-20 relative overflow-hidden bg-secondary">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-900/30 to-transparent rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
-        <GradientAnimation />
+      <section class="py-12 sm:py-16 md:py-20 relative overflow-hidden bg-hero-dots">
 
         <div class="relative">
           <!-- En-tête -->
-          <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
-            <span class="inline-block text-primary-400 font-semibold text-sm sm:text-base mb-3">Pourquoi nous choisir ?</span>
+          <div class="text-left sm:text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
+            <span class="inline-block text-primary-300 font-semibold text-sm sm:text-base mb-3">Pourquoi nous choisir ?</span>
             <h2 class="mb-4 sm:mb-6 text-white">Un site internet livré avec sa plateforme de gestion, personnalisée pour votre métier</h2>
-            <p class="text-base sm:text-lg text-secondary-300 leading-relaxed">
+            <p class="text-base sm:text-lg text-secondary-200 leading-relaxed max-w-3xl mx-auto">
              Nous conçevons pour chaque professionnel du cheval une <strong class="text-white font-semibold">interface d'administration sur-mesure</strong> : vous faites évoluer votre contenu en toute autonomie, sans la moindre ligne de code.
             </p>
           </div>
@@ -35,8 +32,8 @@
           <!-- Sélecteur interactif d'activité (SEO-friendly : contenu complet rendu dans le DOM) -->
           <div v-motion-slide-visible-once-bottom>
             <!-- Question + menu déroulant intégré -->
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
-              <label for="activity-select" class="text-white font-semibold text-lg sm:text-xl text-center sm:text-right">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-center gap-3 mb-8">
+              <label for="activity-select" class="text-white font-semibold text-lg sm:text-xl text-left sm:text-right">
                 Je suis
               </label>
               <div class="relative w-full sm:w-auto">
@@ -62,7 +59,7 @@
             <Transition name="fade" mode="out-in">
               <div
                 :key="selectedCategory"
-                class="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8"
+                class="bg-white/5 border border-white/10 rounded-2xl p-5 sm:p-8"
               >
                 <h3 class="text-xl font-bold text-white mb-2">{{ siteCategories[selectedCategory].profession }}</h3>
                 <p class="text-sm sm:text-base text-secondary-300 mb-5">{{ siteCategories[selectedCategory].description }}</p>

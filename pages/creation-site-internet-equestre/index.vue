@@ -4,82 +4,18 @@
       title="Création et refonte de site internet pour les prestataires équestres"
     />
 
-    <!-- Section : Introduction -->
-    <section class="py-12 sm:py-16 md:py-20">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-          <div class="space-y-6" v-motion-slide-visible-once-bottom>
-            <h2 class="mb-4 sm:mb-6"> Vous êtes professionnel de la filière équine</h2>
-            <NuxtLink to="#quiz-recommandation" class="inline-block text-primary-500 font-semibold underline hover:text-primary-600 transition-colors mt-2 mb-4">
-              Quel site équestre est fait pour vous ?
-            </NuxtLink>
-            <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">
-              Chaque jour, vous accompagnez vos clients sur le terrain avec sérieux. Pourtant, votre présence en ligne ne reflète pas encore cette expertise. 
-            </p>
-             <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">
-              Vous savez qu'il est temps d'avoir un site internet dont vous êtes fier, pour poser des bases solides et <strong class="text-secondary-900 font-bold text-lg sm:text-xl">inspirer confiance dès le premier coup d'œil.</strong>
-             </p>
-            <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">
-              Que vous lanciez tout juste votre activité ou que votre structure équestre passe à l'étape supérieure : construisons ensemble un site internet qui donne de la crédibilité à votre savoir-faire sur le terrain
-              <strong class="text-secondary-900 font-bold text-lg sm:text-xl">pensé pour votre réalité, votre budget et vos vrais objectifs.</strong>
-            </p>
-          </div>
-          <div v-motion-slide-visible-once-bottom>
-            <NuxtImg
-              src="/images/desk-girl.jpg"
-              alt="Création de site internet pour les professionnels équestres"
-              class="w-full h-full object-cover rounded-2xl shadow-lg"
-              loading="lazy"
-            />
-          </div>
-        </div>
-    </section>
+    <!-- Section : Offres -->
+    <OffersSection quiz-link="#quiz-recommandation" @offer-click="trackOfferCtaClick" />
 
-    <!-- Section : Pour qui ? -->
-    <section class="py-12 sm:py-16 md:py-20 bg-gray-50">
-        <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
-          <h2 class="mb-4 sm:mb-6">Un site adapté à votre métier équestre</h2>
-          <p class="text-base sm:text-lg text-secondary-600">
-            Quelle que soit votre activité dans le monde du cheval, votre site est pensé pour vous rendre visible, crédible et autonome. 
-            <br />
-            Trouvez votre profil ci-dessous.
-          </p>
-        </div>
-
-        <div class="space-y-4">
-          <ProfileCard
-            v-for="(profile, index) in profiles"
-            :key="index"
-            v-motion-slide-visible-once-bottom
-            :title="profile.title"
-            :examples="profile.examples"
-            :features="profile.features"
-            :objective="profile.objective"
-            :icon="profile.icon"
-            :image="profile.image"
-            :is-open="openProfile === index"
-            @toggle="toggleProfile(index)"
-          />
-        </div>
-    </section>
+    <!-- Section : Pourquoi travailler ensemble ? (3 points courts, fond violet) -->
+    <FeaturesSection
+      eyebrow="Pourquoi travailler ensemble ?"
+      title="Une approche humaine et technique"
+      :features="collaborationReasons.map(r => ({ icon: r.icon, title: r.title, description: r.summary }))"
+    />
 
     <!-- Section : Formulaire dynamique de recommandation d'offre -->
     <section class="py-12 sm:py-16 md:py-20 relative overflow-hidden">
-      <!-- Halo backgrounds with fade mask -->
-      <div class="absolute inset-0 -z-10" style="mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);">
-        <div class="absolute inset-x-0 -top-20 sm:-top-40 transform-gpu overflow-hidden blur-2xl sm:blur-3xl" aria-hidden="true">
-          <div
-            class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff9a76] to-[#9089fc] opacity-30 sm:opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-            style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
-          ></div>
-        </div>
-        <div class="absolute inset-x-0 top-[calc(50%-20rem)] transform-gpu overflow-hidden blur-2xl sm:blur-3xl sm:top-[calc(50%-30rem)]" aria-hidden="true">
-          <div
-            class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 bg-gradient-to-tr from-[#9089fc] to-[#ffb380] opacity-25 sm:opacity-15 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-            style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
-          ></div>
-        </div>
-      </div>
-
         <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
           <h2 id="quiz-recommandation" class="mb-4 sm:mb-6">Quel site web pour votre structure équestre ?</h2>
           <p class="text-base sm:text-lg text-secondary-600">
@@ -151,11 +87,39 @@
         </div>
     </section>
 
-    <!-- Section : Pourquoi travailler ensemble ? (style sombre) -->
-    <section class="py-12 sm:py-16 md:py-20 relative overflow-hidden bg-secondary">
-      <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-900/30 to-transparent rounded-full blur-3xl"></div>
-      <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
-      <GradientAnimation />
+    <!-- [RETIRÉ lors de la simplification de la page] Section : Introduction
+    <section class="py-12 sm:py-16 md:py-20 bg-gray-50">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div class="space-y-6" v-motion-slide-visible-once-bottom>
+            <h2 class="mb-4 sm:mb-6"> Vous êtes professionnel de la filière équine</h2>
+            <NuxtLink to="#quiz-recommandation" class="inline-block text-primary-500 font-semibold underline hover:text-primary-600 transition-colors mt-2 mb-4">
+              Quel site équestre est fait pour vous ?
+            </NuxtLink>
+            <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">
+              Chaque jour, vous accompagnez vos clients sur le terrain avec sérieux. Pourtant, votre présence en ligne ne reflète pas encore cette expertise. 
+            </p>
+             <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">
+              Vous savez qu'il est temps d'avoir un site internet dont vous êtes fier, pour poser des bases solides et <strong class="text-secondary-900 font-bold text-lg sm:text-xl">inspirer confiance dès le premier coup d'œil.</strong>
+             </p>
+            <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">
+              Que vous lanciez tout juste votre activité ou que votre structure équestre passe à l'étape supérieure : construisons ensemble un site internet qui donne de la crédibilité à votre savoir-faire sur le terrain
+              <strong class="text-secondary-900 font-bold text-lg sm:text-xl">pensé pour votre réalité, votre budget et vos vrais objectifs.</strong>
+            </p>
+          </div>
+          <div v-motion-slide-visible-once-bottom>
+            <NuxtImg
+              src="/images/desk-girl.jpg"
+              alt="Création de site internet pour les professionnels équestres"
+              class="w-full h-full object-cover rounded-2xl shadow-lg"
+              loading="lazy"
+            />
+          </div>
+        </div>
+    </section>
+    -->
+
+    <!-- [RETIRÉ lors de la simplification de la page] Section : Pourquoi travailler ensemble ? (style sombre)
+    <section class="py-12 sm:py-16 md:py-20 relative overflow-hidden bg-hero-dots">
 
       <div class="relative">
         <div>
@@ -164,7 +128,7 @@
             <h2 class="mb-4 sm:mb-6 text-white">Une approche humaine et technique</h2>
           </div>
 
-          <!-- Items en accordéon, le premier ouvert par défaut -->
+          <!- - Items en accordéon, le premier ouvert par défaut - ->
           <div class="space-y-4">
             <div
               v-for="(item, i) in collaborationReasons"
@@ -202,34 +166,39 @@
         </div>
       </div>
     </section>
+    -->
 
-    <!-- Section : Offres -->
+    <!-- [RETIRÉ lors de la simplification de la page] Section : Pour qui ?
     <section class="py-12 sm:py-16 md:py-20 bg-gray-50">
         <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
-          <h2 class="mb-4 sm:mb-6">Des offres de sites internet adaptées à votre budget</h2>
+          <h2 class="mb-4 sm:mb-6">Un site adapté à votre métier équestre</h2>
+          <p class="text-base sm:text-lg text-secondary-600">
+            Quelle que soit votre activité dans le monde du cheval, votre site est pensé pour vous rendre visible, crédible et autonome. 
+            <br />
+            Trouvez votre profil ci-dessous.
+          </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
-          <ServiceCard
-            v-for="(offer, i) in offers"
-            :key="i"
-            :variant="offer.featured ? 'primary' : 'default'"
-            :title="offer.title"
-            :description="offer.description"
-            :badge-text="offer.badge"
-            badge-variant="primary"
-            :price="offer.price"
-            :cta-text="i === 0 ? 'Découvrir l\'offre sur-mesure' : 'Lancer mon site rapidement'"
-            :cta-link="offer.link"
-            :featured="offer.featured"
-            motion-direction="bottom"
-            @cta-click="trackOfferCtaClick(offer)"
+        <div class="space-y-4">
+          <ProfileCard
+            v-for="(profile, index) in profiles"
+            :key="index"
+            v-motion-slide-visible-once-bottom
+            :title="profile.title"
+            :examples="profile.examples"
+            :features="profile.features"
+            :objective="profile.objective"
+            :icon="profile.icon"
+            :image="profile.image"
+            :is-open="openProfile === index"
+            @toggle="toggleProfile(index)"
           />
         </div>
     </section>
+    -->
 
     <!-- Section : Prise de rendez-vous (Cal.com inline) -->
-    <section class="py-12 sm:py-16 md:py-20">
+    <section class="py-12 sm:py-16 md:py-20 bg-gray-50">
         <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
           <h2 class="mb-4 sm:mb-6">Validons la faisabilité de votre projet</h2>
           <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">
@@ -272,8 +241,10 @@
 </template>
 
 <script setup lang="ts">
-import { ChevronDown, ChevronLeft, HeartPulse, Home, Award, Briefcase, Rocket, Sparkles, ArrowRight, RotateCcw, Code, Handshake, Users } from 'lucide-vue-next'
+import { ChevronLeft, Sparkles, ArrowRight, RotateCcw, Code, Handshake, Users } from 'lucide-vue-next'
+// Icônes utilisées uniquement par le code retiré (en commentaire) : ChevronDown, HeartPulse, Home, Award, Briefcase, Rocket
 
+/* [RETIRÉ lors de la simplification de la page]
 // Section "Pour qui ?" : profils de prestataires équestres
 const profiles = [
   {
@@ -318,8 +289,10 @@ const profiles = [
   }
 ]
 
+*/
 const { trackEvent } = useAnalytics()
 
+/* [RETIRÉ lors de la simplification de la page]
 const openProfile = ref(0)
 const toggleProfile = (index: number) => {
   const willOpen = openProfile.value !== index
@@ -333,18 +306,22 @@ const toggleProfile = (index: number) => {
     })
   }
 }
+*/
 
+/* [RETIRÉ lors de la simplification de la page]
 // Section "Pourquoi travailler ensemble ?" : accordéon (premier item ouvert par défaut)
 const openCollaboration = ref(0)
 const toggleCollaboration = (index: number) => {
   openCollaboration.value = openCollaboration.value === index ? -1 : index
 }
+*/
 
 // Section "Pourquoi travailler ensemble ?" : arguments clés (style sombre)
 const collaborationReasons = [
   {
     icon: Code,
     title: 'Le savoir-faire technique',
+    summary: 'Développeuse web diplômée d\'un Master MIAGE (BAC +5), avec plus de 6 ans d\'expérience : des sites solides, rapides et pensés pour convertir vos visiteurs en clients.',
     paragraphs: [
       'Développeuse web diplômée d\'un Master MIAGE (BAC +5) à Bordeaux en 2020, **je cumule plus de 6 ans d\'expérience en entreprise**. Spécialisée exclusivement dans la création de sites internet, j\'allie le développement sur-mesure au webdesign pour concevoir des plateformes aussi solides techniquement qu\'agréables à naviguer.',
       'Concevoir un site web ne s\'arrête pas à aligner du code : il faut **structurer l\'information pour rendre votre offre lisible**, valorisante et surtout convaincante. Je crée des sites fluides, rapides et pensés pour convertir vos visiteurs en clients.'
@@ -353,6 +330,7 @@ const collaborationReasons = [
   {
     icon: Handshake,
     title: 'La relation humaine',
+    summary: 'Une approche transparente : on définit ce dont vous avez vraiment besoin aujourd\'hui, et votre site évolue au rythme de votre activité.',
     paragraphs: [
       '**Je crois en une approche humaine et transparente** : il existe une solution pour chaque budget, à condition de définir clairement ce dont vous avez réellement besoin aujourd\'hui.',
       'On pose des bases solides maintenant, et on fait **évoluer votre site au rythme de votre activité.** Pas de superflu, pas de fonctionnalités inutiles : mon rôle est de vous conseiller avec justesse pour investir intelligemment.',
@@ -362,6 +340,7 @@ const collaborationReasons = [
   {
     icon: Users,
     title: 'La force du collectif',
+    summary: 'Je me consacre à la création de sites et je travaille avec d\'autres professionnels de la filière équine (stratégie, réseaux sociaux…) vers qui je vous oriente.',
     paragraphs: [
       'J\'ai fait le choix de me consacrer exclusivement à la création de sites internet pour **vous délivrer de la qualité** : c\'est mon véritable cœur d\'expertise.',
       'Pour autant, **un site web s\'inscrit toujours dans une stratégie plus globale.** C\'est pourquoi je collabore avec d\'autres professionnels spécialisés de la filière équine (stratégie, community management, réseaux sociaux...). Je vous oriente avec plaisir vers eux, car chacun d\'entre nous a une vision unique pour développer votre projet.'
@@ -369,9 +348,10 @@ const collaborationReasons = [
   }
 ]
 
-const formatParagraph = (text: string): string => {
-  return text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-bold text-base sm:text-lg">$1</strong>')
-}
+// [RETIRÉ lors de la simplification de la page]
+// const formatParagraph = (text: string): string => {
+//   return text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-bold text-base sm:text-lg">$1</strong>')
+// }
 
 // Formulaire dynamique : recommandation d'offre selon le profil
 type ProfileKey = 'praticien' | 'structure' | 'agence'
@@ -537,26 +517,6 @@ const recommendation = computed<Recommendation | null>(() => {
 
   return null
 })
-
-// Section "Offres" : les différentes formules de création de site
-const offers = [
-  {
-    title: 'Création et refonte de site internet équestre',
-    badge: 'Sur mesure',
-    description: 'Un site évolutif, performant et administrable en toute autonomie, conçu pour valoriser votre expertise et grandir au rythme de votre structure équestre.',
-    price: 'À partir de 1500€',
-    link: SUR_MESURE,
-    featured: false
-  },
-  {
-    title: 'Création de site internet clé en main',
-    badge: 'Clé en main',
-    description: 'Rassurez vos premiers clients avec un site web simple, pro et soigné pour démarrer sereinement votre activité équestre, sans y passer des heures.',
-    price: 'À partir de 290€',
-    link: CLE_EN_MAIN,
-    featured: false
-  }
-]
 
 // Initialisation de l'embed Cal.com inline (rendez-vous échange-découverte)
 onMounted(() => {

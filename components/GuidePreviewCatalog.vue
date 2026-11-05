@@ -33,7 +33,7 @@ const props = withDefaults(defineProps<Props>(), {
 const buttonClasses = computed(() =>
   props.variant === 'light'
     ? 'bg-white text-secondary-900 shadow-lg shadow-black/20 hover:bg-secondary-100'
-    : 'bg-primary-500 text-white shadow-lg shadow-primary-500/30 hover:bg-primary-600',
+    : 'bg-[#642F95] text-white shadow-lg shadow-[#642F95]/30 hover:bg-[#3A1A5A]',
 )
 
 const isOpen = ref(false)

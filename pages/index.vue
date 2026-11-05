@@ -1,114 +1,29 @@
 <template>
   <NuxtLayout>
-      <!-- -mt-20 annule le pt-20 global de <main> pour que le hero démarre tout en haut (derrière le header).
-           Le padding-top compense la hauteur du header fixe pour que le texte ne passe pas sous le menu. -->
-      <section class="relative -mt-20 pt-32 pb-12 sm:pt-36 sm:pb-16 md:pt-40 md:pb-20 lg:pt-52 lg:pb-32 overflow-hidden overflow-x-hidden bg-gray-50">
-        <!-- Image de fond + overlay sombre (couvre toute la section, du haut de l'écran au bas du hero) -->
-        <!-- mask-brace-bottom : découpe le bas de l'image selon la courbe de l'accolade -->
-        <div class="absolute inset-0 z-0 mask-brace-bottom">
-          <NuxtImg
-            src="/images/Hestabien-27.jpg"
-            alt="Agence web équestre"
-            class="absolute inset-0 w-full h-full min-w-full min-h-full object-cover"
-            sizes="100vw"
-            preload
-            loading="eager"
-            fetchpriority="high"
-          />
-          <div class="absolute inset-0 bg-gradient-to-b from-secondary-900/90 via-secondary-900/80 to-secondary-900/90"></div>
-        </div>
-
-        <div class="relative z-10">
-          <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col items-center justify-center gap-8 sm:gap-12 lg:gap-16 min-h-[60vh] sm:min-h-[70vh]">
-              <!-- Text Content -->
-              <div class="text-left sm:text-center w-full">
-
-              <!--  <h3 class="mb-6 sm:mb-6 leading-tight text-lg sm:text-xl md:text-2xl lg:text-3xl font-sans text-secondary-500 font-light">
-                  <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent"> Abordable ou unique</span>
-                </h3>-->
-                
-                <h1 class="mb-8 sm:mb-8 font-sans text-left sm:text-center">
-                    <span class="text-white font-bold block text-5xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight">AGENCE WEB ÉQUESTRE</span>
-                    <span class="text-gray-200 font-semibold block text-lg sm:text-xl md:text-2xl lg:text-3xl mt-2 sm:mt-3">Votre site internet sur-mesure ou clé en main</span>
-                </h1>
-                <!-- <span class="font-serif italic bg-gradient-to-r from-purple-600 via-violet-500 to-indigo-600 bg-clip-text text-transparent px-2 text-lg sm:text-4xl md:text-5xl lg:text-6xl">{{ currentWord }}</span> de montrer
-               <span class="font-bold border-b-2 border-transparent" style="border-image: linear-gradient(to right, #9333ea, #8b5cf6, #6366f1) 1;">-->
-                
-                
-                <div class="flex flex-col items-start sm:items-center">
-                  <div class="inline-flex flex-col items-stretch gap-3 sm:gap-4">
-                    <NuxtLink to="/creation-site-internet-equestre/sur-mesure" class="btn-primary group relative">
-                      <span class="flex items-center justify-center">
-                        <LayersIcon :size="20" color="white" class="mr-3" />
-                        Création de site internet
-                      </span>
-                    </NuxtLink>
-
-                    <NuxtLink to="/template-site-internet-equestre" class="text-sm sm:text-base text-gray-300 hover:text-primary-400 font-medium transition-colors duration-200 inline-flex items-center justify-center group">
-                      <span>Ou découvrez nos templates équestres</span>
-                      <ArrowRight :size="16" class="ml-2 group-hover:translate-x-1 transition-transform" />
-                    </NuxtLink>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Client Carousel - Full width band 
-              <div class="relative -mx-6 sm:-mx-12 md:-mx-20 lg:-mx-32">
-                <ClientCarousel />
-              </div>-->
-            </div>
+      <!-- HERO : Trame de points.
+           -mt-20 annule le pt-20 global de <main> pour que le hero démarre tout en haut (derrière le header). -->
+      <section class="hero -mt-20 bg-hero-dots">
+        <div class="hero__content">
+          <p class="mb-4 text-center text-sm sm:text-base font-semibold uppercase tracking-widest text-primary-300">Agence web équestre</p>
+          <h1 class="mb-8 sm:mb-10 text-center text-white">Votre site internet<br>sur-mesure ou clé en main</h1>
+          <div class="mx-auto flex w-full max-w-sm flex-col items-stretch justify-center gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+            <NuxtLink to="/creation-site-internet-equestre/sur-mesure" class="btn-secondary w-full sm:w-auto border-white text-[#642F95]">
+              <LayersIcon :size="20" color="#642F95" class="mr-3" />
+              Création de site internet
+            </NuxtLink>
+            <NuxtLink to="/template-site-internet-equestre" class="btn-secondary-dark group w-full sm:w-auto px-4 sm:px-6 text-sm sm:text-base text-center bg-transparent border-white/70 hover:bg-white/10 hover:border-white">
+              Ou découvrez nos templates équestres
+              <ArrowRight :size="16" class="ml-2 group-hover:translate-x-1 transition-transform" />
+            </NuxtLink>
           </div>
         </div>
-
-        <!-- Bordure décorative en forme d'accolade, pointe centrée vers le bas -->
-        <CurlyBraceBorder
-          class="text-white/70"
-          height="2.5rem"
-          :stroke-width="2"
-        />
       </section>
 
       <!-- Services Section -->
-      <section class="py-4 sm:py-20 bg-gray-50">
-          <div class="text-center mb-16" v-motion-slide-visible-once-bottom>
-            <h2 class="mb-4">Mes Services</h2>
-            <p class="text-sm sm:text-base md:text-lg text-secondary-600 max-w-2xl mx-auto">
-              Découvrez nos solutions web pour les professionnels du secteur équestre.
-            </p>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-            <!-- Le Studio : création sur-mesure (haut de gamme) -->
-            <ServiceCard
-              variant="primary"
-              title="Création et refonte de site internet équestre"
-              description="Pour les structures équestres établies qui veulent un site internet évolutif, performant et administrable en toute simplicité."
-              badge-text="Sur mesure"
-              badge-variant="primary"
-              price="À partir de 1500€"
-              cta-text="Découvrir l'offre sur-mesure"
-              cta-link="/creation-site-internet-equestre/sur-mesure"
-              motion-direction="left"
-              featured
-            />
-
-            <!-- Le Pack Sérénité : clé en main, offre mise en avant (done-for-you) -->
-            <ServiceCard
-              variant="default"
-              title="Création de site internet clé en main"
-              description="Pour les professionnels équestres qui démarrent leur activité, manquent de temps et veulent un site professionnel rapidement."
-              badge-text="Clé en main"
-              badge-variant="primary"
-              price="À partir de 290€"
-              cta-text="Lancer mon site rapidement"
-              cta-link="/creation-site-internet-equestre/cle-en-main"
-              motion-direction="right"
-            />
-          </div>
-      </section>
+      <OffersSection />
       
       <FeaturesSection
+        eyebrow="Ce que ça change pour vous"
         title="Un site internet équestre rapide, visible et facile à gérer"
         subtitle="Grâce à l'IA, je m'occupe de la technique pour me concentrer sur l'essentiel : un site qui attire vos clients, vous fait gagner du temps et que vous gérez en toute autonomie."
         :features="aiFeatures"
@@ -276,25 +191,29 @@ const aiFeatures = [
     icon: Zap,
     iconColor: 'text-primary-600',
     title: 'Plus rapide, moins cher',
-    description: 'L\'IA m\'aide à aller plus vite sur la partie technique. Concrètement pour vous : votre site est prêt plus tôt et coûte moins cher qu\'avec une agence classique.'
+    // Texte complet d'origine : 'L\'IA m\'aide à aller plus vite sur la partie technique. Concrètement pour vous : votre site est prêt plus tôt et coûte moins cher qu\'avec une agence classique.'
+    description: 'L\'IA m\'aide sur la technique : votre site est prêt plus tôt et coûte moins cher qu\'avec une agence classique.'
   },
   {
     icon: PenTool,
     iconColor: 'text-primary-500',
     title: 'Autonome sur votre site',
-    description: 'Une interface simple vous rend totalement autonome : mettez à jour vous-même vos prestations, vos photos ou vos actualités équestres, sans dépendre de personne ni payer à chaque modification.'
+    // Texte complet d'origine : 'Une interface simple vous rend totalement autonome : mettez à jour vous-même vos prestations, vos photos ou vos actualités équestres, sans dépendre de personne ni payer à chaque modification.'
+    description: 'Une interface simple pour mettre à jour vos prestations, photos et actualités, sans dépendre de personne.'
   },
   {
     icon: Search,
     iconColor: 'text-primary-400',
     title: 'Bien visible sur Google',
-    description: 'J\'organise soigneusement le contenu de votre site pour que vos futurs clients vous trouvent facilement quand ils cherchent sur Google.'
+    // Texte complet d'origine : 'J\'organise soigneusement le contenu de votre site pour que vos futurs clients vous trouvent facilement quand ils cherchent sur Google.'
+    description: 'J\'organise le contenu de votre site pour que vos futurs clients vous trouvent facilement sur Google.'
   },
   {
     icon: Sparkles,
     iconColor: 'text-primary-300',
     title: 'Des idées sans limites',
-    description: 'Une réservation en ligne, un assistant qui répond à vos visiteurs, une tâche répétitive automatisée... Si vous en rêvez, l\'IA me permet de le rendre possible.'
+    // Texte complet d'origine : 'Une réservation en ligne, un assistant qui répond à vos visiteurs, une tâche répétitive automatisée... Si vous en rêvez, l\'IA me permet de le rendre possible.'
+    description: 'Réservation en ligne, assistant pour vos visiteurs, tâches automatisées… Si vous en rêvez, l\'IA me permet de le rendre possible.'
   }
 ]
 
@@ -329,6 +248,19 @@ useHead({
 </script>
 
 <style scoped>
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 24px 80px;
+  text-align: center;
+}
+
+.hero__content { position: relative; max-width: 960px; }
+
 .hero-gradient-text {
   background: linear-gradient(135deg, #ff9a76 0%, #9089fc 50%, #ffb380 100%);
   -webkit-background-clip: text;

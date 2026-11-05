@@ -97,13 +97,32 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 sm:px-6 sm:py-3 md:px-7 md:py-3.5 text-base sm:text-base font-semibold text-white rounded-lg transition-all duration-200 gradient-primary;
+    @apply inline-flex items-center justify-center px-6 py-3 sm:px-6 sm:py-3 md:px-7 md:py-3.5 text-base sm:text-base font-semibold text-white rounded-lg transition-all duration-200;
+    background-color: #642F95;
   }
 
   .btn-primary:hover {
-    background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 40%, #4c1d95 70%, #3b0764 100%);
+    background-color: #3A1A5A;
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(109, 40, 217, 0.5);
+    box-shadow: 0 10px 30px rgba(100, 47, 149, 0.45);
+  }
+
+  /* Sur fond violet (sections .bg-hero-dots ou .on-dark), le bouton violet disparaîtrait : on l'inverse en blanc. */
+  .bg-hero-dots .btn-primary,
+  .on-dark .btn-primary {
+    background-color: #ffffff;
+    color: #642F95;
+  }
+
+  .bg-hero-dots .btn-primary:hover,
+  .on-dark .btn-primary:hover {
+    background-color: #F3EEF8;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  }
+
+  .bg-hero-dots .btn-primary [stroke="white"],
+  .on-dark .btn-primary [stroke="white"] {
+    stroke: currentColor;
   }
 
   .btn-secondary {
@@ -154,6 +173,27 @@
 
   .section-subtitle {
     @apply text-lg md:text-xl text-secondary-600 max-w-2xl mx-auto;
+  }
+
+  /* Fond des bandeaux en haut de page (hero d'accueil, PageHeader) et des sections sombres :
+     violet + trame de points estompée au centre.
+     L'élément doit être positionné (relative) ; son contenu aussi, pour passer au-dessus des points. */
+  .bg-hero-dots {
+    background-color: #3A1A5A;
+  }
+
+  .bg-hero-dots::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.1;
+    background-image: radial-gradient(#ffffff 1.2px, transparent 1.4px);
+    background-size: 22px 22px;
+    background-repeat: repeat;
+    background-position: center;
+    -webkit-mask-image: radial-gradient(ellipse 55% 50% at 50% 50%, transparent 20%, #000 75%);
+            mask-image: radial-gradient(ellipse 55% 50% at 50% 50%, transparent 20%, #000 75%);
   }
 
   /* Découpe en forme d'accolade au bas d'un élément (ex: image de fond du hero).

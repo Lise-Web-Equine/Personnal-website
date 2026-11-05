@@ -1,48 +1,37 @@
 <template>
-  <section class="py-20 relative overflow-hidden bg-secondary">
-    <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-900/30 to-transparent rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-900/30 to-transparent rounded-full blur-3xl"></div>
-    <GradientAnimation />
-    
+  <section class="py-12 sm:py-16 md:py-20 relative overflow-hidden bg-hero-dots">
     <div class="relative">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16" v-motion-slide-visible-once-bottom>
-          <h2 class="mb-6 text-white">
-            {{ title }}
-          </h2>
-          <p class="text-sm sm:text-base md:text-lg text-secondary-300 max-w-3xl mx-auto">
-            {{ subtitle }}
+      <div class="text-left sm:text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
+        <span v-if="eyebrow" class="inline-block text-primary-300 font-semibold text-sm sm:text-base mb-3">{{ eyebrow }}</span>
+        <h2 class="mb-4 sm:mb-6 text-white">
+          {{ title }}
+        </h2>
+        <p v-if="subtitle" class="text-base sm:text-lg text-secondary-200 max-w-3xl mx-auto">
+          {{ subtitle }}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-x-8 gap-y-10" :class="gridClasses">
+        <div
+          v-for="(feature, index) in features"
+          :key="index"
+          v-motion-slide-visible-once-bottom
+        >
+          <div class="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+            <component :is="feature.icon" :size="24" class="text-primary-300" />
+          </div>
+          <h3 class="text-lg sm:text-xl font-semibold text-white mb-2">
+            {{ feature.title }}
+          </h3>
+          <p class="text-sm sm:text-base text-secondary-200 leading-relaxed">
+            {{ feature.description }}
           </p>
         </div>
+      </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
-          <div 
-            v-for="(feature, index) in features" 
-            :key="index"
-            class="bg-white/5 backdrop-blur-xs rounded-xl p-6 border border-white/5" 
-            v-motion-slide-visible-once-bottom 
-            :style="{ 'animation-delay': `${index * 100}ms` }"
-          >
-            <div class="flex items-start space-x-4">
-              <div class="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-white/5">
-                <component :is="feature.icon" :size="24" :class="feature.iconColor" />
-              </div>
-              <div>
-                <h3 class="text-base sm:text-lg md:text-xl font-semibold text-white mb-2">
-                  {{ feature.title }}
-                </h3>
-                <p class="text-sm sm:text-base text-secondary-300 leading-relaxed">
-                  {{ feature.description }}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Emplacement CTA optionnel (ex: bouton d'aperçu du guide) -->
-        <div v-if="$slots.cta" class="mt-14 flex justify-center" v-motion-slide-visible-once-bottom>
-          <slot name="cta" />
-        </div>
+      <!-- Emplacement CTA optionnel (ex: bouton d'aperçu du guide) -->
+      <div v-if="$slots.cta" class="mt-10 sm:mt-12 flex justify-start sm:justify-center" v-motion-slide-visible-once-bottom>
+        <slot name="cta" />
       </div>
     </div>
   </section>
@@ -53,16 +42,30 @@ import type { Component } from 'vue'
 
 interface Feature {
   icon: Component
-  iconColor: string
+  iconColor?: string
   title: string
   description: string
 }
 
 interface Props {
   title: string
-  subtitle: string
+  subtitle?: string
+  eyebrow?: string
   features: Feature[]
 }
 
-defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  subtitle: '',
+  eyebrow: ''
+})
+
+// Nombre de colonnes adapté au nombre de points, pour éviter une carte orpheline sur tablette.
+const gridClasses = computed(() => {
+  switch (props.features.length) {
+    case 2: return 'sm:grid-cols-2 max-w-4xl mx-auto'
+    case 3: return 'md:grid-cols-3'
+    case 4: return 'sm:grid-cols-2 lg:grid-cols-4'
+    default: return 'sm:grid-cols-2 lg:grid-cols-3'
+  }
+})
 </script>
