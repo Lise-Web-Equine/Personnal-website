@@ -12,7 +12,7 @@
               Création de site internet
             </NuxtLink>
             <NuxtLink to="/template-site-internet-equestre" class="btn-secondary-dark group w-full sm:w-auto px-4 sm:px-6 text-sm sm:text-base text-center bg-transparent border-white/70 hover:bg-white/10 hover:border-white">
-              Ou découvrez nos templates équestres
+              Les templates équestres
               <ArrowRight :size="16" class="ml-2 group-hover:translate-x-1 transition-transform" />
             </NuxtLink>
           </div>
@@ -154,12 +154,15 @@
 <script setup lang="ts">
 import { Code, Palette, Zap, MessageSquare, ArrowRight, PenTool, Image, Search, Sparkles, ShieldCheck } from 'lucide-vue-next'
 import LayersIcon from '~/components/icons/LayersIcon.vue'
-import type { Template } from '~/models'
-import type { Database } from '~/types/database.types'
 
-const supabase = useSupabaseClient<Database>()
-const loading = ref(true)
-const featuredTemplates = ref<Template[]>([])
+// Modèles mis en avant : la liste complète est chargée côté serveur et mise en cache,
+// pour que la page « Voir tous les modèles » s'ouvre instantanément ensuite.
+const { data: allTemplates, pending: loading } = useTemplatesList()
+const featuredTemplates = computed(() =>
+  [...allTemplates.value]
+    .sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0))
+    .slice(0, 3)
+)
 
 const words = ['fière', 'heureuse', 'confiante']
 const currentWordIndex = ref(0)
@@ -213,22 +216,6 @@ const aiFeatures = [
   }
 ]
 
-onMounted(async () => {
-  try {
-    const { data, error } = await supabase
-      .from('templates')
-      .select('*')
-      .order('rating', { ascending: false })
-      .limit(3)
-
-    if (error) throw error
-    featuredTemplates.value = data || []
-  } catch (error) {
-    console.error('Error fetching templates:', error)
-  } finally {
-    loading.value = false
-  }
-})
 
 useHead({
   title: 'Sites web pour professionnels équestres | Lise Web Equine',

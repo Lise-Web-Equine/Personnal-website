@@ -25,26 +25,26 @@
 
 <script setup lang="ts">
 const supabase = useSupabaseClient()
-const loading = ref(false)
-const legalText = ref<any>(null)
 
-onMounted(async () => {
-  loading.value = true
-  try {
+// Texte légal chargé côté serveur (affiché immédiatement, lisible par Google)
+// et mis en cache pour les navigations suivantes.
+const { data: legalText, pending: loading } = useAsyncData(
+  'legal-mentions-legales',
+  async () => {
     const { data, error } = await supabase
       .from('legal_texts')
-      .select('*')
+      .select('content')
       .eq('key', 'mentions-legales')
       .single()
 
     if (error) throw error
-    legalText.value = data
-  } catch (error) {
-    console.error('Error loading legal text:', error)
-  } finally {
-    loading.value = false
+    return data as { content: string } | null
+  },
+  {
+    default: () => null,
+    getCachedData: (k, nuxtApp) => nuxtApp.payload.data[k] ?? nuxtApp.static.data[k]
   }
-})
+)
 
 useHead({
   title: 'Mentions légales - Lise Web Equine',

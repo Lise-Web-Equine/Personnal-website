@@ -105,13 +105,21 @@ const imageFrameStyle = computed(() =>
 
       <!-- Actions : « Voir la démo » en principal, « En savoir plus » (offre clé en main) en secondaire.
            Sans démo, « En savoir plus » devient le bouton principal pleine largeur. -->
-      <div class="mt-auto grid gap-3" :class="template.demo_url ? 'grid-cols-2' : 'grid-cols-1'">
+      <!-- Responsive : côte à côte seulement quand la carte est assez large, sinon empilés.
+           - < 400px (petits mobiles) : empilés ;
+           - 400px → lg : côte à côte (carte pleine largeur ou grille 2 colonnes) ;
+           - lg → xl : empilés (grille 3 colonnes, cartes étroites) ;
+           - ≥ xl : côte à côte. -->
+      <div
+        class="mt-auto grid gap-2.5 sm:gap-3"
+        :class="template.demo_url ? 'grid-cols-1 min-[400px]:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2' : 'grid-cols-1'"
+      >
         <a
           v-if="template.demo_url"
           :href="template.demo_url"
           target="_blank"
           rel="noopener noreferrer"
-          class="btn-primary w-full !px-3 text-sm"
+          class="btn-primary w-full !px-3 !py-2.5 text-sm whitespace-nowrap"
           @click="onDemoClick"
         >
           Voir la démo
@@ -119,7 +127,7 @@ const imageFrameStyle = computed(() =>
         </a>
         <NuxtLink
           :to="bookingLink"
-          class="w-full !px-3 text-sm"
+          class="w-full !px-3 !py-2.5 text-sm whitespace-nowrap"
           :class="template.demo_url ? 'btn-secondary' : 'btn-primary'"
           @click="onBookClick"
         >

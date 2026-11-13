@@ -43,7 +43,11 @@ export const useTemplateRatings = () => {
       }
       return result
     },
-    { default: () => ({} as Record<string, TemplateRating>) }
+    {
+      default: () => ({} as Record<string, TemplateRating>),
+      // Réutilise les notes déjà chargées lors d'une navigation (accueil → modèles).
+      getCachedData: (key, nuxtApp) => nuxtApp.payload.data[key] ?? nuxtApp.static.data[key]
+    }
   )
 
   // Retourne la note agrégée d'un template, ou null s'il n'a aucun avis noté.

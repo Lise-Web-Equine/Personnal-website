@@ -91,7 +91,6 @@
 
 <script setup lang="ts">
 import { MessageSquare, ArrowRight } from 'lucide-vue-next'
-import type { Template } from '~/models'
 
 const { trackEvent } = useAnalytics()
 
@@ -107,22 +106,8 @@ useHead({
   ]
 })
 
-const supabase = useSupabaseClient()
-
-// Récupération SSR de la liste des modèles (meilleur LCP et SEO).
-const { data: templates, pending: loading } = await useAsyncData(
-  'templates-list',
-  async () => {
-    const { data, error } = await supabase
-      .from('templates')
-      .select('*')
-      .order('created_at', { ascending: false })
-
-    if (error) throw error
-    return (data || []) as Template[]
-  },
-  { default: () => [] as Template[] }
-)
+// Liste des modèles : partagée avec l'accueil et mise en cache (navigation instantanée).
+const { data: templates, pending: loading } = useTemplatesList()
 
 // Reprend les engagements de l'offre clé en main (personnalisation, nom de domaine,
 // adresse mail pro, formation à la plateforme).

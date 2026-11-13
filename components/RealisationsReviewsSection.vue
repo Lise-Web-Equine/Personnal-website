@@ -10,7 +10,8 @@ const props = withDefaults(defineProps<{ title?: string }>(), {
 
 const supabase = useSupabaseClient()
 
-const { data: realisations } = await useAsyncData(
+// lazy + cache : n'empêche pas la page de s'ouvrir, et réutilise les avis déjà chargés.
+const { data: realisations } = useAsyncData(
   'realisations-reviews',
   async () => {
     const { data, error } = await supabase
@@ -21,7 +22,11 @@ const { data: realisations } = await useAsyncData(
     if (error) throw error
     return (data || []) as Realisation[]
   },
-  { default: () => [] as Realisation[] }
+  {
+    default: () => [] as Realisation[],
+    lazy: true,
+    getCachedData: (key, nuxtApp) => nuxtApp.payload.data[key] ?? nuxtApp.static.data[key]
+  }
 )
 </script>
 

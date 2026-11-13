@@ -88,7 +88,7 @@
                 :controls="isPlaying"
                 loop
                 playsinline
-                preload="auto"
+                preload="metadata"
                 :aria-label="caseImages[currentCase].alt"
                 @play="isPlaying = true"
                 @pause="isPlaying = false"
