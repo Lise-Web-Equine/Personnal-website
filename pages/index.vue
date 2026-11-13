@@ -5,9 +5,9 @@
       <section class="hero -mt-20 bg-hero-dots">
         <div class="hero__content">
           <p class="mb-4 text-center text-sm sm:text-base font-semibold uppercase tracking-widest text-primary-300">Agence web équestre</p>
-          <h1 class="mb-8 sm:mb-10 text-center text-white">Votre site internet<br>sur-mesure ou clé en main</h1>
+          <h1 class="mb-8 sm:mb-10 text-center text-white">Expert en developpement de site internet pour la filière équine</h1>
           <div class="mx-auto flex w-full max-w-sm flex-col items-stretch justify-center gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
-            <NuxtLink to="/creation-site-internet-equestre/sur-mesure" class="btn-secondary w-full sm:w-auto border-white text-[#642F95]">
+            <NuxtLink to="/creation-site-internet-equestre" class="btn-secondary w-full sm:w-auto border-white text-[#642F95]">
               <LayersIcon :size="20" color="#642F95" class="mr-3" />
               Création de site internet
             </NuxtLink>
@@ -19,13 +19,16 @@
         </div>
       </section>
 
+      <!-- Dernière réalisation : maquette qui chevauche le bas du hero -->
+      <RealisationShowcase variant="hero" />
+
       <!-- Services Section -->
       <OffersSection />
       
       <FeaturesSection
         eyebrow="Ce que ça change pour vous"
-        title="Un site internet équestre rapide, visible et facile à gérer"
-        subtitle="Grâce à l'IA, je m'occupe de la technique pour me concentrer sur l'essentiel : un site qui attire vos clients, vous fait gagner du temps et que vous gérez en toute autonomie."
+        title="Un site internet équestre rapide, visible, et facile à gérer"
+        subtitle="Un site qui attire vos clients, vous fait gagner du temps, que vous gérez en toute autonomie et qui évolue avec votre activité."
         :features="aiFeatures"
       />
 
@@ -96,17 +99,17 @@
             </div>
       </section>
 
-      <!-- Boutique de templates : option "faites-le vous-même" (DIY, en fin de page) -->
+      <!-- Vitrine des modèles : point d'entrée vers le site clé en main (plus de vente de templates) -->
       <section class="py-16 sm:py-20 bg-gray-50">
           <div class="flex justify-between items-end mb-12" v-motion-slide-visible-once-bottom>
             <div>
-              <h2 class="mb-4">La boutique de template équestre</h2>
+              <h2 class="mb-4">Un modèle pour votre activité</h2>
               <p class="section-subtitle text-left max-w-none text-sm sm:text-base md:text-lg">
-                Personnalisez l'un de nos templates équestres en toute autonomie, accompagné de notre guide stratégique pas à pas.
+                Choisissez votre modèle : je crée votre site d'une page pour vous, clé en main.
               </p>
             </div>
             <NuxtLink to="/template-site-internet-equestre" class="hidden md:inline-flex items-center text-secondary-900 font-semibold hover:gap-2 transition-all">
-              Voir tous
+              Voir tous les modèles
               <ArrowRight :size="20" class="ml-1" />
             </NuxtLink>
           </div>
@@ -116,7 +119,7 @@
           </div>
 
           <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <TemplateCardMockup
+            <TemplateShowcaseCard
               v-for="template in featuredTemplates"
               :key="template.id"
               :template="template"
@@ -188,13 +191,6 @@ const packFeatures = [
 
 const aiFeatures = [
   {
-    icon: Zap,
-    iconColor: 'text-primary-600',
-    title: 'Plus rapide, moins cher',
-    // Texte complet d'origine : 'L\'IA m\'aide à aller plus vite sur la partie technique. Concrètement pour vous : votre site est prêt plus tôt et coûte moins cher qu\'avec une agence classique.'
-    description: 'L\'IA m\'aide sur la technique : votre site est prêt plus tôt et coûte moins cher qu\'avec une agence classique.'
-  },
-  {
     icon: PenTool,
     iconColor: 'text-primary-500',
     title: 'Autonome sur votre site',
@@ -211,9 +207,9 @@ const aiFeatures = [
   {
     icon: Sparkles,
     iconColor: 'text-primary-300',
-    title: 'Des idées sans limites',
-    // Texte complet d'origine : 'Une réservation en ligne, un assistant qui répond à vos visiteurs, une tâche répétitive automatisée... Si vous en rêvez, l\'IA me permet de le rendre possible.'
-    description: 'Réservation en ligne, assistant pour vos visiteurs, tâches automatisées… Si vous en rêvez, l\'IA me permet de le rendre possible.'
+    title: 'Votre projet sans limites',
+    // Texte complet d'origine : 'Une réservation en ligne, un assistant qui répond à vos visiteurs, une tâche répétitive automatisée... La technologie que j'utilise me permet de réaliser vos projets les plus ambitieux.'
+    description: 'Réservation en ligne, assistant pour vos visiteurs, tâches automatisées… La technologie que j\'utilise me permet de réaliser vos projets les plus ambitieux.'
   }
 ]
 
@@ -255,8 +251,19 @@ useHead({
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 120px 24px 80px;
+  /* padding-bottom = 80px + la partie de la maquette <RealisationShowcase>
+     qui remonte dans le hero (≈ moitié de sa hauteur, = sa marge négative).
+     Les deux valeurs doivent rester synchronisées. */
+  padding: 120px 24px calc(80px + 5rem);
   text-align: center;
+}
+
+@media (min-width: 640px) {
+  .hero { padding-bottom: calc(80px + 9rem); }
+}
+
+@media (min-width: 1024px) {
+  .hero { padding-bottom: calc(80px + 14rem); }
 }
 
 .hero__content { position: relative; max-width: 960px; }

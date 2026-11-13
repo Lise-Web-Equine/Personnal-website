@@ -1,42 +1,30 @@
 <template>
-  <!-- Carte de preuve sociale : capture du site client + témoignage -->
+  <!-- Carte de preuve sociale : capture du site du client en haut, puis l'avis -->
   <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col">
-    <!-- Capture du site (cliquable si lien fourni) -->
+    <!-- Capture du site, bord à bord, en entier (cliquable si lien fourni) -->
     <component
       :is="realisation.site_url ? 'a' : 'div'"
       :href="realisation.site_url || undefined"
       :target="realisation.site_url ? '_blank' : undefined"
-      rel="noopener noreferrer"
-      class="relative block group"
+      :rel="realisation.site_url ? 'noopener noreferrer' : undefined"
+      :aria-label="realisation.site_url ? `Voir le site de ${realisation.client_name} (nouvel onglet)` : undefined"
+      class="group relative block border-b border-gray-100"
     >
       <NuxtImg
         :src="realisation.site_image"
         :alt="`Site de ${realisation.client_name}, ${realisation.client_profession}`"
-        class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
+        class="block w-full h-auto"
         sizes="(max-width: 768px) 100vw, 33vw"
         loading="lazy"
       />
-
-      <!-- Badge type de réalisation -->
-      <div class="absolute top-3 left-3">
-        <span
-          class="text-xs font-semibold px-3 py-1 rounded-full shadow-sm"
-          :class="realisation.type === 'pack' ? 'bg-primary-500 text-white' : 'bg-white text-secondary-700'"
-        >
-          {{ realisation.type === 'pack' ? 'Offre clé en main' : 'Personnalisé en autonomie' }}
-        </span>
-      </div>
-
-      <!-- Incitation à voir le site -->
-      <div
+      <!-- « Voir le site » posé sur la vignette : pastille sobre, toujours visible (mobile compris) -->
+      <span
         v-if="realisation.site_url"
-        class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4"
+        class="absolute bottom-3 right-3 inline-flex items-center gap-1 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-medium text-secondary-700 shadow-sm transition-colors group-hover:bg-white group-hover:text-secondary-900"
       >
-        <span class="flex items-center gap-2 text-white font-semibold text-sm">
-          {{ realisation.site_url }}
-          <ExternalLink :size="16" />
-        </span>
-      </div>
+        Voir le site
+        <ExternalLink :size="12" />
+      </span>
     </component>
 
     <!-- Contenu textuel -->
@@ -66,7 +54,7 @@
         >
           {{ initials }}
         </div>
-        <div class="min-w-0">
+        <div class="min-w-0 flex-1">
           <div class="font-semibold text-secondary-900 text-sm truncate">{{ realisation.client_name }}</div>
           <div class="text-xs text-secondary-500 truncate">{{ realisation.client_profession }}</div>
         </div>

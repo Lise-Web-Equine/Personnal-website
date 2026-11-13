@@ -338,7 +338,7 @@
         <section v-if="realisations.length > 0" id="avis" class="py-12 sm:py-16 md:py-20 bg-gray-50 scroll-mt-24">
               <div class="text-center mb-10 md:mb-14">
                 <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary-900 mb-3">
-                  Ils ont lancé leur site avec un template équestre
+                  Elles ont lancé leur site avec un template équestre
                 </h2>
                 <p class="text-base sm:text-lg text-secondary-600 max-w-2xl mx-auto">
                   Des professionnels équestres comme vous, déjà en ligne et sereins.

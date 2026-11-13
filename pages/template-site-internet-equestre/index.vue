@@ -1,355 +1,115 @@
 <template>
-
   <NuxtLayout>
+    <!-- Vitrine des modèles (plus de vente de templates) :
+         message = « il existe un modèle pour votre activité, réservez votre site clé en main ». -->
+    <PageHeader
+      title="Un modèle pour votre activité équestre"
+      description="Choisissez votre modèle : je crée votre site d'une page pour vous, clé en main."
+    />
 
-      <PageHeader 
+    <!-- Grille des modèles -->
+    <section id="grille-templates" class="py-12 sm:py-16 md:py-20">
+      <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
+        <h2 class="mb-4 sm:mb-6">Trouvez le modèle fait pour votre métier</h2>
+        <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">
+          J'ai conçu ces modèles d'une page pour les professionnels du cheval. Je ne repars pas de zéro : c'est ce qui me permet de vous proposer un site professionnel, rapide et accessible.
+        </p>
+      </div>
 
-        title="Nos templates de sites web équestres"
+      <div v-if="loading" class="text-center py-20">
+        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500"></div>
+      </div>
 
-        description="Personnalisez votre site en une soirée et lancez votre activité sereinement."
+      <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <TemplateShowcaseCard
+          v-for="template in templates"
+          :key="template.id"
+          :template="template"
+        />
 
-        badge="Nouveaux templates disponibles"
-
-      />
-
-
-
-      <section id="grille-templates" class="py-8 sm:py-12 md:py-16">
-        <div>
-
-          <div class="mb-6 text-sm sm:text-base text-gray-600">
-
-            Affichage de {{ templates.length }} templates
-
+        <!-- Métier absent de la liste -->
+        <div class="flex flex-col justify-center items-center text-center rounded-xl bg-hero-dots relative overflow-hidden p-8 min-h-[320px]" v-motion-slide-visible-once-bottom>
+          <div class="relative">
+            <h3 class="text-xl font-bold text-white mb-3">Votre métier n'est pas dans la liste ?</h3>
+            <p class="text-center text-secondary-200 mb-6 text-sm sm:text-base">
+              Ostéopathe, maréchal-ferrant, pensions … Je pars du modèle le plus proche et je l'adapte à votre activité.
+            </p>
+            <NuxtLink to="/contact?service=template" class="btn-primary inline-flex items-center text-sm">
+              Écrivez-moi
+              <MessageSquare :size="16" class="ml-2" />
+            </NuxtLink>
           </div>
+        </div>
+      </div>
+    </section>
 
-
-
-          <div v-if="loading" class="text-center py-20">
-
-            <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
-
-          </div>
-
-
-
-          <div v-else-if="templates.length === 0" class="text-center py-20">
-
-            <Package :size="64" class="mx-auto mb-4 text-gray-300" />
-
-            <h3 class="text-2xl font-bold mb-2">Aucun template trouvé</h3>
-
-            <p class="text-gray-600">Revenez plus tard pour découvrir nos nouveaux templates</p>
-
-          </div>
-
-
-
-          <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            <TemplateCardMockup
-
-              v-for="template in templates"
-
-              :key="template.id"
-
-              :template="template"
-
-            />
-
-            <!-- Card création personnalisée -->
-
-            <div class="bg-secondary rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-secondary-600 flex flex-col justify-center items-center p-8 text-center text-white min-h-[400px]">
-
-              <div class="mb-6">
-
-                <div class="w-16 h-16 bg-primary-500 rounded-full flex items-center justify-center mb-2 mx-auto">
-
-                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-
-                  </svg>
-
-                </div>
-
-                <div class="text-sm font-bold text-primary-400 uppercase">Co-Création</div>
-
-              </div>
-
-              <h3 class="text-lg font-bold mb-3">Vous voulez proposer un nouveau template pour votre profession ?</h3>
-
-              <p class="text-white/90 mb-6 text-sm">
-
-                Ostéopathe, maréchal-ferrant, dentiste...<br>
-
-                Créons ensemble le template parfait pour votre métier équin.
-
-              </p>
-
-              <NuxtLink 
-
-                to="/contact?service=template" 
-
-                class="group px-4 py-2.5 font-semibold rounded-lg border-2 transition-all duration-300 transform hover:scale-[1.02] hover:-translate-y-0.5 flex items-center justify-center text-sm bg-white text-secondary-700 border-secondary-300 hover:bg-secondary-50 hover:border-secondary-400 hover:shadow-lg"
-
-              >
-
-                Discutons ensemble
-
-                <MessageSquare :size="16" class="ml-2" />
-
-              </NuxtLink>
-
-            </div>
-
-          </div>
-
+    <!-- Comment ça se passe : fond violet (comme les autres sections sombres), 3 temps, une phrase chacun -->
+    <section class="py-12 sm:py-16 md:py-20 relative overflow-hidden bg-hero-dots">
+      <div class="relative">
+        <div class="text-left sm:text-center mb-10 sm:mb-14" v-motion-slide-visible-once-bottom>
+          <span class="inline-bloElles ont lancé leur sitet-semibold text-sm sm:text-base mb-3">Comment ça se passe ?</span>
+          <h2 class="mb-4 sm:mb-6 text-white">Votre site, sans y passer vos soirées</h2>
         </div>
 
-      </section>
-
-
-
-      <!-- Section Comment ça fonctionne -->
-
-      <section class="py-20 relative overflow-hidden">
-        <div>
-
-          <div>
-
-            <!-- Header -->
-
-            <div class="text-center mb-16">
-
-              <h2 class="">
-
-                Votre site web prêt en 3 étapes simples
-
-              </h2>
-
+        <ol class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10" v-motion-slide-visible-once-bottom>
+          <li v-for="(step, index) in steps" :key="step.title" class="flex items-start gap-4 md:flex-col md:items-center">
+            <span class="shrink-0 w-11 h-11 md:mx-auto md:mb-4 rounded-full flex items-center justify-center font-bold bg-primary-500/20 text-primary-200">
+              {{ index + 1 }}
+            </span>
+            <div class="pt-2 md:pt-0">
+              <h3 class="mb-1 md:mb-2 text-left md:text-center text-lg sm:text-xl font-bold text-white">{{ step.title }}</h3>
+              <p class="text-left md:text-center text-sm sm:text-base text-secondary-300 leading-relaxed md:max-w-xs md:mx-auto">{{ step.description }}</p>
             </div>
-
-
-
-            <!-- Processus visuel -->
-
-            <div class="relative">
-
-              <!-- Ligne de connexion -->
-
-              <div class="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-primary-200 -translate-y-1/2 z-0"></div>
-
-              
-
-              <!-- Étapes -->
-
-              <div class="grid md:grid-cols-3 gap-8 relative z-10">
-
-                <!-- Étape 1 -->
-
-                <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-shadow" v-motion-slide-visible-once-bottom>
-
-                  <div class="flex items-center mb-4 sm:mb-6">
-
-                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-
-                      <span class="text-primary-600 font-bold text-base sm:text-lg">1</span>
-
-                    </div>
-
-                  </div>
-
-                  <h3 class="text-lg sm:text-xl font-bold">Choix du template</h3>
-
-                  <p class="text-sm sm:text-base text-secondary-600 leading-relaxed">
-
-                    Explorez notre collection de templates et trouvez celui qui représente parfaitement votre activité.
-
-                  </p>
-
-                </div>
-
-
-
-                <!-- Étape 2 -->
-
-                <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-shadow" v-motion-slide-visible-once-bottom :delay="100">
-
-                  <div class="flex items-center mb-4 sm:mb-6">
-
-                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-
-                      <span class="text-primary-600 font-bold text-base sm:text-lg">2</span>
-
-                    </div>
-
-                  </div>
-
-                  <h3 class="text-lg sm:text-xl font-bold">Personnalisation</h3>
-
-                  <p class="text-sm sm:text-base text-secondary-600 leading-relaxed">
-
-                    Modifiez chaque élément : textes, images, couleurs. Votre guide stratégique de 30 pages vous accompagne à chaque étape.
-
-                  </p>
-
-                </div>
-
-
-
-                <!-- Étape 3 -->
-
-                <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-shadow" v-motion-slide-visible-once-bottom :delay="200">
-
-                  <div class="flex items-center mb-4 sm:mb-6">
-
-                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-
-                      <span class="text-primary-600 font-bold text-base sm:text-lg">3</span>
-
-                    </div>
-
-                  </div>
-
-                  <h3 class="text-lg sm:text-xl font-bold">Mise en ligne</h3>
-
-                  <p class="text-sm sm:text-base text-secondary-600 leading-relaxed">
-
-                    Publiez en un clic grâce à l'hébergement inclus.   
-
-                  </p>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-
-            <!-- Badge de confiance -->
-
-            <div class="text-center mt-8 sm:mt-12 md:mt-16">
-
-              <div class="inline-flex items-center bg-white rounded-full px-4 sm:px-6 py-2 sm:py-3 shadow-md">
-
-                <div class="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-green-500 rounded-full mr-2 sm:mr-3"></div>
-
-                <span class="text-xs sm:text-sm text-secondary-700 font-medium">Aucune compétence technique requise</span>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-
-      <!-- Section Bonus Guide -->
-      <FeaturesSection
-        title="Votre guide stratégique de 30 pages offert"
-        subtitle="Ne soyez plus jamais seul devant votre écran. Nous vous remettons un guide complet pour transformer votre template en un véritable outil de travail."
-        :features="guideFeatures"
-      >
-        <template #cta>
-          <GuidePreviewCatalog variant="light" label="Découvrir un extrait du guide" />
-        </template>
-      </FeaturesSection>
-
-
-
-      <!-- Section FAQ Accordion -->
-
-      <section class="py-16 sm:py-20 md:py-24">
-
-        <div>
-
-          <div>
-
-            <!-- Header -->
-
-            <div class="text-center mb-12 md:mb-16">
-
-              <h2 class="mb-4">
-
-                Questions fréquentes
-
-              </h2>
-
-              <p class="text-base sm:text-lg md:text-xl text-secondary-600 max-w-2xl mx-auto">
-
-                Tout ce que vous devez savoir sur nos templates et le guide bonus
-
-              </p>
-
-            </div>
-
-
-
-            <!-- Accordion -->
-
-            <Accordion :items="faqItems" />
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-
-      <!-- Section CTA Final -->
-      <CtaSection
-        title="Vous préférez qu'on s'en occupe ?"
-        description="Nous personnalisons votre template de A à Z. Vous gagnez du temps, nous assurons le rendu professionnel."
-        image="/images/Hestabien.jpg"
-        image-alt="Création de site internet pour les prestataires équestres"
-      >
-        <template #actions>
-          <NuxtLink
-            to="/creation-site-internet-equestre/cle-en-main"
-            class="btn-primary inline-flex items-center"
-          >
-            <span>Découvrir le service clé en main</span>
-            <ArrowRight :size="20" class="ml-2" />
-          </NuxtLink>
-        </template>
-      </CtaSection>
-
-
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Réalisations : avis clients (capture du site + note + témoignage), affichée seulement s'il y en a -->
+    <RealisationsReviewsSection />
+
+    <!-- CTA final vers l'offre clé en main -->
+    <CtaSection
+      title="Réservez votre site clé en main"
+      description="Un site d'une page, personnalisé à votre image à partir de votre modèle, pour 290 €."
+      image="/images/Hestabien.jpg"
+      image-alt="Création de site internet clé en main pour les praticiens équestres"
+    >
+      <template #actions>
+        <NuxtLink
+          to="/creation-site-internet-equestre/cle-en-main#offre"
+          class="btn-primary inline-flex items-center"
+          @click="trackEvent('template_showcase_book_click', { template: 'cta-final' })"
+        >
+          <span>Découvrir l'offre clé en main</span>
+          <ArrowRight :size="20" class="ml-2" />
+        </NuxtLink>
+      </template>
+    </CtaSection>
   </NuxtLayout>
-
 </template>
 
-
-
 <script setup lang="ts">
-
-import { Package, BookOpen, Lightbulb, Sparkles, MessageSquare, ArrowRight } from 'lucide-vue-next'
-
+import { MessageSquare, ArrowRight } from 'lucide-vue-next'
 import type { Template } from '~/models'
 
+const { trackEvent } = useAnalytics()
+
 useHead({
-  title: 'Templates - Sites web pour professionnels équins',
+  title: 'Modèles de sites internet équestres | Site clé en main',
   meta: [
-    { name: 'description', content: 'Découvrez nos templates de sites web personnalisables pour ostéopathes, maréchaux-ferrants et autres professionnels équins. Abordables et optimisés.' },
-    { property: 'og:title', content: 'Templates - sites web pour professionnels équins' },
-    { property: 'og:description', content: 'templates de sites web personnalisables pour professionnels équins.' },
+    { name: 'description', content: 'Ostéopathes, masseurs, nutritionnistes équins… Choisissez votre modèle de site d\'une page : je le personnalise pour vous, clé en main.' },
+    { property: 'og:title', content: 'Modèles de sites internet équestres | Site clé en main' },
+    { property: 'og:description', content: 'Choisissez votre modèle de site d\'une page : je le personnalise pour vous, clé en main.' },
     { property: 'og:type', content: 'website' },
-    { name: 'twitter:title', content: 'Templates - sites web pour professionnels équins' },
-    { name: 'twitter:description', content: 'templates de sites web personnalisables pour professionnels équins.' }
+    { name: 'twitter:title', content: 'Modèles de sites internet équestres | Site clé en main' },
+    { name: 'twitter:description', content: 'Choisissez votre modèle de site d\'une page : je le personnalise pour vous, clé en main.' }
   ]
 })
 
 const supabase = useSupabaseClient()
 
-// Récupération SSR de la liste des templates : rendue côté serveur (meilleur LCP
-// et SEO) au lieu d'un fetch client dans onMounted qui affichait un spinner.
+// Récupération SSR de la liste des modèles (meilleur LCP et SEO).
 const { data: templates, pending: loading } = await useAsyncData(
   'templates-list',
   async () => {
@@ -364,104 +124,28 @@ const { data: templates, pending: loading } = await useAsyncData(
   { default: () => [] as Template[] }
 )
 
-const faqItems = [
-
-  {
-
-    question: "Comment fonctionne l'achat d'un template ?",
-
-    answer: "Une fois votre achat effectué, vous recevez **immédiatement par email** un lien pour télécharger :\n\n- Le template complet\n- Votre guide stratégique de 30 pages\n\n- L'accès à notre support si besoin\n\n**Processus simple et instantané** pour commencer tout de suite !"
-
-  },
-
-  {
-
-    question: "Est-ce que je peux modifier les textes et photos ?",
-
-    answer: "**Absolument !** Tous nos templates sont **100% personnalisables**.\n\nVous pouvez :\n- Modifier **tous les textes**\n- Remplacer les **images par les vôtres**\n- Changer les **couleurs et polices**\n- Adapter le **design à votre marque**\n\nNotre guide bonus vous explique **étape par étape** comment faire chaque modification."
-
-  },
-
-  {
-
-    question: "Combien me coûte mon site web au total ?",
-
-    answer: "**C'est la solution la moins chère du marché** pour un résultat professionnel :\n\n- **Le template** : Paiement unique (selon le template choisi)\n- **L'abonnement technique** : Pour activer toutes les fonctionnalités premium (votre propre nom de domaine, formulaires, etc.), il faudra souscrire à l'offre Carrd Pro Standard\n- **Le coût total** : Environ **19$ par an** (soit moins de **2€/mois**)\n\n**C'est imbattable** comparé aux 150€ ou 200€ demandés par d'autres plateformes !"
-
-  },
-
-  {
-
-    question: "Le guide bonus est-il vraiment utile si je suis débutant ?",
-
-    answer: "**Absolument !** Le guide est spécialement conçu pour les **débutants complets**.\n\nIl vous explique **pas à pas** :\n- Comment personnaliser chaque élément de votre page\n- Comment avoir un site web clair et professionnel\n- Comment avoir une palette de couleur harmonieuse\n\n"
-
-  },
-
-  {
-
-    question: "Ai-je besoin de connaissances en informatique ?",
-
-    answer: "**Non !** J'ai simplifié le processus au maximum grâce au template.\n\n**Carrd.co est un système de drag and drop** :\n- **Zero code** requis\n- **Interface intuitive**\n- **Modification visuelle** simple\n\nVotre guide stratégique de **30 pages** est conçu spécifiquement pour les **débutants complets**."
-
-  },
-
-  {
-
-    question: "L'hébergement est-il inclus ?",
-
-    answer: "**Oui, l'hébergement gratuit est inclus** via l'extension .carrd.co (ex: monactivite.carrd.co).\n\n**C'est la solution la plus simple** pour commencer :\n- **Hébergement gratuit** inclus\n- **Tout est expliqué** dans votre guide\n- **Mise en ligne instantanée**\n\n**Vous voulez un nom de domaine personnalisé** (ex: .fr ou .com) ? C'est tout à fait possible ! Il suffit de [me contacter](/contact) pour que nous mettions cela en place ensemble une fois votre template acquis."
-
-  }
-
-]
-
-const guideFeatures = [
-  {
-    icon: BookOpen,
-    iconColor: 'text-primary-600',
-    title: 'Guide pas à pas',
-    description: 'Instructions détaillées pour personnaliser chaque élément de votre template et le lancer professionnellement.'
-  },
-  {
-    icon: Sparkles,
-    iconColor: 'text-primary-400',
-    title: 'Prompt IA exclusif',
-    description: 'Générez une palette de couleur professionnelle grâce au prompt IA.'
-  }
+// Reprend les engagements de l'offre clé en main (personnalisation, nom de domaine,
+// adresse mail pro, formation à la plateforme).
+const steps = [
+  { title: 'Vous choisissez votre modèle', description: 'Celui qui correspond à votre métier et à votre style.' },
+  { title: 'Je le personnalise pour vous', description: 'Vos textes, vos photos, vos couleurs : votre site vous ressemble.' },
+  { title: 'Votre site est en ligne', description: 'Nom de domaine et adresse mail pro inclus, et je vous forme pour être autonome.' }
 ]
 
 const siteUrl = 'https://lisewebequine.fr'
 
-// Supprime les marqueurs Markdown des réponses pour un texte propre dans le JSON-LD.
-const stripMarkdown = (text: string) =>
-  text.replace(/\*\*/g, '').replace(/^\s*-\s*/gm, '').replace(/\n+/g, ' ').trim()
-
-// Données structurées Schema.org : liste des templates (ItemList) + FAQ (FAQPage).
+// Données structurées Schema.org : liste des modèles.
 useStructuredData(() => [
   {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'Templates de sites internet pour professionnels équestres',
+    name: 'Modèles de sites internet pour professionnels équestres',
     itemListElement: templates.value.map((t, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       url: `${siteUrl}/template-site-internet-equestre/${t.slug}`,
       name: t.name
     }))
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqItems.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: stripMarkdown(item.answer)
-      }
-    }))
   }
 ])
-
 </script>

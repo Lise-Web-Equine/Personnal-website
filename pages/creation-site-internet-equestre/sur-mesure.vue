@@ -5,102 +5,78 @@
       />
       
     <!-- Section : Introduction -->
-    <IntroMediaSection
-      title=" À l'écoute des enjeux de votre filière"
-      video-src="/videos/presentation-sur-mesure.mp4"
-      media-aspect-class="aspect-[862/1081]"
-    >
-      <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">À l'ère de l'IA et des incertitudes,  <strong class="text-secondary-900 font-bold text-lg sm:text-xl">je mise avant tout sur l'humain</strong> : mettre en avant vos forces, votre histoire et votre professionnalisme pour toucher vos clients ou acheteurs idéaux, sans jamais oublier votre authenticité.</p>
+    <!-- Texte seul, centré (sans vidéo). Titre pleine largeur ; la largeur des
+         paragraphes est limitée par la règle globale des descriptions (main.css). -->
+    <section class="py-12 sm:py-16 md:py-20">
+      <div class="text-center space-y-6" v-motion-slide-visible-once-bottom>
+        <h2 class="mb-4 sm:mb-6 text-center">À l'écoute des enjeux de la filière équine</h2>
+        <p class="text-center text-base sm:text-lg text-secondary-600 leading-relaxed">
+          À l'ère de l'IA et des incertitudes, je mise avant tout sur l'humain : mettre en avant vos forces, votre histoire et votre professionnalisme pour toucher vos clients ou acheteurs idéaux, sans jamais oublier votre authenticité.
+        </p>
+        <p class="text-center text-base sm:text-lg text-secondary-600 leading-relaxed">
+          Pour autant, je ne rejette pas la technologie : je l'intègre à certaines étapes de mon processus. Mais l'écoute, le conseil et la compréhension de votre projet restent — et resteront toujours — un échange humain entre vous et moi.
+        </p>
+      </div>
+    </section>
 
-      <p class="text-base sm:text-lg text-secondary-600 leading-relaxed"> Pour autant, je ne rejette pas la technologie : je l'intègres à certaines étapes de mon processus. Mais <strong class="text-secondary-900 font-bold text-lg sm:text-xl">l'écoute, le conseil et la compréhension de votre projet</strong> restent — et resteront toujours — un échange humain entre vous et moi.
-      </p>
-    </IntroMediaSection>
-
-      <!-- Section : L'unicité de l'agence via la plateforme personnalisable (fond sombre) -->
-      <section class="py-12 sm:py-16 md:py-20 relative overflow-hidden bg-hero-dots">
-
-        <div class="relative">
-          <!-- En-tête -->
-          <div class="text-left sm:text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
-            <span class="inline-block text-primary-300 font-semibold text-sm sm:text-base mb-3">Pourquoi nous choisir ?</span>
-            <h2 class="mb-4 sm:mb-6 text-white">Un site internet livré avec sa plateforme de gestion, personnalisée pour votre métier</h2>
-            <p class="text-base sm:text-lg text-secondary-200 leading-relaxed max-w-3xl mx-auto">
-             Nous conçevons pour chaque professionnel du cheval une <strong class="text-white font-semibold">interface d'administration sur-mesure</strong> : vous faites évoluer votre contenu en toute autonomie, sans la moindre ligne de code.
-            </p>
-          </div>
-
-          <!-- Sélecteur interactif d'activité (SEO-friendly : contenu complet rendu dans le DOM) -->
-          <div v-motion-slide-visible-once-bottom>
-            <!-- Question + menu déroulant intégré -->
-            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-center gap-3 mb-8">
-              <label for="activity-select" class="text-white font-semibold text-lg sm:text-xl text-left sm:text-right">
-                Je suis
-              </label>
-              <div class="relative w-full sm:w-auto">
-                <select
-                  id="activity-select"
-                  v-model.number="selectedCategory"
-                  class="appearance-none w-full sm:w-72 bg-white/10 border border-white/20 text-white font-medium rounded-xl pl-4 pr-10 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors cursor-pointer"
-                >
-                  <option
-                    v-for="(cat, i) in siteCategories"
-                    :key="i"
-                    :value="i"
-                    class="text-secondary-900"
-                  >
-                    {{ cat.profession }}
-                  </option>
-                </select>
-                <ChevronDown class="w-5 h-5 text-primary-300 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-              </div>
-            </div>
-
-            <!-- Aperçu de l'interface sur-mesure correspondante -->
-            <Transition name="fade" mode="out-in">
-              <div
-                :key="selectedCategory"
-                class="bg-white/5 border border-white/10 rounded-2xl p-5 sm:p-8"
-              >
-                <h3 class="text-xl font-bold text-white mb-2">{{ siteCategories[selectedCategory].profession }}</h3>
-                <p class="text-sm sm:text-base text-secondary-300 mb-5">{{ siteCategories[selectedCategory].description }}</p>
-                <div class="flex flex-wrap gap-2">
-                  <span
-                    v-for="(mod, j) in siteCategories[selectedCategory].modules"
-                    :key="j"
-                    class="inline-flex items-center px-3 py-1.5 rounded-full bg-primary-500/20 text-primary-200 text-sm font-medium"
-                  >
-                    {{ mod }}
-                  </span>
-                </div>
-              </div>
-            </Transition>
-
-            <!-- Contenu complet rendu pour le SEO (masqué visuellement, lisible par les moteurs de recherche) -->
-            <div class="sr-only">
-              <p
-                v-for="(cat, i) in siteCategories"
-                :key="i"
-              >
-                {{ cat.profession }} : {{ cat.description }} Modules inclus : {{ cat.modules.join(', ') }}.
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- Section : Cas concret d'espace de gestion -->
+      <!-- Section : Dernière réalisation = site public + son administration (preuve fusionnée) -->
       <section class="py-12 sm:py-16 md:py-20 bg-gray-50">
-        <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
-          <span class="inline-block text-primary-600 font-semibold text-sm sm:text-base mb-3">Exemple concret</span>
-          <h2 class="mb-4 sm:mb-6">Une agence de marketing et communication équestre, autonome sur son site</h2>
+        <div class="text-center mb-8 sm:mb-10" v-motion-slide-visible-once-bottom>
+          <span class="inline-block text-primary-600 font-semibold text-sm sm:text-base mb-3">Ma dernière réalisation</span>
+          <h2 class="mb-4 sm:mb-6">Un site internet qui évolue avec son activité</h2>
           <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">
-            Sans aucune compétence technique, découvrez comment une agence met en avant son expertise en ajoutant elle-même ses études de cas et son portefeuille de clients.
+            Pour <strong class="font-semibold text-secondary-800">{{ latestRealisation.client }}</strong>, agence de marketing et communication en Bretagne, j'ai conçu un site sur mesure et son <strong class="font-semibold text-secondary-800">administration personnalisée</strong>. Aujourd'hui, elle ajoute elle-même ses études de cas et ses clients : son site grandit au rythme de son activité.
           </p>
         </div>
 
-        <!-- Carrousel : vidéo démo + images zoomables en pleine largeur -->
-        <figure v-motion-slide-visible-once-bottom>
+        <!-- Onglets : le site en ligne / son administration -->
+        <div class="flex justify-center mb-8 sm:mb-10" v-motion-slide-visible-once-bottom>
+          <div role="tablist" aria-label="Découvrir la réalisation" class="inline-flex rounded-full bg-white border border-secondary-200 p-1 shadow-sm">
+            <button
+              v-for="tab in realisationTabs"
+              :id="`tab-${tab.id}`"
+              :key="tab.id"
+              type="button"
+              role="tab"
+              :aria-selected="activeRealisationTab === tab.id"
+              :aria-controls="`panel-${tab.id}`"
+              class="inline-flex items-center gap-2 rounded-full px-4 sm:px-6 py-2 sm:py-2.5 text-sm sm:text-base font-semibold transition-colors"
+              :class="activeRealisationTab === tab.id ? 'bg-primary-600 text-white shadow' : 'text-secondary-600 hover:text-secondary-900'"
+              @click="selectRealisationTab(tab.id)"
+            >
+              <component :is="tab.icon" :size="18" />
+              {{ tab.label }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Panneau 1 : le site en ligne (maquette ordinateur + mobile) -->
+        <div
+          v-show="activeRealisationTab === 'site'"
+          id="panel-site"
+          role="tabpanel"
+          aria-labelledby="tab-site"
+          class="flex flex-col items-center"
+        >
+          <RealisationMockup />
+          <a
+            :href="latestRealisation.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-12 sm:mt-16 inline-flex items-center gap-1.5 border-b border-secondary-300 pb-0.5 text-sm font-medium text-secondary-800 hover:border-secondary-900 hover:text-secondary-900 transition-colors"
+          >
+            Voir le site {{ latestRealisation.displayUrl }}
+            <ExternalLink :size="14" />
+          </a>
+        </div>
+
+        <!-- Panneau 2 : son administration — carrousel (vidéo démo + images zoomables) -->
+        <figure
+          v-show="activeRealisationTab === 'admin'"
+          id="panel-admin"
+          role="tabpanel"
+          aria-labelledby="tab-admin"
+        >
           <div class="relative rounded-2xl overflow-hidden shadow-lg bg-secondary-100 group">
             <!-- Slide vidéo -->
             <div v-if="caseImages[currentCase].type === 'video'" class="relative bg-secondary">
@@ -192,7 +168,18 @@
           </div>
         </figure>
 
-        <!-- Cas concret : récit authentique 
+        <!-- La force d'un site sur mesure : 3 piliers de l'administration -->
+        <div class="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8" v-motion-slide-visible-once-bottom>
+          <div v-for="pillar in adminPillars" :key="pillar.title" class="bg-white rounded-2xl border border-secondary-100 p-6 shadow-sm">
+            <div class="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-primary-50 text-primary-600 mb-4">
+              <component :is="pillar.icon" :size="22" />
+            </div>
+            <h3 class="text-lg font-semibold text-secondary-900 mb-2">{{ pillar.title }}</h3>
+            <p class="text-sm sm:text-base text-secondary-600 leading-relaxed">{{ pillar.description }}</p>
+          </div>
+        </div>
+
+        <!-- Cas concret : récit authentique
         <div class="mt-10 sm:mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8" v-motion-slide-visible-once-bottom>
           <div>
             <p class="text-sm font-semibold text-primary-600 uppercase tracking-wide mb-2">Son activité</p>
@@ -263,7 +250,7 @@
                 </div>
                 <!-- Inclus -->
                 <div class="p-6 sm:p-8 lg:p-10">
-                  <p class="font-semibold text-secondary-900 mb-4">Tout est inclus :</p>
+                  <p class="font-semibold text-secondary-900 mb-4">Pour un site vitrine :</p>
                   <div class="space-y-3">
                     <div v-for="(item, i) in socleIncludes" :key="i" class="flex items-start gap-3">
                       <div class="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -279,26 +266,6 @@
               </div>
             </div>
 
-            <!-- Options -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 sm:mt-8">
-              <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md border border-secondary-100" v-motion-slide-visible-once-bottom>
-                <div class="flex items-center gap-3 mb-3">
-                  <FileText :size="22" class="text-primary-600" />
-                  <h3 class="text-lg font-bold">Page supplémentaire</h3>
-                </div>
-                <p class="text-2xl font-bold text-secondary-900 mb-2">à partir de 200€</p>
-                <p class="text-sm sm:text-base text-secondary-600">Blog, réalisations, galerie, catalogue de chevaux...</p>
-              </div>
-              <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md border border-secondary-100" v-motion-slide-visible-once-bottom :delay="100">
-                <div class="flex items-center gap-3 mb-3">
-                  <Puzzle :size="22" class="text-primary-600" />
-                  <h3 class="text-lg font-bold">Module supplémentaire</h3>
-                </div>
-                <p class="text-2xl font-bold text-secondary-900 mb-2">à partir de 150€</p>
-                <p class="text-sm sm:text-base text-secondary-600">Newsletter, site multilingue...</p>
-              </div>
-            </div>
-
             <!-- CTA sur-mesure -->
             <div class="text-center mt-8 sm:mt-10">
               <p class="text-secondary-600 mb-4">Besoin d'une page ou d'un module sur-mesure ?</p>
@@ -311,51 +278,52 @@
       </section>
 
       <!-- Étapes Section -->
-      <section class="py-12 sm:py-16 md:py-20 bg-gray-50">
-          <div class="text-center mb-10 sm:mb-12" v-motion-slide-visible-once-bottom>
-            <span class="inline-block text-primary-600 font-semibold text-sm sm:text-base mb-3">Comment ça se passe ?</span>
-            <h2 class="mb-4 sm:mb-6">Les étapes de création de votre site équestre</h2>
-            <p class="text-base sm:text-lg text-secondary-600 leading-relaxed">
-              De la première discussion à la mise en ligne, on avance main dans la main.
+      <!-- Fond sombre, volontairement court : 3 temps, une phrase chacun.
+           Message clé : l'accompagnement (plusieurs points ensemble, objectifs fixés et tenus). -->
+      <section class="py-12 sm:py-16 md:py-20 relative overflow-hidden bg-hero-dots">
+        <div class="relative">
+          <!-- Mobile : aligné à gauche comme le reste du site ; centré à partir de sm -->
+          <div class="text-left sm:text-center mb-10 sm:mb-14" v-motion-slide-visible-once-bottom>
+            <span class="inline-block text-primary-300 font-semibold text-sm sm:text-base mb-3">Comment ça se passe ?</span>
+            <h2 class="mb-4 sm:mb-6 text-white">Collaborer pour créer votre site internet</h2>
+            <p class="text-base sm:text-lg text-secondary-200 leading-relaxed max-w-2xl mx-auto">
+              Ma conviction est de vous créer un site qui vous ressemble et qui vous aide à atteindre vos objectifs. Pour cela, je mise sur un accompagnement humain, avec des points aussi souvent que nécessaire pour vous. 
             </p>
           </div>
 
-          <div v-motion-slide-visible-once-bottom>
-            <!-- Colonnes d'étapes (cliquables) -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
-              <button
-                v-for="(step, index) in steps"
-                :key="index"
-                type="button"
-                :aria-pressed="openStep === index"
-                @click="openStep = index"
-                class="flex flex-col items-center text-center gap-3 p-6 rounded-2xl border bg-white transition-colors"
-                :class="openStep === index
-                  ? 'border-primary-300 shadow-md'
-                  : 'border-secondary-200 hover:border-secondary-300'"
-              >
-                <span
-                  class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold text-base sm:text-lg transition-colors"
-                  :class="openStep === index ? 'bg-primary-500 text-white' : 'bg-primary-100 text-primary-600'"
-                >
-                  {{ index + 1 }}
-                </span>
-                <h3 class="text-base sm:text-lg font-bold text-secondary-900 leading-tight">{{ step.title }}</h3>
-              </button>
-            </div>
+          <!-- Étapes responsive :
+               - mobile  : frise verticale (numéro à gauche, texte à droite, trait qui relie les étapes) ;
+               - tablette: grille 2 × 2 centrée ;
+               - desktop : 4 colonnes, numéros reliés par un trait horizontal. -->
+          <ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-x-8 sm:gap-y-12 lg:gap-10" v-motion-slide-visible-once-bottom>
+            <li
+              v-for="(step, index) in steps"
+              :key="step.title"
+              class="relative flex items-start gap-4 sm:flex-col sm:items-center sm:gap-0"
+            >
+              <!-- Trait vertical vers l'étape suivante (mobile) -->
+              <span
+                v-if="index < steps.length - 1"
+                class="sm:hidden absolute left-[1.375rem] top-[3.25rem] -bottom-4 w-px bg-white/15"
+                aria-hidden="true"
+              ></span>
+              <!-- Trait horizontal vers l'étape suivante (desktop) -->
+              <span
+                v-if="index < steps.length - 1"
+                class="hidden lg:block absolute top-[1.375rem] left-[calc(50%+2.125rem)] right-[calc(-50%-0.375rem)] h-px bg-white/15"
+                aria-hidden="true"
+              ></span>
 
-            <!-- Description de l'étape active -->
-            <Transition name="fade" mode="out-in">
-              <p :key="openStep" class="text-center text-base sm:text-lg text-secondary-600 leading-relaxed mt-8">
-                {{ steps[openStep].description }}
-              </p>
-            </Transition>
-
-            <!-- Descriptions complètes rendues pour le SEO -->
-            <div class="sr-only">
-              <p v-for="(step, index) in steps" :key="index">{{ step.title }} : {{ step.description }}</p>
-            </div>
-          </div>
+              <span class="relative shrink-0 w-11 h-11 sm:mx-auto sm:mb-4 rounded-full flex items-center justify-center font-bold bg-primary-500/20 text-primary-200">
+                {{ index + 1 }}
+              </span>
+              <div class="min-w-0 pt-2 sm:pt-0">
+                <h3 class="mb-1 sm:mb-2 text-left sm:text-center text-lg sm:text-xl font-bold text-white">{{ step.title }}</h3>
+                <p class="text-left sm:text-center text-sm sm:text-base text-secondary-300 leading-relaxed sm:max-w-xs sm:mx-auto">{{ step.description }}</p>
+              </div>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <!-- FAQ Section -->
@@ -464,12 +432,48 @@
 </template>
 
 <script setup lang="ts">
-import { Code, Zap, Check, ArrowRight, Send, Target, ChevronDown, FileText, Play, Puzzle, HeartPulse, Home, Award, Camera, Briefcase, Rocket, ZoomIn, ChevronLeft, ChevronRight, X } from 'lucide-vue-next'
+import { Code, Zap, Check, ArrowRight, Send, Target, ChevronDown, Play, Puzzle, HeartPulse, Home, Award, Camera, Briefcase, Rocket, ZoomIn, ChevronLeft, ChevronRight, X, ExternalLink, Monitor, LayoutDashboard, MousePointerClick, TrendingUp } from 'lucide-vue-next'
+import { latestRealisation } from '~/utils/realisations'
 
 // Suivi conversion : événements GA4 personnalisés (CTA devis, génération de lead).
 const { trackEvent } = useAnalytics()
 
-// Section "Cas concret" : carrousel (vidéo démo + images zoomables)
+// Section "Ma dernière réalisation" : onglets site en ligne / administration
+type RealisationTab = 'site' | 'admin'
+const realisationTabs = [
+  { id: 'site' as RealisationTab, label: 'Le site', icon: Monitor },
+  { id: 'admin' as RealisationTab, label: 'Son administration', icon: LayoutDashboard }
+]
+const activeRealisationTab = ref<RealisationTab>('site')
+const selectRealisationTab = (id: RealisationTab) => {
+  // On met la démo en pause quand on quitte l'onglet administration
+  if (id !== 'admin') {
+    videoEl.value?.pause()
+    isPlaying.value = false
+  }
+  activeRealisationTab.value = id
+}
+
+// Les 3 forces de l'administration sur mesure (on se démarque des CMS génériques sans les nommer)
+const adminPillars = [
+  {
+    icon: Puzzle,
+    title: 'Personnalisée',
+    description: 'Conçue autour de son métier : uniquement ses contenus (études de cas, clients, prestations), sans menus superflus ni réglages inutiles.'
+  },
+  {
+    icon: MousePointerClick,
+    title: 'Simple',
+    description: 'Publier une étude de cas prend quelques minutes, sans compétence technique et sans risque de casser la mise en page.'
+  },
+  {
+    icon: TrendingUp,
+    title: 'Évolutive',
+    description: 'Un nouveau besoin ? La fonctionnalité est développée pour elle. Aucun thème qui bride, aucune extension à empiler ni à mettre à jour.'
+  }
+]
+
+// Carrousel de l'administration (vidéo démo + images zoomables)
 type CaseImage = { type: 'video' | 'image'; src: string; alt: string; caption: string }
 const caseImages: CaseImage[] = [
   {
@@ -613,16 +617,13 @@ const toggleProfile = (index: number) => {
 }
 
 // Section "On avance main dans la main" : étapes du projet
+// 4 temps, une phrase chacun : l'accompagnement est le fil conducteur.
 const steps = [
-  { title: 'Analyse de votre projet', description: 'Une session en direct pour comprendre votre vision et valider la faisabilité technique.' },
-  { title: 'Offre & Devis', description: 'Je vous présente une proposition chiffrée transparente, adaptée à vos besoins réels.' },
-  { title: 'Cadrage de départ', description: 'Dès le devis signé, nous fixons les objectifs précis pour lancer le développement.' },
-  { title: 'Développement', description: 'Phase de création pure, où votre site prend vie, que vous pouvez suivre en temps réel.' },
-  { title: 'Phase de test', description: 'On vérifie ensemble que tout fonctionne parfaitement sur tous les écrans avant le grand saut.' },
-  { title: 'Mise en ligne', description: 'Votre site est officiellement accessible ! Je reste à vos côtés pour le lancement.' }
+  { title: 'Le cadrage', description: 'Ensemble, on définit ce que votre site doit vous apporter. Ce sera notre cap.' },
+  { title: 'Le développement', description: 'Le cœur de mon métier : je code votre site sur mesure, et on fait le point ensemble aussi souvent que nécessaire.' },
+  { title: 'La mise en ligne', description: 'On vérifie tout ensemble, puis votre site est publié, avec son administration prête à l\'emploi.' },
+  { title: 'La maintenance', description: 'Je reste là : mises à jour, sécurité et suivi de votre référencement, pour un site qui évolue avec vous.' }
 ]
-
-const openStep = ref(0)
 
 // Lecteur vidéo démo
 const isPlaying = ref(false)

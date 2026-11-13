@@ -125,8 +125,8 @@
       :features="reasons"
     />
 
-    <!-- Section : L'offre template clé en main -->
-    <section class="py-12 sm:py-16 md:py-20">
+    <!-- Section : L'offre template clé en main (ancre #offre : cible des boutons « Réserver ce modèle ») -->
+    <section id="offre" class="py-12 sm:py-16 md:py-20 scroll-mt-24">
         <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
           <h2 class="mb-4 sm:mb-6">L'offre site internet clé en main</h2>
           <p class="text-base sm:text-lg text-secondary-600 max-w-3xl mx-auto">
@@ -203,91 +203,8 @@
         </div>
     </section>
 
-    <!-- Section : Réalisations (preuve sociale, affichée seulement s'il y en a) -->
-    <section v-if="realisations.length" class="py-12 sm:py-16 md:py-20 bg-gray-50">
-        <div class="text-center mb-12 sm:mb-16" v-motion-slide-visible-once-bottom>
-          <h2 class="mb-4 sm:mb-6">Ils ont lancé leur site</h2>
-          <p class="text-base sm:text-lg text-secondary-600 max-w-3xl mx-auto">
-            Découvre des sites réalisés pour des professionnels équestres comme toi.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center" v-motion-slide-visible-once-bottom>
-          <!-- Capture du site -->
-          <component
-            :is="realisations[0].site_url ? 'a' : 'div'"
-            :href="realisations[0].site_url || undefined"
-            :target="realisations[0].site_url ? '_blank' : undefined"
-            :rel="realisations[0].site_url ? 'noopener noreferrer' : undefined"
-            class="block rounded-2xl overflow-hidden shadow-lg"
-          >
-            <NuxtImg
-              :src="realisations[0].site_image"
-              :alt="`Site de ${realisations[0].client_name}, ${realisations[0].client_profession}`"
-              class="w-full h-auto object-contain"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              loading="lazy"
-            />
-          </component>
-
-          <!-- Témoignage client -->
-          <div class="space-y-6">
-            <span
-              class="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full"
-              :class="realisations[0].type === 'pack' ? 'bg-primary-100 text-primary-700' : 'bg-white text-secondary-700 border border-secondary-200'"
-            >
-              {{ realisations[0].type === 'pack' ? 'Offre clé en main' : 'Personnalisé en autonomie' }}
-            </span>
-
-            <blockquote class="text-xl sm:text-2xl font-medium text-secondary-900 leading-relaxed">
-              "{{ realisations[0].quote }}"
-            </blockquote>
-
-            <div class="flex items-center gap-4">
-              <NuxtImg
-                v-if="realisations[0].client_photo"
-                :src="realisations[0].client_photo"
-                :alt="realisations[0].client_name"
-                class="w-14 h-14 rounded-full object-cover flex-shrink-0"
-                loading="lazy"
-              />
-              <div
-                v-else
-                class="w-14 h-14 rounded-full bg-primary-100 flex items-center justify-center text-primary-700 font-bold text-lg flex-shrink-0"
-              >
-                {{ realisations[0].client_name.split(' ').map(part => part.charAt(0)).slice(0, 2).join('').toUpperCase() }}
-              </div>
-              <div>
-                <p class="font-semibold text-secondary-900">{{ realisations[0].client_name }}</p>
-                <p class="text-secondary-600">{{ realisations[0].client_profession }}</p>
-              </div>
-            </div>
-
-            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-x-6 gap-y-3">
-              <!-- Si le témoignage est lié à un template, on invite à le découvrir -->
-              <NuxtLink
-                v-if="realisationTemplate"
-                :to="`/template-site-internet-equestre/${realisationTemplate.slug}`"
-                class="btn-primary inline-flex items-center"
-              >
-                <span>Voir le template</span>
-                <ArrowRight :size="20" class="ml-2" />
-              </NuxtLink>
-              <!-- Lien vers le site en ligne du client -->
-              <a
-                v-if="realisations[0].site_url"
-                :href="realisations[0].site_url"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-sm sm:text-base text-secondary-600 hover:text-primary-600 font-medium transition-colors duration-200 inline-flex items-center justify-center group"
-              >
-                <span>{{ realisations[0].site_url }}</span>
-                <ArrowRight :size="16" class="ml-2 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </div>
-          </div>
-        </div>
-    </section>
+    <!-- Section : Réalisations (même section d'avis que la page des modèles) -->
+    <RealisationsReviewsSection title="Elles ont lancé leur site" />
 
     <!-- Section : CTA final -->
     <CtaSection
@@ -314,12 +231,6 @@
 
 <script setup lang="ts">
 import { Calendar, Check, ExternalLink, Gift, Globe, LayoutGrid, Palette, Sparkles, X, Instagram, Target, Wallet, ArrowRight } from 'lucide-vue-next'
-import type { Realisation, Template } from '~/models'
-
-// Informations minimales d'un template ciblé par un lien de témoignage.
-type RealisationTemplateLink = Pick<Template, 'slug' | 'name'>
-
-const supabase = useSupabase()
 
 // Suivi conversion : événements GA4 personnalisés (quiz, lead magnet, RDV).
 const { trackEvent } = useAnalytics()
@@ -385,49 +296,6 @@ const packFeatures = [
   'Formation à l\'interface',
   'Référencement de base sur Google'
 ]
-
-// Réalisations (preuve sociale) : sites de type "template", repli sur les mises en avant
-const realisations = ref<Realisation[]>([])
-// Template concerné par le témoignage mis en avant (pour le bouton "Voir le template").
-const realisationTemplate = ref<RealisationTemplateLink | null>(null)
-
-onMounted(async () => {
-  try {
-    const { data: templateRealisations } = await supabase
-      .from('realisations')
-      .select('*')
-      .eq('type', 'template')
-      .order('display_order', { ascending: true })
-
-    if (templateRealisations && templateRealisations.length > 0) {
-      realisations.value = templateRealisations as Realisation[]
-    } else {
-      const { data: featured } = await supabase
-        .from('realisations')
-        .select('*')
-        .eq('featured', true)
-        .order('display_order', { ascending: true })
-        .limit(3)
-
-      realisations.value = (featured as Realisation[]) || []
-    }
-
-    // Récupère le slug du template lié au témoignage mis en avant, s'il existe.
-    const featuredRea = realisations.value[0]
-    if (featuredRea?.template_id) {
-      const { data: reaTemplate } = await supabase
-        .from('templates')
-        .select('slug, name')
-        .eq('id', featuredRea.template_id)
-        .maybeSingle()
-      realisationTemplate.value = (reaTemplate as RealisationTemplateLink | null) ?? null
-    } else {
-      realisationTemplate.value = null
-    }
-  } catch (error) {
-    console.error('Erreur lors du chargement des réalisations:', error)
-  }
-})
 
 // Section "Pourquoi nous choisir ?" : arguments clés
 const reasons = [
