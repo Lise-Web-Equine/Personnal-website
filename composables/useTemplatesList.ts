@@ -1,9 +1,5 @@
 import type { Template } from '~/models'
 
-// Champs utiles aux cartes vitrines (évite de charger les longs contenus des fiches :
-// textes métier, FAQ, listes…).
-const TEMPLATE_CARD_FIELDS = 'id, name, slug, image, demo_url, tags, speciality, rating, created_at'
-
 /**
  * Liste des modèles pour les cartes vitrines (accueil + page des modèles).
  * - Clé partagée : chargée une seule fois, réutilisée d'une page à l'autre.
@@ -19,11 +15,12 @@ export const useTemplatesList = () => {
     async () => {
       const { data, error } = await supabase
         .from('templates')
-        .select(TEMPLATE_CARD_FIELDS)
+        .select(TEMPLATE_CARD_COLUMNS)
         .order('created_at', { ascending: false })
 
       if (error) throw error
-      return (data || []) as unknown as Template[]
+      // URL Supabase Storage (jamais de base64 dans le HTML) : voir utils/media.ts
+      return ((data || []) as unknown as Template[]).map(withTemplateImage)
     },
     {
       default: () => [] as Template[],

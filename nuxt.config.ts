@@ -14,7 +14,8 @@ export default defineNuxtConfig({
     provider: 'vercel',
     quality: 70,
     format: ['avif', 'webp'],
-    domains: ['images.unsplash.com'],
+    // Domaine Supabase : les images Storage sont optimisées par Vercel directement depuis Supabase.
+    domains: ['images.unsplash.com', ...(process.env.SUPABASE_URL ? [new URL(process.env.SUPABASE_URL).host] : [])],
     screens: {
       sm: 640,
       md: 768,

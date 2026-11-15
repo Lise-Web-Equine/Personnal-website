@@ -16,11 +16,12 @@ const { data: realisations } = useAsyncData(
   async () => {
     const { data, error } = await supabase
       .from('realisations')
-      .select('*')
+      .select(REALISATION_COLUMNS)
       .order('display_order', { ascending: true })
 
     if (error) throw error
-    return (data || []) as Realisation[]
+    // URLs Supabase Storage (jamais de base64 dans le HTML) : voir utils/media.ts
+    return withRealisationImages(supabase, (data || []) as unknown as Realisation[])
   },
   {
     default: () => [] as Realisation[],

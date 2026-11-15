@@ -581,7 +581,7 @@ const { data: pageData, pending: loading, error: fetchError } = await useAsyncDa
   async () => {
     const { data: tmpl, error: templateError } = await supabase
       .from('templates')
-      .select('*')
+      .select(TEMPLATE_COLUMNS)
       .eq('slug', route.params.slug)
       .maybeSingle()
 
@@ -589,44 +589,44 @@ const { data: pageData, pending: loading, error: fetchError } = await useAsyncDa
     // Slug inexistant -> on renvoie null, la vraie 404 est levée dans le setup.
     if (!tmpl) return null
 
-    const currentTemplate = tmpl as Template
+    const currentTemplate = withTemplateImage(tmpl as unknown as Template)
 
     // Requêtes indépendantes lancées en parallèle.
     const [linkedRealisationsRes, relatedRes] = await Promise.all([
       supabase
         .from('realisations')
-        .select('*')
+        .select(REALISATION_COLUMNS)
         .eq('template_id', currentTemplate.id)
         .order('display_order', { ascending: true }),
       supabase
         .from('templates')
-        .select('*')
+        .select(TEMPLATE_COLUMNS)
         .eq('speciality', currentTemplate.speciality)
         .neq('id', currentTemplate.id)
         .limit(3)
     ])
 
     // Réalisations liées, avec repli sur les réalisations mises en avant.
-    let realisationsList = (linkedRealisationsRes.data as Realisation[]) || []
+    let realisationsList = (linkedRealisationsRes.data as unknown as Realisation[]) || []
     if (realisationsList.length === 0) {
       const { data: featured } = await supabase
         .from('realisations')
-        .select('*')
+        .select(REALISATION_COLUMNS)
         .eq('featured', true)
         .order('display_order', { ascending: true })
         .limit(3)
-      realisationsList = (featured as Realisation[]) || []
+      realisationsList = (featured as unknown as Realisation[]) || []
     }
 
     // Templates similaires, avec repli sur les premiers templates disponibles.
-    let related = (relatedRes.data as Template[]) || []
+    let related = ((relatedRes.data as unknown as Template[]) || []).map(withTemplateImage)
     if (related.length === 0) {
       const { data: fallback } = await supabase
         .from('templates')
-        .select('*')
+        .select(TEMPLATE_COLUMNS)
         .neq('id', currentTemplate.id)
         .limit(3)
-      related = (fallback as Template[]) || []
+      related = ((fallback as unknown as Template[]) || []).map(withTemplateImage)
     }
 
     // Lien "Voir le template" si le témoignage mis en avant concerne un AUTRE template.
@@ -643,7 +643,7 @@ const { data: pageData, pending: loading, error: fetchError } = await useAsyncDa
 
     return {
       template: currentTemplate,
-      realisations: realisationsList,
+      realisations: await withRealisationImages(supabase, realisationsList),
       relatedTemplates: related,
       realisationTemplate: linkedTestimonialTemplate
     }
@@ -797,7 +797,7 @@ useStructuredData(() => {
     '@type': 'Product',
     name: t.name,
     description: t.description,
-    image: t.image,
+    image: `${siteUrl}${t.image}`,
     url: productUrl,
     category: 'Template de site internet équestre',
     brand: { '@type': 'Brand', name: 'Lise Web Equine' },

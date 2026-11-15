@@ -1465,23 +1465,65 @@ const handleImageUpload = (event: Event) => {
   }
 }
 
+// Envoie un fichier dans un bucket Supabase Storage public et renvoie son URL publique
+// (c'est elle qu'on enregistre en base).
+const uploadToStorage = async (bucket: 'templates' | 'realisations', file: File): Promise<string> => {
+  const ext = (file.name.split('.').pop() || 'jpg').toLowerCase()
+  const path = `${crypto.randomUUID()}.${ext}`
+
+  const { error } = await supabase.storage
+    .from(bucket)
+    .upload(path, file, { contentType: file.type, cacheControl: '31536000', upsert: false })
+
+  if (error) {
+    throw new Error(`Échec de l'envoi de l'image : ${error.message}`)
+  }
+
+  return supabase.storage.from(bucket).getPublicUrl(path).data.publicUrl
+}
+
+// Supprime du Storage les fichiers correspondant à ces URLs publiques.
+// Les valeurs qui ne sont pas des fichiers Storage (base64, liens externes, vides) sont ignorées.
+// Un échec n'est pas bloquant : au pire, un fichier orphelin reste dans le bucket.
+const removeFromStorage = async (...urls: (string | null | undefined)[]) => {
+  const byBucket: Record<string, string[]> = {}
+  for (const url of urls) {
+    const match = url && /\/storage\/v1\/object\/public\/([^/]+)\/(.+)$/.exec(url)
+    if (match) (byBucket[match[1]] ||= []).push(decodeURIComponent(match[2]))
+  }
+  for (const [bucket, paths] of Object.entries(byBucket)) {
+    const { error } = await supabase.storage.from(bucket).remove(paths)
+    if (error) console.warn(`Suppression Storage impossible (${bucket}) :`, error.message)
+  }
+}
+
 const uploadImage = async (): Promise<string> => {
   if (!imageFile.value) {
     return newTemplate.value.image
   }
-  
-  // For now, we'll create a data URL from file
-  // In a real app, you would upload to Supabase Storage
-  const reader = new FileReader()
-  
-  return new Promise((resolve) => {
-    reader.onload = (e) => {
-      // Return data URL as image source
-      const dataUrl = e.target?.result as string
-      resolve(dataUrl)
-    }
-    reader.readAsDataURL(imageFile.value!)
-  })
+  return uploadToStorage('templates', imageFile.value)
+}
+
+const deleteTemplate = async (id: string) => {
+  if (!confirm('Êtes-vous sûr de vouloir supprimer ce modèle ? Cette action est irréversible.')) {
+    return
+  }
+
+  const template = templates.value.find(t => t.id === id)
+  loading.value = true
+  try {
+    const { error } = await supabase.from('templates').delete().eq('id', id)
+    if (error) throw error
+
+    await removeFromStorage(template?.image)
+    showMessage('Modèle supprimé avec succès !', true)
+    await refreshTemplates()
+  } catch (error) {
+    console.error('Error deleting template:', error)
+    showMessage('Erreur lors de la suppression du modèle', false)
+  } finally {
+    loading.value = false
+  }
 }
 
 // Form functions
@@ -1597,8 +1639,9 @@ const updateTemplate = async () => {
   
   try {
     // Upload image if file is provided
-    const imageUrl = imageFile.value ? await uploadImage() : editingTemplate.value.image
-    
+    const previousImage = editingTemplate.value.image
+    const imageUrl = imageFile.value ? await uploadImage() : previousImage
+
     // Validate slug format if provided
     if (editingTemplate.value.slug) {
       const slugRegex = /^[a-z0-9-]+$/
@@ -1637,9 +1680,12 @@ const updateTemplate = async () => {
       .from('templates')
       .update(templateToUpdate as any)
       .eq('id', editingTemplate.value.id)
-    
+
     if (error) throw error
-    
+
+    // Nouvelle image enregistrée : l'ancien fichier ne sert plus.
+    if (imageUrl !== previousImage) await removeFromStorage(previousImage)
+
     showMessage('Modèle mis à jour avec succès !', true)
     resetEditForm()
     await refreshTemplates()
@@ -1748,14 +1794,6 @@ const emptyRealisation = (): RealisationCreate => ({
 
 const newRealisation = ref<RealisationCreate>(emptyRealisation())
 
-// Convertit un fichier image en data URL (même approche que pour les templates)
-const fileToDataUrl = (file: File): Promise<string> =>
-  new Promise((resolve) => {
-    const reader = new FileReader()
-    reader.onload = (e) => resolve(e.target?.result as string)
-    reader.readAsDataURL(file)
-  })
-
 const handleSiteImageUpload = (event: Event) => {
   const file = (event.target as HTMLInputElement).files?.[0]
   if (file) {
@@ -1827,8 +1865,8 @@ const addNewRealisation = async () => {
   message.value = ''
 
   try {
-    const siteImage = await fileToDataUrl(siteImageFile.value)
-    const clientPhoto = clientPhotoFile.value ? await fileToDataUrl(clientPhotoFile.value) : null
+    const siteImage = await uploadToStorage('realisations', siteImageFile.value)
+    const clientPhoto = clientPhotoFile.value ? await uploadToStorage('realisations', clientPhotoFile.value) : null
 
     const toInsert: RealisationCreate = {
       ...newRealisation.value,
@@ -1876,8 +1914,10 @@ const updateRealisation = async () => {
   message.value = ''
 
   try {
-    const siteImage = siteImageFile.value ? await fileToDataUrl(siteImageFile.value) : editingRealisation.value.site_image
-    const clientPhoto = clientPhotoFile.value ? await fileToDataUrl(clientPhotoFile.value) : editingRealisation.value.client_photo
+    const previousSiteImage = editingRealisation.value.site_image
+    const previousClientPhoto = editingRealisation.value.client_photo
+    const siteImage = siteImageFile.value ? await uploadToStorage('realisations', siteImageFile.value) : previousSiteImage
+    const clientPhoto = clientPhotoFile.value ? await uploadToStorage('realisations', clientPhotoFile.value) : previousClientPhoto
 
     const toUpdate: RealisationUpdate = {
       client_name: editingRealisation.value.client_name,
@@ -1901,6 +1941,12 @@ const updateRealisation = async () => {
 
     if (error) throw error
 
+    // Images remplacées : les anciens fichiers ne servent plus.
+    await removeFromStorage(
+      siteImage !== previousSiteImage ? previousSiteImage : null,
+      clientPhoto !== previousClientPhoto ? previousClientPhoto : null
+    )
+
     showMessage('Réalisation mise à jour avec succès !', true)
     resetRealisationEditForm()
     await loadRealisations()
@@ -1917,6 +1963,7 @@ const deleteRealisation = async (id: string) => {
     return
   }
 
+  const realisation = realisations.value.find(r => r.id === id)
   realisationLoading.value = true
   try {
     const { error } = await supabase
@@ -1925,6 +1972,8 @@ const deleteRealisation = async (id: string) => {
       .eq('id', id)
 
     if (error) throw error
+
+    await removeFromStorage(realisation?.site_image, realisation?.client_photo)
 
     showMessage('Réalisation supprimée avec succès !', true)
     await loadRealisations()
@@ -2097,7 +2146,9 @@ const cleanTemplates = async () => {
         console.error(`Error deleting template ${template.name}:`, error)
         continue
       }
-      
+
+      await removeFromStorage(template.image)
+
       deletedCount++
     }
 

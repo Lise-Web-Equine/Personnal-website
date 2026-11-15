@@ -59,7 +59,9 @@ export default defineEventHandler(async (event) => {
       : firstItem.template.price
 
     // Stripe n'accepte que des URLs publiques pour les images (pas de base64)
+    // (les images servies par /api/media sont relatives : on les rend absolues)
     const imageUrl = [firstItem.template.image_url, firstItem.template.image]
+      .map(url => typeof url === 'string' && url.startsWith('/api/media/') ? `${config.appUrl}${url}` : url)
       .find(url => typeof url === 'string' && url.startsWith('http'))
 
     // Créer les line items pour Stripe
